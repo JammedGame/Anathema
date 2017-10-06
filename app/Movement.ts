@@ -48,30 +48,33 @@ class Movement
         if(!Player.Data["Collision_Solid"][Direction])
         {
             let Able:boolean = true;
-            if (Able) Player.Trans.Translation = new Engineer.Math.Vertex(Player.Trans.Translation.X + Movement.X, Player.Trans.Translation.Y + Movement.Y, 0);
-            Player.Modified = true;
+            if (Able)
+            {
+                this._Scene.Trans.Translation = new Engineer.Math.Vertex(this._Scene.Trans.Translation.X - Movement.X, this._Scene.Trans.Translation.Y - Movement.Y, 0);
+                Player.Trans.Translation = new Engineer.Math.Vertex(Player.Trans.Translation.X + Movement.X, Player.Trans.Translation.Y + Movement.Y, 0);
+            }
         }       
     }
     private GameUpdate(G:any, Args:any)
     {      
         if(this._PlayerKeys.Up)
         {
-            this.TryMovement(this._Player, "Top", new Engineer.Math.Vertex(0, -this._MoveSpeed, 0));
+            this.TryMovement(this._Player.Collider, "Top", new Engineer.Math.Vertex(0, -this._MoveSpeed, 0));
             this._Player.UpdateSpriteSet(0);
         }
         if(this._PlayerKeys.Right)               
         {
-            this.TryMovement(this._Player, "Right", new Engineer.Math.Vertex(+this._MoveSpeed, 0, 0)); 
+            this.TryMovement(this._Player.Collider, "Right", new Engineer.Math.Vertex(+this._MoveSpeed, 0, 0)); 
             this._Player.UpdateSpriteSet(1);                        
         }
         if(this._PlayerKeys.Down) 
         {
-            this.TryMovement(this._Player, "Bottom", new Engineer.Math.Vertex(0, +this._MoveSpeed, 0));
+            this.TryMovement(this._Player.Collider, "Bottom", new Engineer.Math.Vertex(0, +this._MoveSpeed, 0));
             this._Player.UpdateSpriteSet(2);
         }
             if(this._PlayerKeys.Left) 
         {
-            this.TryMovement(this._Player, "Left", new Engineer.Math.Vertex(-this._MoveSpeed, 0, 0));
+            this.TryMovement(this._Player.Collider, "Left", new Engineer.Math.Vertex(-this._MoveSpeed, 0, 0));
             this._Player.UpdateSpriteSet(3);
         }            
     }

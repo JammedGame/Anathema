@@ -6,14 +6,16 @@ import { GameScene } from "./GameScene";
 class Player extends Engineer.Engine.Sprite
 {
     private _Scene:GameScene;
-
+    private _Collider:any;
+    public get Collider():any { return this._Collider; }
     public constructor(Scene:GameScene)
     {
         super();
         this.Name = "Player";
         this._Scene=Scene;
+        this.Fixed = true;
         this.Trans.Scale = new Engineer.Math.Vertex(100, 150, 0);
-        this.Trans.Translation = new Engineer.Math.Vertex(400,400,0);
+        this.Trans.Translation = new Engineer.Math.Vertex(960,540,0);
         this.SpriteSets = [new Engineer.Engine.SpriteSet(null,"WalkN"), new Engineer.Engine.SpriteSet(null,"WalkE"), new Engineer.Engine.SpriteSet(null,"WalkS"), new Engineer.Engine.SpriteSet(null,"WalkW")];
         Engineer.Util.Log.Print(this.SpriteSets);
         this.SpriteSets[0].Sprites = ["/build/resources/wizard00.png","/build/resources/wizard01.png","/build/resources/wizard03.png"];
@@ -25,8 +27,13 @@ class Player extends Engineer.Engine.Sprite
         this.SpriteSets[2].Seed = 25;
         this.SpriteSets[3].Seed = 25;
         this.Data["Player"] = true;
-        this.Data["Collision"] = Engineer.Math.CollisionType.Rectangular2D;
+        this._Collider = new Engineer.Engine.Tile();
+        this._Collider.Trans.Scale = new Engineer.Math.Vertex(100, 150, 0);
+        this._Collider.Trans.Translation = new Engineer.Math.Vertex(960,540,0);
+        this._Collider.Active = false;
+        this._Collider.Data["Collision"] = Engineer.Math.CollisionType.Rectangular2D;
         this._Scene.AddSceneObject(this);
+        this._Scene.AddSceneObject(this._Collider);
     }
 }
 class PlayerKeyPress
