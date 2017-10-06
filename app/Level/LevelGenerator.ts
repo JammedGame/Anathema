@@ -22,8 +22,16 @@ class LevelGenerator
                     LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+1,0), Tilesets.Floor, 0, Engineer.Math.Color.FromRGBA(255,255,255,255));
                     LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+1,0), Tilesets.WallLower, 0, Engineer.Math.Color.FromRGBA(255,255,255,255));
                 }
-                else if(NewChunk.Fields[i][j] == 3) LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+1,0), Tilesets.WallUpper, 0, Engineer.Math.Color.FromRGBA(255,255,255,255));
-                else if(NewChunk.Fields[i][j] == 4) LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+1,0), Tilesets.Ceiling, 0, Engineer.Math.Color.FromRGBA(255,255,255,255));
+                else if(NewChunk.Fields[i][j] == 3)
+                {
+                    LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+1,0), Tilesets.WallUpper, 0, Engineer.Math.Color.FromRGBA(255,255,255,255));
+                    ColliderGenerator.GenerateColliderTile(Scene,j+1,i+1,1,1);
+                }
+                else if(NewChunk.Fields[i][j] == 4)
+                {
+                    LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+1,0), Tilesets.Ceiling, 0, Engineer.Math.Color.FromRGBA(255,255,255,255));
+                    ColliderGenerator.GenerateColliderTile(Scene,j+1,i+1,1,1);
+                }
             }
         }
     }

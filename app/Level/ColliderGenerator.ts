@@ -22,14 +22,15 @@ class ColliderGenerator
             ColliderGenerator.GenerateColliderTile(Scene, ColliderCollection[i].Location.Y, ColliderCollection[i].Location.X, ColliderCollection[i].Size.Y, ColliderCollection[i].Size.X);
         }
     }
-    private static GenerateColliderTile(Scene:GameScene, X:number, Y:number, XSize:number, YSize:number)
+    public static GenerateColliderTile(Scene:GameScene, X:number, Y:number, XSize:number, YSize:number)
     {
         let NewTile:any = new Engineer.Engine.Tile();
         NewTile.Data["Solid"] = true;
         NewTile.Data["Collision"] = Engineer.Math.CollisionType.Rectangular2D;
-        NewTile.Trans.Translation = new Engineer.Math.Vertex(X * ColliderGenerator.FieldSize + (XSize * ColliderGenerator.FieldSize) / 2 - 50, Y * ColliderGenerator.FieldSize + (YSize * ColliderGenerator.FieldSize) / 2 - 50, 0);
+        NewTile.Trans.Translation = new Engineer.Math.Vertex(X * ColliderGenerator.FieldSize, Y * ColliderGenerator.FieldSize, 0);
         NewTile.Trans.Scale = new Engineer.Math.Vertex(XSize * ColliderGenerator.FieldSize, YSize * ColliderGenerator.FieldSize, 1);
         NewTile.Active = false;
+        //NewTile.Paint = Engineer.Math.Color.FromRGBA(255,0,0,255);
         Scene.AddSceneObject(NewTile);
     }
     private static GenerateCollider(Scene:GameScene, ColliderColleciton:CollisionElement[], Collider:number[], X:number, Y:number, Width:number, Height:number) : void
