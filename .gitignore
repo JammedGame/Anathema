@@ -1,3 +1,4 @@
 /node_modules
 /build
 /tscompiled
+package-lock.json
