@@ -1,16 +1,16 @@
-export {Character};
+export {Player, PlayerKeyPress};
 
 import Engineer from "./Engineer";
 import { GameScene } from "./GameScene";
 
-class Character extends Engineer.Engine.Sprite
+class Player extends Engineer.Engine.Sprite
 {
     private _Scene:GameScene;
 
     public constructor(Scene:GameScene)
     {
-        super();        
-        this.Name = "Character";
+        super();
+        this.Name = "Player";
         this._Scene=Scene;
         this.Trans.Scale = new Engineer.Math.Vertex(100, 150, 0);
         this.Trans.Translation = new Engineer.Math.Vertex(400,400,0);
@@ -24,8 +24,22 @@ class Character extends Engineer.Engine.Sprite
         this.SpriteSets[1].Seed = 25;
         this.SpriteSets[2].Seed = 25;
         this.SpriteSets[3].Seed = 25;
-        this.Data["Character"] = true;
+        this.Data["Player"] = true;
         this.Data["Collision"] = Engineer.Math.CollisionType.Rectangular2D;
         this._Scene.AddSceneObject(this);
+    }
+}
+class PlayerKeyPress
+{
+    public Left:boolean;
+    public Right:boolean;
+    public Down:boolean;
+    public Up:boolean;
+    public constructor()
+    {
+        this.Left = false;
+        this.Right = false;
+        this.Down = false;
+        this.Up = false;
     }
 }
