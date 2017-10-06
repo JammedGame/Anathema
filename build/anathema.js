@@ -70,7 +70,7 @@
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Vertex_1 = __webpack_require__(3);
+var Vertex_1 = __webpack_require__(4);
 exports.Axis = Vertex_1.Axis;
 exports.Vertex = Vertex_1.Vertex;
 var Transformation_1 = __webpack_require__(17);
@@ -90,6 +90,18 @@ exports.ColliderObject = Collision_1.ColliderObject;
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+//import Engineer from "engineer-js";
+var app_1 = __webpack_require__(15);
+exports.default = app_1.default;
+
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -121,7 +133,7 @@ exports.Reader = Reader;
 
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -138,7 +150,7 @@ exports.Log = Log_1.Log;
 
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -247,13 +259,13 @@ exports.Vertex = Vertex;
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var DrawObject_1 = __webpack_require__(5);
+var DrawObject_1 = __webpack_require__(6);
 exports.DrawObjectType = DrawObject_1.DrawObjectType;
 exports.DrawObject = DrawObject_1.DrawObject;
 var Sprite_1 = __webpack_require__(26);
@@ -274,7 +286,7 @@ exports.SceneType = Scene_1.SceneType;
 exports.Scene = Scene_1.Scene;
 var Scene2D_1 = __webpack_require__(30);
 exports.Scene2D = Scene2D_1.Scene2D;
-var SceneObject_1 = __webpack_require__(6);
+var SceneObject_1 = __webpack_require__(7);
 exports.SceneObjectType = SceneObject_1.SceneObjectType;
 exports.SceneObject = SceneObject_1.SceneObject;
 var SoundObject_1 = __webpack_require__(31);
@@ -285,7 +297,7 @@ exports.Quality = Settings_1.Quality;
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -302,7 +314,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Math = __webpack_require__(0);
-var SceneObject_1 = __webpack_require__(6);
+var SceneObject_1 = __webpack_require__(7);
 var DrawObjectType;
 (function (DrawObjectType) {
     DrawObjectType[DrawObjectType["Undefined"] = 0] = "Undefined";
@@ -371,13 +383,13 @@ exports.DrawObject = DrawObject;
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Data = __webpack_require__(1);
+var Data = __webpack_require__(2);
 var Events_1 = __webpack_require__(8);
 var SceneObjectType;
 (function (SceneObjectType) {
@@ -432,18 +444,6 @@ var SceneObject = /** @class */ (function () {
     return SceneObject;
 }());
 exports.SceneObject = SceneObject;
-
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-//import Engineer from "engineer-js";
-var app_1 = __webpack_require__(15);
-exports.default = app_1.default;
 
 
 /***/ }),
@@ -600,7 +600,7 @@ exports.EventPackage = EventPackage;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Data = __webpack_require__(1);
+var Data = __webpack_require__(2);
 var Math = __webpack_require__(0);
 var Events_1 = __webpack_require__(8);
 var SceneType;
@@ -710,8 +710,8 @@ exports.DrawEngine = DrawEngine_1.DrawEngine;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var Math = __webpack_require__(0);
-var Engine = __webpack_require__(4);
-var Util = __webpack_require__(2);
+var Engine = __webpack_require__(5);
+var Util = __webpack_require__(3);
 var DrawEngineType;
 (function (DrawEngineType) {
     DrawEngineType[DrawEngineType["ThreeJS"] = 0] = "ThreeJS";
@@ -782,7 +782,7 @@ GL.Run();
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Engineer_1 = __webpack_require__(7);
+var Engineer_1 = __webpack_require__(1);
 var MainMenu_1 = __webpack_require__(40);
 var GameScene_1 = __webpack_require__(42);
 var GameLogic = /** @class */ (function () {
@@ -815,9 +815,9 @@ exports.GameLogic = GameLogic;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Util = __webpack_require__(2);
-var Data = __webpack_require__(1);
-var Engine = __webpack_require__(4);
+var Util = __webpack_require__(3);
+var Data = __webpack_require__(2);
+var Engine = __webpack_require__(5);
 var Math = __webpack_require__(0);
 var Runner = __webpack_require__(35);
 var Draw = __webpack_require__(10);
@@ -865,7 +865,7 @@ exports.Convert = Convert;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Vertex_1 = __webpack_require__(3);
+var Vertex_1 = __webpack_require__(4);
 var Transformation = /** @class */ (function () {
     function Transformation(Old) {
         if (Old != null) {
@@ -913,7 +913,7 @@ exports.Transformation = Transformation;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Vertex_1 = __webpack_require__(3);
+var Vertex_1 = __webpack_require__(4);
 var MatrixMode;
 (function (MatrixMode) {
     MatrixMode[MatrixMode["Projection"] = 0] = "Projection";
@@ -1196,7 +1196,7 @@ exports.Color = Color;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Vertex_1 = __webpack_require__(3);
+var Vertex_1 = __webpack_require__(4);
 var CollisionType;
 (function (CollisionType) {
     CollisionType[CollisionType["Radius2D"] = 0] = "Radius2D";
@@ -1719,9 +1719,9 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Data = __webpack_require__(1);
+var Data = __webpack_require__(2);
 var Math = __webpack_require__(0);
-var DrawObject_1 = __webpack_require__(5);
+var DrawObject_1 = __webpack_require__(6);
 var Sprite = /** @class */ (function (_super) {
     __extends(Sprite, _super);
     function Sprite(Old) {
@@ -1893,9 +1893,9 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Data = __webpack_require__(1);
+var Data = __webpack_require__(2);
 var Math = __webpack_require__(0);
-var DrawObject_1 = __webpack_require__(5);
+var DrawObject_1 = __webpack_require__(6);
 var Tile = /** @class */ (function (_super) {
     __extends(Tile, _super);
     function Tile(Old) {
@@ -2187,8 +2187,8 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Math = __webpack_require__(0);
 var Scene_1 = __webpack_require__(9);
-var SceneObject_1 = __webpack_require__(6);
-var DrawObject_1 = __webpack_require__(5);
+var SceneObject_1 = __webpack_require__(7);
+var DrawObject_1 = __webpack_require__(6);
 var Scene2D = /** @class */ (function (_super) {
     __extends(Scene2D, _super);
     function Scene2D(Old) {
@@ -2261,7 +2261,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Howler = __webpack_require__(32);
-var SceneObject_1 = __webpack_require__(6);
+var SceneObject_1 = __webpack_require__(7);
 var SoundObject = /** @class */ (function (_super) {
     __extends(SoundObject, _super);
     function SoundObject(Url, Old) {
@@ -5195,8 +5195,8 @@ exports.Settings = Settings;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var Math = __webpack_require__(0);
-var Engine = __webpack_require__(4);
-var Util = __webpack_require__(2);
+var Engine = __webpack_require__(5);
+var Util = __webpack_require__(3);
 var Draw = __webpack_require__(10);
 var Three = __webpack_require__(36);
 var Runner = /** @class */ (function () {
@@ -5393,8 +5393,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Three = __webpack_require__(38);
-var Engine = __webpack_require__(4);
-var Util = __webpack_require__(2);
+var Engine = __webpack_require__(5);
+var Util = __webpack_require__(3);
 var Shaders = __webpack_require__(39);
 var DrawEngine_1 = __webpack_require__(11);
 var ThreeDrawEngine = /** @class */ (function (_super) {
@@ -49741,7 +49741,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Engineer_1 = __webpack_require__(7);
+var Engineer_1 = __webpack_require__(1);
 var LocalSettings_1 = __webpack_require__(41);
 var MainMenu = /** @class */ (function (_super) {
     __extends(MainMenu, _super);
@@ -49776,7 +49776,7 @@ exports.MainMenu = MainMenu;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Engineer_1 = __webpack_require__(7);
+var Engineer_1 = __webpack_require__(1);
 var LocalSettings = /** @class */ (function () {
     function LocalSettings() {
     }
@@ -49805,8 +49805,9 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Engineer_1 = __webpack_require__(7);
-var Level_1 = __webpack_require__(44);
+var Engineer_1 = __webpack_require__(1);
+var Level_1 = __webpack_require__(45);
+var Character_1 = __webpack_require__(44);
 var GameScene = /** @class */ (function (_super) {
     __extends(GameScene, _super);
     function GameScene() {
@@ -49819,6 +49820,7 @@ var GameScene = /** @class */ (function (_super) {
     }
     GameScene.prototype.Init = function () {
         this._Level.Init(this);
+        this._Character = new Character_1.Character(this);
     };
     GameScene.prototype.KeyPress = function (G, Args) {
         if (Args.KeyDown == "space") {
@@ -49836,8 +49838,49 @@ exports.GameScene = GameScene;
 
 "use strict";
 
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Engineer_1 = __webpack_require__(7);
+var Engineer_1 = __webpack_require__(1);
+var Character = /** @class */ (function (_super) {
+    __extends(Character, _super);
+    function Character(Scene) {
+        var _this = _super.call(this) || this;
+        _this.Name = "Character";
+        _this._Scene = Scene;
+        _this.Trans.Scale = new Engineer_1.default.Math.Vertex(50, 50, 0);
+        var SpriteSet = new Engineer_1.default.Engine.SpriteSet(null, "Default");
+        SpriteSet.Sprites = [];
+        _this.SpriteSets = [SpriteSet];
+        _this.SpriteSets[0].Sprites.push("/build/resources/wizard00.png", "/build/resources/wizard01.png", "/build/resources/wizard02.png");
+        _this.SpriteSets[1].Sprites.push("/build/resources/wizard03.png", "/build/resources/wizard04.png", "/build/resources/wizard05.png");
+        _this.SpriteSets[2].Sprites.push("/build/resources/wizard06.png", "/build/resources/wizard07.png", "/build/resources/wizard08.png");
+        _this.SpriteSets[3].Sprites.push("/build/resources/wizard09.png", "/build/resources/wizard10.png", "/build/resources/wizard11.png");
+        _this.Data["Character"] = true;
+        _this.Data["Collision"] = Engineer_1.default.Math.CollisionType.Rectangular2D;
+        return _this;
+    }
+    return Character;
+}(Engineer_1.default.Engine.Sprite));
+exports.Character = Character;
+
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Engineer_1 = __webpack_require__(1);
 var Level = /** @class */ (function () {
     function Level() {
         this._TileScale = 100;
