@@ -1,3 +1,4 @@
 /node_modules
 /tscompiled
+/build/anathema.js
 package-lock.json
