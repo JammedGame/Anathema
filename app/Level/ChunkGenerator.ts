@@ -12,10 +12,10 @@ class ChunkGenerator
     }
     private static GenerateType0(NewChunk:Chunk) : void
     {
-        for(let i = 0; i < NewChunk.Dimensions.X; i++) NewChunk.Fields[i][0] = 3;
-        for(let i = 0; i < NewChunk.Dimensions.X; i++) NewChunk.Fields[i][NewChunk.Dimensions.Y - 1] = 3;
-        for(let i = 0; i < NewChunk.Dimensions.Y; i++) NewChunk.Fields[0][i] = 3;
-        for(let i = 0; i < NewChunk.Dimensions.Y; i++) NewChunk.Fields[NewChunk.Dimensions.Y - 1][i] = 3;
+        for(let i = 0; i < NewChunk.Dimensions.Y; i++) NewChunk.Fields[i][0] = 3;
+        for(let i = 0; i < NewChunk.Dimensions.Y; i++) NewChunk.Fields[i][NewChunk.Dimensions.X - 1] = 3;
+        for(let i = 0; i < NewChunk.Dimensions.X; i++) NewChunk.Fields[0][i] = 3;
+        for(let i = 0; i < NewChunk.Dimensions.X; i++) NewChunk.Fields[NewChunk.Dimensions.Y - 1][i] = 3;
     }
     private static FakeIsometric(NewChunk:Chunk)
     {
@@ -46,6 +46,7 @@ class Chunk
     public constructor(Dimensions:any, Value:number)
     {
         this.Dimensions = Dimensions;
+        this.Fields = [];
         for(let i = 0; i < Dimensions.Y; i++)
         {
             this.Fields.push([]);
@@ -54,5 +55,6 @@ class Chunk
                 this.Fields[i].push(Value);
             }
         }
+        console.log(this.Fields);
     }
 }

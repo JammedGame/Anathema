@@ -10,7 +10,7 @@ class Character extends Engineer.Engine.Sprite
     public constructor(Scene:GameScene){
         super();        
         this.Name = "Character";
-        this._Scene=Scene;
+        /*this._Scene=Scene;
         this.Trans.Scale = new Engineer.Math.Vertex(50, 50, 0);
         let SpriteSet:any = new Engineer.Engine.SpriteSet(null,"Default");
         SpriteSet.Sprites = [];
@@ -20,6 +20,6 @@ class Character extends Engineer.Engine.Sprite
         this.SpriteSets[2].Sprites.push("/build/resources/wizard06.png","/build/resources/wizard07.png","/build/resources/wizard08.png");
         this.SpriteSets[3].Sprites.push("/build/resources/wizard09.png","/build/resources/wizard10.png","/build/resources/wizard11.png");
         this.Data["Character"] = true;
-        this.Data["Collision"] = Engineer.Math.CollisionType.Rectangular2D;
+        this.Data["Collision"] = Engineer.Math.CollisionType.Rectangular2D;*/
     }
 }
