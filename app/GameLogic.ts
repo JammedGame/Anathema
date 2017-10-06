@@ -27,6 +27,5 @@ class GameLogic
     {
         this._Runner.SwitchScene("Menu");
         this._Runner.Run();
-        Engineer.Util.Log.Print("test");
     }
 }
