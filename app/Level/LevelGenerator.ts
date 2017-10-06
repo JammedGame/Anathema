@@ -8,7 +8,7 @@ import { GameScene } from "./../GameScene";
 
 class LevelGenerator
 {
-    private static _FieldSize:number = 50;
+    private static _FieldSize:number = 80;
     public static Generate(Scene:GameScene, Tilesets:LevelTileset) : void
     {
         let NewChunk:Chunk = ChunkGenerator.Generate(1, new Engineer.Math.Vertex(24,15,0));
@@ -16,7 +16,11 @@ class LevelGenerator
         {
             for(let j = 0; j < NewChunk.Dimensions.X; j++)
             {
-                if(NewChunk.Fields[i][j] == 1) LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+1,0), Tilesets.Floor, 0, Engineer.Math.Color.FromRGBA(255,255,255,255));
+                if(NewChunk.Fields[i][j] == 1)
+                {
+                    let Index = Math.floor((Math.random() * 7) + 1);
+                    LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+1,0), Tilesets.Floor, Index, Engineer.Math.Color.FromRGBA(255,255,255,255));
+                }
                 else if(NewChunk.Fields[i][j] == 2)
                 {
                     LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+1,0), Tilesets.Floor, 0, Engineer.Math.Color.FromRGBA(255,255,255,255));
@@ -55,7 +59,9 @@ class LevelTileset
     public Ceiling:any;
     public constructor()
     {
-        this.Floor = new Engineer.Engine.TileCollection(null, ["/build/resources/ground.png"]);
+        let FloorImages  = [];
+        for(let i = 1; i < 7; i++) FloorImages.push("/build/resources/ruin/g0"+i+".png");
+        this.Floor = new Engineer.Engine.TileCollection(null, FloorImages);
         this.WallUpper = new Engineer.Engine.TileCollection(null, ["/build/resources/wallUp.png"]);
         this.WallLower = new Engineer.Engine.TileCollection(null, ["/build/resources/wallDown.png"]);
         this.Ceiling = new Engineer.Engine.TileCollection(null, ["/build/resources/ceiling.png"]);
