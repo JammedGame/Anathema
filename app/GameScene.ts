@@ -4,12 +4,15 @@ import Engineer from "./Engineer";
 
 import { Level } from "./Level/Level";
 import { LocalSettings } from "./LocalSettings";
-import {Character} from "./Character";
+import {Player} from "./Player";
+import {Movement} from "./Movement";
 
 class GameScene extends Engineer.Engine.Scene2D
 {
     private _Level:Level;
-    private _Character:Character;
+    private _Player:Player;
+    private _Movement:Movement; 
+
     public constructor()
     {
         super();
@@ -21,13 +24,12 @@ class GameScene extends Engineer.Engine.Scene2D
     public Init() : void
     {
         this._Level.Init(this);
-        this._Character=new Character(this);     
+        this._Player=new Player(this);   
+        this._Movement = new Movement(this._Player, this);  
+        //this.Events.KeyPress.push(this.KeyPress);
     }
     private KeyPress(G:any, Args:any) : void
     {
-        if(Args.KeyDown == "space")
-        {
-            
-        }
+
     }
 }
