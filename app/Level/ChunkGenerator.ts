@@ -38,40 +38,13 @@ class ChunkGenerator
     {
         for(let i = 0; i < NewChunk.Dimensions.Y - 1; i++)
         {
-            let ToFake = false;
             for(let j = 0; j < NewChunk.Dimensions.X; j++)
             {
-                if(NewChunk.Fields[i][j] == 4 && NewChunk.Fields[i+1][j] == 1) ToFake = true;
-            }
-            if(ToFake)
-            {
-                NewChunk.Fields.splice(i+1, 0, []);
-                NewChunk.Fields.splice(i+1, 0, []);
-                for(let j = 0; j < NewChunk.Dimensions.X; j++)
+                if(NewChunk.Fields[i][j] == 4 && NewChunk.Fields[i+1][j] < 2)
                 {
-                    if(NewChunk.Fields[i][j] == 4 && NewChunk.Fields[i+3][j] == 1)
-                    {
-                        NewChunk.Fields[i+1].push(3);
-                        NewChunk.Fields[i+2].push(2);
-                    }
-                    else if(NewChunk.Fields[i][j] == 4 && NewChunk.Fields[i+3][j] == 4)
-                    {
-                        NewChunk.Fields[i+1].push(4);
-                        NewChunk.Fields[i+2].push(4);
-                    }
-                    else if(NewChunk.Fields[i][j] != 0)
-                    {
-                        NewChunk.Fields[i+1].push(1);
-                        NewChunk.Fields[i+2].push(1);
-                    }
-                    else
-                    {
-                        NewChunk.Fields[i+1].push(0);
-                        NewChunk.Fields[i+2].push(0);
-                    }
+                    NewChunk.Fields[i+1][j] = 3;
+                    if(i < NewChunk.Dimensions.Y - 2 && NewChunk.Fields[i+2][j] < 2) NewChunk.Fields[i+2][j] = 2;
                 }
-                NewChunk.Dimensions.Y+=2;
-                i+=2;
             }
         }
     }
