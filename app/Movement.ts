@@ -54,9 +54,25 @@ class Movement
     }
     private GameUpdate(G:any, Args:any)
     {      
-        if(this._PlayerKeys.Up) this.TryMovement(this._Player, "Top", new Engineer.Math.Vertex(0, -this._MoveSpeed, 0));
-        if(this._PlayerKeys.Down) this.TryMovement(this._Player, "Bottom", new Engineer.Math.Vertex(0, +this._MoveSpeed, 0));
-        if(this._PlayerKeys.Left) this.TryMovement(this._Player, "Left", new Engineer.Math.Vertex(-this._MoveSpeed, 0, 0));
-        if(this._PlayerKeys.Right) this.TryMovement(this._Player, "Right", new Engineer.Math.Vertex(+this._MoveSpeed, 0, 0));               
+        if(this._PlayerKeys.Up)
+        {
+            this.TryMovement(this._Player, "Top", new Engineer.Math.Vertex(0, -this._MoveSpeed, 0));
+            this._Player.UpdateSpriteSet(0);
+        }
+        if(this._PlayerKeys.Right)               
+        {
+            this.TryMovement(this._Player, "Right", new Engineer.Math.Vertex(+this._MoveSpeed, 0, 0)); 
+            this._Player.UpdateSpriteSet(1);                        
+        }
+        if(this._PlayerKeys.Down) 
+        {
+            this.TryMovement(this._Player, "Bottom", new Engineer.Math.Vertex(0, +this._MoveSpeed, 0));
+            this._Player.UpdateSpriteSet(2);
+        }
+            if(this._PlayerKeys.Left) 
+        {
+            this.TryMovement(this._Player, "Left", new Engineer.Math.Vertex(-this._MoveSpeed, 0, 0));
+            this._Player.UpdateSpriteSet(3);
+        }            
     }
 }

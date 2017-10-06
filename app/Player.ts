@@ -17,9 +17,9 @@ class Player extends Engineer.Engine.Sprite
         this.SpriteSets = [new Engineer.Engine.SpriteSet(null,"WalkN"), new Engineer.Engine.SpriteSet(null,"WalkE"), new Engineer.Engine.SpriteSet(null,"WalkS"), new Engineer.Engine.SpriteSet(null,"WalkW")];
         Engineer.Util.Log.Print(this.SpriteSets);
         this.SpriteSets[0].Sprites = ["/build/resources/wizard00.png","/build/resources/wizard01.png","/build/resources/wizard03.png"];
-        this.SpriteSets[1].Sprites = ["/build/resources/wizard03.png","/build/resources/wizard04.png","/build/resources/wizard05.png"];
-        this.SpriteSets[2].Sprites = ["/build/resources/wizard06.png","/build/resources/wizard07.png","/build/resources/wizard08.png"];
-        this.SpriteSets[3].Sprites = ["/build/resources/wizard09.png","/build/resources/wizard10.png","/build/resources/wizard11.png"];
+        this.SpriteSets[1].Sprites = ["/build/resources/wizard04.png","/build/resources/wizard05.png","/build/resources/wizard06.png"];
+        this.SpriteSets[2].Sprites = ["/build/resources/wizard07.png","/build/resources/wizard08.png","/build/resources/wizard09.png"];
+        this.SpriteSets[3].Sprites = ["/build/resources/wizard10.png","/build/resources/wizard11.png","/build/resources/wizard12.png"];
         this.SpriteSets[0].Seed = 25;
         this.SpriteSets[1].Seed = 25;
         this.SpriteSets[2].Seed = 25;
