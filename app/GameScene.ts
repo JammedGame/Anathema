@@ -2,7 +2,7 @@ export { GameScene };
 
 import Engineer from "./Engineer";
 
-import { Level } from "./Level";
+import { Level } from "./Level/Level";
 import { LocalSettings } from "./LocalSettings";
 
 class GameScene extends Engineer.Engine.Scene2D
