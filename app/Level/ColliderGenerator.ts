@@ -6,7 +6,7 @@ import { GameScene } from "./../GameScene";
 
 class ColliderGenerator
 {
-    private static FieldSize:number = 100;
+    private static FieldSize:number = 50;
     public static Generate(Scene:GameScene, LevelData:any) : void
     {
         let ColliderCollection:CollisionElement[] = [];

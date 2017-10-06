@@ -49807,7 +49807,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Engineer_1 = __webpack_require__(7);
 var Level_1 = __webpack_require__(44);
-var Character_1 = __webpack_require__(45);
+var Character_1 = __webpack_require__(47);
 var GameScene = /** @class */ (function (_super) {
     __extends(GameScene, _super);
     function GameScene() {
@@ -49840,10 +49840,10 @@ exports.GameScene = GameScene;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var Engineer_1 = __webpack_require__(7);
-var LevelGenerator_1 = __webpack_require__(46);
+var LevelGenerator_1 = __webpack_require__(45);
 var Level = /** @class */ (function () {
     function Level() {
-        this._TileScale = 100;
+        this._TileScale = 30;
         this._Tiles = [];
         this._Tileset = new Engineer_1.default.Engine.TileCollection(null, ["/build/resources/play.png"]);
     }
@@ -49862,62 +49862,25 @@ exports.Level = Level;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Engineer_1 = __webpack_require__(7);
-var Character = /** @class */ (function (_super) {
-    __extends(Character, _super);
-    function Character(Scene) {
-        var _this = _super.call(this) || this;
-        _this.Name = "Character";
-        return _this;
-        /*this._Scene=Scene;
-        this.Trans.Scale = new Engineer.Math.Vertex(50, 50, 0);
-        let SpriteSet:any = new Engineer.Engine.SpriteSet(null,"Default");
-        SpriteSet.Sprites = [];
-        this.SpriteSets = [SpriteSet];
-        this.SpriteSets[0].Sprites.push("/build/resources/wizard00.png","/build/resources/wizard01.png","/build/resources/wizard02.png");
-        this.SpriteSets[1].Sprites.push("/build/resources/wizard03.png","/build/resources/wizard04.png","/build/resources/wizard05.png");
-        this.SpriteSets[2].Sprites.push("/build/resources/wizard06.png","/build/resources/wizard07.png","/build/resources/wizard08.png");
-        this.SpriteSets[3].Sprites.push("/build/resources/wizard09.png","/build/resources/wizard10.png","/build/resources/wizard11.png");
-        this.Data["Character"] = true;
-        this.Data["Collision"] = Engineer.Math.CollisionType.Rectangular2D;*/
-    }
-    return Character;
-}(Engineer_1.default.Engine.Sprite));
-exports.Character = Character;
-
-
-/***/ }),
-/* 46 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var Engineer_1 = __webpack_require__(7);
-var ChunkGenerator_1 = __webpack_require__(47);
+var ChunkGenerator_1 = __webpack_require__(46);
 var LevelGenerator = /** @class */ (function () {
     function LevelGenerator() {
     }
     LevelGenerator.Generate = function (Scene, Tilesets) {
-        var NewChunk = ChunkGenerator_1.ChunkGenerator.Generate(0, new Engineer_1.default.Math.Vertex(11, 7, 0));
+        var NewChunk = ChunkGenerator_1.ChunkGenerator.Generate(1, new Engineer_1.default.Math.Vertex(24, 15, 0));
         for (var i = 0; i < NewChunk.Dimensions.Y; i++) {
             for (var j = 0; j < NewChunk.Dimensions.X; j++) {
                 if (NewChunk.Fields[i][j] == 1)
                     LevelGenerator.GenerateTile(Scene, new Engineer_1.default.Math.Vertex(j + 1, i + 1, 0), Tilesets.Floor, 0, Engineer_1.default.Math.Color.FromRGBA(255, 255, 255, 255));
-                else if (NewChunk.Fields[i][j] == 2)
-                    LevelGenerator.GenerateTile(Scene, new Engineer_1.default.Math.Vertex(j + 1, i + 1, 0), Tilesets.Wall, 0, Engineer_1.default.Math.Color.FromRGBA(255, 255, 255, 255));
+                else if (NewChunk.Fields[i][j] == 2) {
+                    LevelGenerator.GenerateTile(Scene, new Engineer_1.default.Math.Vertex(j + 1, i + 1, 0), Tilesets.Floor, 0, Engineer_1.default.Math.Color.FromRGBA(255, 255, 255, 255));
+                    LevelGenerator.GenerateTile(Scene, new Engineer_1.default.Math.Vertex(j + 1, i + 1, 0), Tilesets.WallLower, 0, Engineer_1.default.Math.Color.FromRGBA(255, 255, 255, 255));
+                }
                 else if (NewChunk.Fields[i][j] == 3)
+                    LevelGenerator.GenerateTile(Scene, new Engineer_1.default.Math.Vertex(j + 1, i + 1, 0), Tilesets.WallUpper, 0, Engineer_1.default.Math.Color.FromRGBA(255, 255, 255, 255));
+                else if (NewChunk.Fields[i][j] == 4)
                     LevelGenerator.GenerateTile(Scene, new Engineer_1.default.Math.Vertex(j + 1, i + 1, 0), Tilesets.Ceiling, 0, Engineer_1.default.Math.Color.FromRGBA(255, 255, 255, 255));
             }
         }
@@ -49932,15 +49895,16 @@ var LevelGenerator = /** @class */ (function () {
         NewTile.Trans.Translation = new Engineer_1.default.Math.Vertex(LevelGenerator._FieldSize * Location.X, LevelGenerator._FieldSize * Location.Y, 0);
         Scene.AddSceneObject(NewTile);
     };
-    LevelGenerator._FieldSize = 100;
+    LevelGenerator._FieldSize = 50;
     return LevelGenerator;
 }());
 exports.LevelGenerator = LevelGenerator;
 var LevelTileset = /** @class */ (function () {
     function LevelTileset() {
         this.Floor = new Engineer_1.default.Engine.TileCollection(null, ["/build/resources/ground.png"]);
-        this.Wall = new Engineer_1.default.Engine.TileCollection(null, ["/build/resources/play.png"]);
-        this.Ceiling = new Engineer_1.default.Engine.TileCollection(null, ["/build/resources/play.png"]);
+        this.WallUpper = new Engineer_1.default.Engine.TileCollection(null, ["/build/resources/wallUp.png"]);
+        this.WallLower = new Engineer_1.default.Engine.TileCollection(null, ["/build/resources/wallDown.png"]);
+        this.Ceiling = new Engineer_1.default.Engine.TileCollection(null, ["/build/resources/ceiling.png"]);
     }
     return LevelTileset;
 }());
@@ -49948,7 +49912,7 @@ exports.LevelTileset = LevelTileset;
 
 
 /***/ }),
-/* 47 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49961,34 +49925,69 @@ var ChunkGenerator = /** @class */ (function () {
         var NewChunk = new Chunk(Dimensions, 1);
         if (Type == 0)
             ChunkGenerator.GenerateType0(NewChunk);
+        if (Type == 1)
+            ChunkGenerator.GenerateType1(NewChunk);
+        ChunkGenerator.FakeIsometric(NewChunk);
         return NewChunk;
     };
     ChunkGenerator.GenerateType0 = function (NewChunk) {
         for (var i = 0; i < NewChunk.Dimensions.Y; i++)
-            NewChunk.Fields[i][0] = 3;
+            NewChunk.Fields[i][0] = 4;
         for (var i = 0; i < NewChunk.Dimensions.Y; i++)
-            NewChunk.Fields[i][NewChunk.Dimensions.X - 1] = 3;
+            NewChunk.Fields[i][NewChunk.Dimensions.X - 1] = 4;
         for (var i = 0; i < NewChunk.Dimensions.X; i++)
-            NewChunk.Fields[0][i] = 3;
+            NewChunk.Fields[0][i] = 4;
         for (var i = 0; i < NewChunk.Dimensions.X; i++)
-            NewChunk.Fields[NewChunk.Dimensions.Y - 1][i] = 3;
+            NewChunk.Fields[NewChunk.Dimensions.Y - 1][i] = 4;
+    };
+    ChunkGenerator.GenerateType1 = function (NewChunk) {
+        NewChunk.Fields[0][0] = 0;
+        NewChunk.Fields[0][NewChunk.Dimensions.X - 1] = 0;
+        NewChunk.Fields[NewChunk.Dimensions.Y - 1][NewChunk.Dimensions.X - 1] = 0;
+        NewChunk.Fields[NewChunk.Dimensions.Y - 1][0] = 0;
+        for (var i = 1; i < NewChunk.Dimensions.Y - 1; i++)
+            NewChunk.Fields[i][0] = 4;
+        for (var i = 1; i < NewChunk.Dimensions.Y - 1; i++)
+            NewChunk.Fields[i][NewChunk.Dimensions.X - 1] = 4;
+        for (var i = 1; i < NewChunk.Dimensions.X - 1; i++)
+            NewChunk.Fields[0][i] = 4;
+        for (var i = 1; i < NewChunk.Dimensions.X - 1; i++)
+            NewChunk.Fields[NewChunk.Dimensions.Y - 1][i] = 4;
+        NewChunk.Fields[1][1] = 4;
+        NewChunk.Fields[1][NewChunk.Dimensions.X - 2] = 4;
+        NewChunk.Fields[NewChunk.Dimensions.Y - 2][NewChunk.Dimensions.X - 2] = 4;
+        NewChunk.Fields[NewChunk.Dimensions.Y - 2][1] = 4;
     };
     ChunkGenerator.FakeIsometric = function (NewChunk) {
         for (var i = 0; i < NewChunk.Dimensions.Y - 1; i++) {
             var ToFake = false;
             for (var j = 0; j < NewChunk.Dimensions.X; j++) {
-                if (NewChunk.Fields[i][j] == 3 && NewChunk.Fields[i + 1][j] == 1)
+                if (NewChunk.Fields[i][j] == 4 && NewChunk.Fields[i + 1][j] == 1)
                     ToFake = true;
             }
             if (ToFake) {
                 NewChunk.Fields.splice(i + 1, 0, []);
+                NewChunk.Fields.splice(i + 1, 0, []);
                 for (var j = 0; j < NewChunk.Dimensions.X; j++) {
-                    if (NewChunk.Fields[i][j] == 3 && NewChunk.Fields[i + 2][j] == 1)
-                        NewChunk.Fields[i + 1].push(2);
-                    else
+                    if (NewChunk.Fields[i][j] == 4 && NewChunk.Fields[i + 3][j] == 1) {
+                        NewChunk.Fields[i + 1].push(3);
+                        NewChunk.Fields[i + 2].push(2);
+                    }
+                    else if (NewChunk.Fields[i][j] == 4 && NewChunk.Fields[i + 3][j] == 4) {
+                        NewChunk.Fields[i + 1].push(4);
+                        NewChunk.Fields[i + 2].push(4);
+                    }
+                    else if (NewChunk.Fields[i][j] != 0) {
                         NewChunk.Fields[i + 1].push(1);
+                        NewChunk.Fields[i + 2].push(1);
+                    }
+                    else {
+                        NewChunk.Fields[i + 1].push(0);
+                        NewChunk.Fields[i + 2].push(0);
+                    }
                 }
-                i++;
+                NewChunk.Dimensions.Y += 2;
+                i += 2;
             }
         }
     };
@@ -50010,6 +50009,52 @@ var Chunk = /** @class */ (function () {
     return Chunk;
 }());
 exports.Chunk = Chunk;
+
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var Engineer_1 = __webpack_require__(7);
+var Character = /** @class */ (function (_super) {
+    __extends(Character, _super);
+    function Character(Scene) {
+        var _this = _super.call(this) || this;
+        _this.Name = "Character";
+        _this._Scene = Scene;
+        _this.Trans.Scale = new Engineer_1.default.Math.Vertex(100, 150, 0);
+        _this.Trans.Translation = new Engineer_1.default.Math.Vertex(400, 400, 0);
+        _this.SpriteSets = [new Engineer_1.default.Engine.SpriteSet(null, "WalkN"), new Engineer_1.default.Engine.SpriteSet(null, "WalkE"), new Engineer_1.default.Engine.SpriteSet(null, "WalkS"), new Engineer_1.default.Engine.SpriteSet(null, "WalkW")];
+        Engineer_1.default.Util.Log.Print(_this.SpriteSets);
+        _this.SpriteSets[0].Sprites = ["/build/resources/wizard00.png", "/build/resources/wizard01.png", "/build/resources/wizard03.png"];
+        _this.SpriteSets[1].Sprites = ["/build/resources/wizard03.png", "/build/resources/wizard04.png", "/build/resources/wizard05.png"];
+        _this.SpriteSets[2].Sprites = ["/build/resources/wizard06.png", "/build/resources/wizard07.png", "/build/resources/wizard08.png"];
+        _this.SpriteSets[3].Sprites = ["/build/resources/wizard09.png", "/build/resources/wizard10.png", "/build/resources/wizard11.png"];
+        _this.SpriteSets[0].Seed = 25;
+        _this.SpriteSets[1].Seed = 25;
+        _this.SpriteSets[2].Seed = 25;
+        _this.SpriteSets[3].Seed = 25;
+        _this.Data["Character"] = true;
+        _this.Data["Collision"] = Engineer_1.default.Math.CollisionType.Rectangular2D;
+        _this._Scene.AddSceneObject(_this);
+        return _this;
+    }
+    return Character;
+}(Engineer_1.default.Engine.Sprite));
+exports.Character = Character;
 
 
 /***/ })

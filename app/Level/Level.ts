@@ -12,7 +12,7 @@ class Level
     private _Tileset:any;
     public constructor()
     {
-        this._TileScale = 100;
+        this._TileScale = 30;
         this._Tiles = [];
         this._Tileset = new Engineer.Engine.TileCollection(null, ["/build/resources/play.png"]);
     }
