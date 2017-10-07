@@ -2,11 +2,14 @@ export {Player, PlayerKeyPress};
 
 import Engineer from "./Engineer";
 import { GameScene } from "./GameScene";
+import { HealthBar } from "./HealthBar";
 
 class Player extends Engineer.Engine.Sprite
 {
     private _Scene:GameScene;
     private _Collider:any;
+    private _HealthBar:HealthBar;
+    public get HealthBar():any { return this._HealthBar; }
     public get Collider():any { return this._Collider; }
     public constructor(Scene:GameScene)
     {
@@ -27,12 +30,14 @@ class Player extends Engineer.Engine.Sprite
         this.SpriteSets[2].Seed = 25;
         this.SpriteSets[3].Seed = 25;        
         this.Data["Player"] = true;
+        this._HealthBar=new HealthBar(this._Scene);
         this._Collider = new Engineer.Engine.Tile();
         this._Collider.Trans.Scale = new Engineer.Math.Vertex(100, 150, 0);
         this._Collider.Trans.Translation = new Engineer.Math.Vertex(960,540,0);
         this._Collider.Active = false;
         this._Collider.Data["Collision"] = Engineer.Math.CollisionType.Rectangular2D;  
-        this._Scene.Data["Character"] = this._Collider;              
+        this._Scene.Data["Character_Collider"] = this._Collider;  
+        this._Scene.Data["Character"] = this;             
         this._Scene.AddSceneObject(this);
         this._Scene.AddSceneObject(this._Collider);
     }

@@ -8,6 +8,7 @@ import {Player} from "./Player";
 import {Skeleton} from "./Enemy/Skeleton";
 import {Movement} from "./Movement";
 import {Items} from "./Items";
+import {HealthBar} from "./HealthBar";
 
 class GameScene extends Engineer.Engine.Scene2D
 {
@@ -15,7 +16,7 @@ class GameScene extends Engineer.Engine.Scene2D
     private _Player:Player;
     private _Skeleton:Skeleton;
     private _Movement:Movement; 
-    private _Item: Items;
+    private _Item: Items;    
 
     public constructor()
     {
@@ -31,7 +32,7 @@ class GameScene extends Engineer.Engine.Scene2D
         this._Player=new Player(this);  
         this._Skeleton=new Skeleton(this);  
         this._Movement = new Movement(this._Player, this);  
-        this._Item=new Items(this._Player,this);
+        this._Item=new Items(this._Player,this);        
         //this.Events.KeyPress.push(this.KeyPress);
     }
     private KeyPress(G:any, Args:any) : void

@@ -5,6 +5,9 @@ import { GameScene } from "./../GameScene";
 import { Player } from "./../Player";
 
 class Skeleton extends Engineer.Engine.Sprite {
+    private _Health: number;
+    private _MaxHealth: number;
+    private _Damage: number;
     private _Scene: GameScene;
     private pos_x: number;
     private pos_y: number;
@@ -13,6 +16,7 @@ class Skeleton extends Engineer.Engine.Sprite {
     private s_direction: number;
     private moving: boolean;
     private following: boolean;
+    private _Player_Collider: any;
     private _Player: any;
     private moveSpeed: number;
     private moveArea: number;
@@ -24,8 +28,12 @@ class Skeleton extends Engineer.Engine.Sprite {
         this.moveSpeed = 10;
         this.moveArea = 500;
         this.followArea = 300;
+        this._MaxHealth = 100;
+        this._Health = this._MaxHealth;
+        this._Damage = 25;
         this.Name = "Skeleton";
         this._Scene = Scene;
+        this._Player_Collider = this._Scene.Data["Character_Collider"];
         this._Player = this._Scene.Data["Character"];
         this.counter = 0;
         this.rng_counter = 0;
@@ -34,7 +42,7 @@ class Skeleton extends Engineer.Engine.Sprite {
         this.following = false;
         this.Trans.Scale = new Engineer.Math.Vertex(100, 150, 1);
         this.Trans.Translation = new Engineer.Math.Vertex(400, 400, 0.5);
-        this.SpriteSets = [new Engineer.Engine.SpriteSet(null, "S_WalkN"), new Engineer.Engine.SpriteSet(null, "S_WalkE"), new Engineer.Engine.SpriteSet(null, "S_WalkS"), new Engineer.Engine.SpriteSet(null, "S_WalkW"),new Engineer.Engine.SpriteSet(null, "S_AttN"),new Engineer.Engine.SpriteSet(null, "S_AttE"),new Engineer.Engine.SpriteSet(null, "S_AttS"),new Engineer.Engine.SpriteSet(null, "S_AttW")];
+        this.SpriteSets = [new Engineer.Engine.SpriteSet(null, "S_WalkN"), new Engineer.Engine.SpriteSet(null, "S_WalkE"), new Engineer.Engine.SpriteSet(null, "S_WalkS"), new Engineer.Engine.SpriteSet(null, "S_WalkW"), new Engineer.Engine.SpriteSet(null, "S_AttN"), new Engineer.Engine.SpriteSet(null, "S_AttE"), new Engineer.Engine.SpriteSet(null, "S_AttS"), new Engineer.Engine.SpriteSet(null, "S_AttW")];
         Engineer.Util.Log.Print(this.SpriteSets);
         this.SpriteSets[0].Sprites = ["/build/resources/skeleton/E_up00.png", "/build/resources/skeleton/E_up01.png", "/build/resources/skeleton/E_up02.png", "/build/resources/skeleton/E_up03.png", "/build/resources/skeleton/E_up04.png", "/build/resources/skeleton/E_up05.png", "/build/resources/skeleton/E_up06.png", "/build/resources/skeleton/E_up07.png", "/build/resources/skeleton/E_up08.png"];
         this.SpriteSets[1].Sprites = ["/build/resources/skeleton/E_rgt00.png", "/build/resources/skeleton/E_rgt01.png", "/build/resources/skeleton/E_rgt02.png", "/build/resources/skeleton/E_rgt03.png", "/build/resources/skeleton/E_rgt04.png", "/build/resources/skeleton/E_rgt05.png", "/build/resources/skeleton/E_rgt06.png", "/build/resources/skeleton/E_rgt07.png", "/build/resources/skeleton/E_rgt08.png"];
@@ -143,10 +151,11 @@ class Skeleton extends Engineer.Engine.Sprite {
 
     public attack(): void {
 
-        if (Engineer.Math.Vertex.Distance(this.Trans.Translation, this._Player.Trans.Translation) < this._Player.Trans.Scale.X && Engineer.Math.Vertex.Distance(this.Trans.Translation, this._Player.Trans.Translation) < this._Player.Trans.Scale.Y) {
+        if (Engineer.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) < this._Player_Collider.Trans.Scale.X && Engineer.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) < this._Player_Collider.Trans.Scale.Y) {
             this.moving = false;
             this.following = false;
-            this.UpdateSpriteSet(4+this.checkMove());
+            this.UpdateSpriteSet(4 + this.checkMove());            
+            this._Player.HealthBar.Damage(this._Damage);
         }
         else {
             this.following = true;
@@ -154,21 +163,21 @@ class Skeleton extends Engineer.Engine.Sprite {
         }
     }
     public checkMove(): number {
-        if (this._Player.Trans.Translation.X - this.Trans.Translation.X >= 0 && this._Player.Trans.Translation.Y - this.Trans.Translation.Y <= 0) {
+        if (this._Player_Collider.Trans.Translation.X - this.Trans.Translation.X >= 0 && this._Player_Collider.Trans.Translation.Y - this.Trans.Translation.Y <= 0) {
             return 0;
         }
-        if (this._Player.Trans.Translation.X - this.Trans.Translation.X >= 0 && this._Player.Trans.Translation.Y - this.Trans.Translation.Y >= 0) {
+        if (this._Player_Collider.Trans.Translation.X - this.Trans.Translation.X >= 0 && this._Player_Collider.Trans.Translation.Y - this.Trans.Translation.Y >= 0) {
             return 1;
         }
-        if (this._Player.Trans.Translation.X - this.Trans.Translation.X <= 0 && this._Player.Trans.Translation.Y - this.Trans.Translation.Y >= 0) {
+        if (this._Player_Collider.Trans.Translation.X - this.Trans.Translation.X <= 0 && this._Player_Collider.Trans.Translation.Y - this.Trans.Translation.Y >= 0) {
             return 2;
         }
-        if (this._Player.Trans.Translation.X - this.Trans.Translation.X <= 0 && this._Player.Trans.Translation.Y - this.Trans.Translation.Y <= 0) {
+        if (this._Player_Collider.Trans.Translation.X - this.Trans.Translation.X <= 0 && this._Player_Collider.Trans.Translation.Y - this.Trans.Translation.Y <= 0) {
             return 3;
         }
     }
     public follow(): void {
-        if (Engineer.Math.Vertex.Distance(this.Trans.Translation, this._Player.Trans.Translation) < this.followArea) {
+        if (Engineer.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) < this.followArea) {
             this.following = true;
             this.moving = false;
 
@@ -177,7 +186,7 @@ class Skeleton extends Engineer.Engine.Sprite {
                 this.counter = 0;
                 Engineer.Util.Collision.CalculateObjectCollisions("Solid", this, this._SolidColliders);
                 if (this.checkMove() == 0) {
-                    if (Engineer.Math.Vertex.Distance(this.Trans.Translation, this._Player.Trans.Translation) > this._Player.Trans.Scale.X*2/5 && Engineer.Math.Vertex.Distance(this.Trans.Translation, this._Player.Trans.Translation)> this._Player.Trans.Scale.Y*2/3) {
+                    if (Engineer.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) > this._Player_Collider.Trans.Scale.X * 2 / 5 && Engineer.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) > this._Player_Collider.Trans.Scale.Y * 2 / 3) {
                         if (!this.Data["Collision_Solid"].Top) {
                             this.Trans.Translation = new Engineer.Math.Vertex(this.Trans.Translation.X + this.moveSpeed, this.Trans.Translation.Y - this.moveSpeed, 0.5);
                             this.s_direction = 0;
@@ -186,7 +195,7 @@ class Skeleton extends Engineer.Engine.Sprite {
                     }
                 }
                 if (this.checkMove() == 1) {
-                    if (Engineer.Math.Vertex.Distance(this.Trans.Translation, this._Player.Trans.Translation) > this._Player.Trans.Scale.X*2/5 && Engineer.Math.Vertex.Distance(this.Trans.Translation, this._Player.Trans.Translation)> this._Player.Trans.Scale.Y*2/3) {
+                    if (Engineer.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) > this._Player_Collider.Trans.Scale.X * 2 / 5 && Engineer.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) > this._Player_Collider.Trans.Scale.Y * 2 / 3) {
                         if (!this.Data["Collision_Solid"].Right) {
                             this.Trans.Translation = new Engineer.Math.Vertex(this.Trans.Translation.X + this.moveSpeed, this.Trans.Translation.Y + this.moveSpeed, 0.5);
                             this.s_direction = 1;
@@ -195,7 +204,7 @@ class Skeleton extends Engineer.Engine.Sprite {
                     }
                 }
                 if (this.checkMove() == 2) {
-                    if (Engineer.Math.Vertex.Distance(this.Trans.Translation, this._Player.Trans.Translation) > this._Player.Trans.Scale.X*2/5 && Engineer.Math.Vertex.Distance(this.Trans.Translation, this._Player.Trans.Translation)> this._Player.Trans.Scale.Y*2/3) {
+                    if (Engineer.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) > this._Player_Collider.Trans.Scale.X * 2 / 5 && Engineer.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) > this._Player_Collider.Trans.Scale.Y * 2 / 3) {
                         if (!this.Data["Collision_Solid"].Bottom) {
                             this.Trans.Translation = new Engineer.Math.Vertex(this.Trans.Translation.X - this.moveSpeed, this.Trans.Translation.Y + this.moveSpeed, 0.5);
                             this.s_direction = 2;
@@ -204,7 +213,7 @@ class Skeleton extends Engineer.Engine.Sprite {
                     }
                 }
                 if (this.checkMove() == 3) {
-                    if (Engineer.Math.Vertex.Distance(this.Trans.Translation, this._Player.Trans.Translation) > this._Player.Trans.Scale.X*2/5 && Engineer.Math.Vertex.Distance(this.Trans.Translation, this._Player.Trans.Translation)> this._Player.Trans.Scale.Y*2/3) {
+                    if (Engineer.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) > this._Player_Collider.Trans.Scale.X * 2 / 5 && Engineer.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) > this._Player_Collider.Trans.Scale.Y * 2 / 3) {
                         if (!this.Data["Collision_Solid"].Left) {
                             this.Trans.Translation = new Engineer.Math.Vertex(this.Trans.Translation.X - this.moveSpeed, this.Trans.Translation.Y - this.moveSpeed, 0.5);
                             this.s_direction = 3;
