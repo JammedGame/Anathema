@@ -63,11 +63,12 @@ class Skeleton extends Engineer.Engine.Sprite {
         this.pos_x = this.Trans.Translation.X;
         this.pos_y = this.Trans.Translation.Y;
         this.Data["Enemy"] = true;
-        this.Data["Collision"] = Engineer.Math.CollisionType.Rectangular2D;
+        this.Data["Collision"] = Engineer.Math.CollisionType.Radius2D;
         this._SolidColliders = this._Scene.GetObjectsWithData("Solid", true);
         this._Scene.Events.TimeTick.push(this.movement.bind(this));
         this._Scene.Events.TimeTick.push(this.attack.bind(this));
         this._Scene.Events.TimeTick.push(this.follow.bind(this));
+        this.Events.SpriteSetAnimationComplete.push(this.doDamage.bind(this));        
         this._Scene.AddSceneObject(this);
     }
     public movement(): void {
@@ -148,14 +149,16 @@ class Skeleton extends Engineer.Engine.Sprite {
             else this.counter++;
         }
     }
+    public doDamage(){
+        this._Player.HealthBar.Damage(this._Damage);
+    }
 
     public attack(): void {
 
         if (Engineer.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) < this._Player_Collider.Trans.Scale.X && Engineer.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) < this._Player_Collider.Trans.Scale.Y) {
             this.moving = false;
             this.following = false;
-            this.UpdateSpriteSet(4 + this.checkMove());            
-            this._Player.HealthBar.Damage(this._Damage);
+            this.UpdateSpriteSet(4 + this.checkMove()); 
         }
         else {
             this.following = true;

@@ -35,7 +35,7 @@ class Player extends Engineer.Engine.Sprite
         this._Collider.Trans.Scale = new Engineer.Math.Vertex(100, 150, 0);
         this._Collider.Trans.Translation = new Engineer.Math.Vertex(960,540,0);
         this._Collider.Active = false;
-        this._Collider.Data["Collision"] = Engineer.Math.CollisionType.Rectangular2D;  
+        this._Collider.Data["Collision"] = Engineer.Math.CollisionType.Radius2D;  
         this._Scene.Data["Character_Collider"] = this._Collider;  
         this._Scene.Data["Character"] = this;             
         this._Scene.AddSceneObject(this);
