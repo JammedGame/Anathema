@@ -126,9 +126,9 @@ class LevelTileset
         let FloorImages  = [];
         for(let i = 1; i < 7; i++) FloorImages.push("/build/resources/ruin/g0"+i+".png");
         this.Floor = new Engineer.Engine.TileCollection(null, FloorImages);
-        this.WallUpper = new Engineer.Engine.TileCollection(null, ["/build/resources/wallUp.png"]);
-        this.WallLower = new Engineer.Engine.TileCollection(null, ["/build/resources/wallDown.png"]);
-        this.Ceiling = new Engineer.Engine.TileCollection(null, ["/build/resources/ceiling.png"]);
+        this.WallUpper = new Engineer.Engine.TileCollection(null, ["/build/resources/ruin/wu01.png"]);
+        this.WallLower = new Engineer.Engine.TileCollection(null, ["/build/resources/ruin/wd01.png"]);
+        this.Ceiling = new Engineer.Engine.TileCollection(null, ["/build/resources/ruin/cm01.png"]);
     }
 }
 class Layout
