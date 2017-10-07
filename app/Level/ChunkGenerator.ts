@@ -48,6 +48,16 @@ class ChunkGenerator
             }
         }
     }
+    public static Insert(Target:Chunk, Insertion:Chunk, Location:any)
+    {
+        for(let i = 0; i < Insertion.Dimensions.Y; i++)
+        {
+            for(let j = 0; j < Insertion.Dimensions.X; j++)
+            {
+                Target.Fields[Location.Y + i][Location.X + j] = Insertion.Fields[i][j];
+            }
+        }
+    }
 }
 class Chunk
 {
@@ -65,6 +75,5 @@ class Chunk
                 this.Fields[i].push(Value);
             }
         }
-        console.log(this.Fields);
     }
 }

@@ -38,6 +38,57 @@ class LevelGenerator
                 }
             }
         }
+        let L = LevelGenerator.GenerateLayout(new Engineer.Math.Vertex(10,10,0), [new LayoutClass(3,4), new LayoutClass(2,8), new LayoutClass(1,1000)]);
+        L.Print();
+    }
+    private static GenerateLayout(Dimensions:any, LayoutClasses:LayoutClass[]) : Layout
+    {
+        let L = new Layout(Dimensions, -1);
+        // For each element of each class
+        for(let i = 0; i < LayoutClasses.length; i++)
+        {
+            for(let j = 0; j < LayoutClasses[i].Number; j++)
+            {
+                // Going through Layout Matrix
+                let Available:LayoutEntry[] = [];
+                for(let k = 0; k < Dimensions.Y - LayoutClasses[i].Size + 1; k++)
+                {
+                    for(let l = 0; l < Dimensions.X - LayoutClasses[i].Size + 1; l++)
+                    {
+                        // Checking fitting of entry by size
+                        let EntryAvailable = true;
+                        for(let m = 0; m < LayoutClasses[i].Size; m++)
+                        {
+                            for(let n = 0; n < LayoutClasses[i].Size; n++)
+                            {
+                                if(L.Data[k+m][l+n] != -1)
+                                {
+                                    EntryAvailable = false;
+                                    break;
+                                }
+                            }   
+                            if(!EntryAvailable) break;
+                        }
+                        if(EntryAvailable) Available.push(new LayoutEntry(LayoutClasses[i].Size, new Engineer.Math.Vertex(l,k,0)));
+                    }   
+                }
+                if(Available.length > 0)
+                {
+                    let Chosen = Math.floor((Math.random() * Available.length));
+                    if(Chosen == Available.length) Chosen = Available.length - 1;
+                    L.Entries.push(Available[Chosen]);
+                    for(let m = 0; m < LayoutClasses[i].Size; m++)
+                    {
+                        for(let n = 0; n < LayoutClasses[i].Size; n++)
+                        {
+                            L.Data[Available[Chosen].Location.Y + m][Available[Chosen].Location.X + n] = LayoutClasses[i].Size;
+                        }   
+                    }
+                }
+                else break;
+            }
+        }
+        return L;
     }
     private static GenerateTile(Scene:GameScene, Location:any, Tileset:any, Index:number, Color:any) : any
     {
@@ -65,5 +116,62 @@ class LevelTileset
         this.WallUpper = new Engineer.Engine.TileCollection(null, ["/build/resources/wallUp.png"]);
         this.WallLower = new Engineer.Engine.TileCollection(null, ["/build/resources/wallDown.png"]);
         this.Ceiling = new Engineer.Engine.TileCollection(null, ["/build/resources/ceiling.png"]);
+    }
+}
+class Layout
+{
+    public Dimensions:any;
+    public Data:number[][];
+    public Entries:LayoutEntry[];
+    public constructor(Dimensions:any, Value:number)
+    {
+        this.Dimensions = Dimensions;
+        this.Data= [];
+        for(let i = 0; i < Dimensions.Y; i++)
+        {
+            this.Data.push([]);
+            for(let j = 0; j < Dimensions.X; j++)
+            {
+                this.Data[i].push(Value);
+            }
+        }
+        this.Entries = [];
+    }
+    public Print()
+    {
+        console.log("- - -");
+        for(let i = 0; i < this.Dimensions.Y; i++)
+        {
+            let Line:string = i.toString();
+            if(Line.length < 2) Line = "0" + i;
+            Line += ": ";
+            for(let j = 0; j < this.Dimensions.X; j++)
+            {
+                if(this.Data[i][j] == -1) Line += "X, ";
+                else Line += this.Data[i][j] + ", ";
+            }
+            console.log(Line);
+        }
+        console.log("- - -");
+    }
+}
+class LayoutEntry
+{
+    public Size:number;
+    public Location:any;
+    public constructor(Size:number, Location:any)
+    {
+        this.Size = Size;
+        this.Location = Location;
+    }
+}
+class LayoutClass
+{
+    public Size:number;
+    public Number:number;
+    public constructor(Size:number, Number:number)
+    {
+        this.Size = Size;
+        this.Number = Number;
     }
 }
