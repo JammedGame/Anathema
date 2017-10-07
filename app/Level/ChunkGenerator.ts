@@ -7,16 +7,20 @@ class ChunkGenerator
     public static Generate(Type:number, Dimensions:any) : Chunk
     {
         let NewChunk:Chunk = new Chunk(Dimensions, 1);
-        if(Type == 0) ChunkGenerator.GenerateType0(NewChunk);
-        if(Type == 1) ChunkGenerator.GenerateType1(NewChunk);
+        if(Type == 3) ChunkGenerator.GenerateType0(NewChunk);
+        if(Type == 2) ChunkGenerator.GenerateType1(NewChunk);
+        if(Type == 1) ChunkGenerator.GenerateType2(NewChunk);
+        if(Type == 0) ChunkGenerator.GenerateType3(NewChunk);
         ChunkGenerator.FakeIsometric(NewChunk);
         return NewChunk;
     }
     public static GenerateWOFake(Type:number, Dimensions:any) : Chunk
     {
         let NewChunk:Chunk = new Chunk(Dimensions, 1);
-        if(Type == 0) ChunkGenerator.GenerateType0(NewChunk);
-        if(Type == 1) ChunkGenerator.GenerateType1(NewChunk);
+        if(Type == 3) ChunkGenerator.GenerateType0(NewChunk);
+        if(Type == 2) ChunkGenerator.GenerateType1(NewChunk);
+        if(Type == 1) ChunkGenerator.GenerateType2(NewChunk);
+        if(Type == 0) ChunkGenerator.GenerateType3(NewChunk);
         return NewChunk;
     }
     private static GenerateType0(NewChunk:Chunk) : void
@@ -27,6 +31,49 @@ class ChunkGenerator
         for(let i = 0; i < NewChunk.Dimensions.X; i++) NewChunk.Fields[NewChunk.Dimensions.Y - 1][i] = 4;
     }
     private static GenerateType1(NewChunk:Chunk) : void
+    {
+        for(let i = 0; i < NewChunk.Dimensions.Y; i++) NewChunk.Fields[i][0] = 4;
+        for(let i = 0; i < NewChunk.Dimensions.Y; i++) NewChunk.Fields[i][NewChunk.Dimensions.X - 1] = 4;
+        for(let i = 0; i < NewChunk.Dimensions.X; i++) NewChunk.Fields[0][i] = 4;
+        for(let i = 0; i < NewChunk.Dimensions.X; i++) NewChunk.Fields[NewChunk.Dimensions.Y - 1][i] = 4;
+        let Half = Math.ceil(NewChunk.Dimensions.X / 2);
+        console.log(NewChunk);
+        console.log("Half " + Half);
+        if(NewChunk.Dimensions.X > 10)
+        {
+            let Radius = 2 + Math.floor(NewChunk.Dimensions.X / 10);
+            for(let i = Half - Radius; i < Half + Radius; i++)
+            {
+                for(let j = Half - Radius; j < Half + Radius; j++)
+                {
+                    NewChunk.Fields[i][j] = 0;
+                }
+            }
+            for(let i = Half - Radius; i <= Half + Radius; i++)
+            {
+                NewChunk.Fields[i][Half - Radius] = 4;
+                NewChunk.Fields[Half - Radius][i] = 4;
+                NewChunk.Fields[i][Half + Radius] = 4;
+                NewChunk.Fields[Half + Radius][i] = 4;
+            }
+        }
+    }
+    private static GenerateType2(NewChunk:Chunk) : void
+    {
+        NewChunk.Fields[0][0] = 0;
+        NewChunk.Fields[0][NewChunk.Dimensions.X - 1] = 0;
+        NewChunk.Fields[NewChunk.Dimensions.Y - 1][NewChunk.Dimensions.X - 1] = 0;
+        NewChunk.Fields[NewChunk.Dimensions.Y - 1][0] = 0;
+        for(let i = 1; i < NewChunk.Dimensions.Y - 1; i++) NewChunk.Fields[i][0] = 4;
+        for(let i = 1; i < NewChunk.Dimensions.Y - 1; i++) NewChunk.Fields[i][NewChunk.Dimensions.X - 1] = 4;
+        for(let i = 1; i < NewChunk.Dimensions.X - 1; i++) NewChunk.Fields[0][i] = 4;
+        for(let i = 1; i < NewChunk.Dimensions.X - 1; i++) NewChunk.Fields[NewChunk.Dimensions.Y - 1][i] = 4;
+        NewChunk.Fields[1][1] = 4;
+        NewChunk.Fields[1][NewChunk.Dimensions.X-2] = 4;
+        NewChunk.Fields[NewChunk.Dimensions.Y-2][NewChunk.Dimensions.X-2] = 4;
+        NewChunk.Fields[NewChunk.Dimensions.Y-2][1] = 4;
+    }
+    private static GenerateType3(NewChunk:Chunk) : void
     {
         NewChunk.Fields[0][0] = 0;
         NewChunk.Fields[0][NewChunk.Dimensions.X - 1] = 0;

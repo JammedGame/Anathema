@@ -21,7 +21,7 @@ class LevelGenerator
             {
                 if(NewChunk.Fields[i][j] == 1)
                 {
-                    let Index = Math.floor((Math.random() * 7) + 1);
+                    let Index = Math.floor((Math.random() * 16) + 1);
                     LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+1,0), Tilesets.Floor, Index, Engineer.Math.Color.FromRGBA(255,255,255,255));
                 }
                 else if(NewChunk.Fields[i][j] == 2)
@@ -71,7 +71,9 @@ class LevelGenerator
         let MC:Chunk = new Chunk(new Engineer.Math.Vertex(L.Dimensions.X * 11 - 1, L.Dimensions.Y * 11 - 1), -1);
         for(let i = 0; i < L.Entries.length; i++)
         {
-            let NewChunk:Chunk = ChunkGenerator.GenerateWOFake(1, new Engineer.Math.Vertex(L.Entries[i].Size * 11 - 1, L.Entries[i].Size * 11 - 1, 0));
+            let Index = Math.floor((Math.random() * 4));
+            if(Index == 4) Index = 3;
+            let NewChunk:Chunk = ChunkGenerator.GenerateWOFake(Index, new Engineer.Math.Vertex(L.Entries[i].Size * 11 - 1, L.Entries[i].Size * 11 - 1, 0));
             ChunkGenerator.Insert(MC, NewChunk, new Engineer.Math.Vertex(L.Entries[i].Location.X * 11, L.Entries[i].Location.Y * 11, 0));
         }
         LevelGenerator.ConnectMegaChunk(MC, L);
@@ -244,7 +246,13 @@ class LevelTileset
     public constructor()
     {
         let FloorImages  = [];
-        for(let i = 1; i < 7; i++) FloorImages.push("/build/resources/ruin/g0"+i+".png");
+        for(let i = 1; i < 16; i++)
+        {
+            let s = i.toString();
+            if(i < 10) s = "0" + i;
+            FloorImages.push("/build/resources/ruin/g"+s+".png");
+        }
+        console.log(FloorImages);
         this.Floor = new Engineer.Engine.TileCollection(null, FloorImages);
         this.WallUpper = new Engineer.Engine.TileCollection(null, ["/build/resources/ruin/wu01.png"]);
         this.WallLower = new Engineer.Engine.TileCollection(null, ["/build/resources/ruin/wd01.png"]);
