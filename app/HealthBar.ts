@@ -11,15 +11,14 @@ class HealthBar extends Engineer.Engine.Sprite {
 
     public constructor(Scene: GameScene) {
         super();
-        this.Name = "Player";
+        this.Name = "HealthBar";
         this._Scene = Scene;
         this.Fixed = true;
         this._MaxHealth = 100;
         this._Health = this._MaxHealth;
         this.Trans.Scale = new Engineer.Math.Vertex(this._MaxHealth, 100, 0);
         this.Trans.Translation = new Engineer.Math.Vertex(192, 216, 1);
-        this.SpriteSets = [new Engineer.Engine.SpriteSet(null, "HealthBar")];
-        Engineer.Util.Log.Print(this.SpriteSets);
+        this.SpriteSets = [new Engineer.Engine.SpriteSet(null, "HealthBar")];        
         this.SpriteSets[0].Sprites = ["/build/resources/HealthBar.png"];
         this._Scene.AddSceneObject(this);
     }

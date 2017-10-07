@@ -23,6 +23,9 @@ class Skeleton extends Engineer.Engine.Sprite {
     private followArea: number;
     private _SolidColliders: any[];
 
+    public get Health(): number { return this._Health; }
+    public set Health(dmg:number) { this._Health=dmg; }    
+
     public constructor(Scene: GameScene) {
         super();
         this.moveSpeed = 10;
