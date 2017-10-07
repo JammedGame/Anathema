@@ -40,10 +40,10 @@ public constructor(Player:Player, Scene:GameScene){
   // this._Scene.AddSceneObject(this._Collider);
 }
 private GameUpdate(G:any, Args:any){
-    console.log(Engineer.Util.Collision.Check(this._Player,this));
+   
    if(Engineer.Util.Collision.Check(this._Player.Collider,this).Collision){
        this.Active=false;
-       console.log("PU");
+    
     }
 }
 }
