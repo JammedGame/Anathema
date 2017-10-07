@@ -12,6 +12,9 @@ class LevelGenerator
     public static Generate(Scene:GameScene, Tilesets:LevelTileset) : void
     {
         let NewChunk:Chunk = ChunkGenerator.Generate(1, new Engineer.Math.Vertex(24,15,0));
+        let L = LevelGenerator.GenerateLayout(new Engineer.Math.Vertex(5,5,0), [new LayoutClass(3,1), new LayoutClass(2,3), new LayoutClass(1,1000)]);
+        L.Print();
+        //let NewChunk:Chunk = LevelGenerator.GenerateMegaChunk(L);
         for(let i = 0; i < NewChunk.Dimensions.Y; i++)
         {
             for(let j = 0; j < NewChunk.Dimensions.X; j++)
@@ -38,8 +41,18 @@ class LevelGenerator
                 }
             }
         }
-        let L = LevelGenerator.GenerateLayout(new Engineer.Math.Vertex(10,10,0), [new LayoutClass(3,4), new LayoutClass(2,8), new LayoutClass(1,1000)]);
-        L.Print();
+        
+
+    }
+    private static GenerateMegaChunk(L:Layout) : Chunk
+    {
+        let MC:Chunk = new Chunk(new Engineer.Math.Vertex(L.Dimensions.X * 11 - 1, L.Dimensions.Y * 11 - 1), -1);
+        for(let i = 0; i < L.Entries.length; i++)
+        {
+            let NewChunk:Chunk = ChunkGenerator.Generate(1, new Engineer.Math.Vertex(L.Entries[i].Size * 11 - 1, L.Entries[i].Size * 11 - 1, 0));
+            ChunkGenerator.Insert(MC, NewChunk, new Engineer.Math.Vertex(L.Entries[i].Location.X * 11, L.Entries[i].Location.Y * 11, 0));
+        }
+        return MC;
     }
     private static GenerateLayout(Dimensions:any, LayoutClasses:LayoutClass[]) : Layout
     {
