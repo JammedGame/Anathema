@@ -53,8 +53,7 @@ class Skeleton extends Engineer.Engine.Sprite {
         this._Scene.AddSceneObject(this);
     }
     public movement(): void {
-        if (this.moving && !this.following) {
-            Engineer.Util.Collision.CalculateObjectCollisions("Solid", this, this._SolidColliders);
+        if (this.moving && !this.following) {            
 
             if (this.counter >= 15) {
 
@@ -64,6 +63,7 @@ class Skeleton extends Engineer.Engine.Sprite {
                     this.s_direction = Math.round(3 * Math.random());
                     this.rng_counter = 0;
                 }
+                Engineer.Util.Collision.CalculateObjectCollisions("Solid", this, this._SolidColliders);
                 switch (this.s_direction) {
                     case 0:
                         if (this.Trans.Translation.Y > this.pos_y - this.moveArea) {
@@ -104,7 +104,7 @@ class Skeleton extends Engineer.Engine.Sprite {
                             }
                             else {
                                 this.rng_counter = 5;
-                            }                           
+                            }
                         }
                         else {
                             this.rng_counter = 5;
@@ -150,26 +150,34 @@ class Skeleton extends Engineer.Engine.Sprite {
             if (this.counter >= 15) {
 
                 this.counter = 0;
-
+                Engineer.Util.Collision.CalculateObjectCollisions("Solid", this, this._SolidColliders);
                 if (this._Player.Trans.Translation.X - this.Trans.Translation.X > 0 && this._Player.Trans.Translation.Y - this.Trans.Translation.Y < 0) {
-                    this.Trans.Translation = new Engineer.Math.Vertex(this.Trans.Translation.X + this.moveSpeed, this.Trans.Translation.Y - this.moveSpeed, 0);
-                    this.s_direction = 0;
-                    this.UpdateSpriteSet(0);
+                    if (!this.Data["Collision_Solid"].Top) {
+                        this.Trans.Translation = new Engineer.Math.Vertex(this.Trans.Translation.X + this.moveSpeed, this.Trans.Translation.Y - this.moveSpeed, 0);
+                        this.s_direction = 0;
+                        this.UpdateSpriteSet(0);
+                    }
                 }
                 if (this._Player.Trans.Translation.X - this.Trans.Translation.X >= 0 && this._Player.Trans.Translation.Y - this.Trans.Translation.Y >= 0) {
-                    this.Trans.Translation = new Engineer.Math.Vertex(this.Trans.Translation.X + this.moveSpeed, this.Trans.Translation.Y + this.moveSpeed, 0);
-                    this.s_direction = 1;
-                    this.UpdateSpriteSet(1);
+                    if (!this.Data["Collision_Solid"].Right) {
+                        this.Trans.Translation = new Engineer.Math.Vertex(this.Trans.Translation.X + this.moveSpeed, this.Trans.Translation.Y + this.moveSpeed, 0);
+                        this.s_direction = 1;
+                        this.UpdateSpriteSet(1);
+                    }
                 }
                 if (this._Player.Trans.Translation.X - this.Trans.Translation.X < 0 && this._Player.Trans.Translation.Y - this.Trans.Translation.Y > 0) {
-                    this.Trans.Translation = new Engineer.Math.Vertex(this.Trans.Translation.X - this.moveSpeed, this.Trans.Translation.Y + this.moveSpeed, 0);
-                    this.s_direction = 2;
-                    this.UpdateSpriteSet(2);
+                    if (!this.Data["Collision_Solid"].Bottom) {
+                        this.Trans.Translation = new Engineer.Math.Vertex(this.Trans.Translation.X - this.moveSpeed, this.Trans.Translation.Y + this.moveSpeed, 0);
+                        this.s_direction = 2;
+                        this.UpdateSpriteSet(2);
+                    }
                 }
                 if (this._Player.Trans.Translation.X - this.Trans.Translation.X <= 0 && this._Player.Trans.Translation.Y - this.Trans.Translation.Y <= 0) {
-                    this.Trans.Translation = new Engineer.Math.Vertex(this.Trans.Translation.X - this.moveSpeed, this.Trans.Translation.Y - this.moveSpeed, 0);
-                    this.s_direction = 3;
-                    this.UpdateSpriteSet(3);
+                    if (!this.Data["Collision_Solid"].Left) {
+                        this.Trans.Translation = new Engineer.Math.Vertex(this.Trans.Translation.X - this.moveSpeed, this.Trans.Translation.Y - this.moveSpeed, 0);
+                        this.s_direction = 3;
+                        this.UpdateSpriteSet(3);
+                    }
                 }
             }
             else this.counter++;
