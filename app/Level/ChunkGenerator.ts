@@ -12,6 +12,13 @@ class ChunkGenerator
         ChunkGenerator.FakeIsometric(NewChunk);
         return NewChunk;
     }
+    public static GenerateWOFake(Type:number, Dimensions:any) : Chunk
+    {
+        let NewChunk:Chunk = new Chunk(Dimensions, 1);
+        if(Type == 0) ChunkGenerator.GenerateType0(NewChunk);
+        if(Type == 1) ChunkGenerator.GenerateType1(NewChunk);
+        return NewChunk;
+    }
     private static GenerateType0(NewChunk:Chunk) : void
     {
         for(let i = 0; i < NewChunk.Dimensions.Y; i++) NewChunk.Fields[i][0] = 4;
@@ -47,7 +54,7 @@ class ChunkGenerator
             }
         }
     }
-    private static FakeIsometric(NewChunk:Chunk) : void
+    public static FakeIsometric(NewChunk:Chunk) : void
     {
         for(let i = 0; i < NewChunk.Dimensions.Y - 1; i++)
         {
@@ -61,13 +68,38 @@ class ChunkGenerator
             }
         }
     }
-    public static Insert(Target:Chunk, Insertion:Chunk, Location:any)
+    public static Insert(Target:Chunk, Insertion:Chunk, Location:any) : void
     {
         for(let i = 0; i < Insertion.Dimensions.Y; i++)
         {
             for(let j = 0; j < Insertion.Dimensions.X; j++)
             {
                 Target.Fields[Location.Y + i][Location.X + j] = Insertion.Fields[i][j];
+            }
+        }
+    }
+    public static ConnectParts(C:Chunk, Location:any, Type:string, Length:number) : void
+    {
+        let X = Location.X;
+        let Y = Location.Y;
+        let InnerLength = Length / 2;
+        if(Type == "horizontal")
+        {
+            let X2 = X + Length / 2;
+            let Pattern = [4,1,1,1,1,4];
+            for(let i = X2 - 3; i <= X2 + 2; i++)
+            {
+                for(let j = Y - 2; j <= Y; j++) C.Fields[j][i] = Pattern[i - X2 + 3];
+            }
+            
+        }
+        if(Type == "vertical")
+        {
+            let Y2 = Y + Length / 2;
+            let Pattern = [4,1,1,1,1,1,4];
+            for(let i = Y2 - 3; i <= Y2 + 3; i++)
+            {
+                for(let j = X - 2; j <= X; j++) C.Fields[i][j] = Pattern[i - Y2 + 3];
             }
         }
     }

@@ -36,23 +36,73 @@ class LevelGenerator
                 }
                 else if(NewChunk.Fields[i][j] == 4)
                 {
-                    LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+1,0), Tilesets.Ceiling, 0, Engineer.Math.Color.FromRGBA(255,255,255,255));
-                    ColliderGenerator.GenerateColliderTile(Scene,j+1,i+1,1,1);
+                    LevelGenerator.GenerateCeilingTile(Scene, Tilesets, NewChunk, j, i);
                 }
             }
         }
-        
-
+    }
+    private static GenerateCeilingTile(Scene:GameScene, Tilesets:LevelTileset, C:Chunk, X:number, Y:number) : void
+    {
+        let Horizontal = X >= 1 && X + 1 < C.Dimensions.X && C.Fields[Y][X - 1] == 4 && C.Fields[Y][X + 1] == 4;
+        let Vertical = Y >= 1 && Y + 1 < C.Dimensions.Y && C.Fields[Y - 1][X] == 4 && C.Fields[Y + 1][X] == 4;
+        if(Horizontal && Vertical)
+        {
+            LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(X+1,Y+1,0), Tilesets.Ceiling, 0, Engineer.Math.Color.FromRGBA(255,255,255,255));
+            ColliderGenerator.GenerateColliderTile(Scene,X+1,Y+1,1,1);
+        }
+        else if (Horizontal)
+        {
+            LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(X+1,Y+1,0), Tilesets.CeilingHorizontal, 0, Engineer.Math.Color.FromRGBA(255,255,255,255));
+            ColliderGenerator.GenerateColliderTile(Scene,X+1,Y+1,1,1);
+        }
+        else if (Vertical)
+        {
+            LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(X+1,Y+1,0), Tilesets.CeilingVertical, 0, Engineer.Math.Color.FromRGBA(255,255,255,255));
+            ColliderGenerator.GenerateColliderTile(Scene,X+1,Y+1,1,1);
+        }
+        else
+        {
+            LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(X+1,Y+1,0), Tilesets.Ceiling, 0, Engineer.Math.Color.FromRGBA(255,255,255,255));
+            ColliderGenerator.GenerateColliderTile(Scene,X+1,Y+1,1,1);
+        }
     }
     private static GenerateMegaChunk(L:Layout) : Chunk
     {
         let MC:Chunk = new Chunk(new Engineer.Math.Vertex(L.Dimensions.X * 11 - 1, L.Dimensions.Y * 11 - 1), -1);
         for(let i = 0; i < L.Entries.length; i++)
         {
-            let NewChunk:Chunk = ChunkGenerator.Generate(1, new Engineer.Math.Vertex(L.Entries[i].Size * 11 - 1, L.Entries[i].Size * 11 - 1, 0));
+            let NewChunk:Chunk = ChunkGenerator.GenerateWOFake(1, new Engineer.Math.Vertex(L.Entries[i].Size * 11 - 1, L.Entries[i].Size * 11 - 1, 0));
             ChunkGenerator.Insert(MC, NewChunk, new Engineer.Math.Vertex(L.Entries[i].Location.X * 11, L.Entries[i].Location.Y * 11, 0));
         }
+        LevelGenerator.ConnectMegaChunk(MC, L);
+        ChunkGenerator.FakeIsometric(MC);
         return MC;
+    }
+    private static CalculateLocation(E1:LayoutEntry, E2:LayoutEntry) : any
+    {
+        let Location = new Engineer.Math.Vertex(0,0,0);
+        Location.Y = E1.Location.Y * 11;
+        if(E2.Location.Y > E1.Location.Y) Location.Y = E2.Location.Y * 11;
+        Location.X = E1.Location.X * 11;
+        if(E1.Location.X < E2.Location.X) Location.X = E2.Location.X * 11;
+        return Location;
+    }
+    private static ConnectMegaChunk(MC:Chunk, L:Layout)
+    {
+        for(let i = 0; i < L.Entries.length; i++)
+        {
+            for(let j = 0; j < L.Entries[i].Connections.length; j++)
+            {
+                if(L.Entries[i].ConnectionsSide[j] == 1)
+                {
+                    ChunkGenerator.ConnectParts(MC, LevelGenerator.CalculateLocation(L.Entries[i], L.Entries[i].Connections[j]), "vertical", 10);
+                }
+                else if(L.Entries[i].ConnectionsSide[j] == 2)
+                {
+                    ChunkGenerator.ConnectParts(MC, LevelGenerator.CalculateLocation(L.Entries[i], L.Entries[i].Connections[j]), "horizontal", 10);
+                }
+            }
+        }
     }
     private static GenerateLayout(Dimensions:any, LayoutClasses:LayoutClass[]) : Layout
     {
@@ -101,7 +151,75 @@ class LevelGenerator
                 else break;
             }
         }
+        LevelGenerator.FindConnections(L);
         return L;
+    }
+    private static FindConnections(L:Layout)
+    {
+        for(let i = 0; i < L.Entries.length; i++)
+        {
+            for(let j = 0; j < L.Entries.length; j++)
+            {
+                let Con = LevelGenerator.CheckConnection(L.Entries[i], L.Entries[j]);
+                if(Con != -1)
+                {
+                    if(L.Entries[i].Connections.indexOf(L.Entries[j]) == -1 && L.Entries[j].Connections.indexOf(L.Entries[i]) == -1)
+                    {
+                        L.Entries[i].Connections.push(L.Entries[j]);
+                        L.Entries[i].ConnectionsSide.push(Con);
+                    }
+                }
+            }
+        }
+        LevelGenerator.CullConnections(L.Entries[0], [L.Entries[0]]);
+    }
+    private static CullConnections(E:LayoutEntry, F:LayoutEntry[])
+    {
+        for(let i = E.Connections.length - 1; i >= 0; i--)
+        {
+            if(F.indexOf(E.Connections[i]) != -1)
+            {
+                E.Connections.splice(i, 1);
+                E.ConnectionsSide.splice(i, 1);
+            }
+            else
+            {
+                F.push(E.Connections[i]);
+                LevelGenerator.CullConnections(E.Connections[i], F);
+            }
+        }
+    }
+    private static CheckConnection(E1:LayoutEntry, E2:LayoutEntry) : number
+    {
+        if(E1 == E2) return -1;
+        let Connected = -1;
+        if(E2.Size > E1.Size)
+        {
+            let E = E1;
+            E1 = E2;
+            E2 = E;
+        }
+        if(E1.Location.X == E2.Location.X + E2.Size)
+        {
+            if(E2.Location.Y >= E1.Location.Y && E2.Location.Y < E1.Location.Y + E1.Size) Connected = 1;
+            if(E2.Location.Y + E2.Size >= E1.Location.Y && E2.Location.Y + E2.Size < E1.Location.Y + E1.Size) Connected = 1;
+        }
+        if(E1.Location.X + E1.Size == E2.Location.X)
+        {
+            if(E2.Location.Y >= E1.Location.Y && E2.Location.Y < E1.Location.Y + E1.Size) Connected = 1;
+            if(E2.Location.Y + E2.Size >= E1.Location.Y && E2.Location.Y + E2.Size < E1.Location.Y + E1.Size) Connected = 1;
+        }
+        if(E1.Location.Y == E2.Location.Y + E2.Size)
+        {
+            if(E2.Location.X >= E1.Location.X && E2.Location.X < E1.Location.X + E1.Size) Connected = 2;
+            if(E2.Location.X + E2.Size >= E1.Location.X && E2.Location.X + E2.Size < E1.Location.X + E1.Size) Connected = 2;
+        }
+        if(E1.Location.Y + E1.Size == E2.Location.Y)
+        {
+            if(E2.Location.X >= E1.Location.X && E2.Location.X < E1.Location.X + E1.Size) Connected = 2;
+            if(E2.Location.X + E2.Size >= E1.Location.X && E2.Location.X + E2.Size < E1.Location.X + E1.Size) Connected = 2;
+        }
+        return Connected;
     }
     private static GenerateTile(Scene:GameScene, Location:any, Tileset:any, Index:number, Color:any) : any
     {
@@ -121,6 +239,8 @@ class LevelTileset
     public WallUpper:any;
     public WallLower:any;
     public Ceiling:any;
+    public CeilingHorizontal:any;
+    public CeilingVertical:any;
     public constructor()
     {
         let FloorImages  = [];
@@ -129,6 +249,8 @@ class LevelTileset
         this.WallUpper = new Engineer.Engine.TileCollection(null, ["/build/resources/ruin/wu01.png"]);
         this.WallLower = new Engineer.Engine.TileCollection(null, ["/build/resources/ruin/wd01.png"]);
         this.Ceiling = new Engineer.Engine.TileCollection(null, ["/build/resources/ruin/cm01.png"]);
+        this.CeilingHorizontal = new Engineer.Engine.TileCollection(null, ["/build/resources/ruin/ch01.png"]);
+        this.CeilingVertical = new Engineer.Engine.TileCollection(null, ["/build/resources/ruin/cv01.png"]);
     }
 }
 class Layout
@@ -172,10 +294,14 @@ class LayoutEntry
 {
     public Size:number;
     public Location:any;
+    public Connections:LayoutEntry[];
+    public ConnectionsSide:number[];
     public constructor(Size:number, Location:any)
     {
         this.Size = Size;
         this.Location = Location;
+        this.Connections = [];
+        this.ConnectionsSide = [];
     }
 }
 class LayoutClass

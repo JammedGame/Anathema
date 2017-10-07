@@ -45,5 +45,12 @@ private GameUpdate(G:any, Args:any){
        this.Active=false;
     
     }
-}
+    private GameUpdate(G:any, Args:any)
+    {
+        if(Engineer.Util.Collision.Check(this._Player.Collider,this).Collision)
+        {
+            this.Active=false;
+            console.log("PU");
+        }
+    }
 }
