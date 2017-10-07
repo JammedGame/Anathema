@@ -171,6 +171,23 @@ class LevelGenerator
                 }
             }
         }
+        LevelGenerator.CullConnections(L.Entries[0], [L.Entries[0]]);
+    }
+    private static CullConnections(E:LayoutEntry, F:LayoutEntry[])
+    {
+        for(let i = E.Connections.length - 1; i >= 0; i--)
+        {
+            if(F.indexOf(E.Connections[i]) != -1)
+            {
+                E.Connections.splice(i, 1);
+                E.ConnectionsSide.splice(i, 1);
+            }
+            else
+            {
+                F.push(E.Connections[i]);
+                LevelGenerator.CullConnections(E.Connections[i], F);
+            }
+        }
     }
     private static CheckConnection(E1:LayoutEntry, E2:LayoutEntry) : number
     {
