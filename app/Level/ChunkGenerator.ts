@@ -33,7 +33,7 @@ class ChunkGenerator
         NewChunk.Fields[1][NewChunk.Dimensions.X-2] = 4;
         NewChunk.Fields[NewChunk.Dimensions.Y-2][NewChunk.Dimensions.X-2] = 4;
         NewChunk.Fields[NewChunk.Dimensions.Y-2][1] = 4;
-        for(let i = 5; i < NewChunk.Dimensions.Y - 5; i+=5)
+        for(let i = 6; i < NewChunk.Dimensions.Y - 6; i+=6)
         {
             for(let j = 5; j < NewChunk.Dimensions.X - 5; j+=5)
             {

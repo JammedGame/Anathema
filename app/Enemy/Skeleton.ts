@@ -31,7 +31,7 @@ class Skeleton extends Engineer.Engine.Sprite {
         this.moving = true;
         this.following = false;
         this.Trans.Scale = new Engineer.Math.Vertex(100, 150, 0);
-        this.Trans.Translation = new Engineer.Math.Vertex(400, 400, 0);
+        this.Trans.Translation = new Engineer.Math.Vertex(400, 400, 1);
         this.SpriteSets = [new Engineer.Engine.SpriteSet(null, "S_WalkN"), new Engineer.Engine.SpriteSet(null, "S_WalkE"), new Engineer.Engine.SpriteSet(null, "S_WalkS"), new Engineer.Engine.SpriteSet(null, "S_WalkW")];
         Engineer.Util.Log.Print(this.SpriteSets);
         this.SpriteSets[0].Sprites = ["/build/resources/skeleton/E_up00.png", "/build/resources/skeleton/E_up01.png", "/build/resources/skeleton/E_up02.png", "/build/resources/skeleton/E_up03.png", "/build/resources/skeleton/E_up04.png", "/build/resources/skeleton/E_up05.png", "/build/resources/skeleton/E_up06.png", "/build/resources/skeleton/E_up07.png", "/build/resources/skeleton/E_up08.png"];

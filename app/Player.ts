@@ -15,7 +15,7 @@ class Player extends Engineer.Engine.Sprite
         this._Scene=Scene;
         this.Fixed = true;
         this.Trans.Scale = new Engineer.Math.Vertex(100, 150, 0);
-        this.Trans.Translation = new Engineer.Math.Vertex(960,540,0);
+        this.Trans.Translation = new Engineer.Math.Vertex(960,540,1);
         this.SpriteSets = [new Engineer.Engine.SpriteSet(null,"WalkN"), new Engineer.Engine.SpriteSet(null,"WalkE"), new Engineer.Engine.SpriteSet(null,"WalkS"), new Engineer.Engine.SpriteSet(null,"WalkW")];
         Engineer.Util.Log.Print(this.SpriteSets);
         this.SpriteSets[0].Sprites = ["/build/resources/wizard00.png","/build/resources/wizard01.png","/build/resources/wizard03.png"];

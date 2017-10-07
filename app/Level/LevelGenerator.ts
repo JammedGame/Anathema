@@ -11,10 +11,10 @@ class LevelGenerator
     private static _FieldSize:number = 80;
     public static Generate(Scene:GameScene, Tilesets:LevelTileset) : void
     {
-        let NewChunk:Chunk = ChunkGenerator.Generate(1, new Engineer.Math.Vertex(24,15,0));
+        //let NewChunk:Chunk = ChunkGenerator.Generate(1, new Engineer.Math.Vertex(24,15,0));
         let L = LevelGenerator.GenerateLayout(new Engineer.Math.Vertex(5,5,0), [new LayoutClass(3,1), new LayoutClass(2,3), new LayoutClass(1,1000)]);
         L.Print();
-        //let NewChunk:Chunk = LevelGenerator.GenerateMegaChunk(L);
+        let NewChunk:Chunk = LevelGenerator.GenerateMegaChunk(L);
         for(let i = 0; i < NewChunk.Dimensions.Y; i++)
         {
             for(let j = 0; j < NewChunk.Dimensions.X; j++)
