@@ -21,16 +21,61 @@ class Player extends Engineer.Engine.Sprite {
         this.Fixed = true;
         this.Trans.Scale = new Engineer.Math.Vertex(100, 150, 0);
         this.Trans.Translation = new Engineer.Math.Vertex(960, 540, 1);
-        this.SpriteSets = [new Engineer.Engine.SpriteSet(null, "WalkN"), new Engineer.Engine.SpriteSet(null, "WalkE"), new Engineer.Engine.SpriteSet(null, "WalkS"), new Engineer.Engine.SpriteSet(null, "WalkW")];
+        this.SpriteSets = [];
+        for(let i = 0; i < 16; i++) this.SpriteSets.push(new Engineer.Engine.SpriteSet(null, "Set"));
+
         Engineer.Util.Log.Print(this.SpriteSets);
-        this.SpriteSets[0].Sprites = ["/build/resources/wizard00.png", "/build/resources/wizard01.png", "/build/resources/wizard03.png"];
-        this.SpriteSets[1].Sprites = ["/build/resources/wizard04.png", "/build/resources/wizard05.png", "/build/resources/wizard06.png"];
-        this.SpriteSets[2].Sprites = ["/build/resources/wizard07.png", "/build/resources/wizard08.png", "/build/resources/wizard09.png"];
-        this.SpriteSets[3].Sprites = ["/build/resources/wizard10.png", "/build/resources/wizard11.png", "/build/resources/wizard12.png"];
-        this.SpriteSets[0].Seed = 25;
-        this.SpriteSets[1].Seed = 25;
-        this.SpriteSets[2].Seed = 25;
-        this.SpriteSets[3].Seed = 25;
+        this.SpriteSets[0].Sprites = [];
+        for(let i = 0; i < 9; i++) this.SpriteSets[0].Sprites.push("/build/resources/player/walk/Up"+i+".png");
+        this.SpriteSets[1].Sprites = [];
+        for(let i = 0; i < 9; i++) this.SpriteSets[1].Sprites.push("/build/resources/player/walk/Right"+i+".png");
+        this.SpriteSets[2].Sprites = [];
+        for(let i = 0; i < 9; i++) this.SpriteSets[2].Sprites.push("/build/resources/player/walk/Down"+i+".png");
+        this.SpriteSets[3].Sprites = [];
+        for(let i = 0; i < 9; i++) this.SpriteSets[3].Sprites.push("/build/resources/player/walk/Left"+i+".png");
+
+        this.SpriteSets[4].Sprites = [];
+        for(let i = 0; i < 1; i++) this.SpriteSets[4].Sprites.push("/build/resources/player/walk/Up"+i+".png");
+        this.SpriteSets[5].Sprites = [];
+        for(let i = 0; i < 1; i++) this.SpriteSets[5].Sprites.push("/build/resources/player/walk/Right"+i+".png");
+        this.SpriteSets[6].Sprites = [];
+        for(let i = 0; i < 1; i++) this.SpriteSets[6].Sprites.push("/build/resources/player/walk/Down"+i+".png");
+        this.SpriteSets[7].Sprites = [];
+        for(let i = 0; i < 1; i++) this.SpriteSets[7].Sprites.push("/build/resources/player/walk/Left"+i+".png");
+
+        this.SpriteSets[8].Sprites = [];
+        for(let i = 0; i < 8; i++) this.SpriteSets[8].Sprites.push("/build/resources/player/attack/Up"+i+".png");
+        this.SpriteSets[9].Sprites = [];
+        for(let i = 0; i < 8; i++) this.SpriteSets[9].Sprites.push("/build/resources/player/attack/Right"+i+".png");
+        this.SpriteSets[10].Sprites = [];
+        for(let i = 0; i < 8; i++) this.SpriteSets[10].Sprites.push("/build/resources/player/attack/Down"+i+".png");
+        this.SpriteSets[11].Sprites = [];
+        for(let i = 0; i < 8; i++) this.SpriteSets[11].Sprites.push("/build/resources/player/attack/Left"+i+".png");
+
+        this.SpriteSets[12].Sprites = [];
+        for(let i = 0; i < 7; i++) this.SpriteSets[12].Sprites.push("/build/resources/player/cast/Up"+i+".png");
+        this.SpriteSets[13].Sprites = [];
+        for(let i = 0; i < 7; i++) this.SpriteSets[13].Sprites.push("/build/resources/player/cast/Right"+i+".png");
+        this.SpriteSets[14].Sprites = [];
+        for(let i = 0; i < 7; i++) this.SpriteSets[14].Sprites.push("/build/resources/player/cast/Down"+i+".png");
+        this.SpriteSets[15].Sprites = [];
+        for(let i = 0; i < 7; i++) this.SpriteSets[15].Sprites.push("/build/resources/player/cast/Left"+i+".png");
+
+        this.SpriteSets[0].Seed = 5;
+        this.SpriteSets[1].Seed = 5;
+        this.SpriteSets[2].Seed = 5;
+        this.SpriteSets[3].Seed = 5;
+
+        this.SpriteSets[8].Seed = 5;
+        this.SpriteSets[9].Seed = 5;
+        this.SpriteSets[10].Seed = 5;
+        this.SpriteSets[11].Seed = 5;
+
+        this.SpriteSets[12].Seed = 5;
+        this.SpriteSets[13].Seed = 5;
+        this.SpriteSets[14].Seed = 5;
+        this.SpriteSets[15].Seed = 5;
+
         this.Data["Player"] = true;
         this._HealthBar = new HealthBar(this._Scene);
         this._Weapon = new Weapon(this._Scene, "Staff");
