@@ -36,13 +36,35 @@ class LevelGenerator
                 }
                 else if(NewChunk.Fields[i][j] == 4)
                 {
-                    LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+1,0), Tilesets.Ceiling, 0, Engineer.Math.Color.FromRGBA(255,255,255,255));
-                    ColliderGenerator.GenerateColliderTile(Scene,j+1,i+1,1,1);
+                    LevelGenerator.GenerateCeilingTile(Scene, Tilesets, NewChunk, j, i);
                 }
             }
         }
-        
-
+    }
+    private static GenerateCeilingTile(Scene:GameScene, Tilesets:LevelTileset, C:Chunk, X:number, Y:number) : void
+    {
+        let Horizontal = X >= 1 && X + 1 < C.Dimensions.X && C.Fields[Y][X - 1] == 4 && C.Fields[Y][X + 1] == 4;
+        let Vertical = Y >= 1 && Y + 1 < C.Dimensions.Y && C.Fields[Y - 1][X] == 4 && C.Fields[Y + 1][X] == 4;
+        if(Horizontal && Vertical)
+        {
+            LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(X+1,Y+1,0), Tilesets.Ceiling, 0, Engineer.Math.Color.FromRGBA(255,255,255,255));
+            ColliderGenerator.GenerateColliderTile(Scene,X+1,Y+1,1,1);
+        }
+        else if (Horizontal)
+        {
+            LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(X+1,Y+1,0), Tilesets.CeilingHorizontal, 0, Engineer.Math.Color.FromRGBA(255,255,255,255));
+            ColliderGenerator.GenerateColliderTile(Scene,X+1,Y+1,1,1);
+        }
+        else if (Vertical)
+        {
+            LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(X+1,Y+1,0), Tilesets.CeilingVertical, 0, Engineer.Math.Color.FromRGBA(255,255,255,255));
+            ColliderGenerator.GenerateColliderTile(Scene,X+1,Y+1,1,1);
+        }
+        else
+        {
+            LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(X+1,Y+1,0), Tilesets.Ceiling, 0, Engineer.Math.Color.FromRGBA(255,255,255,255));
+            ColliderGenerator.GenerateColliderTile(Scene,X+1,Y+1,1,1);
+        }
     }
     private static GenerateMegaChunk(L:Layout) : Chunk
     {
@@ -130,7 +152,6 @@ class LevelGenerator
             }
         }
         LevelGenerator.FindConnections(L);
-        console.log(L);
         return L;
     }
     private static FindConnections(L:Layout)
@@ -201,6 +222,8 @@ class LevelTileset
     public WallUpper:any;
     public WallLower:any;
     public Ceiling:any;
+    public CeilingHorizontal:any;
+    public CeilingVertical:any;
     public constructor()
     {
         let FloorImages  = [];
@@ -209,6 +232,8 @@ class LevelTileset
         this.WallUpper = new Engineer.Engine.TileCollection(null, ["/build/resources/ruin/wu01.png"]);
         this.WallLower = new Engineer.Engine.TileCollection(null, ["/build/resources/ruin/wd01.png"]);
         this.Ceiling = new Engineer.Engine.TileCollection(null, ["/build/resources/ruin/cm01.png"]);
+        this.CeilingHorizontal = new Engineer.Engine.TileCollection(null, ["/build/resources/ruin/ch01.png"]);
+        this.CeilingVertical = new Engineer.Engine.TileCollection(null, ["/build/resources/ruin/cv01.png"]);
     }
 }
 class Layout
