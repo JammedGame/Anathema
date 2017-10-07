@@ -103,7 +103,7 @@ class Skeleton extends Engineer.Engine.Sprite {
 
     public attack(): void {    
         
-        if(Math.abs(Math.abs(this.Trans.Translation.Y)-Math.abs(this._Player.Trans.Translation.Y))<150 && Math.abs(Math.abs(this.Trans.Translation.X)-Math.abs(this._Player.Trans.Translation.X))<150)
+        if(Math.abs(this.Trans.Translation.Y-this._Player.Trans.Translation.Y)<150 && Math.abs(this.Trans.Translation.X-this._Player.Trans.Translation.X)<150)
         {
         
         this.move=false;
