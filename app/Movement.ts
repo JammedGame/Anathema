@@ -17,7 +17,7 @@ class Movement
     public constructor(Player:Player, Scene:GameScene)
     {
         this._MoveSpeed=5;
-        this._Player = Player;
+        this._Player = Player;        
         this._PlayerKeys = new PlayerKeyPress();
         this._Scene = Scene;
         this._Mechanics = new Mechanics(Player, Scene);

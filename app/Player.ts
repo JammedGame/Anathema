@@ -25,13 +25,14 @@ class Player extends Engineer.Engine.Sprite
         this.SpriteSets[0].Seed = 25;
         this.SpriteSets[1].Seed = 25;
         this.SpriteSets[2].Seed = 25;
-        this.SpriteSets[3].Seed = 25;
+        this.SpriteSets[3].Seed = 25;        
         this.Data["Player"] = true;
         this._Collider = new Engineer.Engine.Tile();
         this._Collider.Trans.Scale = new Engineer.Math.Vertex(100, 150, 0);
         this._Collider.Trans.Translation = new Engineer.Math.Vertex(960,540,0);
         this._Collider.Active = false;
-        this._Collider.Data["Collision"] = Engineer.Math.CollisionType.Rectangular2D;
+        this._Collider.Data["Collision"] = Engineer.Math.CollisionType.Rectangular2D;  
+        this._Scene.Data["Character"] = this;              
         this._Scene.AddSceneObject(this);
         this._Scene.AddSceneObject(this._Collider);
     }
