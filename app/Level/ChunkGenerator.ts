@@ -33,6 +33,19 @@ class ChunkGenerator
         NewChunk.Fields[1][NewChunk.Dimensions.X-2] = 4;
         NewChunk.Fields[NewChunk.Dimensions.Y-2][NewChunk.Dimensions.X-2] = 4;
         NewChunk.Fields[NewChunk.Dimensions.Y-2][1] = 4;
+        for(let i = 6; i < NewChunk.Dimensions.Y - 6; i+=6)
+        {
+            for(let j = 5; j < NewChunk.Dimensions.X - 5; j+=5)
+            {
+                for(let k = 0; k < 2; k++)
+                {
+                    for(let l = 0; l < 2; l++)
+                    {
+                        NewChunk.Fields[i+k][j+l] = 4;
+                    }
+                }
+            }
+        }
     }
     private static FakeIsometric(NewChunk:Chunk) : void
     {
