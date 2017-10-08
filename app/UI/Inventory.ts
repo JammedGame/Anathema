@@ -12,7 +12,7 @@ class Inventory extends Window
     {
         super(Scene);
         this.Trans.Scale = new Engineer.Math.Vertex(500,800,1);
-        this.Trans.Translation = new Engineer.Math.Vertex(1500, 560, 2);
+        this.Trans.Translation = new Engineer.Math.Vertex(1600, 460, 2);
         this.CreateBorder();
         this.AddElement(new Engineer.Math.Vertex(200,200,2.5), new Engineer.Math.Vertex(300,460,1), 1, Engineer.Math.Color.FromRGBA(60,60,60,255));
         this.AddElement(new Engineer.Math.Vertex(220,80,2.5), new Engineer.Math.Vertex(50,50,1), 0);

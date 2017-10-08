@@ -84,16 +84,18 @@ class Window extends Engineer.Engine.Tile
         Border1.Trans.Translation = Location;
         this._Decorations.push(Border1);
     }
-    protected AddElement(Location:any, Size:any, Index:number, Color?:any)
+    protected AddElement(Location:any, Size:any, Index:number, Color?:any, Rotation?:any) : any
     {
         Location = new Engineer.Math.Vertex(this.Trans.Translation.X - (this.Trans.Scale.X / 2) + Location.X + 50, this.Trans.Translation.Y - (this.Trans.Scale.Y / 2) + Location.Y + 50, Location.Z);
         let Border1:any = new Engineer.Engine.Tile();
         Border1.Collection = this._ElementT;
         if(Color) Border1.Paint = Color;
+        if(Rotation) Border1.Trans.Rotation = Rotation;
         Border1.Index = Index;
         Border1.Fixed = true;
         Border1.Trans.Scale = Size;
         Border1.Trans.Translation = Location;
         this._Elements.push(Border1);
+        return Border1;
     }
 }
