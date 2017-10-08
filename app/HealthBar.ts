@@ -28,7 +28,7 @@ class HealthBar extends Engineer.Engine.Sprite {
         this.Trans.Scale = new Engineer.Math.Vertex(this.Trans.Scale.X - hitValue, this.Trans.Scale.Y, 0);
         }
         else{
-            this.Trans.Scale = new Engineer.Math.Vertex(0, 100, 0);
+            this.Trans.Scale = new Engineer.Math.Vertex(1, 100, 0);
         }
     }
     public Heal(healValue: number) {
