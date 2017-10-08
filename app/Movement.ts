@@ -14,9 +14,14 @@ class Movement {
     private _Mechanics: Mechanics;
     private _SolidColliders: any[];
     private _EnemyColliders: any[];
+    private _Direction:number;
+    
+    public get EnemyColliders(): any[] { return this._EnemyColliders; }
+    public get Direction(): number { return this._Direction; }
 
     public constructor(Player: Player, Scene: GameScene) {
         this._MoveSpeed = 5;
+        this._Direction=2;
         this._Player = Player;
         this._PlayerKeys = new PlayerKeyPress();
         this._Scene = Scene;
@@ -52,18 +57,22 @@ class Movement {
     private GameUpdate(G: any, Args: any) {
         if (this._PlayerKeys.Up) {
             this.TryMovement(this._Player.Collider, "Top", new Engineer.Math.Vertex(0, -this._MoveSpeed, 0));
+            this._Direction=0;
             this._Player.UpdateSpriteSet(0);
         }
         if (this._PlayerKeys.Right) {
             this.TryMovement(this._Player.Collider, "Right", new Engineer.Math.Vertex(+this._MoveSpeed, 0, 0));
+            this._Direction=1;
             this._Player.UpdateSpriteSet(1);
         }
         if (this._PlayerKeys.Down) {
             this.TryMovement(this._Player.Collider, "Bottom", new Engineer.Math.Vertex(0, +this._MoveSpeed, 0));
+            this._Direction=2;
             this._Player.UpdateSpriteSet(2);
         }
         if (this._PlayerKeys.Left) {
             this.TryMovement(this._Player.Collider, "Left", new Engineer.Math.Vertex(-this._MoveSpeed, 0, 0));
+            this._Direction=3;
             this._Player.UpdateSpriteSet(3);
         }
     }

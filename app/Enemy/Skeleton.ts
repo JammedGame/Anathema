@@ -24,7 +24,7 @@ class Skeleton extends Engineer.Engine.Sprite {
     private _SolidColliders: any[];
 
     public get Health(): number { return this._Health; }
-    public set Health(dmg:number) { this._Health=dmg; }    
+    public set Health(dmg: number) { this._Health = dmg; }
 
     public constructor(Scene: GameScene) {
         super();
@@ -46,7 +46,7 @@ class Skeleton extends Engineer.Engine.Sprite {
         this.Trans.Scale = new Engineer.Math.Vertex(100, 150, 1);
         this.Trans.Translation = new Engineer.Math.Vertex(400, 400, 0.5);
         this.SpriteSets = [new Engineer.Engine.SpriteSet(null, "S_WalkN"), new Engineer.Engine.SpriteSet(null, "S_WalkE"), new Engineer.Engine.SpriteSet(null, "S_WalkS"), new Engineer.Engine.SpriteSet(null, "S_WalkW"), new Engineer.Engine.SpriteSet(null, "S_AttN"), new Engineer.Engine.SpriteSet(null, "S_AttE"), new Engineer.Engine.SpriteSet(null, "S_AttS"), new Engineer.Engine.SpriteSet(null, "S_AttW")];
-        Engineer.Util.Log.Print(this.SpriteSets);
+       
         this.SpriteSets[0].Sprites = ["/build/resources/skeleton/E_up00.png", "/build/resources/skeleton/E_up01.png", "/build/resources/skeleton/E_up02.png", "/build/resources/skeleton/E_up03.png", "/build/resources/skeleton/E_up04.png", "/build/resources/skeleton/E_up05.png", "/build/resources/skeleton/E_up06.png", "/build/resources/skeleton/E_up07.png", "/build/resources/skeleton/E_up08.png"];
         this.SpriteSets[1].Sprites = ["/build/resources/skeleton/E_rgt00.png", "/build/resources/skeleton/E_rgt01.png", "/build/resources/skeleton/E_rgt02.png", "/build/resources/skeleton/E_rgt03.png", "/build/resources/skeleton/E_rgt04.png", "/build/resources/skeleton/E_rgt05.png", "/build/resources/skeleton/E_rgt06.png", "/build/resources/skeleton/E_rgt07.png", "/build/resources/skeleton/E_rgt08.png"];
         this.SpriteSets[2].Sprites = ["/build/resources/skeleton/E_dwn00.png", "/build/resources/skeleton/E_dwn01.png", "/build/resources/skeleton/E_dwn02.png", "/build/resources/skeleton/E_dwn03.png", "/build/resources/skeleton/E_dwn04.png", "/build/resources/skeleton/E_dwn05.png", "/build/resources/skeleton/E_dwn06.png", "/build/resources/skeleton/E_dwn07.png", "/build/resources/skeleton/E_dwn08.png"];
@@ -71,7 +71,7 @@ class Skeleton extends Engineer.Engine.Sprite {
         this._Scene.Events.TimeTick.push(this.movement.bind(this));
         this._Scene.Events.TimeTick.push(this.attack.bind(this));
         this._Scene.Events.TimeTick.push(this.follow.bind(this));
-        this.Events.SpriteSetAnimationComplete.push(this.doDamage.bind(this));        
+        this.Events.SpriteSetAnimationComplete.push(this.doDamage.bind(this));
         this._Scene.AddSceneObject(this);
     }
     public movement(): void {
@@ -152,8 +152,10 @@ class Skeleton extends Engineer.Engine.Sprite {
             else this.counter++;
         }
     }
-    public doDamage(){
-        this._Player.HealthBar.Damage(this._Damage);
+    public doDamage(G: any, Args: any) {        
+        if(Args.CurrentSpriteSet==4 || Args.CurrentSpriteSet==5 || Args.CurrentSpriteSet==6 || Args.CurrentSpriteSet==7){
+            this._Player.HealthBar.Damage(this._Damage);
+        }        
     }
 
     public attack(): void {
@@ -161,7 +163,7 @@ class Skeleton extends Engineer.Engine.Sprite {
         if (Engineer.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) < this._Player_Collider.Trans.Scale.X && Engineer.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) < this._Player_Collider.Trans.Scale.Y) {
             this.moving = false;
             this.following = false;
-            this.UpdateSpriteSet(4 + this.checkMove()); 
+            this.UpdateSpriteSet(4 + this.checkMove());
         }
         else {
             this.following = true;

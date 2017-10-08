@@ -28,7 +28,11 @@
     "webpack-dev-server": "^2.7.1"
   },
   "dependencies": {
+<<<<<<< Updated upstream
     "engineer-js": "0.0.28",
+=======
+    "engineer-js": "0.0.27",
+>>>>>>> Stashed changes
     "ts-loader": "^2.3.2"
   }
 }

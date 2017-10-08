@@ -24,7 +24,7 @@ class HealthBar extends Engineer.Engine.Sprite {
     }
     public Damage(hitValue: number) {
         this._Health -= hitValue;
-        if(this._Health-hitValue > 0){
+        if(this._Health-hitValue >= 0){
         this.Trans.Scale = new Engineer.Math.Vertex(this.Trans.Scale.X - hitValue, this.Trans.Scale.Y, 0);
         }
         else{

@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/resources/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 12);
+/******/ 	return __webpack_require__(__webpack_require__.s = 13);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -70,22 +70,9 @@
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Vertex_1 = __webpack_require__(3);
-exports.Axis = Vertex_1.Axis;
-exports.Vertex = Vertex_1.Vertex;
-var Transformation_1 = __webpack_require__(17);
-exports.Transformation = Transformation_1.Transformation;
-var MatrixTransformer_1 = __webpack_require__(18);
-exports.MatrixMode = MatrixTransformer_1.MatrixMode;
-exports.Matrix = MatrixTransformer_1.Matrix;
-exports.MatrixTransformer = MatrixTransformer_1.MatrixTransformer;
-var Color_1 = __webpack_require__(19);
-exports.Color = Color_1.Color;
-var Collision_1 = __webpack_require__(20);
-exports.Collision = Collision_1.Collision;
-exports.CollisionType = Collision_1.CollisionType;
-exports.CollisionValue = Collision_1.CollisionValue;
-exports.ColliderObject = Collision_1.ColliderObject;
+//import Engineer from "engineer-js";
+var app_1 = __webpack_require__(16);
+exports.default = app_1.default;
 
 
 /***/ }),
@@ -95,9 +82,34 @@ exports.ColliderObject = Collision_1.ColliderObject;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Uuid_1 = __webpack_require__(24);
+var Vertex_1 = __webpack_require__(4);
+exports.Axis = Vertex_1.Axis;
+exports.Vertex = Vertex_1.Vertex;
+var Transformation_1 = __webpack_require__(18);
+exports.Transformation = Transformation_1.Transformation;
+var MatrixTransformer_1 = __webpack_require__(19);
+exports.MatrixMode = MatrixTransformer_1.MatrixMode;
+exports.Matrix = MatrixTransformer_1.Matrix;
+exports.MatrixTransformer = MatrixTransformer_1.MatrixTransformer;
+var Color_1 = __webpack_require__(20);
+exports.Color = Color_1.Color;
+var Collision_1 = __webpack_require__(21);
+exports.Collision = Collision_1.Collision;
+exports.CollisionType = Collision_1.CollisionType;
+exports.CollisionValue = Collision_1.CollisionValue;
+exports.ColliderObject = Collision_1.ColliderObject;
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Uuid_1 = __webpack_require__(25);
 exports.Uuid = Uuid_1.Uuid;
-var ImageContainer_1 = __webpack_require__(25);
+var ImageContainer_1 = __webpack_require__(26);
 exports.ImageContainer = ImageContainer_1.ImageContainer;
 var Reader = /** @class */ (function () {
     function Reader() {
@@ -121,24 +133,24 @@ exports.Reader = Reader;
 
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Converter_1 = __webpack_require__(16);
+var Converter_1 = __webpack_require__(17);
 exports.Convert = Converter_1.Convert;
-var Collision_1 = __webpack_require__(21);
+var Collision_1 = __webpack_require__(22);
 exports.Collision = Collision_1.Collision;
-var Buffer_1 = __webpack_require__(22);
+var Buffer_1 = __webpack_require__(23);
 exports.Buffer = Buffer_1.Buffer;
-var Log_1 = __webpack_require__(23);
+var Log_1 = __webpack_require__(24);
 exports.Log = Log_1.Log;
 
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -247,45 +259,45 @@ exports.Vertex = Vertex;
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var DrawObject_1 = __webpack_require__(5);
+var DrawObject_1 = __webpack_require__(6);
 exports.DrawObjectType = DrawObject_1.DrawObjectType;
 exports.DrawObject = DrawObject_1.DrawObject;
-var Sprite_1 = __webpack_require__(26);
+var Sprite_1 = __webpack_require__(27);
 exports.SpriteSet = Sprite_1.SpriteSet;
 exports.Sprite = Sprite_1.Sprite;
-var Tile_1 = __webpack_require__(27);
+var Tile_1 = __webpack_require__(28);
 exports.TileCollection = Tile_1.TileCollection;
 exports.Tile = Tile_1.Tile;
 var Events_1 = __webpack_require__(8);
 exports.EventPackage = Events_1.EventPackage;
-var EventArguments_1 = __webpack_require__(28);
+var EventArguments_1 = __webpack_require__(29);
 exports.MouseButton = EventArguments_1.MouseButton;
 exports.KeyType = EventArguments_1.KeyType;
-var Game_1 = __webpack_require__(29);
+var Game_1 = __webpack_require__(30);
 exports.Game = Game_1.Game;
 var Scene_1 = __webpack_require__(9);
 exports.SceneType = Scene_1.SceneType;
 exports.Scene = Scene_1.Scene;
-var Scene2D_1 = __webpack_require__(30);
+var Scene2D_1 = __webpack_require__(31);
 exports.Scene2D = Scene2D_1.Scene2D;
-var SceneObject_1 = __webpack_require__(6);
+var SceneObject_1 = __webpack_require__(7);
 exports.SceneObjectType = SceneObject_1.SceneObjectType;
 exports.SceneObject = SceneObject_1.SceneObject;
-var SoundObject_1 = __webpack_require__(31);
+var SoundObject_1 = __webpack_require__(32);
 exports.SoundObject = SoundObject_1.SoundObject;
-var Settings_1 = __webpack_require__(34);
+var Settings_1 = __webpack_require__(35);
 exports.Settings = Settings_1.Settings;
 exports.Quality = Settings_1.Quality;
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -301,8 +313,8 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Math = __webpack_require__(0);
-var SceneObject_1 = __webpack_require__(6);
+var Math = __webpack_require__(1);
+var SceneObject_1 = __webpack_require__(7);
 var DrawObjectType;
 (function (DrawObjectType) {
     DrawObjectType[DrawObjectType["Undefined"] = 0] = "Undefined";
@@ -371,13 +383,13 @@ exports.DrawObject = DrawObject;
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Data = __webpack_require__(1);
+var Data = __webpack_require__(2);
 var Events_1 = __webpack_require__(8);
 var SceneObjectType;
 (function (SceneObjectType) {
@@ -435,18 +447,6 @@ exports.SceneObject = SceneObject;
 
 
 /***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-//import Engineer from "engineer-js";
-var app_1 = __webpack_require__(15);
-exports.default = app_1.default;
-
-
-/***/ }),
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -470,6 +470,7 @@ var EventPackage = /** @class */ (function () {
         this._TimeTick = [];
         this._OperationProgress = [];
         this._OperationFinished = [];
+        this._SpriteSetAnimationComplete = [];
         //TODO: Need to duplicate old
     }
     Object.defineProperty(EventPackage.prototype, "Closing", {
@@ -547,6 +548,11 @@ var EventPackage = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(EventPackage.prototype, "SpriteSetAnimationComplete", {
+        get: function () { return this._SpriteSetAnimationComplete; },
+        enumerable: true,
+        configurable: true
+    });
     EventPackage.prototype.Copy = function () {
         return new EventPackage(this);
     };
@@ -581,8 +587,12 @@ var EventPackage = /** @class */ (function () {
             return this.InvokeEvents(this._OperationProgress, CurrentGame, Args);
         if (EventName == "OperationFinished")
             return this.InvokeEvents(this._OperationFinished, CurrentGame, Args);
+        if (EventName == "SpriteSetAnimationComplete")
+            return this.InvokeEvents(this._SpriteSetAnimationComplete, CurrentGame, Args);
     };
     EventPackage.prototype.InvokeEvents = function (Events, CurrentGame, Args) {
+        if (Events.length == 0)
+            return false;
         for (var i = 0; i < Events.length; i++) {
             Events[i](CurrentGame, Args);
         }
@@ -600,8 +610,8 @@ exports.EventPackage = EventPackage;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Data = __webpack_require__(1);
-var Math = __webpack_require__(0);
+var Data = __webpack_require__(2);
+var Math = __webpack_require__(1);
 var Events_1 = __webpack_require__(8);
 var SceneType;
 (function (SceneType) {
@@ -709,9 +719,9 @@ exports.DrawEngine = DrawEngine_1.DrawEngine;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Math = __webpack_require__(0);
-var Engine = __webpack_require__(4);
-var Util = __webpack_require__(2);
+var Math = __webpack_require__(1);
+var Engine = __webpack_require__(5);
+var Util = __webpack_require__(3);
 var DrawEngineType;
 (function (DrawEngineType) {
     DrawEngineType[DrawEngineType["ThreeJS"] = 0] = "ThreeJS";
@@ -726,6 +736,21 @@ var DrawEngine = /** @class */ (function () {
     Object.defineProperty(DrawEngine.prototype, "Renderer", {
         get: function () { return this._Renderer; },
         set: function (value) { this._Renderer = value; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DrawEngine.prototype, "GlobalScale", {
+        get: function () { return this._GlobalScale; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DrawEngine.prototype, "GlobalOffset", {
+        get: function () { return this._GlobalOffset; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DrawEngine.prototype, "Resolution", {
+        get: function () { return this._Resolution; },
         enumerable: true,
         configurable: true
     });
@@ -760,19 +785,189 @@ exports.DrawEngine = DrawEngine;
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(13);
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var Engineer_1 = __webpack_require__(0);
+var HealthBar_1 = __webpack_require__(48);
+var Weapon_1 = __webpack_require__(49);
+var Movement_1 = __webpack_require__(51);
+var Player = /** @class */ (function (_super) {
+    __extends(Player, _super);
+    function Player(Scene) {
+        var _this = _super.call(this) || this;
+        _this.Name = "Player";
+        _this._Scene = Scene;
+        _this.Fixed = true;
+        _this.Trans.Scale = new Engineer_1.default.Math.Vertex(100, 150, 0);
+        _this.Trans.Translation = new Engineer_1.default.Math.Vertex(960, 540, 1);
+        _this.SpriteSets = [];
+        for (var i = 0; i < 16; i++)
+            _this.SpriteSets.push(new Engineer_1.default.Engine.SpriteSet(null, "Set"));
+        _this.SpriteSets[0].Sprites = [];
+        for (var i = 0; i < 9; i++)
+            _this.SpriteSets[0].Sprites.push("/build/resources/player/walk/Up" + i + ".png");
+        _this.SpriteSets[1].Sprites = [];
+        for (var i = 0; i < 9; i++)
+            _this.SpriteSets[1].Sprites.push("/build/resources/player/walk/Right" + i + ".png");
+        _this.SpriteSets[2].Sprites = [];
+        for (var i = 0; i < 9; i++)
+            _this.SpriteSets[2].Sprites.push("/build/resources/player/walk/Down" + i + ".png");
+        _this.SpriteSets[3].Sprites = [];
+        for (var i = 0; i < 9; i++)
+            _this.SpriteSets[3].Sprites.push("/build/resources/player/walk/Left" + i + ".png");
+        _this.SpriteSets[4].Sprites = [];
+        for (var i = 0; i < 1; i++)
+            _this.SpriteSets[4].Sprites.push("/build/resources/player/walk/Up" + i + ".png");
+        _this.SpriteSets[5].Sprites = [];
+        for (var i = 0; i < 1; i++)
+            _this.SpriteSets[5].Sprites.push("/build/resources/player/walk/Right" + i + ".png");
+        _this.SpriteSets[6].Sprites = [];
+        for (var i = 0; i < 1; i++)
+            _this.SpriteSets[6].Sprites.push("/build/resources/player/walk/Down" + i + ".png");
+        _this.SpriteSets[7].Sprites = [];
+        for (var i = 0; i < 1; i++)
+            _this.SpriteSets[7].Sprites.push("/build/resources/player/walk/Left" + i + ".png");
+        _this.SpriteSets[8].Sprites = [];
+        for (var i = 0; i < 8; i++)
+            _this.SpriteSets[8].Sprites.push("/build/resources/player/attack/Up" + i + ".png");
+        _this.SpriteSets[9].Sprites = [];
+        for (var i = 0; i < 8; i++)
+            _this.SpriteSets[9].Sprites.push("/build/resources/player/attack/Right" + i + ".png");
+        _this.SpriteSets[10].Sprites = [];
+        for (var i = 0; i < 8; i++)
+            _this.SpriteSets[10].Sprites.push("/build/resources/player/attack/Down" + i + ".png");
+        _this.SpriteSets[11].Sprites = [];
+        for (var i = 0; i < 8; i++)
+            _this.SpriteSets[11].Sprites.push("/build/resources/player/attack/Left" + i + ".png");
+        _this.SpriteSets[12].Sprites = [];
+        for (var i = 0; i < 7; i++)
+            _this.SpriteSets[12].Sprites.push("/build/resources/player/cast/Up" + i + ".png");
+        _this.SpriteSets[13].Sprites = [];
+        for (var i = 0; i < 7; i++)
+            _this.SpriteSets[13].Sprites.push("/build/resources/player/cast/Right" + i + ".png");
+        _this.SpriteSets[14].Sprites = [];
+        for (var i = 0; i < 7; i++)
+            _this.SpriteSets[14].Sprites.push("/build/resources/player/cast/Down" + i + ".png");
+        _this.SpriteSets[15].Sprites = [];
+        for (var i = 0; i < 7; i++)
+            _this.SpriteSets[15].Sprites.push("/build/resources/player/cast/Left" + i + ".png");
+        _this.SpriteSets[0].Seed = 5;
+        _this.SpriteSets[1].Seed = 5;
+        _this.SpriteSets[2].Seed = 5;
+        _this.SpriteSets[3].Seed = 5;
+        _this.SpriteSets[8].Seed = 5;
+        _this.SpriteSets[9].Seed = 5;
+        _this.SpriteSets[10].Seed = 5;
+        _this.SpriteSets[11].Seed = 5;
+        _this.SpriteSets[12].Seed = 5;
+        _this.SpriteSets[13].Seed = 5;
+        _this.SpriteSets[14].Seed = 5;
+        _this.SpriteSets[15].Seed = 5;
+        _this.Data["Player"] = true;
+        _this._HealthBar = new HealthBar_1.HealthBar(_this._Scene);
+        _this._Weapon = new Weapon_1.Weapon(_this._Scene, "Staff");
+        _this._Movement = new Movement_1.Movement(_this, _this._Scene);
+        _this._PlayerRightClick = false;
+        _this._PlayerLeftClick = false;
+        _this._Collider = new Engineer_1.default.Engine.Tile();
+        _this._Collider.Trans.Scale = new Engineer_1.default.Math.Vertex(100, 150, 0);
+        _this._Collider.Trans.Translation = new Engineer_1.default.Math.Vertex(960, 540, 0);
+        _this._Collider.Active = false;
+        _this._Collider.Data["Collision"] = Engineer_1.default.Math.CollisionType.Radius2D;
+        _this._Scene.Data["Character_Collider"] = _this._Collider;
+        _this._Scene.Data["Character"] = _this;
+        _this._Enemy = _this._Scene.GetObjectsWithData("Enemy", true);
+        _this._Scene.Events.MouseDown.push(_this.MouseClick.bind(_this));
+        _this.Events.SpriteSetAnimationComplete.push(_this.DmgEnemy.bind(_this));
+        _this._Scene.AddSceneObject(_this);
+        _this._Scene.AddSceneObject(_this._Collider);
+        return _this;
+    }
+    Object.defineProperty(Player.prototype, "HealthBar", {
+        get: function () { return this._HealthBar; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Player.prototype, "Weapon", {
+        get: function () { return this._Weapon; },
+        set: function (wpn) { this._Weapon = wpn; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Player.prototype, "Collider", {
+        get: function () { return this._Collider; },
+        enumerable: true,
+        configurable: true
+    });
+    Player.prototype.CheckSingleEnemy = function () {
+        for (var i = 0; i < this._Enemy.length; i++) {
+            if (Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Enemy[i]) < this.Trans.Scale.X && Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Enemy[i]) < this.Trans.Scale.Y) {
+                return this._Enemy[i];
+            }
+        }
+        return null;
+    };
+    Player.prototype.DmgEnemy = function (G, Args) {
+        //Engineer.Util.Log.Error(this._PlayerLeftClick); 
+        if (Args.CurrentSpriteSet == 8 || Args.CurrentSpriteSet == 9 || Args.CurrentSpriteSet == 10 || Args.CurrentSpriteSet == 11 || Args.CurrentSpriteSet == 12 || Args.CurrentSpriteSet == 13 || Args.CurrentSpriteSet == 14 || Args.CurrentSpriteSet == 15) {
+            this._PlayerLeftClick = false;
+            this.UpdateSpriteSet(8 + this._Movement.Direction);
+            Engineer_1.default.Util.Log.Error("DmgEnemy");
+            var nmy = void 0;
+            nmy = this.CheckSingleEnemy();
+            if (nmy != null) {
+                if (nmy.Health - this._Weapon.Damage > 0) {
+                    nmy.Health(this._Weapon.Damage);
+                }
+                else {
+                    this.DistroyEnemy(nmy);
+                }
+            }
+        }
+    };
+    Player.prototype.DistroyEnemy = function (nmy) {
+        nmy.Active = false;
+    };
+    Player.prototype.MouseClick = function (G, Args) {
+        //Engineer.Util.Log.Error(Args);
+        if (Args.MouseButton == 0) {
+            this.BackUpSpriteSet = this.CurrentSpriteSet;
+            this.UpdateSpriteSet(8 + this._Movement.Direction);
+        }
+        if (Args.MouseButton == 2) {
+        }
+    };
+    return Player;
+}(Engineer_1.default.Engine.Sprite));
+exports.Player = Player;
+var PlayerKeyPress = /** @class */ (function () {
+    function PlayerKeyPress() {
+        this.Left = false;
+        this.Right = false;
+        this.Down = false;
+        this.Up = false;
+    }
+    return PlayerKeyPress;
+}());
+exports.PlayerKeyPress = PlayerKeyPress;
 
 
 /***/ }),
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var GameLogic_1 = __webpack_require__(14);
-var GL = new GameLogic_1.GameLogic();
-GL.Run();
+module.exports = __webpack_require__(14);
 
 
 /***/ }),
@@ -782,9 +977,21 @@ GL.Run();
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Engineer_1 = __webpack_require__(7);
-var MainMenu_1 = __webpack_require__(40);
-var GameScene_1 = __webpack_require__(42);
+var GameLogic_1 = __webpack_require__(15);
+var GL = new GameLogic_1.GameLogic();
+GL.Run();
+
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Engineer_1 = __webpack_require__(0);
+var MainMenu_1 = __webpack_require__(41);
+var GameScene_1 = __webpack_require__(43);
 var GameLogic = /** @class */ (function () {
     function GameLogic() {
         this._Game = new Engineer_1.default.Engine.Game();
@@ -809,29 +1016,29 @@ exports.GameLogic = GameLogic;
 
 
 /***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var Util = __webpack_require__(2);
-var Data = __webpack_require__(1);
-var Engine = __webpack_require__(4);
-var Math = __webpack_require__(0);
-var Runner = __webpack_require__(35);
-var Draw = __webpack_require__(10);
-exports.default = { Util: Util, Data: Data, Engine: Engine, Math: Math, Runner: Runner, Draw: Draw };
-
-
-/***/ }),
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Math = __webpack_require__(0);
+var Util = __webpack_require__(3);
+var Data = __webpack_require__(2);
+var Engine = __webpack_require__(5);
+var Math = __webpack_require__(1);
+var Runner = __webpack_require__(36);
+var Draw = __webpack_require__(10);
+exports.default = { Util: Util, Data: Data, Engine: Engine, Math: Math, Runner: Runner, Draw: Draw };
+
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Math = __webpack_require__(1);
 var Convert = /** @class */ (function () {
     function Convert() {
     }
@@ -859,13 +1066,13 @@ exports.Convert = Convert;
 
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Vertex_1 = __webpack_require__(3);
+var Vertex_1 = __webpack_require__(4);
 var Transformation = /** @class */ (function () {
     function Transformation(Old) {
         if (Old != null) {
@@ -907,13 +1114,13 @@ exports.Transformation = Transformation;
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Vertex_1 = __webpack_require__(3);
+var Vertex_1 = __webpack_require__(4);
 var MatrixMode;
 (function (MatrixMode) {
     MatrixMode[MatrixMode["Projection"] = 0] = "Projection";
@@ -1157,7 +1364,7 @@ exports.MatrixTransformer = MatrixTransformer;
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1190,13 +1397,13 @@ exports.Color = Color;
 
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Vertex_1 = __webpack_require__(3);
+var Vertex_1 = __webpack_require__(4);
 var CollisionType;
 (function (CollisionType) {
     CollisionType[CollisionType["Radius2D"] = 0] = "Radius2D";
@@ -1219,7 +1426,7 @@ var CollisionValue = /** @class */ (function () {
         this.Front = this.Back;
         this.Back = Store;
     };
-    CollisionValue.CombineCollisionValues = function (CollisionValue1, CollisionValue2) {
+    CollisionValue.Combine = function (CollisionValue1, CollisionValue2) {
         var NewCollisionValue = new CollisionValue();
         NewCollisionValue.Collision = CollisionValue1.Collision || CollisionValue2.Collision;
         NewCollisionValue.Bottom = CollisionValue1.Bottom || CollisionValue2.Bottom;
@@ -1287,7 +1494,8 @@ var Collision = /** @class */ (function () {
             Collided = Collided || Collision.CheckRadiusToLineY(Collider1, Collider2.Position.Y + Collider2.Scale.Y / 2.0);
         }
         if (Collided) {
-            Result = Collision.GetDefaultRectangularWay(Collider1, Collider2.Position);
+            Result = Collision.GetDefaultRectangularWay(Collider2, Collider1.Position);
+            Result.Revert();
             Result.Collision = true;
         }
         return Result;
@@ -1508,16 +1716,21 @@ exports.Collision = Collision;
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Math = __webpack_require__(0);
+var Math = __webpack_require__(1);
 var Collision = /** @class */ (function () {
     function Collision() {
     }
+    Collision.Check = function (Object1, Object2) {
+        var Collider1 = Collision.CreateColliderObject(Object1);
+        var Collider2 = Collision.CreateColliderObject(Object2);
+        return Math.Collision.Check(Collider1, Collider2);
+    };
     Collision.CreateColliderObject = function (Object) {
         var Collider = new Math.ColliderObject();
         Collider.Position = Object.Trans.Translation;
@@ -1539,7 +1752,7 @@ var Collision = /** @class */ (function () {
             var Collider2 = Collision.CreateColliderObject(Colliders[i]);
             var CollisionValue = Math.Collision.Check(Collider1, Collider2);
             if (CollisionValue.Collision) {
-                Object.Data["Collision_" + Type] = Math.CollisionValue.CombineCollisionValues(Object.Data["Collision_" + Type], Collision);
+                Object.Data["Collision_" + Type] = Math.CollisionValue.Combine(Object.Data["Collision_" + Type], CollisionValue);
                 Object.Data["Colliders_" + Type].push(Colliders[i]);
                 if (CollisionValue.Left)
                     Object.Data["Colliders_" + Type + "_Left"].push(Colliders[i]);
@@ -1558,7 +1771,7 @@ exports.Collision = Collision;
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1580,7 +1793,7 @@ exports.Buffer = Buffer;
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1645,7 +1858,7 @@ exports.Log = Log;
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1669,7 +1882,7 @@ exports.Uuid = Uuid;
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1703,7 +1916,7 @@ exports.ImageContainer = ImageContainer;
 
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1719,9 +1932,9 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Data = __webpack_require__(1);
-var Math = __webpack_require__(0);
-var DrawObject_1 = __webpack_require__(5);
+var Data = __webpack_require__(2);
+var Math = __webpack_require__(1);
+var DrawObject_1 = __webpack_require__(6);
 var Sprite = /** @class */ (function (_super) {
     __extends(Sprite, _super);
     function Sprite(Old) {
@@ -1729,6 +1942,7 @@ var Sprite = /** @class */ (function (_super) {
         _this.DrawType = DrawObject_1.DrawObjectType.Sprite;
         _this._CurrentIndex = 0;
         _this._CurrentSpriteSet = 0;
+        _this._BackUpSpriteSet = -1;
         if (Old != null) {
             _this._SpriteSets = Old._SpriteSets;
             _this._SubSprites = [];
@@ -1745,6 +1959,17 @@ var Sprite = /** @class */ (function (_super) {
         }
         return _this;
     }
+    Object.defineProperty(Sprite.prototype, "BackUpSpriteSet", {
+        get: function () { return this._BackUpSpriteSet; },
+        set: function (value) { this._BackUpSpriteSet = value; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Sprite.prototype, "CurrentIndex", {
+        get: function () { return this._CurrentIndex; },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(Sprite.prototype, "CurrentSpriteSet", {
         get: function () { return this._CurrentSpriteSet; },
         enumerable: true,
@@ -1785,8 +2010,14 @@ var Sprite = /** @class */ (function (_super) {
         this._CurrentIndex++;
         if (this._SpriteSets.length <= 0)
             this._CurrentIndex = -1;
-        else if (this._CurrentIndex >= this._SpriteSets[this._CurrentSpriteSet].Sprites.length)
+        else if (this._CurrentIndex >= this._SpriteSets[this._CurrentSpriteSet].Sprites.length) {
+            this.Events.Invoke("SpriteSetAnimationComplete", null, { CurrentSpriteSet: this._CurrentSpriteSet, NextSpriteSet: ((this._BackUpSpriteSet != -1) ? this._BackUpSpriteSet : this._CurrentSpriteSet) });
+            if (this._BackUpSpriteSet != -1) {
+                this._CurrentSpriteSet = this._BackUpSpriteSet;
+                this._BackUpSpriteSet = -1;
+            }
             this._CurrentIndex = 0;
+        }
     };
     Sprite.prototype.SetSpriteSet = function (Index) {
         if (Index >= this._SpriteSets.length)
@@ -1823,6 +2054,11 @@ var Sprite = /** @class */ (function (_super) {
             return [];
         return this._SpriteSets[this._CurrentSpriteSet].Sprites;
     };
+    Sprite.prototype.GetSprites = function (Set) {
+        if (this._SpriteSets.length == 0)
+            return [];
+        return this._SpriteSets[Set].Sprites;
+    };
     return Sprite;
 }(DrawObject_1.DrawObject));
 exports.Sprite = Sprite;
@@ -1841,7 +2077,10 @@ var SpriteSet = /** @class */ (function () {
             else
                 this._Name = "";
             this._Seed = -1;
-            this._Sprites = Images;
+            if (Images)
+                this._Sprites = Images;
+            else
+                this._Sprites = [];
         }
     }
     Object.defineProperty(SpriteSet.prototype, "ID", {
@@ -1877,7 +2116,7 @@ exports.SpriteSet = SpriteSet;
 
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1893,9 +2132,9 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Data = __webpack_require__(1);
-var Math = __webpack_require__(0);
-var DrawObject_1 = __webpack_require__(5);
+var Data = __webpack_require__(2);
+var Math = __webpack_require__(1);
+var DrawObject_1 = __webpack_require__(6);
 var Tile = /** @class */ (function (_super) {
     __extends(Tile, _super);
     function Tile(Old) {
@@ -1982,7 +2221,7 @@ exports.TileCollection = TileCollection;
 
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2117,7 +2356,7 @@ exports.KeyType = KeyType;
 
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2169,7 +2408,7 @@ exports.Game = Game;
 
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2185,10 +2424,10 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Math = __webpack_require__(0);
+var Math = __webpack_require__(1);
 var Scene_1 = __webpack_require__(9);
-var SceneObject_1 = __webpack_require__(6);
-var DrawObject_1 = __webpack_require__(5);
+var SceneObject_1 = __webpack_require__(7);
+var DrawObject_1 = __webpack_require__(6);
 var Scene2D = /** @class */ (function (_super) {
     __extends(Scene2D, _super);
     function Scene2D(Old) {
@@ -2244,7 +2483,7 @@ exports.Scene2D = Scene2D;
 
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2260,8 +2499,8 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Howler = __webpack_require__(32);
-var SceneObject_1 = __webpack_require__(6);
+var Howler = __webpack_require__(33);
+var SceneObject_1 = __webpack_require__(7);
 var SoundObject = /** @class */ (function (_super) {
     __extends(SoundObject, _super);
     function SoundObject(Url, Old) {
@@ -2327,11 +2566,11 @@ exports.SoundObject = SoundObject;
 
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- *  howler.js v2.0.4
+ *  howler.js v2.0.5
  *  howlerjs.com
  *
  *  (c) 2013-2017, James Simpson of GoldFire Studios
@@ -2664,11 +2903,13 @@ exports.SoundObject = SoundObject;
           self.mobileAutoEnable = false;
 
           // Remove the touch start listener.
+          document.removeEventListener('touchstart', unlock, true);
           document.removeEventListener('touchend', unlock, true);
         };
       };
 
       // Setup a touch start listener to attempt an unlock in.
+      document.addEventListener('touchstart', unlock, true);
       document.addEventListener('touchend', unlock, true);
 
       return self;
@@ -2805,6 +3046,7 @@ exports.SoundObject = SoundObject;
       self._sprite = o.sprite || {};
       self._src = (typeof o.src !== 'string') ? o.src : [o.src];
       self._volume = o.volume !== undefined ? o.volume : 1;
+      self._xhrWithCredentials = o.xhrWithCredentials || false;
 
       // Setup all other default properties.
       self._duration = 0;
@@ -2818,6 +3060,7 @@ exports.SoundObject = SoundObject;
       self._onfade = o.onfade ? [{fn: o.onfade}] : [];
       self._onload = o.onload ? [{fn: o.onload}] : [];
       self._onloaderror = o.onloaderror ? [{fn: o.onloaderror}] : [];
+      self._onplayerror = o.onplayerror ? [{fn: o.onplayerror}] : [];
       self._onpause = o.onpause ? [{fn: o.onpause}] : [];
       self._onplay = o.onplay ? [{fn: o.onplay}] : [];
       self._onstop = o.onstop ? [{fn: o.onstop}] : [];
@@ -3074,13 +3317,10 @@ exports.SoundObject = SoundObject;
           }
         };
 
-        var isRunning = (Howler.state === 'running');
-        if (self._state === 'loaded' && isRunning) {
+        if (Howler.state === 'running') {
           playWebAudio();
         } else {
-          // Wait for the audio to load and then begin playback.
-          var event = !isRunning && self._state === 'loaded' ? 'resume' : 'load';
-          self.once(event, playWebAudio, isRunning ? sound._id : null);
+          self.once('resume', playWebAudio);
 
           // Cancel the end timer.
           self._clearTimer(sound._id);
@@ -3092,20 +3332,33 @@ exports.SoundObject = SoundObject;
           node.muted = sound._muted || self._muted || Howler._muted || node.muted;
           node.volume = sound._volume * Howler.volume();
           node.playbackRate = sound._rate;
-          node.play();
 
-          // Setup the new end timer.
-          if (timeout !== Infinity) {
-            self._endTimers[sound._id] = setTimeout(self._ended.bind(self, sound), timeout);
-          }
+          // Mobile browsers will throw an error if this is called without user interaction.
+          try {
+            node.play();
 
-          if (!internal) {
-            self._emit('play', sound._id);
+            // If the node is still paused, then we can assume there was a playback issue.
+            if (node.paused) {
+              self._emit('playerror', sound._id, 'Playback was unable to start. This is most commonly an issue ' +
+                'on mobile devices where playback was not within a user interaction.');
+              return;
+            }
+
+            // Setup the new end timer.
+            if (timeout !== Infinity) {
+              self._endTimers[sound._id] = setTimeout(self._ended.bind(self, sound), timeout);
+            }
+
+            if (!internal) {
+              self._emit('play', sound._id);
+            }
+          } catch (err) {
+            self._emit('playerror', sound._id, err);
           }
         };
 
         // Play immediately if ready, or wait for the 'canplaythrough'e vent.
-        var loadedNoReadyState = (self._state === 'loaded' && (window && window.ejecta || !node.readyState && Howler._navigator.isCocoonJS));
+        var loadedNoReadyState = (window && window.ejecta) || (!node.readyState && Howler._navigator.isCocoonJS);
         if (node.readyState === 4 || loadedNoReadyState) {
           playHtml5();
         } else {
@@ -3409,16 +3662,6 @@ exports.SoundObject = SoundObject;
      */
     fade: function(from, to, len, id) {
       var self = this;
-      var diff = Math.abs(from - to);
-      var dir = from > to ? 'out' : 'in';
-      var steps = diff / 0.01;
-      var stepLen = (steps > 0) ? len / steps : len;
-
-      // Since browsers clamp timeouts to 4ms, we need to clamp our steps to that too.
-      if (stepLen < 4) {
-        steps = Math.ceil(steps / (4 / stepLen));
-        stepLen = 4;
-      }
 
       // If the sound hasn't loaded, add it to the load queue to fade when capable.
       if (self._state !== 'loaded') {
@@ -3457,43 +3700,67 @@ exports.SoundObject = SoundObject;
             sound._node.gain.linearRampToValueAtTime(to, end);
           }
 
-          var vol = from;
-          sound._interval = setInterval(function(soundId, sound) {
-            // Update the volume amount, but only if the volume should change.
-            if (steps > 0) {
-              vol += (dir === 'in' ? 0.01 : -0.01);
-            }
-
-            // Make sure the volume is in the right bounds.
-            vol = Math.max(0, vol);
-            vol = Math.min(1, vol);
-
-            // Round to within 2 decimal points.
-            vol = Math.round(vol * 100) / 100;
-
-            // Change the volume.
-            if (self._webAudio) {
-              if (typeof id === 'undefined') {
-                self._volume = vol;
-              }
-
-              sound._volume = vol;
-            } else {
-              self.volume(vol, soundId, true);
-            }
-
-            // When the fade is complete, stop it and fire event.
-            if ((to < from && vol <= to) || (to > from && vol >= to)) {
-              clearInterval(sound._interval);
-              sound._interval = null;
-              self.volume(to, soundId);
-              self._emit('fade', soundId);
-            }
-          }.bind(self, ids[i], sound), stepLen);
+          self._startFadeInterval(sound, from, to, len, ids[i]);
         }
       }
 
       return self;
+    },
+
+    /**
+     * Starts the internal interval to fade a sound.
+     * @param  {Object} sound Reference to sound to fade.
+     * @param  {Number} from The value to fade from (0.0 to 1.0).
+     * @param  {Number} to   The volume to fade to (0.0 to 1.0).
+     * @param  {Number} len  Time in milliseconds to fade.
+     * @param  {Number} id   The sound id to fade.
+     */
+    _startFadeInterval: function(sound, from, to, len, id) {
+      var self = this;
+      var vol = from;
+      var dir = from > to ? 'out' : 'in';
+      var diff = Math.abs(from - to);
+      var steps = diff / 0.01;
+      var stepLen = (steps > 0) ? len / steps : len;
+
+      // Since browsers clamp timeouts to 4ms, we need to clamp our steps to that too.
+      if (stepLen < 4) {
+        steps = Math.ceil(steps / (4 / stepLen));
+        stepLen = 4;
+      }
+
+      sound._interval = setInterval(function() {
+        // Update the volume amount, but only if the volume should change.
+        if (steps > 0) {
+          vol += (dir === 'in' ? 0.01 : -0.01);
+        }
+
+        // Make sure the volume is in the right bounds.
+        vol = Math.max(0, vol);
+        vol = Math.min(1, vol);
+
+        // Round to within 2 decimal points.
+        vol = Math.round(vol * 100) / 100;
+
+        // Change the volume.
+        if (self._webAudio) {
+          if (typeof id === 'undefined') {
+            self._volume = vol;
+          }
+
+          sound._volume = vol;
+        } else {
+          self.volume(vol, sound._id, true);
+        }
+
+        // When the fade is complete, stop it and fire event.
+        if ((to < from && vol <= to) || (to > from && vol >= to)) {
+          clearInterval(sound._interval);
+          sound._interval = null;
+          self.volume(to, sound._id);
+          self._emit('fade', sound._id);
+        }
+      }, stepLen);
     },
 
     /**
@@ -3686,7 +3953,7 @@ exports.SoundObject = SoundObject;
         var index = ids.indexOf(args[0]);
         if (index >= 0) {
           id = parseInt(args[0], 10);
-        } else {
+        } else if (self._sounds.length) {
           id = self._sounds[0]._id;
           seek = parseFloat(args[0]);
         }
@@ -4010,7 +4277,7 @@ exports.SoundObject = SoundObject;
       // If we are using IE and there was network latency we may be clipping
       // audio before it completes playing. Lets check the node to make sure it
       // believes it has completed, before ending the playback.
-      if (!self._webAudio && self._node && !self._node.ended) {
+      if (!self._webAudio && sound._node && !sound._node.paused) {
         setTimeout(self._ended.bind(self, sound), 100);
         return self;
       }
@@ -4403,6 +4670,7 @@ exports.SoundObject = SoundObject;
       // Load the buffer from the URL.
       var xhr = new XMLHttpRequest();
       xhr.open('GET', url, true);
+      xhr.withCredentials = self._xhrWithCredentials;
       xhr.responseType = 'arraybuffer';
       xhr.onload = function() {
         // Make sure we get a successful response back.
@@ -4556,7 +4824,7 @@ exports.SoundObject = SoundObject;
 /*!
  *  Spatial Plugin - Adds support for stereo and 3D audio where Web Audio is supported.
  *  
- *  howler.js v2.0.4
+ *  howler.js v2.0.5
  *  howlerjs.com
  *
  *  (c) 2013-2017, James Simpson of GoldFire Studios
@@ -4783,13 +5051,10 @@ exports.SoundObject = SoundObject;
   };
 
   /**
-   * Get/set the 3D spatial position of the audio source for this sound or
-   * all in the group. The most common usage is to set the 'x' position for
-   * left/right panning. Setting any value higher than 1.0 will begin to
-   * decrease the volume of the sound as it moves further away.
-   * @param  {Number} x  The x-position of the audio from -1000.0 to 1000.0.
-   * @param  {Number} y  The y-position of the audio from -1000.0 to 1000.0.
-   * @param  {Number} z  The z-position of the audio from -1000.0 to 1000.0.
+   * Get/set the 3D spatial position of the audio source for this sound or group relative to the global listener.
+   * @param  {Number} x  The x-position of the audio source.
+   * @param  {Number} y  The y-position of the audio source.
+   * @param  {Number} z  The z-position of the audio source.
    * @param  {Number} id (optional) The sound ID. If none is passed, all in group will be updated.
    * @return {Howl/Array}    Returns self or the current 3D spatial position: [x, y, z].
    */
@@ -4943,18 +5208,24 @@ exports.SoundObject = SoundObject;
    *   pannerAttr(o, id) -> Set's the values of passed sound id.
    *
    *   Attributes:
-   *     coneInnerAngle - (360 by default) There will be no volume reduction inside this angle.
-   *     coneOuterAngle - (360 by default) The volume will be reduced to a constant value of
-   *                      `coneOuterGain` outside this angle.
-   *     coneOuterGain - (0 by default) The amount of volume reduction outside of `coneOuterAngle`.
-   *     distanceModel - ('inverse' by default) Determines algorithm to use to reduce volume as audio moves
-   *                      away from listener. Can be `linear`, `inverse` or `exponential`.
-   *     maxDistance - (10000 by default) Volume won't reduce between source/listener beyond this distance.
+   *     coneInnerAngle - (360 by default) A parameter for directional audio sources, this is an angle, in degrees,
+   *                      inside of which there will be no volume reduction.
+   *     coneOuterAngle - (360 by default) A parameter for directional audio sources, this is an angle, in degrees,
+   *                      outside of which the volume will be reduced to a constant value of `coneOuterGain`.
+   *     coneOuterGain - (0 by default) A parameter for directional audio sources, this is the gain outside of the
+   *                     `coneOuterAngle`. It is a linear value in the range `[0, 1]`.
+   *     distanceModel - ('inverse' by default) Determines algorithm used to reduce volume as audio moves away from
+   *                     listener. Can be `linear`, `inverse` or `exponential.
+   *     maxDistance - (10000 by default) The maximum distance between source and listener, after which the volume
+   *                   will not be reduced any further.
+   *     refDistance - (1 by default) A reference distance for reducing volume as source moves further from the listener.
+   *                   This is simply a variable of the distance model and has a different effect depending on which model
+   *                   is used and the scale of your coordinates. Generally, volume will be equal to 1 at this distance.
+   *     rolloffFactor - (1 by default) How quickly the volume reduces as source moves from listener. This is simply a
+   *                     variable of the distance model and can be in the range of `[0, 1]` with `linear` and `[0, ∞]`
+   *                     with `inverse` and `exponential`.
    *     panningModel - ('HRTF' by default) Determines which spatialization algorithm is used to position audio.
    *                     Can be `HRTF` or `equalpower`.
-   *     refDistance - (1 by default) A reference distance for reducing volume as the source
-   *                    moves away from the listener.
-   *     rolloffFactor - (1 by default) How quickly the volume reduces as source moves from listener.
    * 
    * @return {Howl/Object} Returns self or current panner attributes.
    */
@@ -4978,15 +5249,28 @@ exports.SoundObject = SoundObject;
 
         // Set the grou's panner attribute values.
         if (typeof id === 'undefined') {
+          if (!o.pannerAttr) {
+            o.pannerAttr = {
+              coneInnerAngle: o.coneInnerAngle,
+              coneOuterAngle: o.coneOuterAngle,
+              coneOuterGain: o.coneOuterGain,
+              distanceModel: o.distanceModel,
+              maxDistance: o.maxDistance,
+              refDistance: o.refDistance,
+              rolloffFactor: o.rolloffFactor,
+              panningModel: o.panningModel
+            };
+          }
+
           self._pannerAttr = {
-            coneInnerAngle: typeof o.coneInnerAngle !== 'undefined' ? o.coneInnerAngle : self._coneInnerAngle,
-            coneOuterAngle: typeof o.coneOuterAngle !== 'undefined' ? o.coneOuterAngle : self._coneOuterAngle,
-            coneOuterGain: typeof o.coneOuterGain !== 'undefined' ? o.coneOuterGain : self._coneOuterGain,
-            distanceModel: typeof o.distanceModel !== 'undefined' ? o.distanceModel : self._distanceModel,
-            maxDistance: typeof o.maxDistance !== 'undefined' ? o.maxDistance : self._maxDistance,
-            panningModel: typeof o.panningModel !== 'undefined' ? o.panningModel : self._panningModel,
-            refDistance: typeof o.refDistance !== 'undefined' ? o.refDistance : self._refDistance,
-            rolloffFactor: typeof o.rolloffFactor !== 'undefined' ? o.rolloffFactor : self._rolloffFactor
+            coneInnerAngle: typeof o.pannerAttr.coneInnerAngle !== 'undefined' ? o.pannerAttr.coneInnerAngle : self._coneInnerAngle,
+            coneOuterAngle: typeof o.pannerAttr.coneOuterAngle !== 'undefined' ? o.pannerAttr.coneOuterAngle : self._coneOuterAngle,
+            coneOuterGain: typeof o.pannerAttr.coneOuterGain !== 'undefined' ? o.pannerAttr.coneOuterGain : self._coneOuterGain,
+            distanceModel: typeof o.pannerAttr.distanceModel !== 'undefined' ? o.pannerAttr.distanceModel : self._distanceModel,
+            maxDistance: typeof o.pannerAttr.maxDistance !== 'undefined' ? o.pannerAttr.maxDistance : self._maxDistance,
+            refDistance: typeof o.pannerAttr.refDistance !== 'undefined' ? o.pannerAttr.refDistance : self._refDistance,
+            rolloffFactor: typeof o.pannerAttr.rolloffFactor !== 'undefined' ? o.pannerAttr.rolloffFactor : self._rolloffFactor,
+            panningModel: typeof o.pannerAttr.panningModel !== 'undefined' ? o.pannerAttr.panningModel : self._panningModel
           };
         }
       } else {
@@ -5013,9 +5297,9 @@ exports.SoundObject = SoundObject;
           coneOuterGain: typeof o.coneOuterGain !== 'undefined' ? o.coneOuterGain : pa.coneOuterGain,
           distanceModel: typeof o.distanceModel !== 'undefined' ? o.distanceModel : pa.distanceModel,
           maxDistance: typeof o.maxDistance !== 'undefined' ? o.maxDistance : pa.maxDistance,
-          panningModel: typeof o.panningModel !== 'undefined' ? o.panningModel : pa.panningModel,
           refDistance: typeof o.refDistance !== 'undefined' ? o.refDistance : pa.refDistance,
-          rolloffFactor: typeof o.rolloffFactor !== 'undefined' ? o.rolloffFactor : pa.rolloffFactor
+          rolloffFactor: typeof o.rolloffFactor !== 'undefined' ? o.rolloffFactor : pa.rolloffFactor,
+          panningModel: typeof o.panningModel !== 'undefined' ? o.panningModel : pa.panningModel
         };
 
         // Update the panner values or create a new panner if none exists.
@@ -5026,9 +5310,9 @@ exports.SoundObject = SoundObject;
           panner.coneOuterGain = pa.coneOuterGain;
           panner.distanceModel = pa.distanceModel;
           panner.maxDistance = pa.maxDistance;
-          panner.panningModel = pa.panningModel;
           panner.refDistance = pa.refDistance;
           panner.rolloffFactor = pa.rolloffFactor;
+          panner.panningModel = pa.panningModel;
         } else {
           // Make sure we have a position to setup the node with.
           if (!sound._pos) {
@@ -5114,9 +5398,9 @@ exports.SoundObject = SoundObject;
       sound._panner.coneOuterGain = sound._pannerAttr.coneOuterGain;
       sound._panner.distanceModel = sound._pannerAttr.distanceModel;
       sound._panner.maxDistance = sound._pannerAttr.maxDistance;
-      sound._panner.panningModel = sound._pannerAttr.panningModel;
       sound._panner.refDistance = sound._pannerAttr.refDistance;
       sound._panner.rolloffFactor = sound._pannerAttr.rolloffFactor;
+      sound._panner.panningModel = sound._pannerAttr.panningModel;
       sound._panner.setPosition(sound._pos[0], sound._pos[1], sound._pos[2]);
       sound._panner.setOrientation(sound._orientation[0], sound._orientation[1], sound._orientation[2]);
     } else {
@@ -5133,10 +5417,10 @@ exports.SoundObject = SoundObject;
   };
 })();
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(34)))
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports) {
 
 var g;
@@ -5163,7 +5447,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5179,7 +5463,7 @@ exports.Quality = Quality;
 var Settings = /** @class */ (function () {
     function Settings() {
     }
-    Settings.Version = "0.0.16";
+    Settings.Version = "0.0.27";
     Settings.LibPath = "/resources/";
     Settings.Graphics = Quality.High;
     return Settings;
@@ -5188,17 +5472,17 @@ exports.Settings = Settings;
 
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Math = __webpack_require__(0);
-var Engine = __webpack_require__(4);
-var Util = __webpack_require__(2);
+var Math = __webpack_require__(1);
+var Engine = __webpack_require__(5);
+var Util = __webpack_require__(3);
 var Draw = __webpack_require__(10);
-var Three = __webpack_require__(36);
+var Three = __webpack_require__(37);
 var Runner = /** @class */ (function () {
     function Runner(Game, EngineType) {
         this.Data = {};
@@ -5272,7 +5556,7 @@ var Runner = /** @class */ (function () {
         this._Current.Events.Invoke("TimeTick", this._Game, {});
         requestAnimationFrame(this.OnRenderFrame.bind(this));
         if (this._Current.Type == Engine.SceneType.Scene2D) {
-            // Spamer
+            // Spammer
             // Util.Log.Event("RenderFrame");
             this._DrawEngine.Draw2DScene(this._Current, window.innerWidth, window.innerHeight);
             this._Current.Events.Invoke("RenderFrame", this._Game, {});
@@ -5303,24 +5587,24 @@ var Runner = /** @class */ (function () {
         if (!this.CheckObjectMouseEvents(["MousePress", "MouseDown"], event)) {
             Util.Log.Event("MousePress");
             Util.Log.Event("MouseDown");
-            this._Current.Events.Invoke("MousePress", this._Game, { Ctrl: event.ctrlKey, Alt: event.altKey, Shift: event.shiftKey, MouseButton: event.button });
-            this._Current.Events.Invoke("MouseDown", this._Game, { Ctrl: event.ctrlKey, Alt: event.altKey, Shift: event.shiftKey, MouseButton: event.button });
+            this._Current.Events.Invoke("MousePress", this._Game, { Ctrl: event.ctrlKey, Alt: event.altKey, Shift: event.shiftKey, MouseButton: event.button, Location: new Math.Vertex((event.x / window.innerWidth) * 1920, (event.y / window.innerHeight) * 1080, 0) });
+            this._Current.Events.Invoke("MouseDown", this._Game, { Ctrl: event.ctrlKey, Alt: event.altKey, Shift: event.shiftKey, MouseButton: event.button, Location: new Math.Vertex((event.x / window.innerWidth) * 1920, (event.y / window.innerHeight) * 1080, 0) });
         }
     };
     Runner.prototype.OnMouseUp = function (event) {
         if (!this.CheckObjectMouseEvents(["MouseUp"], event)) {
             Util.Log.Event("MouseUp");
-            this._Current.Events.Invoke("MouseUp", this._Game, { Ctrl: event.ctrlKey, Alt: event.altKey, Shift: event.shiftKey, MouseButton: event.button });
+            this._Current.Events.Invoke("MouseUp", this._Game, { Ctrl: event.ctrlKey, Alt: event.altKey, Shift: event.shiftKey, MouseButton: event.button, Location: new Math.Vertex((event.x / window.innerWidth) * 1920, (event.y / window.innerHeight) * 1080, 0) });
         }
     };
     Runner.prototype.OnMouseWheel = function (event) {
         Util.Log.Event("MouseWheel");
-        this._Current.Events.Invoke("MouseWheel", this._Game, { Ctrl: event.ctrlKey, Alt: event.altKey, Shift: event.shiftKey, Delta: event.wheelDelta });
+        this._Current.Events.Invoke("MouseWheel", this._Game, { Ctrl: event.ctrlKey, Alt: event.altKey, Shift: event.shiftKey, Delta: event.wheelDelta, Location: new Math.Vertex((event.x / window.innerWidth) * 1920, (event.y / window.innerHeight) * 1080, 0) });
     };
     Runner.prototype.OnMouseMove = function (event) {
-        // Spamer
+        // Spammer
         // Util.Log.Event("MouseMove");
-        this._Current.Events.Invoke("MouseMove", this._Game, { Ctrl: event.ctrlKey, Alt: event.altKey, Shift: event.shiftKey, Location: new Math.Vertex(event.x, event.y, 0) });
+        this._Current.Events.Invoke("MouseMove", this._Game, { Ctrl: event.ctrlKey, Alt: event.altKey, Shift: event.shiftKey, Location: new Math.Vertex((event.x / window.innerWidth) * 1920, (event.y / window.innerHeight) * 1080, 0) });
     };
     Runner.prototype.OnMouseRight = function (event) {
         Util.Log.Event("MouseRight");
@@ -5335,20 +5619,20 @@ var Runner = /** @class */ (function () {
         if (this._Current.Type == Engine.SceneType.Scene2D) {
             var Current2DScene = this._Current;
             var STrans = Current2DScene.Trans.Translation;
-            STrans = new Math.Vertex(STrans.X * Current2DScene.Trans.Scale.X, STrans.Y * Current2DScene.Trans.Scale.Y, 0);
+            STrans = new Math.Vertex(STrans.X * Current2DScene.Trans.Scale.X * this._DrawEngine.GlobalScale.X, STrans.Y * Current2DScene.Trans.Scale.Y * this._DrawEngine.GlobalScale.Y, 0);
             for (var i = this._Current.Objects.length - 1; i >= 0; i--) {
                 if (this._Current.Objects[i].Type == Engine.SceneObjectType.Drawn) {
                     var Current = this._Current.Objects[i];
                     var Trans = Current.Trans.Translation;
-                    Trans = new Math.Vertex(Trans.X * Current2DScene.Trans.Scale.X, Trans.Y * Current2DScene.Trans.Scale.Y, 0);
+                    Trans = new Math.Vertex(Trans.X * Current2DScene.Trans.Scale.X * this._DrawEngine.GlobalScale.X, Trans.Y * Current2DScene.Trans.Scale.Y * this._DrawEngine.GlobalScale.Y, 0);
                     var Scale = Current.Trans.Scale;
                     var X = event.x;
                     var Y = event.y;
-                    Scale = new Math.Vertex(Scale.X * Current2DScene.Trans.Scale.X, Scale.Y * Current2DScene.Trans.Scale.Y, 1);
+                    Scale = new Math.Vertex(Scale.X * Current2DScene.Trans.Scale.X * this._DrawEngine.GlobalScale.X, Scale.Y * Current2DScene.Trans.Scale.Y * this._DrawEngine.GlobalScale.Y, 1);
                     if ((Current.Fixed && Trans.X - Scale.X / 2 < X && X < Trans.X + Scale.X / 2 && Trans.Y - Scale.Y / 2 < Y && Y < Trans.Y + Scale.Y / 2) ||
                         (STrans.X + Trans.X - Scale.X / 2 < X && X < STrans.X + Trans.X + Scale.X / 2 && STrans.Y + Trans.Y - Scale.Y / 2 < Y && Y < STrans.Y + Trans.Y + Scale.Y / 2)) {
                         for (var i_1 = 0; i_1 < EventNames.length; i_1++)
-                            Handled = Handled || Current.Events.Invoke(EventNames[i_1], this._Game, { Ctrl: event.ctrlKey, Alt: event.altKey, Shift: event.shiftKey, MouseButton: event.button });
+                            Handled = Handled || Current.Events.Invoke(EventNames[i_1], this._Game, { Ctrl: event.ctrlKey, Alt: event.altKey, Shift: event.shiftKey, MouseButton: event.button, Location: new Math.Vertex((event.x / window.innerWidth) * 1920, (event.y / window.innerHeight) * 1080, 0) });
                         if (true) {
                             for (var i_2 = 0; i_2 < EventNames.length; i_2++)
                                 Util.Log.Event(EventNames[i_2] + " " + Current.ID);
@@ -5365,18 +5649,18 @@ exports.Runner = Runner;
 
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var ThreeDrawEngine_1 = __webpack_require__(37);
+var ThreeDrawEngine_1 = __webpack_require__(38);
 exports.ThreeDrawEngine = ThreeDrawEngine_1.ThreeDrawEngine;
 
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5392,24 +5676,43 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Three = __webpack_require__(38);
-var Engine = __webpack_require__(4);
-var Util = __webpack_require__(2);
-var Shaders = __webpack_require__(39);
+var Three = __webpack_require__(39);
+var Math = __webpack_require__(1);
+var Engine = __webpack_require__(5);
+var Util = __webpack_require__(3);
+var Shaders = __webpack_require__(40);
 var DrawEngine_1 = __webpack_require__(11);
 var ThreeDrawEngine = /** @class */ (function (_super) {
     __extends(ThreeDrawEngine, _super);
-    function ThreeDrawEngine(Old) {
+    function ThreeDrawEngine(Old, Resolution) {
         var _this = _super.call(this, Old) || this;
         _this._Scene = new Three.Scene();
+        _this._GlobalScale = new Math.Vertex(1, 1, 1);
+        _this._GlobalOffset = new Math.Vertex(0, 0, 0);
+        if (Resolution)
+            _this._Resolution = Resolution;
+        else
+            _this._Resolution = new Math.Vertex(1920, 1080, 1);
         _this._Target = document.getElementById("canvas");
+        _this._Parent = document.getElementById("canvas-parent");
         _this.Renderer = new Three.WebGLRenderer({ canvas: _this._Target });
         _this.Renderer.setPixelRatio(window.devicePixelRatio);
-        _this.Renderer.setSize(window.innerWidth, window.innerHeight);
+        _this.Resize();
         return _this;
     }
+    ThreeDrawEngine.prototype.Resize = function () {
+        var Width = this._Parent.clientWidth;
+        var Height = this._Parent.clientHeight;
+        this.Renderer.setSize(Width, Height);
+        this._GlobalScale = new Math.Vertex(Width / this.Resolution.X, Height / this.Resolution.Y, 1);
+    };
     ThreeDrawEngine.prototype.Load2DScene = function (Scene) {
         this._Checked = [];
+        if (this._EngineerScene) {
+            this._EngineerScene.Events.Resize.splice(this._EngineerScene.Events.Resize.indexOf(this.Resize), 1);
+        }
+        this._EngineerScene = Scene;
+        this._EngineerScene.Events.Resize.push(this.Resize.bind(this));
         this._Scene.background = new Three.Color(Scene.BackColor.R, Scene.BackColor.G, Scene.BackColor.B);
         for (var i = 0; i < Scene.Objects.length; i++) {
             if (Scene.Objects[i].Type != Engine.SceneObjectType.Drawn)
@@ -5490,27 +5793,34 @@ var ThreeDrawEngine = /** @class */ (function (_super) {
     ThreeDrawEngine.prototype.LoadSprite = function (Scene, Drawn) {
         var SpriteData = Drawn;
         if (this.Data[Drawn.ID] == null) {
-            this.Data[Drawn.ID + "_Set"] = SpriteData.GetActiveSprites();
+            this.Data[Drawn.ID + "_CurrentSet"] = SpriteData.CurrentSpriteSet;
+            this.Data[Drawn.ID + "_CurrentIndex"] = SpriteData.CurrentIndex;
             var SpriteMaterial = void 0;
-            if (SpriteData.GetActiveSprites().length > 0) {
-                var TextureLoader = new Three.TextureLoader();
-                var Textures = [];
-                this.Data[Drawn.ID + "_Tex"] = Textures;
-                var TextureUrls = SpriteData.GetActiveSprites();
-                for (var j = 0; j < TextureUrls.length; j++) {
-                    var NewTexture = TextureLoader.load(TextureUrls[j]);
-                    NewTexture.flipY = false;
-                    Textures.push(NewTexture);
+            if (Drawn.SpriteSets.length > 0) {
+                for (var i = 0; i < Drawn.SpriteSets.length; i++) {
+                    var TextureLoader = new Three.TextureLoader();
+                    var Textures_1 = [];
+                    this.Data[Drawn.ID + "_Tex_" + i] = Textures_1;
+                    var TextureUrls = SpriteData.GetSprites(i);
+                    for (var j = 0; j < TextureUrls.length; j++) {
+                        var NewTexture = TextureLoader.load(TextureUrls[j]);
+                        NewTexture.flipY = false;
+                        Textures_1.push(NewTexture);
+                    }
                 }
-                SpriteMaterial = this.GenerateSpriteMaterial(SpriteData, Textures[SpriteData.Index()]);
+                var Textures = this.Data[Drawn.ID + "_Tex_" + Drawn.CurrentSpriteSet];
+                SpriteMaterial = this.GenerateSpriteMaterial(SpriteData, Textures[SpriteData.CurrentIndex]);
             }
             else
                 SpriteMaterial = this.GenerateSpriteMaterial(SpriteData, null);
             var Sprite = new Three.Mesh(new Three.CubeGeometry(1, 1, 1), SpriteMaterial);
             this.Data[Drawn.ID] = Sprite;
             Sprite.visible = SpriteData.Active;
-            Sprite.position.set(SpriteData.Trans.Translation.X, SpriteData.Trans.Translation.Y, 0);
-            Sprite.scale.set(SpriteData.Trans.Scale.X, SpriteData.Trans.Scale.Y, 1);
+            if (!Drawn.Fixed)
+                Sprite.position.set((this._EngineerScene.Trans.Translation.X + SpriteData.Trans.Translation.X) * this._GlobalScale.X, (this._EngineerScene.Trans.Translation.Y + SpriteData.Trans.Translation.Y) * this._GlobalScale.Y, SpriteData.Trans.Translation.Z);
+            else
+                Sprite.position.set(SpriteData.Trans.Translation.X * this._GlobalScale.X, SpriteData.Trans.Translation.Y * this._GlobalScale.Y, SpriteData.Trans.Translation.Z);
+            Sprite.scale.set(SpriteData.Trans.Scale.X * this._GlobalScale.X, SpriteData.Trans.Scale.Y * this._GlobalScale.Y, 1);
             Sprite.rotation.set(SpriteData.Trans.Rotation.X, SpriteData.Trans.Rotation.Y, SpriteData.Trans.Rotation.Z);
             this._Scene.add(Sprite);
             Util.Log.Info("ThreeJS Object " + Sprite.uuid + " added to scene.");
@@ -5518,33 +5828,37 @@ var ThreeDrawEngine = /** @class */ (function (_super) {
         }
         else {
             var Sprite = this.Data[Drawn.ID];
-            if (SpriteData.GetActiveSprites().length > 0) {
-                if (this.Data[Drawn.ID + "_Set"].length != SpriteData.GetActiveSprites().length) {
-                    this.Data[Drawn.ID + "_Set"] = SpriteData.GetActiveSprites();
-                    var TextureLoader_1 = new Three.TextureLoader();
-                    var Textures_1 = [];
-                    this.Data[Drawn.ID + "_Tex"] = Textures_1;
-                    var TextureUrls = SpriteData.GetActiveSprites();
-                    for (var j = 0; j < TextureUrls.length; j++) {
-                        var NewTexture = TextureLoader_1.load(TextureUrls[j]);
-                        NewTexture.flipY = false;
-                        Textures_1.push(NewTexture);
-                    }
-                }
-                var TextureLoader = new Three.TextureLoader();
-                var Textures = this.Data[SpriteData.ID + "_Tex"];
-                Sprite.material = this.GenerateSpriteMaterial(SpriteData, Textures[SpriteData.Index()]);
+            if (this.Data[Drawn.ID + "_CurrentSet"] != SpriteData.CurrentSpriteSet || this.Data[Drawn.ID + "_CurrentIndex"] != SpriteData.CurrentIndex) {
+                this.Data[Drawn.ID + "_CurrentIndex"] = SpriteData.CurrentIndex;
+                this.Data[Drawn.ID + "_CurrentSet"] = SpriteData.CurrentSpriteSet;
+                var Textures = this.Data[Drawn.ID + "_Tex_" + Drawn.CurrentSpriteSet];
+                Sprite.material = this.GenerateSpriteMaterial(SpriteData, Textures[SpriteData.CurrentIndex]);
             }
-            else
-                Sprite.material = this.GenerateSpriteMaterial(SpriteData, null);
             Sprite.visible = SpriteData.Active;
-            Sprite.position.set(SpriteData.Trans.Translation.X, SpriteData.Trans.Translation.Y, 0);
-            Sprite.scale.set(SpriteData.Trans.Scale.X, SpriteData.Trans.Scale.Y, 1);
+            if (!Drawn.Fixed)
+                Sprite.position.set((this._EngineerScene.Trans.Translation.X + SpriteData.Trans.Translation.X) * this._GlobalScale.X, (this._EngineerScene.Trans.Translation.Y + SpriteData.Trans.Translation.Y) * this._GlobalScale.Y, SpriteData.Trans.Translation.Z);
+            else
+                Sprite.position.set(SpriteData.Trans.Translation.X * this._GlobalScale.X, SpriteData.Trans.Translation.Y * this._GlobalScale.Y, SpriteData.Trans.Translation.Z);
+            Sprite.scale.set(SpriteData.Trans.Scale.X * this._GlobalScale.X, SpriteData.Trans.Scale.Y * this._GlobalScale.Y, 1);
             Sprite.rotation.set(SpriteData.Trans.Rotation.X, SpriteData.Trans.Rotation.Y, SpriteData.Trans.Rotation.Z);
             this._Checked.push(Sprite.uuid);
         }
     };
     ThreeDrawEngine.prototype.LoadTile = function (Scene, Drawn) {
+        if (!Drawn.Fixed) {
+            if (Drawn.Trans.Translation.X + Scene.Trans.Translation.X + Drawn.Trans.Scale.X / 2 < 0 ||
+                Drawn.Trans.Translation.Y + Scene.Trans.Translation.Y + Drawn.Trans.Scale.Y / 2 < 0 ||
+                Drawn.Trans.Translation.X + Scene.Trans.Translation.X - Drawn.Trans.Scale.X / 2 > 1920 ||
+                Drawn.Trans.Translation.Y + Scene.Trans.Translation.Y - Drawn.Trans.Scale.Y / 2 > 1920) {
+                if (this.Data[Drawn.ID]) {
+                    this._Scene.remove(this.Data[Drawn.ID]);
+                    this.Data[Drawn.ID].geometry.dispose();
+                    this.Data[Drawn.ID].material.dispose();
+                    this.Data[Drawn.ID] = null;
+                }
+                return;
+            }
+        }
         var TileData = Drawn;
         if (this.Data[Drawn.ID] == null) {
             var TileMaterial = void 0;
@@ -5571,8 +5885,11 @@ var ThreeDrawEngine = /** @class */ (function (_super) {
             var Tile = new Three.Mesh(new Three.CubeGeometry(1, 1, 1), TileMaterial);
             this.Data[Drawn.ID] = Tile;
             Tile.visible = TileData.Active;
-            Tile.position.set(TileData.Trans.Translation.X, TileData.Trans.Translation.Y, 0);
-            Tile.scale.set(TileData.Trans.Scale.X, TileData.Trans.Scale.Y, 1);
+            if (!Drawn.Fixed)
+                Tile.position.set((this._EngineerScene.Trans.Translation.X + TileData.Trans.Translation.X) * this._GlobalScale.X, (this._EngineerScene.Trans.Translation.Y + TileData.Trans.Translation.Y) * this._GlobalScale.Y, 0);
+            else
+                Tile.position.set(TileData.Trans.Translation.X * this._GlobalScale.X, TileData.Trans.Translation.Y * this._GlobalScale.Y, TileData.Trans.Translation.Z);
+            Tile.scale.set(TileData.Trans.Scale.X * this._GlobalScale.X, TileData.Trans.Scale.Y * this._GlobalScale.Y, 1);
             Tile.rotation.set(TileData.Trans.Rotation.X, TileData.Trans.Rotation.Y, TileData.Trans.Rotation.Z);
             this._Scene.add(Tile);
             Util.Log.Info("ThreeJS Object " + Tile.uuid + " added to scene.");
@@ -5580,15 +5897,12 @@ var ThreeDrawEngine = /** @class */ (function (_super) {
         }
         else {
             var Tile = this.Data[Drawn.ID];
-            if (this.Data[TileData.Collection.ID + "_Tex"]) {
-                var Textures = this.Data[TileData.Collection.ID + "_Tex"];
-                Tile.material = this.GenerateTileMaterial(TileData, Textures[TileData.Index]);
-            }
-            else
-                Tile.material = this.GenerateTileMaterial(TileData, null);
             Tile.visible = TileData.Active;
-            Tile.position.set(TileData.Trans.Translation.X, TileData.Trans.Translation.Y, 0);
-            Tile.scale.set(TileData.Trans.Scale.X, TileData.Trans.Scale.Y, 1);
+            if (!Drawn.Fixed)
+                Tile.position.set((this._EngineerScene.Trans.Translation.X + TileData.Trans.Translation.X) * this._GlobalScale.X, (this._EngineerScene.Trans.Translation.Y + TileData.Trans.Translation.Y) * this._GlobalScale.Y, 0);
+            else
+                Tile.position.set(TileData.Trans.Translation.X * this._GlobalScale.X, TileData.Trans.Translation.Y * this._GlobalScale.Y, TileData.Trans.Translation.Z);
+            Tile.scale.set(TileData.Trans.Scale.X * this._GlobalScale.X, TileData.Trans.Scale.Y * this._GlobalScale.Y, 1);
             Tile.rotation.set(TileData.Trans.Rotation.X, TileData.Trans.Rotation.Y, TileData.Trans.Rotation.Z);
             this._Checked.push(Tile.uuid);
         }
@@ -5599,7 +5913,7 @@ exports.ThreeDrawEngine = ThreeDrawEngine;
 
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49708,7 +50022,7 @@ function CanvasRenderer() {
 
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49725,7 +50039,7 @@ exports.ThreeJSShaders = ThreeJSShaders;
 
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49741,8 +50055,8 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Engineer_1 = __webpack_require__(7);
-var LocalSettings_1 = __webpack_require__(41);
+var Engineer_1 = __webpack_require__(0);
+var LocalSettings_1 = __webpack_require__(42);
 var MainMenu = /** @class */ (function (_super) {
     __extends(MainMenu, _super);
     function MainMenu() {
@@ -49770,13 +50084,13 @@ exports.MainMenu = MainMenu;
 
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Engineer_1 = __webpack_require__(7);
+var Engineer_1 = __webpack_require__(0);
 var LocalSettings = /** @class */ (function () {
     function LocalSettings() {
     }
@@ -49789,7 +50103,7 @@ exports.LocalSettings = LocalSettings;
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49805,9 +50119,13 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Engineer_1 = __webpack_require__(7);
+var Engineer_1 = __webpack_require__(0);
 var Level_1 = __webpack_require__(44);
-var Character_1 = __webpack_require__(47);
+var Player_1 = __webpack_require__(12);
+var Skeleton_1 = __webpack_require__(50);
+var Items_1 = __webpack_require__(53);
+var Inventory_1 = __webpack_require__(54);
+var SkillTree_1 = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./UI/SkillTree\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 var GameScene = /** @class */ (function (_super) {
     __extends(GameScene, _super);
     function GameScene() {
@@ -49820,10 +50138,25 @@ var GameScene = /** @class */ (function (_super) {
     }
     GameScene.prototype.Init = function () {
         this._Level.Init(this);
-        this._Character = new Character_1.Character(this);
+        this._Player = new Player_1.Player(this);
+        this._Skeleton = new Skeleton_1.Skeleton(this);
+        this._Item = new Items_1.Items(this._Player, this);
+        this._Inventory = new Inventory_1.Inventory(this);
+        this._SkillTree = new SkillTree_1.SkillTree(this);
+        this.Events.KeyPress.push(this.KeyPress.bind(this));
     };
     GameScene.prototype.KeyPress = function (G, Args) {
-        if (Args.KeyDown == "space") {
+        if (Args.Key == 105) {
+            if (this._Inventory.Visible)
+                this._Inventory.Hide();
+            else
+                this._Inventory.Show();
+        }
+        else if (Args.Key == 116) {
+            if (this._SkillTree.Visible)
+                this._SkillTree.Hide();
+            else
+                this._SkillTree.Show();
         }
     };
     return GameScene;
@@ -49832,14 +50165,13 @@ exports.GameScene = GameScene;
 
 
 /***/ }),
-/* 43 */,
 /* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Engineer_1 = __webpack_require__(7);
+var Engineer_1 = __webpack_require__(0);
 var LevelGenerator_1 = __webpack_require__(45);
 var Level = /** @class */ (function () {
     function Level() {
@@ -49863,27 +50195,195 @@ exports.Level = Level;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Engineer_1 = __webpack_require__(7);
+var Engineer_1 = __webpack_require__(0);
 var ChunkGenerator_1 = __webpack_require__(46);
+var ColliderGenerator_1 = __webpack_require__(47);
 var LevelGenerator = /** @class */ (function () {
     function LevelGenerator() {
     }
     LevelGenerator.Generate = function (Scene, Tilesets) {
-        var NewChunk = ChunkGenerator_1.ChunkGenerator.Generate(1, new Engineer_1.default.Math.Vertex(24, 15, 0));
+        //let NewChunk:Chunk = ChunkGenerator.Generate(1, new Engineer.Math.Vertex(24,15,0));
+        var L = LevelGenerator.GenerateLayout(new Engineer_1.default.Math.Vertex(5, 5, 0), [new LayoutClass(3, 1), new LayoutClass(2, 3), new LayoutClass(1, 1000)]);
+        L.Print();
+        var NewChunk = LevelGenerator.GenerateMegaChunk(L);
         for (var i = 0; i < NewChunk.Dimensions.Y; i++) {
             for (var j = 0; j < NewChunk.Dimensions.X; j++) {
-                if (NewChunk.Fields[i][j] == 1)
-                    LevelGenerator.GenerateTile(Scene, new Engineer_1.default.Math.Vertex(j + 1, i + 1, 0), Tilesets.Floor, 0, Engineer_1.default.Math.Color.FromRGBA(255, 255, 255, 255));
+                if (NewChunk.Fields[i][j] == 1) {
+                    var Index = Math.floor((Math.random() * 16) + 1);
+                    LevelGenerator.GenerateTile(Scene, new Engineer_1.default.Math.Vertex(j + 1, i + 1, 0), Tilesets.Floor, Index, Engineer_1.default.Math.Color.FromRGBA(255, 255, 255, 255));
+                }
                 else if (NewChunk.Fields[i][j] == 2) {
                     LevelGenerator.GenerateTile(Scene, new Engineer_1.default.Math.Vertex(j + 1, i + 1, 0), Tilesets.Floor, 0, Engineer_1.default.Math.Color.FromRGBA(255, 255, 255, 255));
                     LevelGenerator.GenerateTile(Scene, new Engineer_1.default.Math.Vertex(j + 1, i + 1, 0), Tilesets.WallLower, 0, Engineer_1.default.Math.Color.FromRGBA(255, 255, 255, 255));
                 }
-                else if (NewChunk.Fields[i][j] == 3)
+                else if (NewChunk.Fields[i][j] == 3) {
                     LevelGenerator.GenerateTile(Scene, new Engineer_1.default.Math.Vertex(j + 1, i + 1, 0), Tilesets.WallUpper, 0, Engineer_1.default.Math.Color.FromRGBA(255, 255, 255, 255));
-                else if (NewChunk.Fields[i][j] == 4)
-                    LevelGenerator.GenerateTile(Scene, new Engineer_1.default.Math.Vertex(j + 1, i + 1, 0), Tilesets.Ceiling, 0, Engineer_1.default.Math.Color.FromRGBA(255, 255, 255, 255));
+                    ColliderGenerator_1.ColliderGenerator.GenerateColliderTile(Scene, j + 1, i + 1, 1, 1);
+                }
+                else if (NewChunk.Fields[i][j] == 4) {
+                    LevelGenerator.GenerateCeilingTile(Scene, Tilesets, NewChunk, j, i);
+                }
             }
         }
+    };
+    LevelGenerator.GenerateCeilingTile = function (Scene, Tilesets, C, X, Y) {
+        var Horizontal = X >= 1 && X + 1 < C.Dimensions.X && C.Fields[Y][X - 1] == 4 && C.Fields[Y][X + 1] == 4;
+        var Vertical = Y >= 1 && Y + 1 < C.Dimensions.Y && C.Fields[Y - 1][X] == 4 && C.Fields[Y + 1][X] == 4;
+        if (Horizontal && Vertical) {
+            LevelGenerator.GenerateTile(Scene, new Engineer_1.default.Math.Vertex(X + 1, Y + 1, 0), Tilesets.Ceiling, 0, Engineer_1.default.Math.Color.FromRGBA(255, 255, 255, 255));
+            ColliderGenerator_1.ColliderGenerator.GenerateColliderTile(Scene, X + 1, Y + 1, 1, 1);
+        }
+        else if (Horizontal) {
+            LevelGenerator.GenerateTile(Scene, new Engineer_1.default.Math.Vertex(X + 1, Y + 1, 0), Tilesets.CeilingHorizontal, 0, Engineer_1.default.Math.Color.FromRGBA(255, 255, 255, 255));
+            ColliderGenerator_1.ColliderGenerator.GenerateColliderTile(Scene, X + 1, Y + 1, 1, 1);
+        }
+        else if (Vertical) {
+            LevelGenerator.GenerateTile(Scene, new Engineer_1.default.Math.Vertex(X + 1, Y + 1, 0), Tilesets.CeilingVertical, 0, Engineer_1.default.Math.Color.FromRGBA(255, 255, 255, 255));
+            ColliderGenerator_1.ColliderGenerator.GenerateColliderTile(Scene, X + 1, Y + 1, 1, 1);
+        }
+        else {
+            LevelGenerator.GenerateTile(Scene, new Engineer_1.default.Math.Vertex(X + 1, Y + 1, 0), Tilesets.Ceiling, 0, Engineer_1.default.Math.Color.FromRGBA(255, 255, 255, 255));
+            ColliderGenerator_1.ColliderGenerator.GenerateColliderTile(Scene, X + 1, Y + 1, 1, 1);
+        }
+    };
+    LevelGenerator.GenerateMegaChunk = function (L) {
+        var MC = new ChunkGenerator_1.Chunk(new Engineer_1.default.Math.Vertex(L.Dimensions.X * 11 - 1, L.Dimensions.Y * 11 - 1), -1);
+        for (var i = 0; i < L.Entries.length; i++) {
+            var Index = Math.floor((Math.random() * 4));
+            if (Index == 4)
+                Index = 3;
+            var NewChunk = ChunkGenerator_1.ChunkGenerator.GenerateWOFake(Index, new Engineer_1.default.Math.Vertex(L.Entries[i].Size * 11 - 1, L.Entries[i].Size * 11 - 1, 0));
+            ChunkGenerator_1.ChunkGenerator.Insert(MC, NewChunk, new Engineer_1.default.Math.Vertex(L.Entries[i].Location.X * 11, L.Entries[i].Location.Y * 11, 0));
+        }
+        LevelGenerator.ConnectMegaChunk(MC, L);
+        ChunkGenerator_1.ChunkGenerator.FakeIsometric(MC);
+        return MC;
+    };
+    LevelGenerator.CalculateLocation = function (E1, E2) {
+        var Location = new Engineer_1.default.Math.Vertex(0, 0, 0);
+        Location.Y = E1.Location.Y * 11;
+        if (E2.Location.Y > E1.Location.Y)
+            Location.Y = E2.Location.Y * 11;
+        Location.X = E1.Location.X * 11;
+        if (E1.Location.X < E2.Location.X)
+            Location.X = E2.Location.X * 11;
+        return Location;
+    };
+    LevelGenerator.ConnectMegaChunk = function (MC, L) {
+        for (var i = 0; i < L.Entries.length; i++) {
+            for (var j = 0; j < L.Entries[i].Connections.length; j++) {
+                if (L.Entries[i].ConnectionsSide[j] == 1) {
+                    ChunkGenerator_1.ChunkGenerator.ConnectParts(MC, LevelGenerator.CalculateLocation(L.Entries[i], L.Entries[i].Connections[j]), "vertical", 10);
+                }
+                else if (L.Entries[i].ConnectionsSide[j] == 2) {
+                    ChunkGenerator_1.ChunkGenerator.ConnectParts(MC, LevelGenerator.CalculateLocation(L.Entries[i], L.Entries[i].Connections[j]), "horizontal", 10);
+                }
+            }
+        }
+    };
+    LevelGenerator.GenerateLayout = function (Dimensions, LayoutClasses) {
+        var L = new Layout(Dimensions, -1);
+        // For each element of each class
+        for (var i = 0; i < LayoutClasses.length; i++) {
+            for (var j = 0; j < LayoutClasses[i].Number; j++) {
+                // Going through Layout Matrix
+                var Available = [];
+                for (var k = 0; k < Dimensions.Y - LayoutClasses[i].Size + 1; k++) {
+                    for (var l = 0; l < Dimensions.X - LayoutClasses[i].Size + 1; l++) {
+                        // Checking fitting of entry by size
+                        var EntryAvailable = true;
+                        for (var m = 0; m < LayoutClasses[i].Size; m++) {
+                            for (var n = 0; n < LayoutClasses[i].Size; n++) {
+                                if (L.Data[k + m][l + n] != -1) {
+                                    EntryAvailable = false;
+                                    break;
+                                }
+                            }
+                            if (!EntryAvailable)
+                                break;
+                        }
+                        if (EntryAvailable)
+                            Available.push(new LayoutEntry(LayoutClasses[i].Size, new Engineer_1.default.Math.Vertex(l, k, 0)));
+                    }
+                }
+                if (Available.length > 0) {
+                    var Chosen = Math.floor((Math.random() * Available.length));
+                    if (Chosen == Available.length)
+                        Chosen = Available.length - 1;
+                    L.Entries.push(Available[Chosen]);
+                    for (var m = 0; m < LayoutClasses[i].Size; m++) {
+                        for (var n = 0; n < LayoutClasses[i].Size; n++) {
+                            L.Data[Available[Chosen].Location.Y + m][Available[Chosen].Location.X + n] = LayoutClasses[i].Size;
+                        }
+                    }
+                }
+                else
+                    break;
+            }
+        }
+        LevelGenerator.FindConnections(L);
+        return L;
+    };
+    LevelGenerator.FindConnections = function (L) {
+        for (var i = 0; i < L.Entries.length; i++) {
+            for (var j = 0; j < L.Entries.length; j++) {
+                var Con = LevelGenerator.CheckConnection(L.Entries[i], L.Entries[j]);
+                if (Con != -1) {
+                    if (L.Entries[i].Connections.indexOf(L.Entries[j]) == -1 && L.Entries[j].Connections.indexOf(L.Entries[i]) == -1) {
+                        L.Entries[i].Connections.push(L.Entries[j]);
+                        L.Entries[i].ConnectionsSide.push(Con);
+                    }
+                }
+            }
+        }
+        LevelGenerator.CullConnections(L.Entries[0], [L.Entries[0]]);
+    };
+    LevelGenerator.CullConnections = function (E, F) {
+        for (var i = E.Connections.length - 1; i >= 0; i--) {
+            if (F.indexOf(E.Connections[i]) != -1) {
+                E.Connections.splice(i, 1);
+                E.ConnectionsSide.splice(i, 1);
+            }
+            else {
+                F.push(E.Connections[i]);
+                LevelGenerator.CullConnections(E.Connections[i], F);
+            }
+        }
+    };
+    LevelGenerator.CheckConnection = function (E1, E2) {
+        if (E1 == E2)
+            return -1;
+        var Connected = -1;
+        if (E2.Size > E1.Size) {
+            var E = E1;
+            E1 = E2;
+            E2 = E;
+        }
+        if (E1.Location.X == E2.Location.X + E2.Size) {
+            if (E2.Location.Y >= E1.Location.Y && E2.Location.Y < E1.Location.Y + E1.Size)
+                Connected = 1;
+            if (E2.Location.Y + E2.Size >= E1.Location.Y && E2.Location.Y + E2.Size < E1.Location.Y + E1.Size)
+                Connected = 1;
+        }
+        if (E1.Location.X + E1.Size == E2.Location.X) {
+            if (E2.Location.Y >= E1.Location.Y && E2.Location.Y < E1.Location.Y + E1.Size)
+                Connected = 1;
+            if (E2.Location.Y + E2.Size >= E1.Location.Y && E2.Location.Y + E2.Size < E1.Location.Y + E1.Size)
+                Connected = 1;
+        }
+        if (E1.Location.Y == E2.Location.Y + E2.Size) {
+            if (E2.Location.X >= E1.Location.X && E2.Location.X < E1.Location.X + E1.Size)
+                Connected = 2;
+            if (E2.Location.X + E2.Size >= E1.Location.X && E2.Location.X + E2.Size < E1.Location.X + E1.Size)
+                Connected = 2;
+        }
+        if (E1.Location.Y + E1.Size == E2.Location.Y) {
+            if (E2.Location.X >= E1.Location.X && E2.Location.X < E1.Location.X + E1.Size)
+                Connected = 2;
+            if (E2.Location.X + E2.Size >= E1.Location.X && E2.Location.X + E2.Size < E1.Location.X + E1.Size)
+                Connected = 2;
+        }
+        return Connected;
     };
     LevelGenerator.GenerateTile = function (Scene, Location, Tileset, Index, Color) {
         var NewTile = new Engineer_1.default.Engine.Tile();
@@ -49895,20 +50395,77 @@ var LevelGenerator = /** @class */ (function () {
         NewTile.Trans.Translation = new Engineer_1.default.Math.Vertex(LevelGenerator._FieldSize * Location.X, LevelGenerator._FieldSize * Location.Y, 0);
         Scene.AddSceneObject(NewTile);
     };
-    LevelGenerator._FieldSize = 50;
+    LevelGenerator._FieldSize = 80;
     return LevelGenerator;
 }());
 exports.LevelGenerator = LevelGenerator;
 var LevelTileset = /** @class */ (function () {
     function LevelTileset() {
-        this.Floor = new Engineer_1.default.Engine.TileCollection(null, ["/build/resources/ground.png"]);
-        this.WallUpper = new Engineer_1.default.Engine.TileCollection(null, ["/build/resources/wallUp.png"]);
-        this.WallLower = new Engineer_1.default.Engine.TileCollection(null, ["/build/resources/wallDown.png"]);
-        this.Ceiling = new Engineer_1.default.Engine.TileCollection(null, ["/build/resources/ceiling.png"]);
+        var FloorImages = [];
+        for (var i = 1; i < 16; i++) {
+            var s = i.toString();
+            if (i < 10)
+                s = "0" + i;
+            FloorImages.push("/build/resources/ruin/g" + s + ".png");
+        }
+        console.log(FloorImages);
+        this.Floor = new Engineer_1.default.Engine.TileCollection(null, FloorImages);
+        this.WallUpper = new Engineer_1.default.Engine.TileCollection(null, ["/build/resources/ruin/wu01.png"]);
+        this.WallLower = new Engineer_1.default.Engine.TileCollection(null, ["/build/resources/ruin/wd01.png"]);
+        this.Ceiling = new Engineer_1.default.Engine.TileCollection(null, ["/build/resources/ruin/cm01.png"]);
+        this.CeilingHorizontal = new Engineer_1.default.Engine.TileCollection(null, ["/build/resources/ruin/ch01.png"]);
+        this.CeilingVertical = new Engineer_1.default.Engine.TileCollection(null, ["/build/resources/ruin/cv01.png"]);
     }
     return LevelTileset;
 }());
 exports.LevelTileset = LevelTileset;
+var Layout = /** @class */ (function () {
+    function Layout(Dimensions, Value) {
+        this.Dimensions = Dimensions;
+        this.Data = [];
+        for (var i = 0; i < Dimensions.Y; i++) {
+            this.Data.push([]);
+            for (var j = 0; j < Dimensions.X; j++) {
+                this.Data[i].push(Value);
+            }
+        }
+        this.Entries = [];
+    }
+    Layout.prototype.Print = function () {
+        console.log("- - -");
+        for (var i = 0; i < this.Dimensions.Y; i++) {
+            var Line = i.toString();
+            if (Line.length < 2)
+                Line = "0" + i;
+            Line += ": ";
+            for (var j = 0; j < this.Dimensions.X; j++) {
+                if (this.Data[i][j] == -1)
+                    Line += "X, ";
+                else
+                    Line += this.Data[i][j] + ", ";
+            }
+            console.log(Line);
+        }
+        console.log("- - -");
+    };
+    return Layout;
+}());
+var LayoutEntry = /** @class */ (function () {
+    function LayoutEntry(Size, Location) {
+        this.Size = Size;
+        this.Location = Location;
+        this.Connections = [];
+        this.ConnectionsSide = [];
+    }
+    return LayoutEntry;
+}());
+var LayoutClass = /** @class */ (function () {
+    function LayoutClass(Size, Number) {
+        this.Size = Size;
+        this.Number = Number;
+    }
+    return LayoutClass;
+}());
 
 
 /***/ }),
@@ -49923,11 +50480,27 @@ var ChunkGenerator = /** @class */ (function () {
     }
     ChunkGenerator.Generate = function (Type, Dimensions) {
         var NewChunk = new Chunk(Dimensions, 1);
-        if (Type == 0)
+        if (Type == 3)
             ChunkGenerator.GenerateType0(NewChunk);
-        if (Type == 1)
+        if (Type == 2)
             ChunkGenerator.GenerateType1(NewChunk);
+        if (Type == 1)
+            ChunkGenerator.GenerateType2(NewChunk);
+        if (Type == 0)
+            ChunkGenerator.GenerateType3(NewChunk);
         ChunkGenerator.FakeIsometric(NewChunk);
+        return NewChunk;
+    };
+    ChunkGenerator.GenerateWOFake = function (Type, Dimensions) {
+        var NewChunk = new Chunk(Dimensions, 1);
+        if (Type == 3)
+            ChunkGenerator.GenerateType0(NewChunk);
+        if (Type == 2)
+            ChunkGenerator.GenerateType1(NewChunk);
+        if (Type == 1)
+            ChunkGenerator.GenerateType2(NewChunk);
+        if (Type == 0)
+            ChunkGenerator.GenerateType3(NewChunk);
         return NewChunk;
     };
     ChunkGenerator.GenerateType0 = function (NewChunk) {
@@ -49941,6 +50514,33 @@ var ChunkGenerator = /** @class */ (function () {
             NewChunk.Fields[NewChunk.Dimensions.Y - 1][i] = 4;
     };
     ChunkGenerator.GenerateType1 = function (NewChunk) {
+        for (var i = 0; i < NewChunk.Dimensions.Y; i++)
+            NewChunk.Fields[i][0] = 4;
+        for (var i = 0; i < NewChunk.Dimensions.Y; i++)
+            NewChunk.Fields[i][NewChunk.Dimensions.X - 1] = 4;
+        for (var i = 0; i < NewChunk.Dimensions.X; i++)
+            NewChunk.Fields[0][i] = 4;
+        for (var i = 0; i < NewChunk.Dimensions.X; i++)
+            NewChunk.Fields[NewChunk.Dimensions.Y - 1][i] = 4;
+        var Half = Math.ceil(NewChunk.Dimensions.X / 2);
+        console.log(NewChunk);
+        console.log("Half " + Half);
+        if (NewChunk.Dimensions.X > 10) {
+            var Radius = 2 + Math.floor(NewChunk.Dimensions.X / 10);
+            for (var i = Half - Radius; i < Half + Radius; i++) {
+                for (var j = Half - Radius; j < Half + Radius; j++) {
+                    NewChunk.Fields[i][j] = 0;
+                }
+            }
+            for (var i = Half - Radius; i <= Half + Radius; i++) {
+                NewChunk.Fields[i][Half - Radius] = 4;
+                NewChunk.Fields[Half - Radius][i] = 4;
+                NewChunk.Fields[i][Half + Radius] = 4;
+                NewChunk.Fields[Half + Radius][i] = 4;
+            }
+        }
+    };
+    ChunkGenerator.GenerateType2 = function (NewChunk) {
         NewChunk.Fields[0][0] = 0;
         NewChunk.Fields[0][NewChunk.Dimensions.X - 1] = 0;
         NewChunk.Fields[NewChunk.Dimensions.Y - 1][NewChunk.Dimensions.X - 1] = 0;
@@ -49958,36 +50558,69 @@ var ChunkGenerator = /** @class */ (function () {
         NewChunk.Fields[NewChunk.Dimensions.Y - 2][NewChunk.Dimensions.X - 2] = 4;
         NewChunk.Fields[NewChunk.Dimensions.Y - 2][1] = 4;
     };
-    ChunkGenerator.FakeIsometric = function (NewChunk) {
-        for (var i = 0; i < NewChunk.Dimensions.Y - 1; i++) {
-            var ToFake = false;
-            for (var j = 0; j < NewChunk.Dimensions.X; j++) {
-                if (NewChunk.Fields[i][j] == 4 && NewChunk.Fields[i + 1][j] == 1)
-                    ToFake = true;
-            }
-            if (ToFake) {
-                NewChunk.Fields.splice(i + 1, 0, []);
-                NewChunk.Fields.splice(i + 1, 0, []);
-                for (var j = 0; j < NewChunk.Dimensions.X; j++) {
-                    if (NewChunk.Fields[i][j] == 4 && NewChunk.Fields[i + 3][j] == 1) {
-                        NewChunk.Fields[i + 1].push(3);
-                        NewChunk.Fields[i + 2].push(2);
-                    }
-                    else if (NewChunk.Fields[i][j] == 4 && NewChunk.Fields[i + 3][j] == 4) {
-                        NewChunk.Fields[i + 1].push(4);
-                        NewChunk.Fields[i + 2].push(4);
-                    }
-                    else if (NewChunk.Fields[i][j] != 0) {
-                        NewChunk.Fields[i + 1].push(1);
-                        NewChunk.Fields[i + 2].push(1);
-                    }
-                    else {
-                        NewChunk.Fields[i + 1].push(0);
-                        NewChunk.Fields[i + 2].push(0);
+    ChunkGenerator.GenerateType3 = function (NewChunk) {
+        NewChunk.Fields[0][0] = 0;
+        NewChunk.Fields[0][NewChunk.Dimensions.X - 1] = 0;
+        NewChunk.Fields[NewChunk.Dimensions.Y - 1][NewChunk.Dimensions.X - 1] = 0;
+        NewChunk.Fields[NewChunk.Dimensions.Y - 1][0] = 0;
+        for (var i = 1; i < NewChunk.Dimensions.Y - 1; i++)
+            NewChunk.Fields[i][0] = 4;
+        for (var i = 1; i < NewChunk.Dimensions.Y - 1; i++)
+            NewChunk.Fields[i][NewChunk.Dimensions.X - 1] = 4;
+        for (var i = 1; i < NewChunk.Dimensions.X - 1; i++)
+            NewChunk.Fields[0][i] = 4;
+        for (var i = 1; i < NewChunk.Dimensions.X - 1; i++)
+            NewChunk.Fields[NewChunk.Dimensions.Y - 1][i] = 4;
+        NewChunk.Fields[1][1] = 4;
+        NewChunk.Fields[1][NewChunk.Dimensions.X - 2] = 4;
+        NewChunk.Fields[NewChunk.Dimensions.Y - 2][NewChunk.Dimensions.X - 2] = 4;
+        NewChunk.Fields[NewChunk.Dimensions.Y - 2][1] = 4;
+        for (var i = 6; i < NewChunk.Dimensions.Y - 6; i += 6) {
+            for (var j = 5; j < NewChunk.Dimensions.X - 5; j += 5) {
+                for (var k = 0; k < 2; k++) {
+                    for (var l = 0; l < 2; l++) {
+                        NewChunk.Fields[i + k][j + l] = 4;
                     }
                 }
-                NewChunk.Dimensions.Y += 2;
-                i += 2;
+            }
+        }
+    };
+    ChunkGenerator.FakeIsometric = function (NewChunk) {
+        for (var i = 0; i < NewChunk.Dimensions.Y - 1; i++) {
+            for (var j = 0; j < NewChunk.Dimensions.X; j++) {
+                if (NewChunk.Fields[i][j] == 4 && NewChunk.Fields[i + 1][j] < 2) {
+                    NewChunk.Fields[i + 1][j] = 3;
+                    if (i < NewChunk.Dimensions.Y - 2 && NewChunk.Fields[i + 2][j] < 2)
+                        NewChunk.Fields[i + 2][j] = 2;
+                }
+            }
+        }
+    };
+    ChunkGenerator.Insert = function (Target, Insertion, Location) {
+        for (var i = 0; i < Insertion.Dimensions.Y; i++) {
+            for (var j = 0; j < Insertion.Dimensions.X; j++) {
+                Target.Fields[Location.Y + i][Location.X + j] = Insertion.Fields[i][j];
+            }
+        }
+    };
+    ChunkGenerator.ConnectParts = function (C, Location, Type, Length) {
+        var X = Location.X;
+        var Y = Location.Y;
+        var InnerLength = Length / 2;
+        if (Type == "horizontal") {
+            var X2 = X + Length / 2;
+            var Pattern = [4, 1, 1, 1, 1, 4];
+            for (var i = X2 - 3; i <= X2 + 2; i++) {
+                for (var j = Y - 2; j <= Y; j++)
+                    C.Fields[j][i] = Pattern[i - X2 + 3];
+            }
+        }
+        if (Type == "vertical") {
+            var Y2 = Y + Length / 2;
+            var Pattern = [4, 1, 1, 1, 1, 1, 4];
+            for (var i = Y2 - 3; i <= Y2 + 3; i++) {
+                for (var j = X - 2; j <= X; j++)
+                    C.Fields[i][j] = Pattern[i - Y2 + 3];
             }
         }
     };
@@ -50004,7 +50637,6 @@ var Chunk = /** @class */ (function () {
                 this.Fields[i].push(Value);
             }
         }
-        console.log(this.Fields);
     }
     return Chunk;
 }());
@@ -50013,6 +50645,111 @@ exports.Chunk = Chunk;
 
 /***/ }),
 /* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Engineer_1 = __webpack_require__(0);
+var ColliderGenerator = /** @class */ (function () {
+    function ColliderGenerator() {
+    }
+    ColliderGenerator.Generate = function (Scene, LevelData) {
+        var ColliderCollection = [];
+        for (var i = 0; i < LevelData.Width; i++) {
+            for (var j = 0; j < LevelData.Height; j++) {
+                if (LevelData.Collision[i * LevelData.Width + j] == 0)
+                    ColliderGenerator.GenerateCollider(Scene, ColliderCollection, LevelData.Collision, i, j, LevelData.Height, LevelData.Width);
+            }
+        }
+        for (var i = 0; i < ColliderCollection.length; i++) {
+            ColliderGenerator.GenerateColliderTile(Scene, ColliderCollection[i].Location.Y, ColliderCollection[i].Location.X, ColliderCollection[i].Size.Y, ColliderCollection[i].Size.X);
+        }
+    };
+    ColliderGenerator.GenerateColliderTile = function (Scene, X, Y, XSize, YSize) {
+        var NewTile = new Engineer_1.default.Engine.Tile();
+        NewTile.Data["Solid"] = true;
+        NewTile.Data["Collision"] = Engineer_1.default.Math.CollisionType.Rectangular2D;
+        NewTile.Trans.Translation = new Engineer_1.default.Math.Vertex(X * ColliderGenerator.FieldSize, Y * ColliderGenerator.FieldSize, 0);
+        NewTile.Trans.Scale = new Engineer_1.default.Math.Vertex(XSize * ColliderGenerator.FieldSize, YSize * ColliderGenerator.FieldSize, 1);
+        NewTile.Active = false;
+        //NewTile.Paint = Engineer.Math.Color.FromRGBA(255,0,0,255);
+        Scene.AddSceneObject(NewTile);
+    };
+    ColliderGenerator.GenerateCollider = function (Scene, ColliderColleciton, Collider, X, Y, Width, Height) {
+        var Element = new CollisionElement();
+        Element.Location.X = X;
+        Element.Location.Y = Y;
+        Element.Size.X = 1;
+        Element.Size.Y = 1;
+        for (var i = X - 1; i >= 0; i--) {
+            if (Collider[i * Width + Y] == 0) {
+                Element.Location.X = i;
+                Element.Size.X++;
+            }
+            else
+                break;
+        }
+        for (var i = X + 1; i < Width; i++) {
+            if (Collider[i * Width + Y] == 0) {
+                Element.Size.X++;
+            }
+            else
+                break;
+        }
+        for (var i = Y - 1; i >= 0; i--) {
+            var Viable = true;
+            for (var j = Element.Location.X; j < Element.Location.X + Element.Size.X; j++) {
+                if (Collider[j * Width + i] >= 1) {
+                    Viable = false;
+                }
+            }
+            if (Viable) {
+                Element.Location.Y = i;
+                Element.Size.Y++;
+            }
+            else
+                break;
+        }
+        for (var i = Y + 1; i < Height; i++) {
+            var Viable = true;
+            for (var j = Element.Location.X; j < Element.Location.X + Element.Size.X; j++) {
+                if (Collider[j * Width + i] >= 1) {
+                    Viable = false;
+                }
+            }
+            if (Viable) {
+                Element.Size.Y++;
+            }
+            else
+                break;
+        }
+        var New = true;
+        for (var i = 0; i < ColliderColleciton.length; i++) {
+            if (ColliderColleciton[i].Location.X == Element.Location.X &&
+                ColliderColleciton[i].Location.Y == Element.Location.Y &&
+                ColliderColleciton[i].Size.X == Element.Size.X &&
+                ColliderColleciton[i].Size.Y == Element.Size.Y)
+                New = false;
+        }
+        if (New)
+            ColliderColleciton.push(Element);
+    };
+    ColliderGenerator.FieldSize = 80;
+    return ColliderGenerator;
+}());
+exports.ColliderGenerator = ColliderGenerator;
+var CollisionElement = /** @class */ (function () {
+    function CollisionElement() {
+        this.Location = new Engineer_1.default.Math.Vertex(0, 0, 0);
+        this.Size = new Engineer_1.default.Math.Vertex(0, 0, 0);
+    }
+    return CollisionElement;
+}());
+
+
+/***/ }),
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50028,33 +50765,632 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Engineer_1 = __webpack_require__(7);
-var Character = /** @class */ (function (_super) {
-    __extends(Character, _super);
-    function Character(Scene) {
+var Engineer_1 = __webpack_require__(0);
+var HealthBar = /** @class */ (function (_super) {
+    __extends(HealthBar, _super);
+    function HealthBar(Scene) {
         var _this = _super.call(this) || this;
-        _this.Name = "Character";
+        _this.Name = "HealthBar";
         _this._Scene = Scene;
-        _this.Trans.Scale = new Engineer_1.default.Math.Vertex(100, 150, 0);
-        _this.Trans.Translation = new Engineer_1.default.Math.Vertex(400, 400, 0);
-        _this.SpriteSets = [new Engineer_1.default.Engine.SpriteSet(null, "WalkN"), new Engineer_1.default.Engine.SpriteSet(null, "WalkE"), new Engineer_1.default.Engine.SpriteSet(null, "WalkS"), new Engineer_1.default.Engine.SpriteSet(null, "WalkW")];
+        _this.Fixed = true;
+        _this._MaxHealth = 100;
+        _this._Health = _this._MaxHealth;
+        _this.Trans.Scale = new Engineer_1.default.Math.Vertex(_this._MaxHealth, 100, 0);
+        _this.Trans.Translation = new Engineer_1.default.Math.Vertex(192, 216, 1);
+        _this.SpriteSets = [new Engineer_1.default.Engine.SpriteSet(null, "HealthBar")];
+        _this.SpriteSets[0].Sprites = ["/build/resources/HealthBar.png"];
+        _this._Scene.AddSceneObject(_this);
+        return _this;
+    }
+    HealthBar.prototype.Damage = function (hitValue) {
+        this._Health -= hitValue;
+        if (this._Health - hitValue >= 0) {
+            this.Trans.Scale = new Engineer_1.default.Math.Vertex(this.Trans.Scale.X - hitValue, this.Trans.Scale.Y, 0);
+        }
+        else {
+            this.Trans.Scale = new Engineer_1.default.Math.Vertex(1, 100, 0);
+        }
+    };
+    HealthBar.prototype.Heal = function (healValue) {
+        this._Health += healValue;
+        if (this._Health + healValue <= this._MaxHealth) {
+            this.Trans.Scale = new Engineer_1.default.Math.Vertex(this.Trans.Scale.X + healValue, this.Trans.Scale.Y, 0);
+        }
+        else {
+            this.Trans.Scale = new Engineer_1.default.Math.Vertex(this._MaxHealth, 100, 0);
+        }
+    };
+    return HealthBar;
+}(Engineer_1.default.Engine.Sprite));
+exports.HealthBar = HealthBar;
+
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var Engineer_1 = __webpack_require__(0);
+var Weapon = /** @class */ (function (_super) {
+    __extends(Weapon, _super);
+    function Weapon(Scene, WP) {
+        var _this = _super.call(this) || this;
+        _this.Name = "Weapon";
+        _this._Damage = 20;
+        _this._Scene = Scene;
+        _this._Durability = 100;
+        _this._WeaponType = WP;
+        return _this;
+    }
+    Object.defineProperty(Weapon.prototype, "Damage", {
+        get: function () { return this._Damage; },
+        enumerable: true,
+        configurable: true
+    });
+    return Weapon;
+}(Engineer_1.default.Engine.Sprite));
+exports.Weapon = Weapon;
+
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var Engineer_1 = __webpack_require__(0);
+var Skeleton = /** @class */ (function (_super) {
+    __extends(Skeleton, _super);
+    function Skeleton(Scene) {
+        var _this = _super.call(this) || this;
+        _this.moveSpeed = 10;
+        _this.moveArea = 500;
+        _this.followArea = 300;
+        _this._MaxHealth = 100;
+        _this._Health = _this._MaxHealth;
+        _this._Damage = 25;
+        _this.Name = "Skeleton";
+        _this._Scene = Scene;
+        _this._Player_Collider = _this._Scene.Data["Character_Collider"];
+        _this._Player = _this._Scene.Data["Character"];
+        _this.counter = 0;
+        _this.rng_counter = 0;
+        _this.s_direction = Math.round(3 * Math.random());
+        _this.moving = true;
+        _this.following = false;
+        _this.Trans.Scale = new Engineer_1.default.Math.Vertex(100, 150, 1);
+        _this.Trans.Translation = new Engineer_1.default.Math.Vertex(400, 400, 0.5);
+        _this.SpriteSets = [new Engineer_1.default.Engine.SpriteSet(null, "S_WalkN"), new Engineer_1.default.Engine.SpriteSet(null, "S_WalkE"), new Engineer_1.default.Engine.SpriteSet(null, "S_WalkS"), new Engineer_1.default.Engine.SpriteSet(null, "S_WalkW"), new Engineer_1.default.Engine.SpriteSet(null, "S_AttN"), new Engineer_1.default.Engine.SpriteSet(null, "S_AttE"), new Engineer_1.default.Engine.SpriteSet(null, "S_AttS"), new Engineer_1.default.Engine.SpriteSet(null, "S_AttW")];
         Engineer_1.default.Util.Log.Print(_this.SpriteSets);
-        _this.SpriteSets[0].Sprites = ["/build/resources/wizard00.png", "/build/resources/wizard01.png", "/build/resources/wizard03.png"];
-        _this.SpriteSets[1].Sprites = ["/build/resources/wizard03.png", "/build/resources/wizard04.png", "/build/resources/wizard05.png"];
-        _this.SpriteSets[2].Sprites = ["/build/resources/wizard06.png", "/build/resources/wizard07.png", "/build/resources/wizard08.png"];
-        _this.SpriteSets[3].Sprites = ["/build/resources/wizard09.png", "/build/resources/wizard10.png", "/build/resources/wizard11.png"];
+        _this.SpriteSets[0].Sprites = ["/build/resources/skeleton/E_up00.png", "/build/resources/skeleton/E_up01.png", "/build/resources/skeleton/E_up02.png", "/build/resources/skeleton/E_up03.png", "/build/resources/skeleton/E_up04.png", "/build/resources/skeleton/E_up05.png", "/build/resources/skeleton/E_up06.png", "/build/resources/skeleton/E_up07.png", "/build/resources/skeleton/E_up08.png"];
+        _this.SpriteSets[1].Sprites = ["/build/resources/skeleton/E_rgt00.png", "/build/resources/skeleton/E_rgt01.png", "/build/resources/skeleton/E_rgt02.png", "/build/resources/skeleton/E_rgt03.png", "/build/resources/skeleton/E_rgt04.png", "/build/resources/skeleton/E_rgt05.png", "/build/resources/skeleton/E_rgt06.png", "/build/resources/skeleton/E_rgt07.png", "/build/resources/skeleton/E_rgt08.png"];
+        _this.SpriteSets[2].Sprites = ["/build/resources/skeleton/E_dwn00.png", "/build/resources/skeleton/E_dwn01.png", "/build/resources/skeleton/E_dwn02.png", "/build/resources/skeleton/E_dwn03.png", "/build/resources/skeleton/E_dwn04.png", "/build/resources/skeleton/E_dwn05.png", "/build/resources/skeleton/E_dwn06.png", "/build/resources/skeleton/E_dwn07.png", "/build/resources/skeleton/E_dwn08.png"];
+        _this.SpriteSets[3].Sprites = ["/build/resources/skeleton/E_lft00.png", "/build/resources/skeleton/E_lft01.png", "/build/resources/skeleton/E_lft02.png", "/build/resources/skeleton/E_lft03.png", "/build/resources/skeleton/E_lft04.png", "/build/resources/skeleton/E_lft05.png", "/build/resources/skeleton/E_lft06.png", "/build/resources/skeleton/E_lft07.png", "/build/resources/skeleton/E_lft08.png"];
+        _this.SpriteSets[4].Sprites = ["/build/resources/skeleton/S_slash_up00.png", "/build/resources/skeleton/S_slash_up01.png", "/build/resources/skeleton/S_slash_up02.png", "/build/resources/skeleton/S_slash_up03.png", "/build/resources/skeleton/S_slash_up04.png", "/build/resources/skeleton/S_slash_up05.png"];
+        _this.SpriteSets[5].Sprites = ["/build/resources/skeleton/S_slash_rgt00.png", "/build/resources/skeleton/S_slash_rgt01.png", "/build/resources/skeleton/S_slash_rgt02.png", "/build/resources/skeleton/S_slash_rgt03.png", "/build/resources/skeleton/S_slash_rgt04.png", "/build/resources/skeleton/S_slash_rgt05.png"];
+        _this.SpriteSets[6].Sprites = ["/build/resources/skeleton/S_slash_btm00.png", "/build/resources/skeleton/S_slash_btm01.png", "/build/resources/skeleton/S_slash_btm02.png", "/build/resources/skeleton/S_slash_btm03.png", "/build/resources/skeleton/S_slash_btm04.png", "/build/resources/skeleton/S_slash_btm05.png"];
+        _this.SpriteSets[7].Sprites = ["/build/resources/skeleton/S_slash_lft00.png", "/build/resources/skeleton/S_slash_lft01.png", "/build/resources/skeleton/S_slash_lft02.png", "/build/resources/skeleton/S_slash_lft03.png", "/build/resources/skeleton/S_slash_lft04.png", "/build/resources/skeleton/S_slash_lft05.png"];
         _this.SpriteSets[0].Seed = 25;
         _this.SpriteSets[1].Seed = 25;
         _this.SpriteSets[2].Seed = 25;
         _this.SpriteSets[3].Seed = 25;
-        _this.Data["Character"] = true;
-        _this.Data["Collision"] = Engineer_1.default.Math.CollisionType.Rectangular2D;
+        _this.SpriteSets[4].Seed = 15;
+        _this.SpriteSets[5].Seed = 15;
+        _this.SpriteSets[6].Seed = 15;
+        _this.SpriteSets[7].Seed = 15;
+        _this.pos_x = _this.Trans.Translation.X;
+        _this.pos_y = _this.Trans.Translation.Y;
+        _this.Data["Enemy"] = true;
+        _this.Data["Collision"] = Engineer_1.default.Math.CollisionType.Radius2D;
+        _this._SolidColliders = _this._Scene.GetObjectsWithData("Solid", true);
+        _this._Scene.Events.TimeTick.push(_this.movement.bind(_this));
+        _this._Scene.Events.TimeTick.push(_this.attack.bind(_this));
+        _this._Scene.Events.TimeTick.push(_this.follow.bind(_this));
+        _this.Events.SpriteSetAnimationComplete.push(_this.doDamage.bind(_this));
         _this._Scene.AddSceneObject(_this);
         return _this;
     }
-    return Character;
+    Object.defineProperty(Skeleton.prototype, "Health", {
+        get: function () { return this._Health; },
+        set: function (dmg) { this._Health = dmg; },
+        enumerable: true,
+        configurable: true
+    });
+    Skeleton.prototype.movement = function () {
+        if (this.moving && !this.following) {
+            if (this.counter >= 15) {
+                this.counter = 0;
+                if (this.rng_counter >= 5) {
+                    this.s_direction = Math.round(3 * Math.random());
+                    this.rng_counter = 0;
+                }
+                Engineer_1.default.Util.Collision.CalculateObjectCollisions("Solid", this, this._SolidColliders);
+                switch (this.s_direction) {
+                    case 0:
+                        if (this.Trans.Translation.Y > this.pos_y - this.moveArea) {
+                            if (!this.Data["Collision_Solid"].Top) {
+                                this.Trans.Translation = new Engineer_1.default.Math.Vertex(this.Trans.Translation.X, this.Trans.Translation.Y - this.moveSpeed, 0.5);
+                                this.UpdateSpriteSet(0);
+                                this.rng_counter++;
+                            }
+                            else {
+                                this.rng_counter = 5;
+                            }
+                        }
+                        else {
+                            this.rng_counter = 5;
+                        }
+                        break;
+                    case 1:
+                        if (this.Trans.Translation.X < this.pos_x + this.moveArea) {
+                            if (!this.Data["Collision_Solid"].Right) {
+                                this.Trans.Translation = new Engineer_1.default.Math.Vertex(this.Trans.Translation.X + this.moveSpeed, this.Trans.Translation.Y, 0.5);
+                                this.UpdateSpriteSet(1);
+                                this.rng_counter++;
+                            }
+                            else {
+                                this.rng_counter = 5;
+                            }
+                        }
+                        else {
+                            this.rng_counter = 5;
+                        }
+                        break;
+                    case 2:
+                        if (this.Trans.Translation.Y < this.pos_y + this.moveArea) {
+                            if (!this.Data["Collision_Solid"].Bottom) {
+                                this.Trans.Translation = new Engineer_1.default.Math.Vertex(this.Trans.Translation.X, this.Trans.Translation.Y + this.moveSpeed, 0.5);
+                                this.UpdateSpriteSet(2);
+                                this.rng_counter++;
+                            }
+                            else {
+                                this.rng_counter = 5;
+                            }
+                        }
+                        else {
+                            this.rng_counter = 5;
+                        }
+                        break;
+                    case 3:
+                        if (this.Trans.Translation.X > this.pos_x - this.moveArea) {
+                            if (!this.Data["Collision_Solid"].Left) {
+                                this.Trans.Translation = new Engineer_1.default.Math.Vertex(this.Trans.Translation.X - this.moveSpeed, this.Trans.Translation.Y, 0.5);
+                                this.UpdateSpriteSet(3);
+                                this.rng_counter++;
+                            }
+                            else {
+                                this.rng_counter = 5;
+                            }
+                        }
+                        else {
+                            this.rng_counter = 5;
+                        }
+                        break;
+                }
+            }
+            else
+                this.counter++;
+        }
+    };
+    Skeleton.prototype.doDamage = function (G, Args) {
+        if (Args.CurrentSpriteSet == 4 || Args.CurrentSpriteSet == 5 || Args.CurrentSpriteSet == 6 || Args.CurrentSpriteSet == 7) {
+            this._Player.HealthBar.Damage(this._Damage);
+        }
+    };
+    Skeleton.prototype.attack = function () {
+        if (Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) < this._Player_Collider.Trans.Scale.X && Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) < this._Player_Collider.Trans.Scale.Y) {
+            this.moving = false;
+            this.following = false;
+            this.UpdateSpriteSet(4 + this.checkMove());
+        }
+        else {
+            this.following = true;
+            this.moving = false;
+        }
+    };
+    Skeleton.prototype.checkMove = function () {
+        if (this._Player_Collider.Trans.Translation.X - this.Trans.Translation.X >= 0 && this._Player_Collider.Trans.Translation.Y - this.Trans.Translation.Y <= 0) {
+            return 0;
+        }
+        if (this._Player_Collider.Trans.Translation.X - this.Trans.Translation.X >= 0 && this._Player_Collider.Trans.Translation.Y - this.Trans.Translation.Y >= 0) {
+            return 1;
+        }
+        if (this._Player_Collider.Trans.Translation.X - this.Trans.Translation.X <= 0 && this._Player_Collider.Trans.Translation.Y - this.Trans.Translation.Y >= 0) {
+            return 2;
+        }
+        if (this._Player_Collider.Trans.Translation.X - this.Trans.Translation.X <= 0 && this._Player_Collider.Trans.Translation.Y - this.Trans.Translation.Y <= 0) {
+            return 3;
+        }
+    };
+    Skeleton.prototype.follow = function () {
+        if (Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) < this.followArea) {
+            this.following = true;
+            this.moving = false;
+            if (this.counter >= 15) {
+                this.counter = 0;
+                Engineer_1.default.Util.Collision.CalculateObjectCollisions("Solid", this, this._SolidColliders);
+                if (this.checkMove() == 0) {
+                    if (Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) > this._Player_Collider.Trans.Scale.X * 2 / 5 && Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) > this._Player_Collider.Trans.Scale.Y * 2 / 3) {
+                        if (!this.Data["Collision_Solid"].Top) {
+                            this.Trans.Translation = new Engineer_1.default.Math.Vertex(this.Trans.Translation.X + this.moveSpeed, this.Trans.Translation.Y - this.moveSpeed, 0.5);
+                            this.s_direction = 0;
+                            this.UpdateSpriteSet(0);
+                        }
+                    }
+                }
+                if (this.checkMove() == 1) {
+                    if (Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) > this._Player_Collider.Trans.Scale.X * 2 / 5 && Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) > this._Player_Collider.Trans.Scale.Y * 2 / 3) {
+                        if (!this.Data["Collision_Solid"].Right) {
+                            this.Trans.Translation = new Engineer_1.default.Math.Vertex(this.Trans.Translation.X + this.moveSpeed, this.Trans.Translation.Y + this.moveSpeed, 0.5);
+                            this.s_direction = 1;
+                            this.UpdateSpriteSet(1);
+                        }
+                    }
+                }
+                if (this.checkMove() == 2) {
+                    if (Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) > this._Player_Collider.Trans.Scale.X * 2 / 5 && Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) > this._Player_Collider.Trans.Scale.Y * 2 / 3) {
+                        if (!this.Data["Collision_Solid"].Bottom) {
+                            this.Trans.Translation = new Engineer_1.default.Math.Vertex(this.Trans.Translation.X - this.moveSpeed, this.Trans.Translation.Y + this.moveSpeed, 0.5);
+                            this.s_direction = 2;
+                            this.UpdateSpriteSet(2);
+                        }
+                    }
+                }
+                if (this.checkMove() == 3) {
+                    if (Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) > this._Player_Collider.Trans.Scale.X * 2 / 5 && Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) > this._Player_Collider.Trans.Scale.Y * 2 / 3) {
+                        if (!this.Data["Collision_Solid"].Left) {
+                            this.Trans.Translation = new Engineer_1.default.Math.Vertex(this.Trans.Translation.X - this.moveSpeed, this.Trans.Translation.Y - this.moveSpeed, 0.5);
+                            this.s_direction = 3;
+                            this.UpdateSpriteSet(3);
+                        }
+                    }
+                }
+            }
+            else
+                this.counter++;
+        }
+        else {
+            this.moving = true;
+            this.following = false;
+        }
+    };
+    return Skeleton;
 }(Engineer_1.default.Engine.Sprite));
-exports.Character = Character;
+exports.Skeleton = Skeleton;
+
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Engineer_1 = __webpack_require__(0);
+var Player_1 = __webpack_require__(12);
+var Mechanics_1 = __webpack_require__(52);
+var Movement = /** @class */ (function () {
+    function Movement(Player, Scene) {
+        this._MoveSpeed = 5;
+        this._Direction = 2;
+        this._Player = Player;
+        this._PlayerKeys = new Player_1.PlayerKeyPress();
+        this._Scene = Scene;
+        this._Mechanics = new Mechanics_1.Mechanics(Player, Scene);
+        this._SolidColliders = this._Scene.GetObjectsWithData("Solid", true);
+        this._EnemyColliders = this._Scene.GetObjectsWithData("Enemy", true);
+        this._Scene.Events.KeyDown.push(this.KeyDown.bind(this));
+        this._Scene.Events.KeyUp.push(this.KeyUp.bind(this));
+        this._Scene.Events.TimeTick.push(this.GameUpdate.bind(this));
+    }
+    Object.defineProperty(Movement.prototype, "Direction", {
+        get: function () { return this._Direction; },
+        enumerable: true,
+        configurable: true
+    });
+    Movement.prototype.KeyDown = function (G, Args) {
+        if (Args.Key == Engineer_1.default.Engine.KeyType.KEY_W)
+            this._PlayerKeys.Up = true;
+        if (Args.Key == Engineer_1.default.Engine.KeyType.KEY_S)
+            this._PlayerKeys.Down = true;
+        if (Args.Key == Engineer_1.default.Engine.KeyType.KEY_A)
+            this._PlayerKeys.Left = true;
+        if (Args.Key == Engineer_1.default.Engine.KeyType.KEY_D)
+            this._PlayerKeys.Right = true;
+    };
+    Movement.prototype.KeyUp = function (G, Args) {
+        if (Args.Key == Engineer_1.default.Engine.KeyType.KEY_W)
+            this._PlayerKeys.Up = false;
+        if (Args.Key == Engineer_1.default.Engine.KeyType.KEY_S)
+            this._PlayerKeys.Down = false;
+        if (Args.Key == Engineer_1.default.Engine.KeyType.KEY_A)
+            this._PlayerKeys.Left = false;
+        if (Args.Key == Engineer_1.default.Engine.KeyType.KEY_D)
+            this._PlayerKeys.Right = false;
+    };
+    Movement.prototype.TryMovement = function (Player, Direction, Movement) {
+        Engineer_1.default.Util.Collision.CalculateObjectCollisions("Solid", Player, this._SolidColliders);
+        Engineer_1.default.Util.Collision.CalculateObjectCollisions("Enemy", Player, this._EnemyColliders);
+        if (!Player.Data["Collision_Solid"][Direction] && !Player.Data["Collision_Enemy"][Direction]) {
+            this._Scene.Trans.Translation = new Engineer_1.default.Math.Vertex(this._Scene.Trans.Translation.X - Movement.X, this._Scene.Trans.Translation.Y - Movement.Y, 0);
+            Player.Trans.Translation = new Engineer_1.default.Math.Vertex(Player.Trans.Translation.X + Movement.X, Player.Trans.Translation.Y + Movement.Y, 0);
+        }
+    };
+    Movement.prototype.GameUpdate = function (G, Args) {
+        if (this._PlayerKeys.Up) {
+            this.TryMovement(this._Player.Collider, "Top", new Engineer_1.default.Math.Vertex(0, -this._MoveSpeed, 0));
+            this._Direction = 0;
+            this._Player.UpdateSpriteSet(0);
+        }
+        if (this._PlayerKeys.Right) {
+            this.TryMovement(this._Player.Collider, "Right", new Engineer_1.default.Math.Vertex(+this._MoveSpeed, 0, 0));
+            this._Direction = 1;
+            this._Player.UpdateSpriteSet(1);
+        }
+        if (this._PlayerKeys.Down) {
+            this.TryMovement(this._Player.Collider, "Bottom", new Engineer_1.default.Math.Vertex(0, +this._MoveSpeed, 0));
+            this._Direction = 2;
+            this._Player.UpdateSpriteSet(2);
+        }
+        if (this._PlayerKeys.Left) {
+            this.TryMovement(this._Player.Collider, "Left", new Engineer_1.default.Math.Vertex(-this._MoveSpeed, 0, 0));
+            this._Direction = 3;
+            this._Player.UpdateSpriteSet(3);
+        }
+    };
+    return Movement;
+}());
+exports.Movement = Movement;
+
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Mechanics = /** @class */ (function () {
+    function Mechanics(Player, Scene) {
+        this._Player = Player;
+        this._Scene = Scene;
+    }
+    return Mechanics;
+}());
+exports.Mechanics = Mechanics;
+
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var Engineer_1 = __webpack_require__(0);
+var Items = /** @class */ (function (_super) {
+    __extends(Items, _super);
+    function Items(Player, Scene) {
+        var _this = _super.call(this) || this;
+        _this.Name = "Item";
+        _this._Scene = Scene;
+        _this._Player = Player;
+        _this.Fixed = false;
+        _this.Trans.Scale = new Engineer_1.default.Math.Vertex(100, 150, 0);
+        _this.Trans.Translation = new Engineer_1.default.Math.Vertex(860, 540, 0);
+        Engineer_1.default.Util.Log.Print(_this.SpriteSets);
+        _this.SpriteSets = [new Engineer_1.default.Engine.SpriteSet(null, "Item")];
+        _this.SpriteSets[0].Sprites = ["/build/resources/item.png"];
+        _this.Data["Item"] = true;
+        _this.Data["Collision"] = Engineer_1.default.Math.CollisionType.Rectangular2D;
+        _this._Scene.Events.TimeTick.push(_this.GameUpdate.bind(_this));
+        _this._Scene.AddSceneObject(_this);
+        return _this;
+    }
+    Object.defineProperty(Items.prototype, "Collider", {
+        get: function () { return this._Collider; },
+        enumerable: true,
+        configurable: true
+    });
+    Items.prototype.GameUpdate = function (G, Args) {
+        if (Engineer_1.default.Util.Collision.Check(this._Player.Collider, this).Collision) {
+            this.Active = false;
+            console.log("PU");
+        }
+    };
+    return Items;
+}(Engineer_1.default.Engine.Sprite));
+exports.Items = Items;
+
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var Engineer_1 = __webpack_require__(0);
+var Window_1 = __webpack_require__(55);
+var Inventory = /** @class */ (function (_super) {
+    __extends(Inventory, _super);
+    function Inventory(Scene) {
+        var _this = _super.call(this, Scene) || this;
+        _this.Trans.Scale = new Engineer_1.default.Math.Vertex(500, 800, 1);
+        _this.Trans.Translation = new Engineer_1.default.Math.Vertex(1600, 460, 2);
+        _this.CreateBorder();
+        _this.AddElement(new Engineer_1.default.Math.Vertex(200, 200, 2.5), new Engineer_1.default.Math.Vertex(300, 460, 1), 1, Engineer_1.default.Math.Color.FromRGBA(60, 60, 60, 255));
+        _this.AddElement(new Engineer_1.default.Math.Vertex(220, 80, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 0);
+        _this.AddElement(new Engineer_1.default.Math.Vertex(220, 80, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 2, Engineer_1.default.Math.Color.FromRGBA(30, 30, 30, 255));
+        _this.AddElement(new Engineer_1.default.Math.Vertex(120, 170, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 0);
+        _this.AddElement(new Engineer_1.default.Math.Vertex(120, 170, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 4, Engineer_1.default.Math.Color.FromRGBA(30, 30, 30, 255));
+        _this.AddElement(new Engineer_1.default.Math.Vertex(320, 170, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 0);
+        _this.AddElement(new Engineer_1.default.Math.Vertex(320, 170, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 5, Engineer_1.default.Math.Color.FromRGBA(30, 30, 30, 255));
+        _this.AddElement(new Engineer_1.default.Math.Vertex(220, 170, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 0);
+        _this.AddElement(new Engineer_1.default.Math.Vertex(220, 170, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 3, Engineer_1.default.Math.Color.FromRGBA(30, 30, 30, 255));
+        _this.AddElement(new Engineer_1.default.Math.Vertex(220, 310, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 0);
+        _this.AddElement(new Engineer_1.default.Math.Vertex(220, 310, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 2, Engineer_1.default.Math.Color.FromRGBA(30, 30, 30, 255));
+        for (var i = 0; i < 5; i++) {
+            for (var j = 0; j < 9; j++) {
+                _this.AddElement(new Engineer_1.default.Math.Vertex(j * 50, 480 + i * 50, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 0);
+            }
+        }
+        _this.Init();
+        _this.Hide();
+        return _this;
+    }
+    return Inventory;
+}(Window_1.Window));
+exports.Inventory = Inventory;
+
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var Engineer_1 = __webpack_require__(0);
+var Window = /** @class */ (function (_super) {
+    __extends(Window, _super);
+    function Window(Scene) {
+        var _this = _super.call(this) || this;
+        _this.Visible = true;
+        _this._Scene = Scene;
+        _this.Fixed = true;
+        _this.Paint = Engineer_1.default.Math.Color.FromRGBA(30, 30, 30, 230);
+        _this._Elements = [];
+        _this._Decorations = [];
+        _this._DecorationT = new Engineer_1.default.Engine.TileCollection(null, ["/build/resources/border_c.png", "/build/resources/border_h.png", "/build/resources/border_v.png"]);
+        _this._ElementT = new Engineer_1.default.Engine.TileCollection(null, ["/build/resources/elements/grid.png", "/build/resources/elements/vorlok.png", "/build/resources/elements/helm.png", "/build/resources/elements/armor.png", "/build/resources/elements/wand.png", "/build/resources/elements/tome.png"]);
+        return _this;
+    }
+    Window.prototype.Init = function () {
+        this._Scene.AddSceneObject(this);
+        for (var i = 0; i < this._Elements.length; i++) {
+            this._Elements[i].Fixed = true;
+            this._Scene.AddSceneObject(this._Elements[i]);
+        }
+        for (var i = 0; i < this._Decorations.length; i++) {
+            this._Decorations[i].Fixed = true;
+            this._Scene.AddSceneObject(this._Decorations[i]);
+        }
+    };
+    Window.prototype.Show = function () {
+        this.Visible = true;
+        this.Active = true;
+        for (var i = 0; i < this._Elements.length; i++)
+            this._Elements[i].Active = true;
+        for (var i = 0; i < this._Decorations.length; i++)
+            this._Decorations[i].Active = true;
+    };
+    Window.prototype.Hide = function () {
+        this.Visible = false;
+        this.Active = false;
+        for (var i = 0; i < this._Elements.length; i++)
+            this._Elements[i].Active = false;
+        for (var i = 0; i < this._Decorations.length; i++)
+            this._Decorations[i].Active = false;
+    };
+    Window.prototype.CreateBorder = function () {
+        var WidthFactor = Math.floor(this.Trans.Scale.X / 100);
+        var WidthFake = this.Trans.Scale.X / WidthFactor;
+        for (var i = 0; i < WidthFactor; i++) {
+            this.AddDecoration(new Engineer_1.default.Math.Vertex(this.Trans.Translation.X - this.Trans.Scale.X / 2 + (i + 0.5) * (WidthFake), this.Trans.Translation.Y - this.Trans.Scale.Y / 2, 2.1), new Engineer_1.default.Math.Vertex(WidthFake, 30, 1), 1);
+            this.AddDecoration(new Engineer_1.default.Math.Vertex(this.Trans.Translation.X - this.Trans.Scale.X / 2 + (i + 0.5) * (WidthFake), this.Trans.Translation.Y + this.Trans.Scale.Y / 2, 2.1), new Engineer_1.default.Math.Vertex(WidthFake, 30, 1), 1);
+        }
+        var HeightFactor = Math.floor(this.Trans.Scale.Y / 100);
+        var HeightFake = this.Trans.Scale.Y / HeightFactor;
+        for (var i = 0; i < HeightFactor; i++) {
+            this.AddDecoration(new Engineer_1.default.Math.Vertex(this.Trans.Translation.X - this.Trans.Scale.X / 2, this.Trans.Translation.Y - this.Trans.Scale.Y / 2 + (i + 0.5) * (HeightFake), 2.1), new Engineer_1.default.Math.Vertex(30, HeightFake, 1), 2);
+            this.AddDecoration(new Engineer_1.default.Math.Vertex(this.Trans.Translation.X + this.Trans.Scale.X / 2, this.Trans.Translation.Y - this.Trans.Scale.Y / 2 + (i + 0.5) * (HeightFake), 2.1), new Engineer_1.default.Math.Vertex(30, HeightFake, 1), 2);
+        }
+        this.AddDecoration(new Engineer_1.default.Math.Vertex(this.Trans.Translation.X - this.Trans.Scale.X / 2, this.Trans.Translation.Y - this.Trans.Scale.Y / 2, 2.2), new Engineer_1.default.Math.Vertex(40, 40, 1), 0);
+        this.AddDecoration(new Engineer_1.default.Math.Vertex(this.Trans.Translation.X - this.Trans.Scale.X / 2, this.Trans.Translation.Y + this.Trans.Scale.Y / 2, 2.2), new Engineer_1.default.Math.Vertex(40, 40, 1), 0);
+        this.AddDecoration(new Engineer_1.default.Math.Vertex(this.Trans.Translation.X + this.Trans.Scale.X / 2, this.Trans.Translation.Y - this.Trans.Scale.Y / 2, 2.2), new Engineer_1.default.Math.Vertex(40, 40, 1), 0);
+        this.AddDecoration(new Engineer_1.default.Math.Vertex(this.Trans.Translation.X + this.Trans.Scale.X / 2, this.Trans.Translation.Y + this.Trans.Scale.Y / 2, 2.2), new Engineer_1.default.Math.Vertex(40, 40, 1), 0);
+    };
+    Window.prototype.AddDecoration = function (Location, Size, Index) {
+        var Border1 = new Engineer_1.default.Engine.Tile();
+        Border1.Collection = this._DecorationT;
+        Border1.Index = Index;
+        Border1.Fixed = true;
+        Border1.Trans.Scale = Size;
+        Border1.Trans.Translation = Location;
+        this._Decorations.push(Border1);
+    };
+    Window.prototype.AddElement = function (Location, Size, Index, Color, Rotation) {
+        Location = new Engineer_1.default.Math.Vertex(this.Trans.Translation.X - (this.Trans.Scale.X / 2) + Location.X + 50, this.Trans.Translation.Y - (this.Trans.Scale.Y / 2) + Location.Y + 50, Location.Z);
+        var Border1 = new Engineer_1.default.Engine.Tile();
+        Border1.Collection = this._ElementT;
+        if (Color)
+            Border1.Paint = Color;
+        if (Rotation)
+            Border1.Trans.Rotation = Rotation;
+        Border1.Index = Index;
+        Border1.Fixed = true;
+        Border1.Trans.Scale = Size;
+        Border1.Trans.Translation = Location;
+        this._Elements.push(Border1);
+        return Border1;
+    };
+    return Window;
+}(Engineer_1.default.Engine.Tile));
+exports.Window = Window;
 
 
 /***/ })

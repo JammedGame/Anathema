@@ -4,18 +4,22 @@ import Engineer from "./Engineer";
 import { GameScene } from "./GameScene";
 import { HealthBar } from "./HealthBar";
 import { Weapon } from "./Weapon";
+import { Movement } from "./Movement";
 
 class Player extends Engineer.Engine.Sprite {
     private _Scene: GameScene;
     private _Collider: any;
     private _HealthBar: HealthBar;
-    private _Weapon: Weapon;
+    private _Weapon: Weapon;   
     private _Enemy: any[];
     private _PlayerRightClick: boolean;
     private _PlayerLeftClick: boolean;
     public get HealthBar(): any { return this._HealthBar; }
-    public get Weapon(): any { return this._Weapon; }
+    public get Weapon(): Weapon { return this._Weapon; }
+    public set Weapon(wpn: Weapon) { this._Weapon = wpn; }
     public get Collider(): any { return this._Collider; }
+
+
     public constructor(Scene: GameScene) {
         super();
         this.Name = "Player";
@@ -79,7 +83,7 @@ class Player extends Engineer.Engine.Sprite {
 
         this.Data["Player"] = true;
         this._HealthBar = new HealthBar(this._Scene);
-        this._Weapon = new Weapon(this._Scene, "Staff");
+        this._Weapon = new Weapon(this._Scene, "Staff");       
         this._PlayerRightClick = false;
         this._PlayerLeftClick = false;
         this._Collider = new Engineer.Engine.Tile();
@@ -88,8 +92,7 @@ class Player extends Engineer.Engine.Sprite {
         this._Collider.Active = false;
         this._Collider.Data["Collision"] = Engineer.Math.CollisionType.Radius2D;
         this._Scene.Data["Character_Collider"] = this._Collider;
-        this._Scene.Data["Character"] = this;
-        this._Enemy = this._Scene.GetObjectsWithData("Enemy", true);
+        this._Scene.Data["Character"] = this;        
         this._Scene.Events.MouseDown.push(this.MouseClick.bind(this));
         this.Events.SpriteSetAnimationComplete.push(this.DmgEnemy.bind(this));
         this._Scene.AddSceneObject(this);
@@ -97,44 +100,46 @@ class Player extends Engineer.Engine.Sprite {
     }
 
     public CheckSingleEnemy(): any {
-        for (let i = 0; i < this._Enemy.length; i++) {
-            if (Engineer.Math.Vertex.Distance(this.Trans.Translation, this._Enemy[i]) < this.Trans.Scale.X && Engineer.Math.Vertex.Distance(this.Trans.Translation, this._Enemy[i]) < this.Trans.Scale.Y) {
+        if(this._Enemy==null){
+            this._Enemy=this._Scene.GetObjectsWithData("Enemy", true);             
+        }
+        for (let i = 0; i < this._Enemy.length; i++) {   
+            Engineer.Util.Log.Error(Engineer.Math.Vertex.Distance(this._Collider.Trans.Translation, this._Enemy[i].Trans.Translation));
+
+            if (Engineer.Math.Vertex.Distance(this._Collider.Trans.Translation, this._Enemy[i].Trans.Translation) < this.Trans.Scale.X && Engineer.Math.Vertex.Distance(this._Collider.Trans.Translation, this._Enemy[i].Trans.Translation) < this.Trans.Scale.Y) {
                 return this._Enemy[i];
             }
         }
         return null;
     }
-    public DmgEnemy(): void {  
-        this.BackUpSpriteSet=this.CurrentSpriteSet;
-        let direction=this.CurrentSpriteSet; 
-        this.UpdateSpriteSet(8+direction);     
-        if (this._PlayerLeftClick) {            
+    public DmgEnemy(G: any, Args: any): void {
+        if (Args.CurrentSpriteSet == 8 || Args.CurrentSpriteSet == 9 || Args.CurrentSpriteSet == 10 || Args.CurrentSpriteSet == 11 || Args.CurrentSpriteSet == 12 || Args.CurrentSpriteSet == 13 || Args.CurrentSpriteSet == 14 || Args.CurrentSpriteSet == 15) {
             this._PlayerLeftClick = false;
-            
-            this.UpdateSpriteSet(8+direction);
-            let nmy: any;
+            this.UpdateSpriteSet(8 + this._Scene.Movement.Direction);                
+            let nmy: any;            
             nmy = this.CheckSingleEnemy();
-            if (nmy != null) {
+            Engineer.Util.Log.Error(nmy);
+            if (nmy != null) {                
                 if (nmy.Health - this._Weapon.Damage > 0) {
-                    nmy.Health(this._Weapon.Damage);
+                    nmy.Health=this._Weapon.Damage;
                 }
                 else {
                     this.DistroyEnemy(nmy);
                 }
             }
         }
-        if (this._PlayerRightClick) {            
-            this._PlayerRightClick = false;
-            
-        }
     }
     public DistroyEnemy(nmy: any): void {
         nmy.Active = false;
     }
-    private MouseClick(G: any, Args: any) {
-        Engineer.Util.Log.Error(console.log(Args));
-        if (Args.Key == Engineer.Engine.MouseButton.Left) this._PlayerLeftClick = true;
-        if (Args.Key == Engineer.Engine.MouseButton.Right) this._PlayerRightClick = true;
+    private MouseClick(G: any, Args: any) {        
+        if (Args.MouseButton == 0) {
+            this.BackUpSpriteSet = this.CurrentSpriteSet;
+            this.UpdateSpriteSet(8 + this._Scene.Movement.Direction);
+        }
+        if (Args.MouseButton == 2) {
+
+        }
     }
 }
 

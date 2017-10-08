@@ -16,11 +16,13 @@ class GameScene extends Engineer.Engine.Scene2D
 {
     private _Level:Level;
     private _Player:Player;
-    private _Skeleton:Skeleton;
-    private _Movement:Movement; 
+    private _Skeleton:Skeleton;     
     private _Item: Items;    
     private _Inventory:Inventory;
-    private _SkillTree:SkillTree;
+    private _Movement: Movement;
+    private _SkillTree:SkillTree;  
+    public get Movement(): Movement { return this._Movement; }
+
     public constructor()
     {
         super();
@@ -31,10 +33,10 @@ class GameScene extends Engineer.Engine.Scene2D
     }
     public Init() : void
     {
-        this._Level.Init(this);
+        this._Level.Init(this);                 
         this._Player=new Player(this);  
-        this._Skeleton=new Skeleton(this);  
-        this._Movement = new Movement(this._Player, this);  
+        this._Skeleton=new Skeleton(this);         
+        this._Movement = new Movement(this._Player, this); 
         this._Item=new Items(this._Player,this);
         this._Inventory = new Inventory(this);
         this._SkillTree = new SkillTree(this);
