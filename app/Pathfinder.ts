@@ -31,15 +31,24 @@ class Pathfinder
 
     public findNeighbors(graph, source) 
     {
-        const w = [source.coordinates[0], source.coordinates[1]+1];
-        const a = [source.coordinates[0]-1, source.coordinates[1]];
-        const s = [source.coordinates[0], source.coordinates[1]-1];
-        const d = [source.coordinates[0]+1, source.coordinates[1]];
-          let neighbors = [];
+        const x = source.coordinates[0];
+        const y = source.coordinates[1];
+    		const neighborhood = [
+          [x+1, y],
+          [x-1, y],
+          [x, y+1],
+          [x, y-1],
+          [x-1, y-1],
+          [x+1, y+1],
+          [x-1, y+1],
+          [x+1, y-1]
+        ];
+      	let neighbors = [];
         graph.forEach( function (node, index)
         {
-            if (this.equal(node.coordinates, w) || this.equal(node.coordinates, a) || this.equal(node.coordinates, s) || this.equal(node.coordinates, d))
-            neighbors.push(index);
+          	neighborhood.forEach( function (place) {
+                if(this.equal(node.coordinates, place)) neighbors.push(index);
+            });
         });
         return neighbors;
     }    
