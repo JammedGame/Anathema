@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/resources/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 14);
+/******/ 	return __webpack_require__(__webpack_require__.s = 15);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -71,7 +71,7 @@
 
 Object.defineProperty(exports, "__esModule", { value: true });
 //import Engineer from "engineer-js";
-var app_1 = __webpack_require__(17);
+var app_1 = __webpack_require__(18);
 exports.default = app_1.default;
 
 
@@ -85,15 +85,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Vertex_1 = __webpack_require__(4);
 exports.Axis = Vertex_1.Axis;
 exports.Vertex = Vertex_1.Vertex;
-var Transformation_1 = __webpack_require__(19);
+var Transformation_1 = __webpack_require__(20);
 exports.Transformation = Transformation_1.Transformation;
-var MatrixTransformer_1 = __webpack_require__(20);
+var MatrixTransformer_1 = __webpack_require__(21);
 exports.MatrixMode = MatrixTransformer_1.MatrixMode;
 exports.Matrix = MatrixTransformer_1.Matrix;
 exports.MatrixTransformer = MatrixTransformer_1.MatrixTransformer;
-var Color_1 = __webpack_require__(21);
+var Color_1 = __webpack_require__(22);
 exports.Color = Color_1.Color;
-var Collision_1 = __webpack_require__(22);
+var Collision_1 = __webpack_require__(23);
 exports.Collision = Collision_1.Collision;
 exports.CollisionType = Collision_1.CollisionType;
 exports.CollisionValue = Collision_1.CollisionValue;
@@ -107,6 +107,7 @@ exports.ColliderObject = Collision_1.ColliderObject;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+<<<<<<< Updated upstream
 var Converter_1 = __webpack_require__(18);
 exports.Convert = Converter_1.Convert;
 var Collision_1 = __webpack_require__(23);
@@ -114,6 +115,15 @@ exports.Collision = Collision_1.Collision;
 var Buffer_1 = __webpack_require__(24);
 exports.Buffer = Buffer_1.Buffer;
 var Log_1 = __webpack_require__(25);
+=======
+var Converter_1 = __webpack_require__(19);
+exports.Convert = Converter_1.Convert;
+var Collision_1 = __webpack_require__(24);
+exports.Collision = Collision_1.Collision;
+var Buffer_1 = __webpack_require__(25);
+exports.Buffer = Buffer_1.Buffer;
+var Log_1 = __webpack_require__(26);
+>>>>>>> Stashed changes
 exports.Log = Log_1.Log;
 
 
@@ -124,9 +134,13 @@ exports.Log = Log_1.Log;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+<<<<<<< Updated upstream
 var Uuid_1 = __webpack_require__(26);
+=======
+var Uuid_1 = __webpack_require__(27);
+>>>>>>> Stashed changes
 exports.Uuid = Uuid_1.Uuid;
-var ImageContainer_1 = __webpack_require__(27);
+var ImageContainer_1 = __webpack_require__(28);
 exports.ImageContainer = ImageContainer_1.ImageContainer;
 var Reader = /** @class */ (function () {
     function Reader() {
@@ -268,30 +282,30 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var DrawObject_1 = __webpack_require__(6);
 exports.DrawObjectType = DrawObject_1.DrawObjectType;
 exports.DrawObject = DrawObject_1.DrawObject;
-var Sprite_1 = __webpack_require__(28);
+var Sprite_1 = __webpack_require__(29);
 exports.SpriteSet = Sprite_1.SpriteSet;
 exports.Sprite = Sprite_1.Sprite;
-var Tile_1 = __webpack_require__(29);
+var Tile_1 = __webpack_require__(30);
 exports.TileCollection = Tile_1.TileCollection;
 exports.Tile = Tile_1.Tile;
 var Events_1 = __webpack_require__(8);
 exports.EventPackage = Events_1.EventPackage;
-var EventArguments_1 = __webpack_require__(30);
+var EventArguments_1 = __webpack_require__(31);
 exports.MouseButton = EventArguments_1.MouseButton;
 exports.KeyType = EventArguments_1.KeyType;
-var Game_1 = __webpack_require__(31);
+var Game_1 = __webpack_require__(32);
 exports.Game = Game_1.Game;
 var Scene_1 = __webpack_require__(9);
 exports.SceneType = Scene_1.SceneType;
 exports.Scene = Scene_1.Scene;
-var Scene2D_1 = __webpack_require__(32);
+var Scene2D_1 = __webpack_require__(33);
 exports.Scene2D = Scene2D_1.Scene2D;
 var SceneObject_1 = __webpack_require__(7);
 exports.SceneObjectType = SceneObject_1.SceneObjectType;
 exports.SceneObject = SceneObject_1.SceneObject;
-var SoundObject_1 = __webpack_require__(33);
+var SoundObject_1 = __webpack_require__(34);
 exports.SoundObject = SoundObject_1.SoundObject;
-var Settings_1 = __webpack_require__(36);
+var Settings_1 = __webpack_require__(37);
 exports.Settings = Settings_1.Settings;
 exports.Quality = Settings_1.Quality;
 
@@ -809,9 +823,15 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Engineer_1 = __webpack_require__(0);
+<<<<<<< Updated upstream
 var HealthBar_1 = __webpack_require__(49);
 var Weapon_1 = __webpack_require__(51);
 var Trait_1 = __webpack_require__(57);
+=======
+var HealthBar_1 = __webpack_require__(50);
+var ManaBar_1 = __webpack_require__(51);
+var Weapon_1 = __webpack_require__(52);
+>>>>>>> Stashed changes
 var Player = /** @class */ (function (_super) {
     __extends(Player, _super);
     function Player(Scene) {
@@ -887,6 +907,7 @@ var Player = /** @class */ (function (_super) {
         _this.SpriteSets[15].Seed = 5;
         _this.Data["Player"] = true;
         _this._HealthBar = new HealthBar_1.HealthBar(_this._Scene);
+        _this._ManaBar = new ManaBar_1.ManaBar(_this._Scene);
         _this._Weapon = new Weapon_1.Weapon(_this._Scene, "Staff");
         _this._PlayerRightClick = false;
         _this._PlayerLeftClick = false;
@@ -905,6 +926,11 @@ var Player = /** @class */ (function (_super) {
     }
     Object.defineProperty(Player.prototype, "HealthBar", {
         get: function () { return this._HealthBar; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Player.prototype, "ManaBar", {
+        get: function () { return this._ManaBar; },
         enumerable: true,
         configurable: true
     });
@@ -975,6 +1001,9 @@ var Player = /** @class */ (function (_super) {
     };
     Player.prototype.DistroyEnemy = function (nmy) {
         nmy.Active = false;
+        Engineer_1.default.Util.Log.Error(nmy);
+        nmy._Scene.RemoveSceneObject(nmy);
+        Engineer_1.default.Util.Log.Error(nmy);
     };
     Player.prototype.MouseClick = function (G, Args) {
         if (Args.MouseButton == 0) {
@@ -1003,6 +1032,43 @@ exports.PlayerKeyPress = PlayerKeyPress;
 
 /***/ }),
 /* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var Engineer_1 = __webpack_require__(0);
+var HealthBorder = /** @class */ (function (_super) {
+    __extends(HealthBorder, _super);
+    function HealthBorder(Scene, maxHP, XPosition) {
+        var _this = _super.call(this) || this;
+        _this.Name = "HealthBorder";
+        _this._Scene = Scene;
+        _this.Fixed = true;
+        _this.Trans.Scale = new Engineer_1.default.Math.Vertex(maxHP, 300, 0);
+        _this.Trans.Translation = new Engineer_1.default.Math.Vertex(XPosition, 216, 1);
+        _this.SpriteSets = [new Engineer_1.default.Engine.SpriteSet(null, "HealthBorder")];
+        _this.SpriteSets[0].Sprites = ["/build/resources/HealthBorder.png"];
+        _this._Scene.AddSceneObject(_this);
+        return _this;
+    }
+    return HealthBorder;
+}(Engineer_1.default.Engine.Sprite));
+exports.HealthBorder = HealthBorder;
+
+
+/***/ }),
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1108,22 +1174,10 @@ exports.Window = Window;
 
 
 /***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(15);
-
-
-/***/ }),
 /* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var GameLogic_1 = __webpack_require__(16);
-var GL = new GameLogic_1.GameLogic();
-GL.Run();
+module.exports = __webpack_require__(16);
 
 
 /***/ }),
@@ -1133,9 +1187,21 @@ GL.Run();
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var GameLogic_1 = __webpack_require__(17);
+var GL = new GameLogic_1.GameLogic();
+GL.Run();
+
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
 var Engineer_1 = __webpack_require__(0);
-var MainMenu_1 = __webpack_require__(42);
-var GameScene_1 = __webpack_require__(44);
+var MainMenu_1 = __webpack_require__(43);
+var GameScene_1 = __webpack_require__(45);
 var GameLogic = /** @class */ (function () {
     function GameLogic() {
         this._Game = new Engineer_1.default.Engine.Game();
@@ -1160,7 +1226,7 @@ exports.GameLogic = GameLogic;
 
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1170,13 +1236,13 @@ var Util = __webpack_require__(2);
 var Data = __webpack_require__(3);
 var Engine = __webpack_require__(5);
 var Math = __webpack_require__(1);
-var Runner = __webpack_require__(37);
+var Runner = __webpack_require__(38);
 var Draw = __webpack_require__(10);
 exports.default = { Util: Util, Data: Data, Engine: Engine, Math: Math, Runner: Runner, Draw: Draw };
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1210,7 +1276,7 @@ exports.Convert = Convert;
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1258,7 +1324,7 @@ exports.Transformation = Transformation;
 
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1508,7 +1574,7 @@ exports.MatrixTransformer = MatrixTransformer;
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1541,7 +1607,7 @@ exports.Color = Color;
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1859,7 +1925,7 @@ exports.Collision = Collision;
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1914,7 +1980,7 @@ exports.Collision = Collision;
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1936,7 +2002,7 @@ exports.Buffer = Buffer;
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2001,7 +2067,7 @@ exports.Log = Log;
 
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2025,7 +2091,7 @@ exports.Uuid = Uuid;
 
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2059,7 +2125,7 @@ exports.ImageContainer = ImageContainer;
 
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2259,7 +2325,7 @@ exports.SpriteSet = SpriteSet;
 
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2364,7 +2430,7 @@ exports.TileCollection = TileCollection;
 
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2503,7 +2569,7 @@ exports.KeyType = KeyType;
 
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2555,7 +2621,7 @@ exports.Game = Game;
 
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2630,7 +2696,7 @@ exports.Scene2D = Scene2D;
 
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2646,7 +2712,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Howler = __webpack_require__(34);
+var Howler = __webpack_require__(35);
 var SceneObject_1 = __webpack_require__(7);
 var SoundObject = /** @class */ (function (_super) {
     __extends(SoundObject, _super);
@@ -2713,7 +2779,7 @@ exports.SoundObject = SoundObject;
 
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -5564,10 +5630,10 @@ exports.SoundObject = SoundObject;
   };
 })();
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(35)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(36)))
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports) {
 
 var g;
@@ -5594,7 +5660,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5619,7 +5685,7 @@ exports.Settings = Settings;
 
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5629,7 +5695,7 @@ var Math = __webpack_require__(1);
 var Engine = __webpack_require__(5);
 var Util = __webpack_require__(2);
 var Draw = __webpack_require__(10);
-var Three = __webpack_require__(38);
+var Three = __webpack_require__(39);
 var Runner = /** @class */ (function () {
     function Runner(Game, EngineType) {
         this.Data = {};
@@ -5798,18 +5864,18 @@ exports.Runner = Runner;
 
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var ThreeDrawEngine_1 = __webpack_require__(39);
+var ThreeDrawEngine_1 = __webpack_require__(40);
 exports.ThreeDrawEngine = ThreeDrawEngine_1.ThreeDrawEngine;
 
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5825,11 +5891,15 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Three = __webpack_require__(40);
+var Three = __webpack_require__(41);
 var Math = __webpack_require__(1);
 var Engine = __webpack_require__(5);
 var Util = __webpack_require__(2);
+<<<<<<< Updated upstream
 var Shaders = __webpack_require__(41);
+=======
+var Shaders = __webpack_require__(42);
+>>>>>>> Stashed changes
 var DrawEngine_1 = __webpack_require__(11);
 var ThreeDrawEngine = /** @class */ (function (_super) {
     __extends(ThreeDrawEngine, _super);
@@ -6066,7 +6136,7 @@ exports.ThreeDrawEngine = ThreeDrawEngine;
 
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -50175,7 +50245,7 @@ function CanvasRenderer() {
 
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50192,7 +50262,7 @@ exports.ThreeJSShaders = ThreeJSShaders;
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50209,7 +50279,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Engineer_1 = __webpack_require__(0);
-var LocalSettings_1 = __webpack_require__(43);
+var LocalSettings_1 = __webpack_require__(44);
 var MainMenu = /** @class */ (function (_super) {
     __extends(MainMenu, _super);
     function MainMenu() {
@@ -50237,7 +50307,7 @@ exports.MainMenu = MainMenu;
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50256,7 +50326,7 @@ exports.LocalSettings = LocalSettings;
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50273,12 +50343,19 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Engineer_1 = __webpack_require__(0);
-var Level_1 = __webpack_require__(45);
+var Level_1 = __webpack_require__(46);
 var Player_1 = __webpack_require__(12);
+<<<<<<< Updated upstream
 var Skeleton_1 = __webpack_require__(52);
 var Movement_1 = __webpack_require__(53);
 var Inventory_1 = __webpack_require__(55);
 var SkillTree_1 = __webpack_require__(56);
+=======
+var Skeleton_1 = __webpack_require__(53);
+var Movement_1 = __webpack_require__(54);
+var Inventory_1 = __webpack_require__(56);
+var SkillTree_1 = __webpack_require__(57);
+>>>>>>> Stashed changes
 var GameScene = /** @class */ (function (_super) {
     __extends(GameScene, _super);
     function GameScene() {
@@ -50325,14 +50402,14 @@ exports.GameScene = GameScene;
 
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var Engineer_1 = __webpack_require__(0);
-var LevelGenerator_1 = __webpack_require__(46);
+var LevelGenerator_1 = __webpack_require__(47);
 var Level = /** @class */ (function () {
     function Level() {
         this._TileScale = 30;
@@ -50349,15 +50426,15 @@ exports.Level = Level;
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var Engineer_1 = __webpack_require__(0);
-var ChunkGenerator_1 = __webpack_require__(47);
-var ColliderGenerator_1 = __webpack_require__(48);
+var ChunkGenerator_1 = __webpack_require__(48);
+var ColliderGenerator_1 = __webpack_require__(49);
 var LevelGenerator = /** @class */ (function () {
     function LevelGenerator() {
     }
@@ -50629,7 +50706,7 @@ var LayoutClass = /** @class */ (function () {
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50804,7 +50881,7 @@ exports.Chunk = Chunk;
 
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50909,7 +50986,7 @@ var CollisionElement = /** @class */ (function () {
 
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50926,7 +51003,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Engineer_1 = __webpack_require__(0);
-var HealthBorder_1 = __webpack_require__(50);
+var HealthBorder_1 = __webpack_require__(13);
 var HealthBar = /** @class */ (function (_super) {
     __extends(HealthBar, _super);
     function HealthBar(Scene) {
@@ -50939,11 +51016,12 @@ var HealthBar = /** @class */ (function (_super) {
         _this._PrevLocation = 0;
         _this._Size = 210;
         _this._Loc = 216;
+        _this._XPosition = 192;
         _this.Trans.Scale = new Engineer_1.default.Math.Vertex(_this._Size, _this._Size, 1);
         _this.Trans.Translation = new Engineer_1.default.Math.Vertex(192, 216, 0.5);
         _this.SpriteSets = [new Engineer_1.default.Engine.SpriteSet(null, "HealthBar")];
         _this.SpriteSets[0].Sprites = ["/build/resources/HealthBar.png"];
-        _this._HealthBorder = new HealthBorder_1.HealthBorder(_this._Scene, _this._MaxHealth);
+        _this._HealthBorder = new HealthBorder_1.HealthBorder(_this._Scene, _this._MaxHealth, _this._XPosition);
         _this._Scene.AddSceneObject(_this);
         return _this;
     }
@@ -50976,7 +51054,7 @@ exports.HealthBar = HealthBar;
 
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50993,27 +51071,37 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Engineer_1 = __webpack_require__(0);
-var HealthBorder = /** @class */ (function (_super) {
-    __extends(HealthBorder, _super);
-    function HealthBorder(Scene, maxHP) {
+var HealthBorder_1 = __webpack_require__(13);
+var ManaBar = /** @class */ (function (_super) {
+    __extends(ManaBar, _super);
+    function ManaBar(Scene) {
         var _this = _super.call(this) || this;
-        _this.Name = "HealthBorder";
+        _this.Name = "ManaBar";
         _this._Scene = Scene;
         _this.Fixed = true;
-        _this.Trans.Scale = new Engineer_1.default.Math.Vertex(maxHP, 300, 0);
-        _this.Trans.Translation = new Engineer_1.default.Math.Vertex(192, 216, 1);
-        _this.SpriteSets = [new Engineer_1.default.Engine.SpriteSet(null, "HealthBorder")];
-        _this.SpriteSets[0].Sprites = ["/build/resources/HealthBorder.png"];
+        _this._MaxMana = 300;
+        _this._Mana = _this._MaxMana;
+        _this._PrevLocation = 0;
+        _this._Size = 210;
+        _this._Loc = 1728;
+        _this._XPosition = 1728;
+        _this.Trans.Scale = new Engineer_1.default.Math.Vertex(_this._Size, _this._Size, 1);
+        _this.Trans.Translation = new Engineer_1.default.Math.Vertex(1728, 216, 0.5);
+        _this.SpriteSets = [new Engineer_1.default.Engine.SpriteSet(null, "ManaBar")];
+        _this.SpriteSets[0].Sprites = ["/build/resources/ManaBar.png"];
+        _this._HealthBorder = new HealthBorder_1.HealthBorder(_this._Scene, _this._MaxMana, _this._XPosition);
         _this._Scene.AddSceneObject(_this);
         return _this;
     }
-    return HealthBorder;
+    ManaBar.prototype.Damage = function (hitValue) {
+    };
+    return ManaBar;
 }(Engineer_1.default.Engine.Sprite));
-exports.HealthBorder = HealthBorder;
+exports.ManaBar = ManaBar;
 
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51052,7 +51140,7 @@ exports.Weapon = Weapon;
 
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51072,7 +51160,56 @@ var Enemy_1 = __webpack_require__(58);
 var Skeleton = /** @class */ (function (_super) {
     __extends(Skeleton, _super);
     function Skeleton(Scene, start_X, start_Y) {
+<<<<<<< Updated upstream
         return _super.call(this, Scene, start_X, start_Y) || this;
+=======
+        var _this = _super.call(this) || this;
+        _this.moveSpeed = 10;
+        _this.moveArea = 500;
+        _this.followArea = 300;
+        _this._MaxHealth = 100;
+        _this._Health = _this._MaxHealth;
+        _this._Damage = 25;
+        _this.Name = "Skeleton";
+        _this._Scene = Scene;
+        _this._Player_Collider = _this._Scene.Data["Character_Collider"];
+        _this._Player = _this._Scene.Data["Character"];
+        _this.counter = 0;
+        _this.rng_counter = 0;
+        _this.s_direction = Math.round(3 * Math.random());
+        _this.moving = true;
+        _this.following = false;
+        _this.Trans.Scale = new Engineer_1.default.Math.Vertex(100, 150, 1);
+        _this.Trans.Translation = new Engineer_1.default.Math.Vertex(start_X, start_Y, 0.5);
+        _this.SpriteSets = [new Engineer_1.default.Engine.SpriteSet(null, "S_WalkN"), new Engineer_1.default.Engine.SpriteSet(null, "S_WalkE"), new Engineer_1.default.Engine.SpriteSet(null, "S_WalkS"), new Engineer_1.default.Engine.SpriteSet(null, "S_WalkW"), new Engineer_1.default.Engine.SpriteSet(null, "S_AttN"), new Engineer_1.default.Engine.SpriteSet(null, "S_AttE"), new Engineer_1.default.Engine.SpriteSet(null, "S_AttS"), new Engineer_1.default.Engine.SpriteSet(null, "S_AttW")];
+        _this.SpriteSets[0].Sprites = ["/build/resources/skeleton/E_up00.png", "/build/resources/skeleton/E_up01.png", "/build/resources/skeleton/E_up02.png", "/build/resources/skeleton/E_up03.png", "/build/resources/skeleton/E_up04.png", "/build/resources/skeleton/E_up05.png", "/build/resources/skeleton/E_up06.png", "/build/resources/skeleton/E_up07.png", "/build/resources/skeleton/E_up08.png"];
+        _this.SpriteSets[1].Sprites = ["/build/resources/skeleton/E_rgt00.png", "/build/resources/skeleton/E_rgt01.png", "/build/resources/skeleton/E_rgt02.png", "/build/resources/skeleton/E_rgt03.png", "/build/resources/skeleton/E_rgt04.png", "/build/resources/skeleton/E_rgt05.png", "/build/resources/skeleton/E_rgt06.png", "/build/resources/skeleton/E_rgt07.png", "/build/resources/skeleton/E_rgt08.png"];
+        _this.SpriteSets[2].Sprites = ["/build/resources/skeleton/E_dwn00.png", "/build/resources/skeleton/E_dwn01.png", "/build/resources/skeleton/E_dwn02.png", "/build/resources/skeleton/E_dwn03.png", "/build/resources/skeleton/E_dwn04.png", "/build/resources/skeleton/E_dwn05.png", "/build/resources/skeleton/E_dwn06.png", "/build/resources/skeleton/E_dwn07.png", "/build/resources/skeleton/E_dwn08.png"];
+        _this.SpriteSets[3].Sprites = ["/build/resources/skeleton/E_lft00.png", "/build/resources/skeleton/E_lft01.png", "/build/resources/skeleton/E_lft02.png", "/build/resources/skeleton/E_lft03.png", "/build/resources/skeleton/E_lft04.png", "/build/resources/skeleton/E_lft05.png", "/build/resources/skeleton/E_lft06.png", "/build/resources/skeleton/E_lft07.png", "/build/resources/skeleton/E_lft08.png"];
+        _this.SpriteSets[4].Sprites = ["/build/resources/skeleton/S_slash_up00.png", "/build/resources/skeleton/S_slash_up01.png", "/build/resources/skeleton/S_slash_up02.png", "/build/resources/skeleton/S_slash_up03.png", "/build/resources/skeleton/S_slash_up04.png", "/build/resources/skeleton/S_slash_up05.png"];
+        _this.SpriteSets[5].Sprites = ["/build/resources/skeleton/S_slash_rgt00.png", "/build/resources/skeleton/S_slash_rgt01.png", "/build/resources/skeleton/S_slash_rgt02.png", "/build/resources/skeleton/S_slash_rgt03.png", "/build/resources/skeleton/S_slash_rgt04.png", "/build/resources/skeleton/S_slash_rgt05.png"];
+        _this.SpriteSets[6].Sprites = ["/build/resources/skeleton/S_slash_btm00.png", "/build/resources/skeleton/S_slash_btm01.png", "/build/resources/skeleton/S_slash_btm02.png", "/build/resources/skeleton/S_slash_btm03.png", "/build/resources/skeleton/S_slash_btm04.png", "/build/resources/skeleton/S_slash_btm05.png"];
+        _this.SpriteSets[7].Sprites = ["/build/resources/skeleton/S_slash_lft00.png", "/build/resources/skeleton/S_slash_lft01.png", "/build/resources/skeleton/S_slash_lft02.png", "/build/resources/skeleton/S_slash_lft03.png", "/build/resources/skeleton/S_slash_lft04.png", "/build/resources/skeleton/S_slash_lft05.png"];
+        _this.SpriteSets[0].Seed = 25;
+        _this.SpriteSets[1].Seed = 25;
+        _this.SpriteSets[2].Seed = 25;
+        _this.SpriteSets[3].Seed = 25;
+        _this.SpriteSets[4].Seed = 15;
+        _this.SpriteSets[5].Seed = 15;
+        _this.SpriteSets[6].Seed = 15;
+        _this.SpriteSets[7].Seed = 15;
+        _this.pos_x = _this.Trans.Translation.X;
+        _this.pos_y = _this.Trans.Translation.Y;
+        _this.Data["Enemy"] = true;
+        _this.Data["Collision"] = Engineer_1.default.Math.CollisionType.Radius2D;
+        _this._SolidColliders = _this._Scene.GetObjectsWithData("Solid", true);
+        _this._Scene.Events.TimeTick.push(_this.movement.bind(_this));
+        _this._Scene.Events.TimeTick.push(_this.attack.bind(_this));
+        _this._Scene.Events.TimeTick.push(_this.follow.bind(_this));
+        _this.Events.SpriteSetAnimationComplete.push(_this.doDamage.bind(_this));
+        _this._Scene.AddSceneObject(_this);
+        return _this;
+>>>>>>> Stashed changes
     }
     Skeleton.prototype.doDamage = function (G, Args) {
         if (Args.CurrentSpriteSet == 4 || Args.CurrentSpriteSet == 5 || Args.CurrentSpriteSet == 6 || Args.CurrentSpriteSet == 7) {
@@ -51085,7 +51222,7 @@ exports.Skeleton = Skeleton;
 
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51093,7 +51230,7 @@ exports.Skeleton = Skeleton;
 Object.defineProperty(exports, "__esModule", { value: true });
 var Engineer_1 = __webpack_require__(0);
 var Player_1 = __webpack_require__(12);
-var Mechanics_1 = __webpack_require__(54);
+var Mechanics_1 = __webpack_require__(55);
 var Movement = /** @class */ (function () {
     function Movement(Player, Scene) {
         this._MoveSpeed = 5;
@@ -51174,7 +51311,7 @@ exports.Movement = Movement;
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51191,7 +51328,11 @@ exports.Mechanics = Mechanics;
 
 
 /***/ }),
+<<<<<<< Updated upstream
 /* 55 */
+=======
+/* 56 */
+>>>>>>> Stashed changes
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51208,7 +51349,11 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Engineer_1 = __webpack_require__(0);
+<<<<<<< Updated upstream
 var Window_1 = __webpack_require__(13);
+=======
+var Window_1 = __webpack_require__(14);
+>>>>>>> Stashed changes
 var Inventory = /** @class */ (function (_super) {
     __extends(Inventory, _super);
     function Inventory(Scene) {
@@ -51259,7 +51404,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Engineer_1 = __webpack_require__(0);
-var Window_1 = __webpack_require__(13);
+var Window_1 = __webpack_require__(14);
 var SkillTree = /** @class */ (function (_super) {
     __extends(SkillTree, _super);
     function SkillTree(Scene) {

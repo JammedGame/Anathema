@@ -164,6 +164,9 @@ class Player extends Engineer.Engine.Sprite {
     }
     public DistroyEnemy(nmy: any): void {
         nmy.Active = false;
+        Engineer.Util.Log.Error(nmy);
+        nmy._Scene.RemoveSceneObject(nmy);
+        Engineer.Util.Log.Error(nmy);
     }
     private MouseClick(G: any, Args: any) {
         if (Args.MouseButton == 0) {
