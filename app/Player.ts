@@ -3,6 +3,7 @@ export { Player, PlayerKeyPress };
 import Engineer from "./Engineer";
 import { GameScene } from "./GameScene";
 import { HealthBar } from "./HealthBar";
+import { ManaBar } from "./ManaBar";
 import { Weapon } from "./Weapon";
 import { Movement } from "./Movement";
 
@@ -10,6 +11,7 @@ class Player extends Engineer.Engine.Sprite {
     private _Scene: GameScene;
     private _Collider: any;
     private _HealthBar: HealthBar;
+    private _ManaBar: ManaBar;
     private _Weapon: Weapon;
     private _Enemy: any[];
     private _stAttRange:number;
@@ -17,6 +19,7 @@ class Player extends Engineer.Engine.Sprite {
     private _PlayerRightClick: boolean;
     private _PlayerLeftClick: boolean;
     public get HealthBar(): any { return this._HealthBar; }
+    public get ManaBar(): any { return this._ManaBar; }
     public get Weapon(): Weapon { return this._Weapon; }
     public set Weapon(wpn: Weapon) { this._Weapon = wpn; }
     public get Collider(): any { return this._Collider; }
@@ -85,6 +88,7 @@ class Player extends Engineer.Engine.Sprite {
 
         this.Data["Player"] = true;
         this._HealthBar = new HealthBar(this._Scene);
+        this._ManaBar= new ManaBar(this._Scene);
         this._Weapon = new Weapon(this._Scene, "Staff");
         this._PlayerRightClick = false;
         this._PlayerLeftClick = false;
