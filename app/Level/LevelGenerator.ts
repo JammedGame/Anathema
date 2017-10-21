@@ -1,10 +1,12 @@
-export { LevelGenerator, LevelTileset }
+export { LevelGenerator }
 
 import Engineer from "./../Engineer";
 
 import { Chunk, ChunkGenerator } from "./ChunkGenerator";
 import { ColliderGenerator } from "./ColliderGenerator";
 import { GameScene } from "./../GameScene";
+import { LevelTileset } from "./LevelTileset"; 
+import { Layout, LayoutClass, LayoutEntry } from "./Layout";
 
 class LevelGenerator
 {
@@ -21,17 +23,20 @@ class LevelGenerator
             {
                 if(NewChunk.Fields[i][j] == 1)
                 {
-                    let Index = Math.floor((Math.random() * 16) + 1);
+                    let Index = Math.floor((Math.random() * Tilesets.Floor.Images.length) + 1);
                     LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+1,0), Tilesets.Floor, Index, Engineer.Math.Color.FromRGBA(255,255,255,255));
                 }
                 else if(NewChunk.Fields[i][j] == 2)
                 {
-                    LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+1,0), Tilesets.Floor, 0, Engineer.Math.Color.FromRGBA(255,255,255,255));
-                    LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+1,0), Tilesets.WallLower, 0, Engineer.Math.Color.FromRGBA(255,255,255,255));
+                    let FloorIndex = Math.floor((Math.random() * Tilesets.Floor.Images.length) + 1);
+                    let WallIndex = Math.floor((Math.random() * Tilesets.WallLower.Images.length) + 1);
+                    LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+1,0), Tilesets.Floor, FloorIndex, Engineer.Math.Color.FromRGBA(255,255,255,255));
+                    LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+1,0), Tilesets.WallLower, WallIndex, Engineer.Math.Color.FromRGBA(255,255,255,255));
                 }
                 else if(NewChunk.Fields[i][j] == 3)
                 {
-                    LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+1,0), Tilesets.WallUpper, 0, Engineer.Math.Color.FromRGBA(255,255,255,255));
+                    let WallIndex = Math.floor((Math.random() * Tilesets.WallLower.Images.length) + 1);
+                    LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+1,0), Tilesets.WallUpper, WallIndex, Engineer.Math.Color.FromRGBA(255,255,255,255));
                     ColliderGenerator.GenerateColliderTile(Scene,j+1,i+1,1,1);
                 }
                 else if(NewChunk.Fields[i][j] == 4)
@@ -52,12 +57,12 @@ class LevelGenerator
         }
         else if (Horizontal)
         {
-            LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(X+1,Y+1,0), Tilesets.CeilingHorizontal, 0, Engineer.Math.Color.FromRGBA(255,255,255,255));
+            LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(X+1,Y+1,0), Tilesets.Ceiling, 0, Engineer.Math.Color.FromRGBA(255,255,255,255));
             ColliderGenerator.GenerateColliderTile(Scene,X+1,Y+1,1,1);
         }
         else if (Vertical)
         {
-            LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(X+1,Y+1,0), Tilesets.CeilingVertical, 0, Engineer.Math.Color.FromRGBA(255,255,255,255));
+            LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(X+1,Y+1,0), Tilesets.Ceiling, 0, Engineer.Math.Color.FromRGBA(255,255,255,255));
             ColliderGenerator.GenerateColliderTile(Scene,X+1,Y+1,1,1);
         }
         else
@@ -233,92 +238,5 @@ class LevelGenerator
         NewTile.Trans.Scale = new Engineer.Math.Vertex(LevelGenerator._FieldSize, LevelGenerator._FieldSize, 1);
         NewTile.Trans.Translation = new Engineer.Math.Vertex(LevelGenerator._FieldSize * Location.X, LevelGenerator._FieldSize * Location.Y, 0);
         Scene.AddSceneObject(NewTile);
-    }
-}
-class LevelTileset
-{
-    public Floor:any;
-    public WallUpper:any;
-    public WallLower:any;
-    public Ceiling:any;
-    public CeilingHorizontal:any;
-    public CeilingVertical:any;
-    public constructor()
-    {
-        let FloorImages  = [];
-        for(let i = 1; i < 16; i++)
-        {
-            let s = i.toString();
-            if(i < 10) s = "0" + i;
-            FloorImages.push("/build/resources/ruin/g"+s+".png");
-        }
-        console.log(FloorImages);
-        this.Floor = new Engineer.Engine.TileCollection(null, FloorImages);
-        this.WallUpper = new Engineer.Engine.TileCollection(null, ["/build/resources/ruin/wu01.png"]);
-        this.WallLower = new Engineer.Engine.TileCollection(null, ["/build/resources/ruin/wd01.png"]);
-        this.Ceiling = new Engineer.Engine.TileCollection(null, ["/build/resources/ruin/cm01.png"]);
-        this.CeilingHorizontal = new Engineer.Engine.TileCollection(null, ["/build/resources/ruin/ch01.png"]);
-        this.CeilingVertical = new Engineer.Engine.TileCollection(null, ["/build/resources/ruin/cv01.png"]);
-    }
-}
-class Layout
-{
-    public Dimensions:any;
-    public Data:number[][];
-    public Entries:LayoutEntry[];
-    public constructor(Dimensions:any, Value:number)
-    {
-        this.Dimensions = Dimensions;
-        this.Data= [];
-        for(let i = 0; i < Dimensions.Y; i++)
-        {
-            this.Data.push([]);
-            for(let j = 0; j < Dimensions.X; j++)
-            {
-                this.Data[i].push(Value);
-            }
-        }
-        this.Entries = [];
-    }
-    public Print()
-    {
-        console.log("- - -");
-        for(let i = 0; i < this.Dimensions.Y; i++)
-        {
-            let Line:string = i.toString();
-            if(Line.length < 2) Line = "0" + i;
-            Line += ": ";
-            for(let j = 0; j < this.Dimensions.X; j++)
-            {
-                if(this.Data[i][j] == -1) Line += "X, ";
-                else Line += this.Data[i][j] + ", ";
-            }
-            console.log(Line);
-        }
-        console.log("- - -");
-    }
-}
-class LayoutEntry
-{
-    public Size:number;
-    public Location:any;
-    public Connections:LayoutEntry[];
-    public ConnectionsSide:number[];
-    public constructor(Size:number, Location:any)
-    {
-        this.Size = Size;
-        this.Location = Location;
-        this.Connections = [];
-        this.ConnectionsSide = [];
-    }
-}
-class LayoutClass
-{
-    public Size:number;
-    public Number:number;
-    public constructor(Size:number, Number:number)
-    {
-        this.Size = Size;
-        this.Number = Number;
     }
 }

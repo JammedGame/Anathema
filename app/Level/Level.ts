@@ -3,13 +3,16 @@ export { Level };
 import Engineer from "./../Engineer";
 
 import { GameScene } from "./../GameScene";
-import { LevelGenerator, LevelTileset } from "./LevelGenerator";
+import { LevelGenerator } from "./LevelGenerator";
+import { LevelTileset, LevelTilesetLayoutType, LevelTilesetCeilingType, LevelTilesetFloorType } from "./LevelTileset";
+import { Skeleton } from "./../Enemy/Skeleton";
 
 class Level
 {
     private _TileScale:number;
     private _Tiles:any[];
     private _Tileset:any;
+    private _Enemies:Skeleton[];
     public constructor()
     {
         this._TileScale = 30;
@@ -18,7 +21,7 @@ class Level
     }
     public Init(Scene:GameScene) : void
     {
-        let Tilesets:LevelTileset = new LevelTileset();
-        LevelGenerator.Generate(Scene, Tilesets);
+        let Tileset:LevelTileset = new LevelTileset("Ruin", LevelTilesetLayoutType.Bordered, LevelTilesetFloorType.Uniform, LevelTilesetCeilingType.Bordered, [16,1]);
+        LevelGenerator.Generate(Scene, Tileset);
     }
 }
