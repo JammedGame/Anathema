@@ -4,14 +4,14 @@ import Engineer from "./../Engineer";
 
 class ChunkGenerator
 {
-    public static Generate(Type:number, Dimensions:any) : Chunk
+    public static Generate(Type:number, Dimensions:any, WallVoid:boolean) : Chunk
     {
         let NewChunk:Chunk = new Chunk(Dimensions, 1);
         if(Type == 3) ChunkGenerator.GenerateType0(NewChunk);
         if(Type == 2) ChunkGenerator.GenerateType1(NewChunk);
         if(Type == 1) ChunkGenerator.GenerateType2(NewChunk);
         if(Type == 0) ChunkGenerator.GenerateType3(NewChunk);
-        ChunkGenerator.FakeIsometric(NewChunk);
+        ChunkGenerator.FakeIsometric(NewChunk, WallVoid);
         return NewChunk;
     }
     public static GenerateWOFake(Type:number, Dimensions:any) : Chunk
@@ -101,13 +101,19 @@ class ChunkGenerator
             }
         }
     }
-    public static FakeIsometric(NewChunk:Chunk) : void
+    public static FakeIsometric(NewChunk:Chunk, WallVoid:boolean) : void
     {
+        console.log(WallVoid);
         for(let i = 0; i < NewChunk.Dimensions.Y - 1; i++)
         {
             for(let j = 0; j < NewChunk.Dimensions.X; j++)
             {
-                if(NewChunk.Fields[i][j] == 4 && NewChunk.Fields[i+1][j] < 2)
+                if(NewChunk.Fields[i][j] == 4 && NewChunk.Fields[i+1][j] == 1)
+                {
+                    NewChunk.Fields[i+1][j] = 3;
+                    if(i < NewChunk.Dimensions.Y - 2 && NewChunk.Fields[i+2][j] < 2) NewChunk.Fields[i+2][j] = 2;
+                }
+                else if(NewChunk.Fields[i][j] == 4 && (NewChunk.Fields[i+1][j] == 0 || NewChunk.Fields[i+1][j] == -1) && WallVoid)
                 {
                     NewChunk.Fields[i+1][j] = 3;
                     if(i < NewChunk.Dimensions.Y - 2 && NewChunk.Fields[i+2][j] < 2) NewChunk.Fields[i+2][j] = 2;
