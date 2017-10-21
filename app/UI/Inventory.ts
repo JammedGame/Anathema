@@ -3,7 +3,6 @@ export { Inventory };
 import Engineer from "./../Engineer";
 import { GameScene } from "./../GameScene";
 import { Player } from "./../Player";
-import { Items } from "./../Items";
 import { Window } from "./Window";
 
 class Inventory extends Window

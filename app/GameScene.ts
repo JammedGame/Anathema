@@ -7,7 +7,7 @@ import { LocalSettings } from "./LocalSettings";
 import { Player } from "./Player";
 import { Skeleton } from "./Enemy/Skeleton";
 import { Movement } from "./Movement";
-import { Items } from "./Items";
+import { ItemWorld } from "./Items/ItemWorld";
 import { HealthBar } from "./HealthBar";
 import { Inventory } from "./UI/Inventory";
 import { SkillTree } from "./UI/SkillTree";
@@ -16,7 +16,7 @@ class GameScene extends Engineer.Engine.Scene2D {
     private _Level: Level;
     private _Player: Player;
     private _Skeleton: Skeleton;
-    private _Item: Items;
+    private _Item: ItemWorld;
     private _Inventory: Inventory;
     private _Movement: Movement;
     private _SkillTree: SkillTree;
@@ -36,7 +36,6 @@ class GameScene extends Engineer.Engine.Scene2D {
             this._Skeleton = new Skeleton(this, Math.random() * 1980, Math.random() * 1080);
         }
         this._Movement = new Movement(this._Player, this);
-        this._Item = new Items(this._Player, this);
         this._Inventory = new Inventory(this);
         this._SkillTree = new SkillTree(this);
         this.Events.KeyPress.push(this.KeyPress.bind(this));
