@@ -81,7 +81,7 @@ class LevelTileset
         if(this._CeilingType == LevelTilesetCeilingType.Crested) CeilingLength = 12;
         if(this._CeilingType == LevelTilesetCeilingType.Bordered) CeilingLength = 17;
         let CeilingImages:string[] = [];
-        for(let i = 1; i < ArrayLengths[1] + 1; i++)
+        for(let i = 1; i < CeilingLength; i++)
         {
             let s = i.toString();
             if(i < 10) s = "0" + i;

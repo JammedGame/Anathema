@@ -5,7 +5,7 @@ import Engineer from "./../Engineer";
 import { Chunk, ChunkGenerator } from "./ChunkGenerator";
 import { ColliderGenerator } from "./ColliderGenerator";
 import { GameScene } from "./../GameScene";
-import { LevelTileset } from "./LevelTileset"; 
+import { LevelTileset, LevelTilesetCeilingType } from "./LevelTileset"; 
 import { Layout, LayoutClass, LayoutEntry } from "./Layout";
 
 class LevelGenerator
@@ -48,28 +48,75 @@ class LevelGenerator
     }
     private static GenerateCeilingTile(Scene:GameScene, Tilesets:LevelTileset, C:Chunk, X:number, Y:number) : void
     {
-        let Horizontal = X >= 1 && X + 1 < C.Dimensions.X && C.Fields[Y][X - 1] == 4 && C.Fields[Y][X + 1] == 4;
-        let Vertical = Y >= 1 && Y + 1 < C.Dimensions.Y && C.Fields[Y - 1][X] == 4 && C.Fields[Y + 1][X] == 4;
-        if(Horizontal && Vertical)
+        if(Tilesets.CeilingType == LevelTilesetCeilingType.Bordered) this.GenerateBorderedCeilingTile(Scene, Tilesets, C, X, Y);
+    }
+    private static GenerateBorderedCeilingTile(Scene:GameScene, Tilesets:LevelTileset, C:Chunk, X:number, Y:number) : void
+    {
+        let Index = 0;
+        let Up = Y >= 1 && C.Fields[Y - 1][X] == 4;
+        let Down = Y + 1 < C.Dimensions.Y && C.Fields[Y + 1][X] == 4;
+        let Left = X >= 1 && C.Fields[Y][X - 1] == 4;
+        let Right = X + 1 < C.Dimensions.X && C.Fields[Y][X + 1] == 4;
+        if(Up)
         {
-            LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(X+1,Y+1,0), Tilesets.Ceiling, 0, Engineer.Math.Color.FromRGBA(255,255,255,255));
-            ColliderGenerator.GenerateColliderTile(Scene,X+1,Y+1,1,1);
-        }
-        else if (Horizontal)
-        {
-            LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(X+1,Y+1,0), Tilesets.Ceiling, 0, Engineer.Math.Color.FromRGBA(255,255,255,255));
-            ColliderGenerator.GenerateColliderTile(Scene,X+1,Y+1,1,1);
-        }
-        else if (Vertical)
-        {
-            LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(X+1,Y+1,0), Tilesets.Ceiling, 0, Engineer.Math.Color.FromRGBA(255,255,255,255));
-            ColliderGenerator.GenerateColliderTile(Scene,X+1,Y+1,1,1);
+            if(Down)
+            {
+                if(Left)
+                {
+                    if(Right) Index = 17;
+                    else Index = 14;
+                }
+                else
+                {
+                    if(Right) Index = 16;
+                    else Index = 6;
+                }
+            }
+            else
+            {
+                if(Left)
+                {
+                    if(Right) Index = 15;
+                    else Index = 3;
+                }
+                else
+                {
+                    if(Right) Index = 4;
+                    else Index = 12;
+                }
+            }
         }
         else
         {
-            LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(X+1,Y+1,0), Tilesets.Ceiling, 0, Engineer.Math.Color.FromRGBA(255,255,255,255));
-            ColliderGenerator.GenerateColliderTile(Scene,X+1,Y+1,1,1);
+            if(Down)
+            {
+                if(Left)
+                {
+                    if(Right) Index = 13;
+                    else Index = 2;
+                }
+                else
+                {
+                    if(Right) Index = 1;
+                    else Index = 10;
+                }
+            }
+            else
+            {
+                if(Left)
+                {
+                    if(Right) Index = 5;
+                    else Index = 11;
+                }
+                else
+                {
+                    if(Right) Index = 9;
+                    else Index = 17;
+                }
+            }
         }
+        LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(X+1,Y+1,0), Tilesets.Ceiling, Index - 1, Engineer.Math.Color.FromRGBA(255,255,255,255));
+        ColliderGenerator.GenerateColliderTile(Scene,X+1,Y+1,1,1);
     }
     private static GenerateMegaChunk(L:Layout) : Chunk
     {
