@@ -15,9 +15,7 @@ class ItemWorld extends Engineer.Engine.Tile
         this.Name="Item";
         this._Scene = Scene;
         this._Player = Player;
-        this.Collection = new Engineer.Engine.TileCollection(null, ["/build/resources/item.png"])
-        this.SpriteSets = [new Engineer.Engine.SpriteSet(null, "Item")];
-        this.SpriteSets[0].Sprites = ["/build/resources/item.png"];
+        this.Collection = new Engineer.Engine.TileCollection(null, ["/build/resources/item.png"]);
         this.Data["Item"] = true;
         this.Data["Collision"] = Engineer.Math.CollisionType.Rectangular2D;
         this._Scene.Events.TimeTick.push(this.GameUpdate.bind(this));

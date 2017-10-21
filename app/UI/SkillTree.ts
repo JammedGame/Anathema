@@ -3,7 +3,6 @@ export { SkillTree };
 import Engineer from "./../Engineer";
 import { GameScene } from "./../GameScene";
 import { Player } from "./../Player";
-import { Items } from "./../Items";
 import { Window } from "./Window";
 
 class SkillTree extends Window

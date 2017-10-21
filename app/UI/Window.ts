@@ -3,7 +3,6 @@ export { Window };
 import Engineer from "./../Engineer";
 import { GameScene } from "./../GameScene";
 import { Player } from "./../Player";
-import { Items } from "./../Items";
 
 class Window extends Engineer.Engine.Tile
 {
