@@ -107,6 +107,23 @@ exports.ColliderObject = Collision_1.ColliderObject;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var Converter_1 = __webpack_require__(18);
+exports.Convert = Converter_1.Convert;
+var Collision_1 = __webpack_require__(23);
+exports.Collision = Collision_1.Collision;
+var Buffer_1 = __webpack_require__(24);
+exports.Buffer = Buffer_1.Buffer;
+var Log_1 = __webpack_require__(25);
+exports.Log = Log_1.Log;
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
 var Uuid_1 = __webpack_require__(26);
 exports.Uuid = Uuid_1.Uuid;
 var ImageContainer_1 = __webpack_require__(27);
@@ -130,23 +147,6 @@ var Reader = /** @class */ (function () {
     return Reader;
 }());
 exports.Reader = Reader;
-
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var Converter_1 = __webpack_require__(18);
-exports.Convert = Converter_1.Convert;
-var Collision_1 = __webpack_require__(23);
-exports.Collision = Collision_1.Collision;
-var Buffer_1 = __webpack_require__(24);
-exports.Buffer = Buffer_1.Buffer;
-var Log_1 = __webpack_require__(25);
-exports.Log = Log_1.Log;
 
 
 /***/ }),
@@ -389,7 +389,7 @@ exports.DrawObject = DrawObject;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Data = __webpack_require__(2);
+var Data = __webpack_require__(3);
 var Events_1 = __webpack_require__(8);
 var SceneObjectType;
 (function (SceneObjectType) {
@@ -471,7 +471,8 @@ var EventPackage = /** @class */ (function () {
         this._OperationProgress = [];
         this._OperationFinished = [];
         this._SpriteSetAnimationComplete = [];
-        //TODO: Need to duplicate old
+        /// TODO
+        /// Need to properly duplicate old
     }
     Object.defineProperty(EventPackage.prototype, "Closing", {
         get: function () { return this._Closing; },
@@ -610,7 +611,8 @@ exports.EventPackage = EventPackage;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Data = __webpack_require__(2);
+var Data = __webpack_require__(3);
+var Util = __webpack_require__(2);
 var Math = __webpack_require__(1);
 var Events_1 = __webpack_require__(8);
 var SceneType;
@@ -681,6 +683,14 @@ var Scene = /** @class */ (function () {
         this.Data[Object.ID] = Object;
         this._Objects.push(Object);
     };
+    Scene.prototype.RemoveSceneObject = function (Object) {
+        var Index = this._Objects.indexOf(Object);
+        if (Index != -1) {
+            this._Objects.splice(Index, 1);
+        }
+        else
+            Util.Log.Warning("Object " + Object.Name + "/" + Object.ID + " does not exist in scene " + this.Name + "/" + this.ID);
+    };
     Scene.prototype.GetObjectsWithData = function (Key, Data) {
         var Objects = [];
         for (var i = 0; i < this.Objects.length; i++) {
@@ -721,7 +731,7 @@ exports.DrawEngine = DrawEngine_1.DrawEngine;
 Object.defineProperty(exports, "__esModule", { value: true });
 var Math = __webpack_require__(1);
 var Engine = __webpack_require__(5);
-var Util = __webpack_require__(3);
+var Util = __webpack_require__(2);
 var DrawEngineType;
 (function (DrawEngineType) {
     DrawEngineType[DrawEngineType["ThreeJS"] = 0] = "ThreeJS";
@@ -801,10 +811,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Engineer_1 = __webpack_require__(0);
 var HealthBar_1 = __webpack_require__(49);
 var Weapon_1 = __webpack_require__(51);
+var Trait_1 = __webpack_require__(57);
 var Player = /** @class */ (function (_super) {
     __extends(Player, _super);
     function Player(Scene) {
         var _this = _super.call(this) || this;
+        _this._Traits = new Trait_1.Traits();
         _this.Name = "Player";
         _this._Scene = Scene;
         _this.Fixed = true;
@@ -912,26 +924,51 @@ var Player = /** @class */ (function (_super) {
             this._Enemy = this._Scene.GetObjectsWithData("Enemy", true);
         }
         for (var i = 0; i < this._Enemy.length; i++) {
-            Engineer_1.default.Util.Log.Error(Engineer_1.default.Math.Vertex.Distance(this._Collider.Trans.Translation, this._Enemy[i].Trans.Translation));
             if (Engineer_1.default.Math.Vertex.Distance(this._Collider.Trans.Translation, this._Enemy[i].Trans.Translation) < this.Trans.Scale.X && Engineer_1.default.Math.Vertex.Distance(this._Collider.Trans.Translation, this._Enemy[i].Trans.Translation) < this.Trans.Scale.Y) {
                 return this._Enemy[i];
             }
         }
         return null;
     };
+    Player.prototype.CheckMultipleEnemy = function () {
+        if (this._Enemy == null) {
+            this._Enemy = this._Scene.GetObjectsWithData("Enemy", true);
+        }
+        var temp;
+        temp = [];
+        for (var i = 0; i < this._Enemy.length; i++) {
+            if (Engineer_1.default.Math.Vertex.Distance(this._Collider.Trans.Translation, this._Enemy[i].Trans.Translation) < this.Trans.Scale.X && Engineer_1.default.Math.Vertex.Distance(this._Collider.Trans.Translation, this._Enemy[i].Trans.Translation) < this.Trans.Scale.Y) {
+                temp.push(this._Enemy[i]);
+            }
+        }
+        return temp;
+    };
+    Player.prototype.CalculateDmg = function (nmy, modifier) {
+        if (nmy != null) {
+            if (nmy.Health - this._Weapon.Damage * modifier > 0) {
+                nmy.Health -= this._Weapon.Damage * modifier;
+            }
+            else {
+                this.DistroyEnemy(nmy);
+            }
+        }
+    };
     Player.prototype.DmgEnemy = function (G, Args) {
-        if (Args.CurrentSpriteSet == 8 || Args.CurrentSpriteSet == 9 || Args.CurrentSpriteSet == 10 || Args.CurrentSpriteSet == 11 || Args.CurrentSpriteSet == 12 || Args.CurrentSpriteSet == 13 || Args.CurrentSpriteSet == 14 || Args.CurrentSpriteSet == 15) {
+        if (Args.CurrentSpriteSet == 8 || Args.CurrentSpriteSet == 9 || Args.CurrentSpriteSet == 10 || Args.CurrentSpriteSet == 11) {
             this._PlayerLeftClick = false;
             this.UpdateSpriteSet(8 + this._Scene.Movement.Direction);
             var nmy = void 0;
             nmy = this.CheckSingleEnemy();
-            Engineer_1.default.Util.Log.Error(nmy);
+            this.CalculateDmg(nmy, 1);
+        }
+        if (Args.CurrentSpriteSet == 12 || Args.CurrentSpriteSet == 13 || Args.CurrentSpriteSet == 14 || Args.CurrentSpriteSet == 15) {
+            this._PlayerRightClick = false;
+            this.UpdateSpriteSet(12 + this._Scene.Movement.Direction);
+            var nmy = void 0;
+            nmy = this.CheckMultipleEnemy();
             if (nmy != null) {
-                if (nmy.Health - this._Weapon.Damage > 0) {
-                    nmy.Health = this._Weapon.Damage;
-                }
-                else {
-                    this.DistroyEnemy(nmy);
+                for (var i = 0; i < nmy.length; i++) {
+                    this.CalculateDmg(nmy[i], 2);
                 }
             }
         }
@@ -945,6 +982,8 @@ var Player = /** @class */ (function (_super) {
             this.UpdateSpriteSet(8 + this._Scene.Movement.Direction);
         }
         if (Args.MouseButton == 2) {
+            this.BackUpSpriteSet = this.CurrentSpriteSet;
+            this.UpdateSpriteSet(12 + this._Scene.Movement.Direction);
         }
     };
     return Player;
@@ -1127,8 +1166,8 @@ exports.GameLogic = GameLogic;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Util = __webpack_require__(3);
-var Data = __webpack_require__(2);
+var Util = __webpack_require__(2);
+var Data = __webpack_require__(3);
 var Engine = __webpack_require__(5);
 var Math = __webpack_require__(1);
 var Runner = __webpack_require__(37);
@@ -1812,7 +1851,6 @@ var Collision = /** @class */ (function () {
     };
     Collision.GetDefaultRectangularWay = function (Collider, Position) {
         return Collision.GetCollisionRectangularWay(Collider, Position);
-        //return Collision.GetCollision4Way(Collider.Position, Position);
     };
     Collision.FocusOffset = 10;
     return Collision;
@@ -2037,7 +2075,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Data = __webpack_require__(2);
+var Data = __webpack_require__(3);
 var Math = __webpack_require__(1);
 var DrawObject_1 = __webpack_require__(6);
 var Sprite = /** @class */ (function (_super) {
@@ -2237,7 +2275,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Data = __webpack_require__(2);
+var Data = __webpack_require__(3);
 var Math = __webpack_require__(1);
 var DrawObject_1 = __webpack_require__(6);
 var Tile = /** @class */ (function (_super) {
@@ -2334,6 +2372,8 @@ exports.TileCollection = TileCollection;
 Object.defineProperty(exports, "__esModule", { value: true });
 var MouseButton;
 (function (MouseButton) {
+    /// TODO
+    /// Check these codes for mac versions (Safari), as they once again reimplemented hot water.
     MouseButton[MouseButton["Left"] = 0] = "Left";
     MouseButton[MouseButton["Middle"] = 1] = "Middle";
     MouseButton[MouseButton["Right"] = 2] = "Right";
@@ -2341,6 +2381,8 @@ var MouseButton;
 exports.MouseButton = MouseButton;
 var KeyType;
 (function (KeyType) {
+    /// TODO
+    /// Revise these codes, as they don't seem to be right.
     KeyType[KeyType["KEY_CANCEL"] = 3] = "KEY_CANCEL";
     KeyType[KeyType["KEY_HELP"] = 6] = "KEY_HELP";
     KeyType[KeyType["KEY_BACK_SPACE"] = 8] = "KEY_BACK_SPACE";
@@ -5568,7 +5610,7 @@ exports.Quality = Quality;
 var Settings = /** @class */ (function () {
     function Settings() {
     }
-    Settings.Version = "0.0.27";
+    Settings.Version = "0.0.30";
     Settings.LibPath = "/resources/";
     Settings.Graphics = Quality.High;
     return Settings;
@@ -5585,7 +5627,7 @@ exports.Settings = Settings;
 Object.defineProperty(exports, "__esModule", { value: true });
 var Math = __webpack_require__(1);
 var Engine = __webpack_require__(5);
-var Util = __webpack_require__(3);
+var Util = __webpack_require__(2);
 var Draw = __webpack_require__(10);
 var Three = __webpack_require__(38);
 var Runner = /** @class */ (function () {
@@ -5654,6 +5696,8 @@ var Runner = /** @class */ (function () {
             }
         }
     };
+    /// TODO
+    /// Export events to separate class.
     Runner.prototype.OnRenderFrame = function () {
         if (this._Stop)
             return;
@@ -5784,7 +5828,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Three = __webpack_require__(40);
 var Math = __webpack_require__(1);
 var Engine = __webpack_require__(5);
-var Util = __webpack_require__(3);
+var Util = __webpack_require__(2);
 var Shaders = __webpack_require__(41);
 var DrawEngine_1 = __webpack_require__(11);
 var ThreeDrawEngine = /** @class */ (function (_super) {
@@ -5926,18 +5970,22 @@ var ThreeDrawEngine = /** @class */ (function (_super) {
             else
                 Sprite.position.set(SpriteData.Trans.Translation.X * this._GlobalScale.X, SpriteData.Trans.Translation.Y * this._GlobalScale.Y, SpriteData.Trans.Translation.Z);
             Sprite.scale.set(SpriteData.Trans.Scale.X * this._GlobalScale.X, SpriteData.Trans.Scale.Y * this._GlobalScale.Y, 1);
-            Sprite.rotation.set(SpriteData.Trans.Rotation.X, SpriteData.Trans.Rotation.Y, SpriteData.Trans.Rotation.Z);
+            Sprite.rotation.set((Drawn.Trans.Rotation.X / 180) * 3.14, (Drawn.Trans.Rotation.Y / 180) * 3.14, (Drawn.Trans.Rotation.Z / 180) * 3.14);
             this._Scene.add(Sprite);
             Util.Log.Info("ThreeJS Object " + Sprite.uuid + " added to scene.");
             this._Checked.push(Sprite.uuid);
         }
         else {
             var Sprite = this.Data[Drawn.ID];
-            if (this.Data[Drawn.ID + "_CurrentSet"] != SpriteData.CurrentSpriteSet || this.Data[Drawn.ID + "_CurrentIndex"] != SpriteData.CurrentIndex) {
-                this.Data[Drawn.ID + "_CurrentIndex"] = SpriteData.CurrentIndex;
+            if (this.Data[Drawn.ID + "_CurrentSet"] != SpriteData.CurrentSpriteSet) {
                 this.Data[Drawn.ID + "_CurrentSet"] = SpriteData.CurrentSpriteSet;
                 var Textures = this.Data[Drawn.ID + "_Tex_" + Drawn.CurrentSpriteSet];
-                Sprite.material = this.GenerateSpriteMaterial(SpriteData, Textures[SpriteData.CurrentIndex]);
+                Sprite.material["uniforms"].texture.value = Textures[SpriteData.CurrentIndex];
+            }
+            else if (this.Data[Drawn.ID + "_CurrentIndex"] != SpriteData.CurrentIndex) {
+                this.Data[Drawn.ID + "_CurrentIndex"] = SpriteData.CurrentIndex;
+                var Textures = this.Data[Drawn.ID + "_Tex_" + Drawn.CurrentSpriteSet];
+                Sprite.material["uniforms"].texture.value = Textures[SpriteData.CurrentIndex];
             }
             Sprite.visible = SpriteData.Active;
             if (!Drawn.Fixed)
@@ -5945,7 +5993,7 @@ var ThreeDrawEngine = /** @class */ (function (_super) {
             else
                 Sprite.position.set(SpriteData.Trans.Translation.X * this._GlobalScale.X, SpriteData.Trans.Translation.Y * this._GlobalScale.Y, SpriteData.Trans.Translation.Z);
             Sprite.scale.set(SpriteData.Trans.Scale.X * this._GlobalScale.X, SpriteData.Trans.Scale.Y * this._GlobalScale.Y, 1);
-            Sprite.rotation.set(SpriteData.Trans.Rotation.X, SpriteData.Trans.Rotation.Y, SpriteData.Trans.Rotation.Z);
+            Sprite.rotation.set((Drawn.Trans.Rotation.X / 180) * 3.14, (Drawn.Trans.Rotation.Y / 180) * 3.14, (Drawn.Trans.Rotation.Z / 180) * 3.14);
             this._Checked.push(Sprite.uuid);
         }
     };
@@ -5995,7 +6043,7 @@ var ThreeDrawEngine = /** @class */ (function (_super) {
             else
                 Tile.position.set(TileData.Trans.Translation.X * this._GlobalScale.X, TileData.Trans.Translation.Y * this._GlobalScale.Y, TileData.Trans.Translation.Z);
             Tile.scale.set(TileData.Trans.Scale.X * this._GlobalScale.X, TileData.Trans.Scale.Y * this._GlobalScale.Y, 1);
-            Tile.rotation.set(TileData.Trans.Rotation.X, TileData.Trans.Rotation.Y, TileData.Trans.Rotation.Z);
+            Tile.rotation.set((Drawn.Trans.Rotation.X / 180) * 3.14, (Drawn.Trans.Rotation.Y / 180) * 3.14, (Drawn.Trans.Rotation.Z / 180) * 3.14);
             this._Scene.add(Tile);
             Util.Log.Info("ThreeJS Object " + Tile.uuid + " added to scene.");
             this._Checked.push(Tile.uuid);
@@ -6008,7 +6056,7 @@ var ThreeDrawEngine = /** @class */ (function (_super) {
             else
                 Tile.position.set(TileData.Trans.Translation.X * this._GlobalScale.X, TileData.Trans.Translation.Y * this._GlobalScale.Y, TileData.Trans.Translation.Z);
             Tile.scale.set(TileData.Trans.Scale.X * this._GlobalScale.X, TileData.Trans.Scale.Y * this._GlobalScale.Y, 1);
-            Tile.rotation.set(TileData.Trans.Rotation.X, TileData.Trans.Rotation.Y, TileData.Trans.Rotation.Z);
+            Tile.rotation.set((Drawn.Trans.Rotation.X / 180) * 3.14, (Drawn.Trans.Rotation.Y / 180) * 3.14, (Drawn.Trans.Rotation.Z / 180) * 3.14);
             this._Checked.push(Tile.uuid);
         }
     };
@@ -50229,9 +50277,8 @@ var Level_1 = __webpack_require__(45);
 var Player_1 = __webpack_require__(12);
 var Skeleton_1 = __webpack_require__(52);
 var Movement_1 = __webpack_require__(53);
-var Items_1 = __webpack_require__(55);
-var Inventory_1 = __webpack_require__(56);
-var SkillTree_1 = __webpack_require__(57);
+var Inventory_1 = __webpack_require__(55);
+var SkillTree_1 = __webpack_require__(56);
 var GameScene = /** @class */ (function (_super) {
     __extends(GameScene, _super);
     function GameScene() {
@@ -50250,9 +50297,10 @@ var GameScene = /** @class */ (function (_super) {
     GameScene.prototype.Init = function () {
         this._Level.Init(this);
         this._Player = new Player_1.Player(this);
-        this._Skeleton = new Skeleton_1.Skeleton(this);
+        for (var i = 0; i < 10; i++) {
+            this._Skeleton = new Skeleton_1.Skeleton(this, Math.random() * 1980, Math.random() * 1080);
+        }
         this._Movement = new Movement_1.Movement(this._Player, this);
-        this._Item = new Items_1.Items(this._Player, this);
         this._Inventory = new Inventory_1.Inventory(this);
         this._SkillTree = new SkillTree_1.SkillTree(this);
         this.Events.KeyPress.push(this.KeyPress.bind(this));
@@ -51020,223 +51068,19 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Engineer_1 = __webpack_require__(0);
+var Enemy_1 = __webpack_require__(58);
 var Skeleton = /** @class */ (function (_super) {
     __extends(Skeleton, _super);
-    function Skeleton(Scene) {
-        var _this = _super.call(this) || this;
-        _this.moveSpeed = 10;
-        _this.moveArea = 500;
-        _this.followArea = 300;
-        _this._MaxHealth = 100;
-        _this._Health = _this._MaxHealth;
-        _this._Damage = 25;
-        _this.Name = "Skeleton";
-        _this._Scene = Scene;
-        _this._Player_Collider = _this._Scene.Data["Character_Collider"];
-        _this._Player = _this._Scene.Data["Character"];
-        _this.counter = 0;
-        _this.rng_counter = 0;
-        _this.s_direction = Math.round(3 * Math.random());
-        _this.moving = true;
-        _this.following = false;
-        _this.Trans.Scale = new Engineer_1.default.Math.Vertex(100, 150, 1);
-        _this.Trans.Translation = new Engineer_1.default.Math.Vertex(400, 400, 0.5);
-        _this.SpriteSets = [new Engineer_1.default.Engine.SpriteSet(null, "S_WalkN"), new Engineer_1.default.Engine.SpriteSet(null, "S_WalkE"), new Engineer_1.default.Engine.SpriteSet(null, "S_WalkS"), new Engineer_1.default.Engine.SpriteSet(null, "S_WalkW"), new Engineer_1.default.Engine.SpriteSet(null, "S_AttN"), new Engineer_1.default.Engine.SpriteSet(null, "S_AttE"), new Engineer_1.default.Engine.SpriteSet(null, "S_AttS"), new Engineer_1.default.Engine.SpriteSet(null, "S_AttW")];
-        _this.SpriteSets[0].Sprites = ["/build/resources/skeleton/E_up00.png", "/build/resources/skeleton/E_up01.png", "/build/resources/skeleton/E_up02.png", "/build/resources/skeleton/E_up03.png", "/build/resources/skeleton/E_up04.png", "/build/resources/skeleton/E_up05.png", "/build/resources/skeleton/E_up06.png", "/build/resources/skeleton/E_up07.png", "/build/resources/skeleton/E_up08.png"];
-        _this.SpriteSets[1].Sprites = ["/build/resources/skeleton/E_rgt00.png", "/build/resources/skeleton/E_rgt01.png", "/build/resources/skeleton/E_rgt02.png", "/build/resources/skeleton/E_rgt03.png", "/build/resources/skeleton/E_rgt04.png", "/build/resources/skeleton/E_rgt05.png", "/build/resources/skeleton/E_rgt06.png", "/build/resources/skeleton/E_rgt07.png", "/build/resources/skeleton/E_rgt08.png"];
-        _this.SpriteSets[2].Sprites = ["/build/resources/skeleton/E_dwn00.png", "/build/resources/skeleton/E_dwn01.png", "/build/resources/skeleton/E_dwn02.png", "/build/resources/skeleton/E_dwn03.png", "/build/resources/skeleton/E_dwn04.png", "/build/resources/skeleton/E_dwn05.png", "/build/resources/skeleton/E_dwn06.png", "/build/resources/skeleton/E_dwn07.png", "/build/resources/skeleton/E_dwn08.png"];
-        _this.SpriteSets[3].Sprites = ["/build/resources/skeleton/E_lft00.png", "/build/resources/skeleton/E_lft01.png", "/build/resources/skeleton/E_lft02.png", "/build/resources/skeleton/E_lft03.png", "/build/resources/skeleton/E_lft04.png", "/build/resources/skeleton/E_lft05.png", "/build/resources/skeleton/E_lft06.png", "/build/resources/skeleton/E_lft07.png", "/build/resources/skeleton/E_lft08.png"];
-        _this.SpriteSets[4].Sprites = ["/build/resources/skeleton/S_slash_up00.png", "/build/resources/skeleton/S_slash_up01.png", "/build/resources/skeleton/S_slash_up02.png", "/build/resources/skeleton/S_slash_up03.png", "/build/resources/skeleton/S_slash_up04.png", "/build/resources/skeleton/S_slash_up05.png"];
-        _this.SpriteSets[5].Sprites = ["/build/resources/skeleton/S_slash_rgt00.png", "/build/resources/skeleton/S_slash_rgt01.png", "/build/resources/skeleton/S_slash_rgt02.png", "/build/resources/skeleton/S_slash_rgt03.png", "/build/resources/skeleton/S_slash_rgt04.png", "/build/resources/skeleton/S_slash_rgt05.png"];
-        _this.SpriteSets[6].Sprites = ["/build/resources/skeleton/S_slash_btm00.png", "/build/resources/skeleton/S_slash_btm01.png", "/build/resources/skeleton/S_slash_btm02.png", "/build/resources/skeleton/S_slash_btm03.png", "/build/resources/skeleton/S_slash_btm04.png", "/build/resources/skeleton/S_slash_btm05.png"];
-        _this.SpriteSets[7].Sprites = ["/build/resources/skeleton/S_slash_lft00.png", "/build/resources/skeleton/S_slash_lft01.png", "/build/resources/skeleton/S_slash_lft02.png", "/build/resources/skeleton/S_slash_lft03.png", "/build/resources/skeleton/S_slash_lft04.png", "/build/resources/skeleton/S_slash_lft05.png"];
-        _this.SpriteSets[0].Seed = 25;
-        _this.SpriteSets[1].Seed = 25;
-        _this.SpriteSets[2].Seed = 25;
-        _this.SpriteSets[3].Seed = 25;
-        _this.SpriteSets[4].Seed = 15;
-        _this.SpriteSets[5].Seed = 15;
-        _this.SpriteSets[6].Seed = 15;
-        _this.SpriteSets[7].Seed = 15;
-        _this.pos_x = _this.Trans.Translation.X;
-        _this.pos_y = _this.Trans.Translation.Y;
-        _this.Data["Enemy"] = true;
-        _this.Data["Collision"] = Engineer_1.default.Math.CollisionType.Radius2D;
-        _this._SolidColliders = _this._Scene.GetObjectsWithData("Solid", true);
-        _this._Scene.Events.TimeTick.push(_this.movement.bind(_this));
-        _this._Scene.Events.TimeTick.push(_this.attack.bind(_this));
-        _this._Scene.Events.TimeTick.push(_this.follow.bind(_this));
-        _this.Events.SpriteSetAnimationComplete.push(_this.doDamage.bind(_this));
-        _this._Scene.AddSceneObject(_this);
-        return _this;
+    function Skeleton(Scene, start_X, start_Y) {
+        return _super.call(this, Scene, start_X, start_Y) || this;
     }
-    Object.defineProperty(Skeleton.prototype, "Health", {
-        get: function () { return this._Health; },
-        set: function (dmg) { this._Health = dmg; },
-        enumerable: true,
-        configurable: true
-    });
-    Skeleton.prototype.movement = function () {
-        if (this.moving && !this.following) {
-            if (this.counter >= 15) {
-                this.counter = 0;
-                if (this.rng_counter >= 5) {
-                    this.s_direction = Math.round(3 * Math.random());
-                    this.rng_counter = 0;
-                }
-                Engineer_1.default.Util.Collision.CalculateObjectCollisions("Solid", this, this._SolidColliders);
-                switch (this.s_direction) {
-                    case 0:
-                        if (this.Trans.Translation.Y > this.pos_y - this.moveArea) {
-                            if (!this.Data["Collision_Solid"].Top) {
-                                this.Trans.Translation = new Engineer_1.default.Math.Vertex(this.Trans.Translation.X, this.Trans.Translation.Y - this.moveSpeed, 0.5);
-                                this.UpdateSpriteSet(0);
-                                this.rng_counter++;
-                            }
-                            else {
-                                this.rng_counter = 5;
-                            }
-                        }
-                        else {
-                            this.rng_counter = 5;
-                        }
-                        break;
-                    case 1:
-                        if (this.Trans.Translation.X < this.pos_x + this.moveArea) {
-                            if (!this.Data["Collision_Solid"].Right) {
-                                this.Trans.Translation = new Engineer_1.default.Math.Vertex(this.Trans.Translation.X + this.moveSpeed, this.Trans.Translation.Y, 0.5);
-                                this.UpdateSpriteSet(1);
-                                this.rng_counter++;
-                            }
-                            else {
-                                this.rng_counter = 5;
-                            }
-                        }
-                        else {
-                            this.rng_counter = 5;
-                        }
-                        break;
-                    case 2:
-                        if (this.Trans.Translation.Y < this.pos_y + this.moveArea) {
-                            if (!this.Data["Collision_Solid"].Bottom) {
-                                this.Trans.Translation = new Engineer_1.default.Math.Vertex(this.Trans.Translation.X, this.Trans.Translation.Y + this.moveSpeed, 0.5);
-                                this.UpdateSpriteSet(2);
-                                this.rng_counter++;
-                            }
-                            else {
-                                this.rng_counter = 5;
-                            }
-                        }
-                        else {
-                            this.rng_counter = 5;
-                        }
-                        break;
-                    case 3:
-                        if (this.Trans.Translation.X > this.pos_x - this.moveArea) {
-                            if (!this.Data["Collision_Solid"].Left) {
-                                this.Trans.Translation = new Engineer_1.default.Math.Vertex(this.Trans.Translation.X - this.moveSpeed, this.Trans.Translation.Y, 0.5);
-                                this.UpdateSpriteSet(3);
-                                this.rng_counter++;
-                            }
-                            else {
-                                this.rng_counter = 5;
-                            }
-                        }
-                        else {
-                            this.rng_counter = 5;
-                        }
-                        break;
-                }
-            }
-            else
-                this.counter++;
-        }
-    };
     Skeleton.prototype.doDamage = function (G, Args) {
         if (Args.CurrentSpriteSet == 4 || Args.CurrentSpriteSet == 5 || Args.CurrentSpriteSet == 6 || Args.CurrentSpriteSet == 7) {
             this._Player.HealthBar.Damage(this._Damage);
         }
     };
-    Skeleton.prototype.attack = function () {
-        if (Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) < this._Player_Collider.Trans.Scale.X && Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) < this._Player_Collider.Trans.Scale.Y) {
-            this.moving = false;
-            this.following = false;
-            this.UpdateSpriteSet(4 + this.checkMove());
-        }
-        else {
-            this.following = true;
-            this.moving = false;
-        }
-    };
-    Skeleton.prototype.checkMove = function () {
-        if (this._Player_Collider.Trans.Translation.X - this.Trans.Translation.X >= 0 && this._Player_Collider.Trans.Translation.Y - this.Trans.Translation.Y <= 0) {
-            return 0;
-        }
-        if (this._Player_Collider.Trans.Translation.X - this.Trans.Translation.X >= 0 && this._Player_Collider.Trans.Translation.Y - this.Trans.Translation.Y >= 0) {
-            return 1;
-        }
-        if (this._Player_Collider.Trans.Translation.X - this.Trans.Translation.X <= 0 && this._Player_Collider.Trans.Translation.Y - this.Trans.Translation.Y >= 0) {
-            return 2;
-        }
-        if (this._Player_Collider.Trans.Translation.X - this.Trans.Translation.X <= 0 && this._Player_Collider.Trans.Translation.Y - this.Trans.Translation.Y <= 0) {
-            return 3;
-        }
-    };
-    Skeleton.prototype.follow = function () {
-        if (Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) < this.followArea) {
-            this.following = true;
-            this.moving = false;
-            if (this.counter >= 15) {
-                this.counter = 0;
-                Engineer_1.default.Util.Collision.CalculateObjectCollisions("Solid", this, this._SolidColliders);
-                if (this.checkMove() == 0) {
-                    if (Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) > this._Player_Collider.Trans.Scale.X * 2 / 5 && Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) > this._Player_Collider.Trans.Scale.Y * 2 / 3) {
-                        if (!this.Data["Collision_Solid"].Top) {
-                            this.Trans.Translation = new Engineer_1.default.Math.Vertex(this.Trans.Translation.X + this.moveSpeed, this.Trans.Translation.Y - this.moveSpeed, 0.5);
-                            this.s_direction = 0;
-                            this.UpdateSpriteSet(0);
-                        }
-                    }
-                }
-                if (this.checkMove() == 1) {
-                    if (Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) > this._Player_Collider.Trans.Scale.X * 2 / 5 && Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) > this._Player_Collider.Trans.Scale.Y * 2 / 3) {
-                        if (!this.Data["Collision_Solid"].Right) {
-                            this.Trans.Translation = new Engineer_1.default.Math.Vertex(this.Trans.Translation.X + this.moveSpeed, this.Trans.Translation.Y + this.moveSpeed, 0.5);
-                            this.s_direction = 1;
-                            this.UpdateSpriteSet(1);
-                        }
-                    }
-                }
-                if (this.checkMove() == 2) {
-                    if (Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) > this._Player_Collider.Trans.Scale.X * 2 / 5 && Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) > this._Player_Collider.Trans.Scale.Y * 2 / 3) {
-                        if (!this.Data["Collision_Solid"].Bottom) {
-                            this.Trans.Translation = new Engineer_1.default.Math.Vertex(this.Trans.Translation.X - this.moveSpeed, this.Trans.Translation.Y + this.moveSpeed, 0.5);
-                            this.s_direction = 2;
-                            this.UpdateSpriteSet(2);
-                        }
-                    }
-                }
-                if (this.checkMove() == 3) {
-                    if (Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) > this._Player_Collider.Trans.Scale.X * 2 / 5 && Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) > this._Player_Collider.Trans.Scale.Y * 2 / 3) {
-                        if (!this.Data["Collision_Solid"].Left) {
-                            this.Trans.Translation = new Engineer_1.default.Math.Vertex(this.Trans.Translation.X - this.moveSpeed, this.Trans.Translation.Y - this.moveSpeed, 0.5);
-                            this.s_direction = 3;
-                            this.UpdateSpriteSet(3);
-                        }
-                    }
-                }
-            }
-            else
-                this.counter++;
-        }
-        else {
-            this.moving = true;
-            this.following = false;
-        }
-    };
     return Skeleton;
-}(Engineer_1.default.Engine.Sprite));
+}(Enemy_1.Enemy));
 exports.Skeleton = Skeleton;
 
 
@@ -51364,59 +51208,6 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Engineer_1 = __webpack_require__(0);
-var Items = /** @class */ (function (_super) {
-    __extends(Items, _super);
-    function Items(Player, Scene) {
-        var _this = _super.call(this) || this;
-        _this.Name = "Item";
-        _this._Scene = Scene;
-        _this._Player = Player;
-        _this.Fixed = false;
-        _this.Trans.Scale = new Engineer_1.default.Math.Vertex(100, 150, 0);
-        _this.Trans.Translation = new Engineer_1.default.Math.Vertex(860, 540, 0);
-        Engineer_1.default.Util.Log.Print(_this.SpriteSets);
-        _this.SpriteSets = [new Engineer_1.default.Engine.SpriteSet(null, "Item")];
-        _this.SpriteSets[0].Sprites = ["/build/resources/item.png"];
-        _this.Data["Item"] = true;
-        _this.Data["Collision"] = Engineer_1.default.Math.CollisionType.Rectangular2D;
-        _this._Scene.Events.TimeTick.push(_this.GameUpdate.bind(_this));
-        _this._Scene.AddSceneObject(_this);
-        return _this;
-    }
-    Object.defineProperty(Items.prototype, "Collider", {
-        get: function () { return this._Collider; },
-        enumerable: true,
-        configurable: true
-    });
-    Items.prototype.GameUpdate = function (G, Args) {
-        if (Engineer_1.default.Util.Collision.Check(this._Player.Collider, this).Collision) {
-            this.Active = false;
-            console.log("PU");
-        }
-    };
-    return Items;
-}(Engineer_1.default.Engine.Sprite));
-exports.Items = Items;
-
-
-/***/ }),
-/* 56 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-var Engineer_1 = __webpack_require__(0);
 var Window_1 = __webpack_require__(13);
 var Inventory = /** @class */ (function (_super) {
     __extends(Inventory, _super);
@@ -51451,7 +51242,7 @@ exports.Inventory = Inventory;
 
 
 /***/ }),
-/* 57 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51504,6 +51295,312 @@ var SkillTree = /** @class */ (function (_super) {
     return SkillTree;
 }(Window_1.Window));
 exports.SkillTree = SkillTree;
+
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var TraitType;
+(function (TraitType) {
+    TraitType[TraitType["FIRE_RESIST"] = 0] = "FIRE_RESIST";
+    TraitType[TraitType["ICE_RESIST"] = 1] = "ICE_RESIST";
+    TraitType[TraitType["LIGHTNING_RESIST"] = 2] = "LIGHTNING_RESIST";
+    TraitType[TraitType["SLASH_RESIST"] = 3] = "SLASH_RESIST";
+    TraitType[TraitType["BLUNT_RESIST"] = 4] = "BLUNT_RESIST";
+    TraitType[TraitType["PIERCE_RESIST"] = 5] = "PIERCE_RESIST";
+})(TraitType || (TraitType = {}));
+exports.TraitType = TraitType;
+var Trait = /** @class */ (function () {
+    function Trait(type, value) {
+        this._Type = type;
+        this._Value = value;
+    }
+    Object.defineProperty(Trait.prototype, "Type", {
+        get: function () { return this._Type; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Trait.prototype, "Value", {
+        get: function () { return this._Value; },
+        enumerable: true,
+        configurable: true
+    });
+    return Trait;
+}());
+exports.Trait = Trait;
+var Traits = /** @class */ (function () {
+    function Traits() {
+        this._Traits = {};
+    }
+    Object.defineProperty(Traits.prototype, "Traits", {
+        get: function () { return this._Traits; },
+        enumerable: true,
+        configurable: true
+    });
+    Traits.prototype.Trait = function (type) { return this._Traits[type.valueOf()]; };
+    Traits.prototype.AddTrait = function (trait) {
+        if (this._Traits[trait.Type.valueOf()]) {
+            this._Traits[trait.Type.valueOf()] += trait.Value;
+        }
+        else {
+            this._Traits[trait.Type.valueOf()] = trait.Value;
+        }
+    };
+    return Traits;
+}());
+exports.Traits = Traits;
+
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var Engineer_1 = __webpack_require__(0);
+var Trait_1 = __webpack_require__(57);
+var Enemy = /** @class */ (function (_super) {
+    __extends(Enemy, _super);
+    function Enemy(Scene, start_X, start_Y) {
+        var _this = _super.call(this) || this;
+        _this._Traits = new Trait_1.Traits();
+        _this.moveSpeed = 10;
+        _this.moveArea = 500;
+        _this.followArea = 300;
+        _this._MaxHealth = 100;
+        _this._Health = _this._MaxHealth;
+        _this._Damage = 25;
+        _this.Name = "Enemy";
+        _this._Scene = Scene;
+        _this._Player_Collider = _this._Scene.Data["Character_Collider"];
+        _this._Player = _this._Scene.Data["Character"];
+        _this.counter = 0;
+        _this.rng_counter = 0;
+        _this.s_direction = Math.round(3 * Math.random());
+        _this.moving = true;
+        _this.following = false;
+        _this.Trans.Scale = new Engineer_1.default.Math.Vertex(100, 150, 1);
+        _this.Trans.Translation = new Engineer_1.default.Math.Vertex(start_X, start_Y, 0.5);
+        _this.SpriteSets = [new Engineer_1.default.Engine.SpriteSet(null, "S_WalkN"), new Engineer_1.default.Engine.SpriteSet(null, "S_WalkE"), new Engineer_1.default.Engine.SpriteSet(null, "S_WalkS"), new Engineer_1.default.Engine.SpriteSet(null, "S_WalkW"), new Engineer_1.default.Engine.SpriteSet(null, "S_AttN"), new Engineer_1.default.Engine.SpriteSet(null, "S_AttE"), new Engineer_1.default.Engine.SpriteSet(null, "S_AttS"), new Engineer_1.default.Engine.SpriteSet(null, "S_AttW")];
+        _this.SpriteSets[0].Sprites = ["/build/resources/skeleton/E_up00.png", "/build/resources/skeleton/E_up01.png", "/build/resources/skeleton/E_up02.png", "/build/resources/skeleton/E_up03.png", "/build/resources/skeleton/E_up04.png", "/build/resources/skeleton/E_up05.png", "/build/resources/skeleton/E_up06.png", "/build/resources/skeleton/E_up07.png", "/build/resources/skeleton/E_up08.png"];
+        _this.SpriteSets[1].Sprites = ["/build/resources/skeleton/E_rgt00.png", "/build/resources/skeleton/E_rgt01.png", "/build/resources/skeleton/E_rgt02.png", "/build/resources/skeleton/E_rgt03.png", "/build/resources/skeleton/E_rgt04.png", "/build/resources/skeleton/E_rgt05.png", "/build/resources/skeleton/E_rgt06.png", "/build/resources/skeleton/E_rgt07.png", "/build/resources/skeleton/E_rgt08.png"];
+        _this.SpriteSets[2].Sprites = ["/build/resources/skeleton/E_dwn00.png", "/build/resources/skeleton/E_dwn01.png", "/build/resources/skeleton/E_dwn02.png", "/build/resources/skeleton/E_dwn03.png", "/build/resources/skeleton/E_dwn04.png", "/build/resources/skeleton/E_dwn05.png", "/build/resources/skeleton/E_dwn06.png", "/build/resources/skeleton/E_dwn07.png", "/build/resources/skeleton/E_dwn08.png"];
+        _this.SpriteSets[3].Sprites = ["/build/resources/skeleton/E_lft00.png", "/build/resources/skeleton/E_lft01.png", "/build/resources/skeleton/E_lft02.png", "/build/resources/skeleton/E_lft03.png", "/build/resources/skeleton/E_lft04.png", "/build/resources/skeleton/E_lft05.png", "/build/resources/skeleton/E_lft06.png", "/build/resources/skeleton/E_lft07.png", "/build/resources/skeleton/E_lft08.png"];
+        _this.SpriteSets[4].Sprites = ["/build/resources/skeleton/S_slash_up00.png", "/build/resources/skeleton/S_slash_up01.png", "/build/resources/skeleton/S_slash_up02.png", "/build/resources/skeleton/S_slash_up03.png", "/build/resources/skeleton/S_slash_up04.png", "/build/resources/skeleton/S_slash_up05.png"];
+        _this.SpriteSets[5].Sprites = ["/build/resources/skeleton/S_slash_rgt00.png", "/build/resources/skeleton/S_slash_rgt01.png", "/build/resources/skeleton/S_slash_rgt02.png", "/build/resources/skeleton/S_slash_rgt03.png", "/build/resources/skeleton/S_slash_rgt04.png", "/build/resources/skeleton/S_slash_rgt05.png"];
+        _this.SpriteSets[6].Sprites = ["/build/resources/skeleton/S_slash_btm00.png", "/build/resources/skeleton/S_slash_btm01.png", "/build/resources/skeleton/S_slash_btm02.png", "/build/resources/skeleton/S_slash_btm03.png", "/build/resources/skeleton/S_slash_btm04.png", "/build/resources/skeleton/S_slash_btm05.png"];
+        _this.SpriteSets[7].Sprites = ["/build/resources/skeleton/S_slash_lft00.png", "/build/resources/skeleton/S_slash_lft01.png", "/build/resources/skeleton/S_slash_lft02.png", "/build/resources/skeleton/S_slash_lft03.png", "/build/resources/skeleton/S_slash_lft04.png", "/build/resources/skeleton/S_slash_lft05.png"];
+        _this.SpriteSets[0].Seed = 25;
+        _this.SpriteSets[1].Seed = 25;
+        _this.SpriteSets[2].Seed = 25;
+        _this.SpriteSets[3].Seed = 25;
+        _this.SpriteSets[4].Seed = 15;
+        _this.SpriteSets[5].Seed = 15;
+        _this.SpriteSets[6].Seed = 15;
+        _this.SpriteSets[7].Seed = 15;
+        _this.pos_x = _this.Trans.Translation.X;
+        _this.pos_y = _this.Trans.Translation.Y;
+        _this.Data["Enemy"] = true;
+        _this.Data["Collision"] = Engineer_1.default.Math.CollisionType.Radius2D;
+        _this._SolidColliders = _this._Scene.GetObjectsWithData("Solid", true);
+        _this._Scene.Events.TimeTick.push(_this.movement.bind(_this));
+        _this._Scene.Events.TimeTick.push(_this.attack.bind(_this));
+        _this._Scene.Events.TimeTick.push(_this.follow.bind(_this));
+        _this.Events.SpriteSetAnimationComplete.push(_this.doDamage.bind(_this));
+        _this._Scene.AddSceneObject(_this);
+        return _this;
+    }
+    Object.defineProperty(Enemy.prototype, "Health", {
+        get: function () { return this._Health; },
+        set: function (dmg) { this._Health = dmg; },
+        enumerable: true,
+        configurable: true
+    });
+    Enemy.prototype.AddTrait = function (trait) {
+        this._Traits.AddTrait(trait);
+    };
+    Enemy.prototype.AddTraitValue = function (type, value) {
+        this._Traits.AddTrait(new Trait_1.Trait(type, value));
+    };
+    Object.defineProperty(Enemy.prototype, "Traits", {
+        get: function () { return this._Traits; },
+        enumerable: true,
+        configurable: true
+    });
+    Enemy.prototype.Trait = function (type) {
+        return this._Traits.Trait(type);
+    };
+    Enemy.prototype.movement = function () {
+        if (this.moving && !this.following) {
+            if (this.counter >= 15) {
+                this.counter = 0;
+                if (this.rng_counter >= 5) {
+                    this.s_direction = Math.round(3 * Math.random());
+                    this.rng_counter = 0;
+                }
+                Engineer_1.default.Util.Collision.CalculateObjectCollisions("Solid", this, this._SolidColliders);
+                switch (this.s_direction) {
+                    case 0:
+                        if (this.Trans.Translation.Y > this.pos_y - this.moveArea) {
+                            if (!this.Data["Collision_Solid"].Top) {
+                                this.Trans.Translation = new Engineer_1.default.Math.Vertex(this.Trans.Translation.X, this.Trans.Translation.Y - this.moveSpeed, 0.5);
+                                this.UpdateSpriteSet(0);
+                                this.rng_counter++;
+                            }
+                            else {
+                                this.rng_counter = 5;
+                            }
+                        }
+                        else {
+                            this.rng_counter = 5;
+                        }
+                        break;
+                    case 1:
+                        if (this.Trans.Translation.X < this.pos_x + this.moveArea) {
+                            if (!this.Data["Collision_Solid"].Right) {
+                                this.Trans.Translation = new Engineer_1.default.Math.Vertex(this.Trans.Translation.X + this.moveSpeed, this.Trans.Translation.Y, 0.5);
+                                this.UpdateSpriteSet(1);
+                                this.rng_counter++;
+                            }
+                            else {
+                                this.rng_counter = 5;
+                            }
+                        }
+                        else {
+                            this.rng_counter = 5;
+                        }
+                        break;
+                    case 2:
+                        if (this.Trans.Translation.Y < this.pos_y + this.moveArea) {
+                            if (!this.Data["Collision_Solid"].Bottom) {
+                                this.Trans.Translation = new Engineer_1.default.Math.Vertex(this.Trans.Translation.X, this.Trans.Translation.Y + this.moveSpeed, 0.5);
+                                this.UpdateSpriteSet(2);
+                                this.rng_counter++;
+                            }
+                            else {
+                                this.rng_counter = 5;
+                            }
+                        }
+                        else {
+                            this.rng_counter = 5;
+                        }
+                        break;
+                    case 3:
+                        if (this.Trans.Translation.X > this.pos_x - this.moveArea) {
+                            if (!this.Data["Collision_Solid"].Left) {
+                                this.Trans.Translation = new Engineer_1.default.Math.Vertex(this.Trans.Translation.X - this.moveSpeed, this.Trans.Translation.Y, 0.5);
+                                this.UpdateSpriteSet(3);
+                                this.rng_counter++;
+                            }
+                            else {
+                                this.rng_counter = 5;
+                            }
+                        }
+                        else {
+                            this.rng_counter = 5;
+                        }
+                        break;
+                }
+            }
+            else
+                this.counter++;
+        }
+    };
+    Enemy.prototype.attack = function () {
+        if (Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) < this._Player_Collider.Trans.Scale.X && Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) < this._Player_Collider.Trans.Scale.Y) {
+            this.moving = false;
+            this.following = false;
+            this.UpdateSpriteSet(4 + this.checkMove());
+        }
+        else {
+            this.following = true;
+            this.moving = false;
+        }
+    };
+    Enemy.prototype.checkMove = function () {
+        if (this._Player_Collider.Trans.Translation.X - this.Trans.Translation.X >= 0 && this._Player_Collider.Trans.Translation.Y - this.Trans.Translation.Y <= 0) {
+            return 0;
+        }
+        if (this._Player_Collider.Trans.Translation.X - this.Trans.Translation.X >= 0 && this._Player_Collider.Trans.Translation.Y - this.Trans.Translation.Y >= 0) {
+            return 1;
+        }
+        if (this._Player_Collider.Trans.Translation.X - this.Trans.Translation.X <= 0 && this._Player_Collider.Trans.Translation.Y - this.Trans.Translation.Y >= 0) {
+            return 2;
+        }
+        if (this._Player_Collider.Trans.Translation.X - this.Trans.Translation.X <= 0 && this._Player_Collider.Trans.Translation.Y - this.Trans.Translation.Y <= 0) {
+            return 3;
+        }
+    };
+    Enemy.prototype.follow = function () {
+        if (Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) < this.followArea) {
+            this.following = true;
+            this.moving = false;
+            if (this.counter >= 15) {
+                this.counter = 0;
+                Engineer_1.default.Util.Collision.CalculateObjectCollisions("Solid", this, this._SolidColliders);
+                if (this.checkMove() == 0) {
+                    if (Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) > this._Player_Collider.Trans.Scale.X * 2 / 5 && Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) > this._Player_Collider.Trans.Scale.Y * 2 / 3) {
+                        if (!this.Data["Collision_Solid"].Top) {
+                            this.Trans.Translation = new Engineer_1.default.Math.Vertex(this.Trans.Translation.X + this.moveSpeed, this.Trans.Translation.Y - this.moveSpeed, 0.5);
+                            this.s_direction = 0;
+                            this.UpdateSpriteSet(0);
+                        }
+                    }
+                }
+                if (this.checkMove() == 1) {
+                    if (Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) > this._Player_Collider.Trans.Scale.X * 2 / 5 && Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) > this._Player_Collider.Trans.Scale.Y * 2 / 3) {
+                        if (!this.Data["Collision_Solid"].Right) {
+                            this.Trans.Translation = new Engineer_1.default.Math.Vertex(this.Trans.Translation.X + this.moveSpeed, this.Trans.Translation.Y + this.moveSpeed, 0.5);
+                            this.s_direction = 1;
+                            this.UpdateSpriteSet(1);
+                        }
+                    }
+                }
+                if (this.checkMove() == 2) {
+                    if (Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) > this._Player_Collider.Trans.Scale.X * 2 / 5 && Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) > this._Player_Collider.Trans.Scale.Y * 2 / 3) {
+                        if (!this.Data["Collision_Solid"].Bottom) {
+                            this.Trans.Translation = new Engineer_1.default.Math.Vertex(this.Trans.Translation.X - this.moveSpeed, this.Trans.Translation.Y + this.moveSpeed, 0.5);
+                            this.s_direction = 2;
+                            this.UpdateSpriteSet(2);
+                        }
+                    }
+                }
+                if (this.checkMove() == 3) {
+                    if (Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) > this._Player_Collider.Trans.Scale.X * 2 / 5 && Engineer_1.default.Math.Vertex.Distance(this.Trans.Translation, this._Player_Collider.Trans.Translation) > this._Player_Collider.Trans.Scale.Y * 2 / 3) {
+                        if (!this.Data["Collision_Solid"].Left) {
+                            this.Trans.Translation = new Engineer_1.default.Math.Vertex(this.Trans.Translation.X - this.moveSpeed, this.Trans.Translation.Y - this.moveSpeed, 0.5);
+                            this.s_direction = 3;
+                            this.UpdateSpriteSet(3);
+                        }
+                    }
+                }
+            }
+            else
+                this.counter++;
+        }
+        else {
+            this.moving = true;
+            this.following = false;
+        }
+    };
+    return Enemy;
+}(Engineer_1.default.Engine.Sprite));
+exports.Enemy = Enemy;
 
 
 /***/ })
