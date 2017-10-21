@@ -3,6 +3,7 @@ export { Window };
 import Engineer from "./../Engineer";
 import { GameScene } from "./../GameScene";
 import { Player } from "./../Player";
+import { Item } from "../Items/Item";
 
 class Window extends Engineer.Engine.Tile
 {
@@ -12,6 +13,8 @@ class Window extends Engineer.Engine.Tile
     protected _ElementT:any;
     protected _Elements:any[];
     protected _Decorations:any[];
+    protected _Item:Item[];
+    
     public constructor(Scene:GameScene)
     {
         super();
@@ -20,8 +23,10 @@ class Window extends Engineer.Engine.Tile
         this.Paint = Engineer.Math.Color.FromRGBA(30,30,30,230);
         this._Elements = [];
         this._Decorations = [];
+        this._Item = [];
         this._DecorationT = new Engineer.Engine.TileCollection(null, ["/build/resources/border_c.png","/build/resources/border_h.png","/build/resources/border_v.png"]);
         this._ElementT = new Engineer.Engine.TileCollection(null, ["/build/resources/elements/grid.png","/build/resources/elements/vorlok.png","/build/resources/elements/helm.png","/build/resources/elements/armor.png","/build/resources/elements/wand.png","/build/resources/elements/tome.png"]);
+        
     }
     public Init() : void
     {
@@ -36,6 +41,11 @@ class Window extends Engineer.Engine.Tile
             this._Decorations[i].Fixed = true;
             this._Scene.AddSceneObject(this._Decorations[i]);
         }
+        for(let i = 0; i < this._Item.length; i++)
+        {
+            this._Item[i].Fixed = true;
+            this._Scene.AddSceneObject(this._Item[i]);
+        }
     }
     public Show() : void
     {
@@ -43,6 +53,7 @@ class Window extends Engineer.Engine.Tile
         this.Active = true;
         for(let i = 0; i < this._Elements.length; i++) this._Elements[i].Active = true;
         for(let i = 0; i < this._Decorations.length; i++) this._Decorations[i].Active = true;
+        for(let i = 0; i < this._Item.length; i++) this._Item[i].Active = true;
     }
     public Hide() : void
     {
@@ -50,6 +61,7 @@ class Window extends Engineer.Engine.Tile
         this.Active = false;
         for(let i = 0; i < this._Elements.length; i++) this._Elements[i].Active = false;
         for(let i = 0; i < this._Decorations.length; i++) this._Decorations[i].Active = false;
+        for(let i = 0; i < this._Item.length; i++) this._Item[i].Active = false;
     }
     protected CreateBorder()
     {
@@ -95,6 +107,20 @@ class Window extends Engineer.Engine.Tile
         Border1.Trans.Scale = Size;
         Border1.Trans.Translation = Location;
         this._Elements.push(Border1);
+        return Border1;
+    }
+    protected AddItem(Itm:Item, Location:any, Size:any, Index:number, Color?:any, Rotation?:any) : any
+    {
+        Location = new Engineer.Math.Vertex(this.Trans.Translation.X - (this.Trans.Scale.X / 2) + Location.X + 50, this.Trans.Translation.Y - (this.Trans.Scale.Y / 2) + Location.Y + 50, Location.Z);
+        let Border1:any = new Engineer.Engine.Tile();
+        Border1.Collection = Itm;
+        if(Color) Border1.Paint = Color;
+        if(Rotation) Border1.Trans.Rotation = Rotation;
+        Border1.Index = Index;
+        Border1.Fixed = true;
+        Border1.Trans.Scale = Size;
+        Border1.Trans.Translation = Location;
+        this._Item.push(Border1);
         return Border1;
     }
 }

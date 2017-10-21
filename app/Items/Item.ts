@@ -6,15 +6,25 @@ import { Player } from "./../Player";
 
 class Item extends Engineer.Engine.Tile
 {
-    private _Scene:GameScene;   
+    private _Scene:GameScene;
     private _Player:Player;
-    public constructor(Player:Player, Scene:GameScene, ItemName:string)
+    private _inInventory:boolean;    
+
+    public get inInventory(): boolean { return this._inInventory; }
+    public set inInventory(inInv:boolean) { this._inInventory=inInv; }
+
+    public constructor(Player:Player, Scene:GameScene, ItemName:string, inInv:boolean=true)
     {
         super();
+        this._inInventory=inInv;
         this.Name=ItemName;
         this._Scene = Scene;
         this._Player = Player;
-        this.Collection = new Engineer.Engine.TileCollection(null, ["/build/resources/"+ItemName+".png"]);
+        Engineer.Util.Log.Error("/build/resources/items/"+ItemName+".png");     
+           
+        this.Collection = new Engineer.Engine.TileCollection(null, ["/build/resources/items/"+ItemName+".png"]);
+        this.Trans.Scale = new Engineer.Math.Vertex(80, 80, 1);
+        this.Trans.Translation = new Engineer.Math.Vertex(300,300, 0.5);
         this.Data["Item"] = true;
         this.Data["Collision"] = Engineer.Math.CollisionType.Rectangular2D;
         this._Scene.Events.MouseDown.push(this.GameUpdate.bind(this));
@@ -22,10 +32,10 @@ class Item extends Engineer.Engine.Tile
     }
     private GameUpdate(G:any, Args:any)
     {   
-        if (Args.MouseButton == 2) 
+        if (Args.MouseButton == 2 && this._inInventory==true) 
         {
-            //equip | use 
+                //equip | use                 
         }
     }
-    public 
+     
 }

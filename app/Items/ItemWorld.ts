@@ -4,37 +4,36 @@ import Engineer from "./../Engineer";
 import { GameScene } from "./../GameScene";
 import { Player } from "./../Player";
 import{ Item } from "./Item";
+import{ Inventory } from "../UI/Inventory";
 
-class ItemWorld extends Engineer.Engine.Tile
-{
+
+class ItemWorld
+{    
+    private _Inventory:Inventory;
     private _Scene:GameScene;
     private _Item:any;
     private _Player:Player;
-    public constructor(Player:Player, Scene:GameScene)
+    public constructor(Player:Player, Scene:GameScene,Inv:Inventory, ItemName:string, posX:number, posY:number)
     {
-        super();
-        this.Name="ItemWorld";
+        this._Inventory=Inv;
         this._Scene = Scene;
         this._Player = Player;
-        this.Data["ItemWorld"] = true;
-        this.Data["Collision"] = Engineer.Math.CollisionType.Rectangular2D;
-
-        this._Item=new Item(Player, Scene, "BeastSlayer");
-
+        this._Item=new Item(Player, Scene, ItemName, false);
         this._Scene.Events.TimeTick.push(this.GameUpdate.bind(this));
-        this._Scene.AddSceneObject(this);
+        
     }
     private GameUpdate(G:any, Args:any)
     {   
-        if(Engineer.Util.Collision.Check(this._Player.Collider,this).Collision)
+        if(Engineer.Util.Collision.Check(this._Player.Collider,this._Item).Collision && this._Item.inInventory==false)
         {
-            this.Active=false;
-            this._Scene.RemoveSceneObject(this);
-            //Remove object from scene
+            this._Item.Active=false;            
+            this._Scene.RemoveSceneObject(this._Item);  
+            this.AddToInventory();
+            this._Item.inInventory=true; 
         }
     }
 
     private AddToInventory(){
-
+        this._Inventory.addToInv(this._Item);
     }
 }

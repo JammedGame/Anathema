@@ -18,7 +18,7 @@ class GameScene extends Engineer.Engine.Scene2D
     private _Level: Level;
     private _Player: Player;
     private _Skeleton: Skeleton;
-    private _Item: ItemWorld;
+    private _ItemWorld: ItemWorld;
     private _Inventory: Inventory;
     private _Movement: Movement;
     private _SkillTree: SkillTree;
@@ -41,11 +41,12 @@ class GameScene extends Engineer.Engine.Scene2D
         {
             this._Skeleton = new Skeleton(this, Math.random() * 1980, Math.random() * 1080);
         }
-        this._Movement = new Movement(this._Player, this);
+        this._Movement = new Movement(this._Player, this);        
         this._Inventory = new Inventory(this);
         this._SkillTree = new SkillTree(this);
         this._HealthBar = new HealthBar(this, this._Player);
         this._ManaBar = new ManaBar(this, this._Player);
+        this._ItemWorld = new ItemWorld(this._Player, this,this._Inventory,"BeastSlayer",300,300);
         this.Events.KeyPress.push(this.KeyPress.bind(this));
     }
     private KeyPress(G: any, Args: any): void

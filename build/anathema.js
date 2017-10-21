@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/resources/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 15);
+/******/ 	return __webpack_require__(__webpack_require__.s = 17);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -71,7 +71,7 @@
 
 Object.defineProperty(exports, "__esModule", { value: true });
 //import Engineer from "engineer-js";
-var app_1 = __webpack_require__(18);
+var app_1 = __webpack_require__(20);
 exports.default = app_1.default;
 
 
@@ -85,15 +85,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Vertex_1 = __webpack_require__(4);
 exports.Axis = Vertex_1.Axis;
 exports.Vertex = Vertex_1.Vertex;
-var Transformation_1 = __webpack_require__(20);
+var Transformation_1 = __webpack_require__(22);
 exports.Transformation = Transformation_1.Transformation;
-var MatrixTransformer_1 = __webpack_require__(21);
+var MatrixTransformer_1 = __webpack_require__(23);
 exports.MatrixMode = MatrixTransformer_1.MatrixMode;
 exports.Matrix = MatrixTransformer_1.Matrix;
 exports.MatrixTransformer = MatrixTransformer_1.MatrixTransformer;
-var Color_1 = __webpack_require__(22);
+var Color_1 = __webpack_require__(24);
 exports.Color = Color_1.Color;
-var Collision_1 = __webpack_require__(23);
+var Collision_1 = __webpack_require__(25);
 exports.Collision = Collision_1.Collision;
 exports.CollisionType = Collision_1.CollisionType;
 exports.CollisionValue = Collision_1.CollisionValue;
@@ -107,23 +107,13 @@ exports.ColliderObject = Collision_1.ColliderObject;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-<<<<<<< Updated upstream
-var Converter_1 = __webpack_require__(18);
+var Converter_1 = __webpack_require__(21);
 exports.Convert = Converter_1.Convert;
-var Collision_1 = __webpack_require__(23);
+var Collision_1 = __webpack_require__(26);
 exports.Collision = Collision_1.Collision;
-var Buffer_1 = __webpack_require__(24);
+var Buffer_1 = __webpack_require__(27);
 exports.Buffer = Buffer_1.Buffer;
-var Log_1 = __webpack_require__(25);
-=======
-var Converter_1 = __webpack_require__(19);
-exports.Convert = Converter_1.Convert;
-var Collision_1 = __webpack_require__(24);
-exports.Collision = Collision_1.Collision;
-var Buffer_1 = __webpack_require__(25);
-exports.Buffer = Buffer_1.Buffer;
-var Log_1 = __webpack_require__(26);
->>>>>>> Stashed changes
+var Log_1 = __webpack_require__(28);
 exports.Log = Log_1.Log;
 
 
@@ -134,13 +124,9 @@ exports.Log = Log_1.Log;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-<<<<<<< Updated upstream
-var Uuid_1 = __webpack_require__(26);
-=======
-var Uuid_1 = __webpack_require__(27);
->>>>>>> Stashed changes
+var Uuid_1 = __webpack_require__(29);
 exports.Uuid = Uuid_1.Uuid;
-var ImageContainer_1 = __webpack_require__(28);
+var ImageContainer_1 = __webpack_require__(30);
 exports.ImageContainer = ImageContainer_1.ImageContainer;
 var Reader = /** @class */ (function () {
     function Reader() {
@@ -282,30 +268,30 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var DrawObject_1 = __webpack_require__(6);
 exports.DrawObjectType = DrawObject_1.DrawObjectType;
 exports.DrawObject = DrawObject_1.DrawObject;
-var Sprite_1 = __webpack_require__(29);
+var Sprite_1 = __webpack_require__(31);
 exports.SpriteSet = Sprite_1.SpriteSet;
 exports.Sprite = Sprite_1.Sprite;
-var Tile_1 = __webpack_require__(30);
+var Tile_1 = __webpack_require__(32);
 exports.TileCollection = Tile_1.TileCollection;
 exports.Tile = Tile_1.Tile;
 var Events_1 = __webpack_require__(8);
 exports.EventPackage = Events_1.EventPackage;
-var EventArguments_1 = __webpack_require__(31);
+var EventArguments_1 = __webpack_require__(33);
 exports.MouseButton = EventArguments_1.MouseButton;
 exports.KeyType = EventArguments_1.KeyType;
-var Game_1 = __webpack_require__(32);
+var Game_1 = __webpack_require__(34);
 exports.Game = Game_1.Game;
 var Scene_1 = __webpack_require__(9);
 exports.SceneType = Scene_1.SceneType;
 exports.Scene = Scene_1.Scene;
-var Scene2D_1 = __webpack_require__(33);
+var Scene2D_1 = __webpack_require__(35);
 exports.Scene2D = Scene2D_1.Scene2D;
 var SceneObject_1 = __webpack_require__(7);
 exports.SceneObjectType = SceneObject_1.SceneObjectType;
 exports.SceneObject = SceneObject_1.SceneObject;
-var SoundObject_1 = __webpack_require__(34);
+var SoundObject_1 = __webpack_require__(36);
 exports.SoundObject = SoundObject_1.SoundObject;
-var Settings_1 = __webpack_require__(37);
+var Settings_1 = __webpack_require__(39);
 exports.Settings = Settings_1.Settings;
 exports.Quality = Settings_1.Quality;
 
@@ -811,6 +797,133 @@ exports.DrawEngine = DrawEngine;
 
 "use strict";
 
+Object.defineProperty(exports, "__esModule", { value: true });
+var Engineer_1 = __webpack_require__(0);
+var LevelTilesetLayoutType;
+(function (LevelTilesetLayoutType) {
+    LevelTilesetLayoutType[LevelTilesetLayoutType["Bordered"] = 0] = "Bordered";
+    LevelTilesetLayoutType[LevelTilesetLayoutType["Story"] = 1] = "Story";
+})(LevelTilesetLayoutType || (LevelTilesetLayoutType = {}));
+exports.LevelTilesetLayoutType = LevelTilesetLayoutType;
+var LevelTilesetCeilingType;
+(function (LevelTilesetCeilingType) {
+    LevelTilesetCeilingType[LevelTilesetCeilingType["Uniform"] = 0] = "Uniform";
+    LevelTilesetCeilingType[LevelTilesetCeilingType["Crested"] = 1] = "Crested";
+    LevelTilesetCeilingType[LevelTilesetCeilingType["Bordered"] = 2] = "Bordered";
+})(LevelTilesetCeilingType || (LevelTilesetCeilingType = {}));
+exports.LevelTilesetCeilingType = LevelTilesetCeilingType;
+var LevelTilesetFloorType;
+(function (LevelTilesetFloorType) {
+    LevelTilesetFloorType[LevelTilesetFloorType["Uniform"] = 0] = "Uniform";
+    LevelTilesetFloorType[LevelTilesetFloorType["Checkered"] = 1] = "Checkered";
+})(LevelTilesetFloorType || (LevelTilesetFloorType = {}));
+exports.LevelTilesetFloorType = LevelTilesetFloorType;
+var LevelTileset = /** @class */ (function () {
+    function LevelTileset(Name, LayoutType, FloorType, CeilingType, ArrayLengths) {
+        this._Name = Name;
+        this._LayoutType = LayoutType;
+        this._FloorType = FloorType;
+        this._CeilingType = CeilingType;
+        this.Init(ArrayLengths);
+        console.log(this);
+    }
+    Object.defineProperty(LevelTileset.prototype, "LayoutType", {
+        get: function () { return this._LayoutType; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(LevelTileset.prototype, "FloorType", {
+        get: function () { return this._FloorType; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(LevelTileset.prototype, "CeilingType", {
+        get: function () { return this._CeilingType; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(LevelTileset.prototype, "Floor", {
+        get: function () { return this._Floor; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(LevelTileset.prototype, "FloorSet1", {
+        get: function () { return this._Floor; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(LevelTileset.prototype, "FloorSet2", {
+        get: function () { return this._FloorSet2; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(LevelTileset.prototype, "WallUpper", {
+        get: function () { return this._WallUpper; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(LevelTileset.prototype, "WallLower", {
+        get: function () { return this._WallLower; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(LevelTileset.prototype, "Ceiling", {
+        get: function () { return this._Ceiling; },
+        enumerable: true,
+        configurable: true
+    });
+    LevelTileset.prototype.Init = function (ArrayLengths) {
+        var FloorImages = [];
+        var FloorSet2Images = [];
+        for (var i = 1; i < ArrayLengths[0] + 1; i++) {
+            var s = i.toString();
+            if (i < 10)
+                s = "0" + i;
+            FloorImages.push("/build/resources/tilesets/" + this._Name.toLowerCase() + "/g" + s + ".png");
+            if (this._FloorType == LevelTilesetFloorType.Checkered) {
+                FloorSet2Images.push("/build/resources/tilesets/" + this._Name.toLowerCase() + "/g" + s + "t02.png");
+            }
+        }
+        this._Floor = new Engineer_1.default.Engine.TileCollection(null, FloorImages);
+        if (this._FloorType == LevelTilesetFloorType.Checkered) {
+            this._FloorSet2 = new Engineer_1.default.Engine.TileCollection(null, FloorSet2Images);
+        }
+        var WallUpperImages = [];
+        var WallLowerImages = [];
+        for (var i = 1; i < ArrayLengths[1] + 1; i++) {
+            var s = i.toString();
+            if (i < 10)
+                s = "0" + i;
+            WallUpperImages.push("/build/resources/tilesets/" + this._Name.toLowerCase() + "/wu" + s + ".png");
+            WallLowerImages.push("/build/resources/tilesets/" + this._Name.toLowerCase() + "/wl" + s + ".png");
+        }
+        this._WallUpper = new Engineer_1.default.Engine.TileCollection(null, WallUpperImages);
+        this._WallLower = new Engineer_1.default.Engine.TileCollection(null, WallLowerImages);
+        var CeilingLength = 1;
+        if (this._CeilingType == LevelTilesetCeilingType.Crested)
+            CeilingLength = 12;
+        if (this._CeilingType == LevelTilesetCeilingType.Bordered)
+            CeilingLength = 17;
+        var CeilingImages = [];
+        for (var i = 1; i < CeilingLength; i++) {
+            var s = i.toString();
+            if (i < 10)
+                s = "0" + i;
+            CeilingImages.push("/build/resources/tilesets/" + this._Name.toLowerCase() + "/c" + s + ".png");
+        }
+        this._Ceiling = new Engineer_1.default.Engine.TileCollection(null, CeilingImages);
+    };
+    return LevelTileset;
+}());
+exports.LevelTileset = LevelTileset;
+
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -823,15 +936,10 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Engineer_1 = __webpack_require__(0);
-<<<<<<< Updated upstream
-var HealthBar_1 = __webpack_require__(49);
-var Weapon_1 = __webpack_require__(51);
-var Trait_1 = __webpack_require__(57);
-=======
-var HealthBar_1 = __webpack_require__(50);
-var ManaBar_1 = __webpack_require__(51);
-var Weapon_1 = __webpack_require__(52);
->>>>>>> Stashed changes
+var HealthBar_1 = __webpack_require__(53);
+var ManaBar_1 = __webpack_require__(54);
+var Weapon_1 = __webpack_require__(55);
+var Trait_1 = __webpack_require__(15);
 var Player = /** @class */ (function (_super) {
     __extends(Player, _super);
     function Player(Scene) {
@@ -1001,9 +1109,9 @@ var Player = /** @class */ (function (_super) {
     };
     Player.prototype.DistroyEnemy = function (nmy) {
         nmy.Active = false;
-        Engineer_1.default.Util.Log.Error(nmy);
         nmy._Scene.RemoveSceneObject(nmy);
-        Engineer_1.default.Util.Log.Error(nmy);
+        this._Scene.Movement.RemoveEnemy(nmy.ID);
+        this.RemoveEnemy(nmy.ID);
     };
     Player.prototype.MouseClick = function (G, Args) {
         if (Args.MouseButton == 0) {
@@ -1013,6 +1121,13 @@ var Player = /** @class */ (function (_super) {
         if (Args.MouseButton == 2) {
             this.BackUpSpriteSet = this.CurrentSpriteSet;
             this.UpdateSpriteSet(12 + this._Scene.Movement.Direction);
+        }
+    };
+    Player.prototype.RemoveEnemy = function (nmy) {
+        for (var i = 0; i < this._Enemy.length; i++) {
+            if (nmy == this._Enemy[i].ID) {
+                this._Enemy.splice(i, 1);
+            }
         }
     };
     return Player;
@@ -1031,7 +1146,7 @@ exports.PlayerKeyPress = PlayerKeyPress;
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1068,7 +1183,65 @@ exports.HealthBorder = HealthBorder;
 
 
 /***/ }),
-/* 14 */
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var TraitType;
+(function (TraitType) {
+    TraitType[TraitType["FIRE_RESIST"] = 0] = "FIRE_RESIST";
+    TraitType[TraitType["ICE_RESIST"] = 1] = "ICE_RESIST";
+    TraitType[TraitType["LIGHTNING_RESIST"] = 2] = "LIGHTNING_RESIST";
+    TraitType[TraitType["SLASH_RESIST"] = 3] = "SLASH_RESIST";
+    TraitType[TraitType["BLUNT_RESIST"] = 4] = "BLUNT_RESIST";
+    TraitType[TraitType["PIERCE_RESIST"] = 5] = "PIERCE_RESIST";
+})(TraitType || (TraitType = {}));
+exports.TraitType = TraitType;
+var Trait = /** @class */ (function () {
+    function Trait(type, value) {
+        this._Type = type;
+        this._Value = value;
+    }
+    Object.defineProperty(Trait.prototype, "Type", {
+        get: function () { return this._Type; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Trait.prototype, "Value", {
+        get: function () { return this._Value; },
+        enumerable: true,
+        configurable: true
+    });
+    return Trait;
+}());
+exports.Trait = Trait;
+var Traits = /** @class */ (function () {
+    function Traits() {
+        this._Traits = {};
+    }
+    Object.defineProperty(Traits.prototype, "Traits", {
+        get: function () { return this._Traits; },
+        enumerable: true,
+        configurable: true
+    });
+    Traits.prototype.Trait = function (type) { return this._Traits[type.valueOf()]; };
+    Traits.prototype.AddTrait = function (trait) {
+        if (this._Traits[trait.Type.valueOf()]) {
+            this._Traits[trait.Type.valueOf()] += trait.Value;
+        }
+        else {
+            this._Traits[trait.Type.valueOf()] = trait.Value;
+        }
+    };
+    return Traits;
+}());
+exports.Traits = Traits;
+
+
+/***/ }),
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1095,6 +1268,7 @@ var Window = /** @class */ (function (_super) {
         _this.Paint = Engineer_1.default.Math.Color.FromRGBA(30, 30, 30, 230);
         _this._Elements = [];
         _this._Decorations = [];
+        _this._Item = [];
         _this._DecorationT = new Engineer_1.default.Engine.TileCollection(null, ["/build/resources/border_c.png", "/build/resources/border_h.png", "/build/resources/border_v.png"]);
         _this._ElementT = new Engineer_1.default.Engine.TileCollection(null, ["/build/resources/elements/grid.png", "/build/resources/elements/vorlok.png", "/build/resources/elements/helm.png", "/build/resources/elements/armor.png", "/build/resources/elements/wand.png", "/build/resources/elements/tome.png"]);
         return _this;
@@ -1109,6 +1283,10 @@ var Window = /** @class */ (function (_super) {
             this._Decorations[i].Fixed = true;
             this._Scene.AddSceneObject(this._Decorations[i]);
         }
+        for (var i = 0; i < this._Item.length; i++) {
+            this._Item[i].Fixed = true;
+            this._Scene.AddSceneObject(this._Item[i]);
+        }
     };
     Window.prototype.Show = function () {
         this.Visible = true;
@@ -1117,6 +1295,8 @@ var Window = /** @class */ (function (_super) {
             this._Elements[i].Active = true;
         for (var i = 0; i < this._Decorations.length; i++)
             this._Decorations[i].Active = true;
+        for (var i = 0; i < this._Item.length; i++)
+            this._Item[i].Active = true;
     };
     Window.prototype.Hide = function () {
         this.Visible = false;
@@ -1125,6 +1305,8 @@ var Window = /** @class */ (function (_super) {
             this._Elements[i].Active = false;
         for (var i = 0; i < this._Decorations.length; i++)
             this._Decorations[i].Active = false;
+        for (var i = 0; i < this._Item.length; i++)
+            this._Item[i].Active = false;
     };
     Window.prototype.CreateBorder = function () {
         var WidthFactor = Math.floor(this.Trans.Scale.X / 100);
@@ -1168,40 +1350,55 @@ var Window = /** @class */ (function (_super) {
         this._Elements.push(Border1);
         return Border1;
     };
+    Window.prototype.AddItem = function (Itm, Location, Size, Index, Color, Rotation) {
+        Location = new Engineer_1.default.Math.Vertex(this.Trans.Translation.X - (this.Trans.Scale.X / 2) + Location.X + 50, this.Trans.Translation.Y - (this.Trans.Scale.Y / 2) + Location.Y + 50, Location.Z);
+        var Border1 = new Engineer_1.default.Engine.Tile();
+        Border1.Collection = Itm;
+        if (Color)
+            Border1.Paint = Color;
+        if (Rotation)
+            Border1.Trans.Rotation = Rotation;
+        Border1.Index = Index;
+        Border1.Fixed = true;
+        Border1.Trans.Scale = Size;
+        Border1.Trans.Translation = Location;
+        this._Item.push(Border1);
+        return Border1;
+    };
     return Window;
 }(Engineer_1.default.Engine.Tile));
 exports.Window = Window;
 
 
 /***/ }),
-/* 15 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(16);
+module.exports = __webpack_require__(18);
 
 
 /***/ }),
-/* 16 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var GameLogic_1 = __webpack_require__(17);
+var GameLogic_1 = __webpack_require__(19);
 var GL = new GameLogic_1.GameLogic();
 GL.Run();
 
 
 /***/ }),
-/* 17 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var Engineer_1 = __webpack_require__(0);
-var MainMenu_1 = __webpack_require__(43);
-var GameScene_1 = __webpack_require__(45);
+var MainMenu_1 = __webpack_require__(45);
+var GameScene_1 = __webpack_require__(47);
 var GameLogic = /** @class */ (function () {
     function GameLogic() {
         this._Game = new Engineer_1.default.Engine.Game();
@@ -1226,7 +1423,7 @@ exports.GameLogic = GameLogic;
 
 
 /***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1236,13 +1433,13 @@ var Util = __webpack_require__(2);
 var Data = __webpack_require__(3);
 var Engine = __webpack_require__(5);
 var Math = __webpack_require__(1);
-var Runner = __webpack_require__(38);
+var Runner = __webpack_require__(40);
 var Draw = __webpack_require__(10);
 exports.default = { Util: Util, Data: Data, Engine: Engine, Math: Math, Runner: Runner, Draw: Draw };
 
 
 /***/ }),
-/* 19 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1276,7 +1473,7 @@ exports.Convert = Convert;
 
 
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1324,7 +1521,7 @@ exports.Transformation = Transformation;
 
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1574,7 +1771,7 @@ exports.MatrixTransformer = MatrixTransformer;
 
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1607,7 +1804,7 @@ exports.Color = Color;
 
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1925,7 +2122,7 @@ exports.Collision = Collision;
 
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1980,7 +2177,7 @@ exports.Collision = Collision;
 
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2002,7 +2199,7 @@ exports.Buffer = Buffer;
 
 
 /***/ }),
-/* 26 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2067,7 +2264,7 @@ exports.Log = Log;
 
 
 /***/ }),
-/* 27 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2091,7 +2288,7 @@ exports.Uuid = Uuid;
 
 
 /***/ }),
-/* 28 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2125,7 +2322,7 @@ exports.ImageContainer = ImageContainer;
 
 
 /***/ }),
-/* 29 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2325,7 +2522,7 @@ exports.SpriteSet = SpriteSet;
 
 
 /***/ }),
-/* 30 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2430,7 +2627,7 @@ exports.TileCollection = TileCollection;
 
 
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2569,7 +2766,7 @@ exports.KeyType = KeyType;
 
 
 /***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2621,7 +2818,7 @@ exports.Game = Game;
 
 
 /***/ }),
-/* 33 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2696,7 +2893,7 @@ exports.Scene2D = Scene2D;
 
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2712,7 +2909,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Howler = __webpack_require__(35);
+var Howler = __webpack_require__(37);
 var SceneObject_1 = __webpack_require__(7);
 var SoundObject = /** @class */ (function (_super) {
     __extends(SoundObject, _super);
@@ -2779,7 +2976,7 @@ exports.SoundObject = SoundObject;
 
 
 /***/ }),
-/* 35 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -5630,10 +5827,10 @@ exports.SoundObject = SoundObject;
   };
 })();
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(36)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(38)))
 
 /***/ }),
-/* 36 */
+/* 38 */
 /***/ (function(module, exports) {
 
 var g;
@@ -5660,7 +5857,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 37 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5685,7 +5882,7 @@ exports.Settings = Settings;
 
 
 /***/ }),
-/* 38 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5695,7 +5892,7 @@ var Math = __webpack_require__(1);
 var Engine = __webpack_require__(5);
 var Util = __webpack_require__(2);
 var Draw = __webpack_require__(10);
-var Three = __webpack_require__(39);
+var Three = __webpack_require__(41);
 var Runner = /** @class */ (function () {
     function Runner(Game, EngineType) {
         this.Data = {};
@@ -5864,18 +6061,18 @@ exports.Runner = Runner;
 
 
 /***/ }),
-/* 39 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var ThreeDrawEngine_1 = __webpack_require__(40);
+var ThreeDrawEngine_1 = __webpack_require__(42);
 exports.ThreeDrawEngine = ThreeDrawEngine_1.ThreeDrawEngine;
 
 
 /***/ }),
-/* 40 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5891,15 +6088,11 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Three = __webpack_require__(41);
+var Three = __webpack_require__(43);
 var Math = __webpack_require__(1);
 var Engine = __webpack_require__(5);
 var Util = __webpack_require__(2);
-<<<<<<< Updated upstream
-var Shaders = __webpack_require__(41);
-=======
-var Shaders = __webpack_require__(42);
->>>>>>> Stashed changes
+var Shaders = __webpack_require__(44);
 var DrawEngine_1 = __webpack_require__(11);
 var ThreeDrawEngine = /** @class */ (function (_super) {
     __extends(ThreeDrawEngine, _super);
@@ -6136,7 +6329,7 @@ exports.ThreeDrawEngine = ThreeDrawEngine;
 
 
 /***/ }),
-/* 41 */
+/* 43 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -50245,7 +50438,7 @@ function CanvasRenderer() {
 
 
 /***/ }),
-/* 42 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50262,7 +50455,7 @@ exports.ThreeJSShaders = ThreeJSShaders;
 
 
 /***/ }),
-/* 43 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50279,7 +50472,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Engineer_1 = __webpack_require__(0);
-var LocalSettings_1 = __webpack_require__(44);
+var LocalSettings_1 = __webpack_require__(46);
 var MainMenu = /** @class */ (function (_super) {
     __extends(MainMenu, _super);
     function MainMenu() {
@@ -50307,7 +50500,7 @@ exports.MainMenu = MainMenu;
 
 
 /***/ }),
-/* 44 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50326,7 +50519,7 @@ exports.LocalSettings = LocalSettings;
 
 
 /***/ }),
-/* 45 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50343,19 +50536,13 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Engineer_1 = __webpack_require__(0);
-var Level_1 = __webpack_require__(46);
-var Player_1 = __webpack_require__(12);
-<<<<<<< Updated upstream
-var Skeleton_1 = __webpack_require__(52);
-var Movement_1 = __webpack_require__(53);
-var Inventory_1 = __webpack_require__(55);
-var SkillTree_1 = __webpack_require__(56);
-=======
-var Skeleton_1 = __webpack_require__(53);
-var Movement_1 = __webpack_require__(54);
-var Inventory_1 = __webpack_require__(56);
-var SkillTree_1 = __webpack_require__(57);
->>>>>>> Stashed changes
+var Level_1 = __webpack_require__(48);
+var Player_1 = __webpack_require__(13);
+var Skeleton_1 = __webpack_require__(56);
+var Movement_1 = __webpack_require__(58);
+var ItemWorld_1 = __webpack_require__(60);
+var Inventory_1 = __webpack_require__(62);
+var SkillTree_1 = __webpack_require__(63);
 var GameScene = /** @class */ (function (_super) {
     __extends(GameScene, _super);
     function GameScene() {
@@ -50380,6 +50567,7 @@ var GameScene = /** @class */ (function (_super) {
         this._Movement = new Movement_1.Movement(this._Player, this);
         this._Inventory = new Inventory_1.Inventory(this);
         this._SkillTree = new SkillTree_1.SkillTree(this);
+        this._ItemWorld = new ItemWorld_1.ItemWorld(this._Player, this, this._Inventory, "BeastSlayer", 300, 300);
         this.Events.KeyPress.push(this.KeyPress.bind(this));
     };
     GameScene.prototype.KeyPress = function (G, Args) {
@@ -50402,14 +50590,15 @@ exports.GameScene = GameScene;
 
 
 /***/ }),
-/* 46 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var Engineer_1 = __webpack_require__(0);
-var LevelGenerator_1 = __webpack_require__(47);
+var LevelGenerator_1 = __webpack_require__(49);
+var LevelTileset_1 = __webpack_require__(12);
 var Level = /** @class */ (function () {
     function Level() {
         this._TileScale = 30;
@@ -50417,8 +50606,8 @@ var Level = /** @class */ (function () {
         this._Tileset = new Engineer_1.default.Engine.TileCollection(null, ["/build/resources/play.png"]);
     }
     Level.prototype.Init = function (Scene) {
-        var Tilesets = new LevelGenerator_1.LevelTileset();
-        LevelGenerator_1.LevelGenerator.Generate(Scene, Tilesets);
+        var Tileset = new LevelTileset_1.LevelTileset("Ruin", LevelTileset_1.LevelTilesetLayoutType.Bordered, LevelTileset_1.LevelTilesetFloorType.Uniform, LevelTileset_1.LevelTilesetCeilingType.Bordered, [16, 1]);
+        LevelGenerator_1.LevelGenerator.Generate(Scene, Tileset);
     };
     return Level;
 }());
@@ -50426,35 +50615,40 @@ exports.Level = Level;
 
 
 /***/ }),
-/* 47 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var Engineer_1 = __webpack_require__(0);
-var ChunkGenerator_1 = __webpack_require__(48);
-var ColliderGenerator_1 = __webpack_require__(49);
+var ChunkGenerator_1 = __webpack_require__(50);
+var ColliderGenerator_1 = __webpack_require__(51);
+var LevelTileset_1 = __webpack_require__(12);
+var Layout_1 = __webpack_require__(52);
 var LevelGenerator = /** @class */ (function () {
     function LevelGenerator() {
     }
     LevelGenerator.Generate = function (Scene, Tilesets) {
         //let NewChunk:Chunk = ChunkGenerator.Generate(1, new Engineer.Math.Vertex(24,15,0));
-        var L = LevelGenerator.GenerateLayout(new Engineer_1.default.Math.Vertex(5, 5, 0), [new LayoutClass(3, 1), new LayoutClass(2, 3), new LayoutClass(1, 1000)]);
+        var L = LevelGenerator.GenerateLayout(new Engineer_1.default.Math.Vertex(5, 5, 0), [new Layout_1.LayoutClass(3, 1), new Layout_1.LayoutClass(2, 3), new Layout_1.LayoutClass(1, 1000)]);
         L.Print();
         var NewChunk = LevelGenerator.GenerateMegaChunk(L);
         for (var i = 0; i < NewChunk.Dimensions.Y; i++) {
             for (var j = 0; j < NewChunk.Dimensions.X; j++) {
                 if (NewChunk.Fields[i][j] == 1) {
-                    var Index = Math.floor((Math.random() * 16) + 1);
+                    var Index = Math.floor((Math.random() * Tilesets.Floor.Images.length) + 1);
                     LevelGenerator.GenerateTile(Scene, new Engineer_1.default.Math.Vertex(j + 1, i + 1, 0), Tilesets.Floor, Index, Engineer_1.default.Math.Color.FromRGBA(255, 255, 255, 255));
                 }
                 else if (NewChunk.Fields[i][j] == 2) {
-                    LevelGenerator.GenerateTile(Scene, new Engineer_1.default.Math.Vertex(j + 1, i + 1, 0), Tilesets.Floor, 0, Engineer_1.default.Math.Color.FromRGBA(255, 255, 255, 255));
-                    LevelGenerator.GenerateTile(Scene, new Engineer_1.default.Math.Vertex(j + 1, i + 1, 0), Tilesets.WallLower, 0, Engineer_1.default.Math.Color.FromRGBA(255, 255, 255, 255));
+                    var FloorIndex = Math.floor((Math.random() * Tilesets.Floor.Images.length) + 1);
+                    var WallIndex = Math.floor((Math.random() * Tilesets.WallLower.Images.length) + 1);
+                    LevelGenerator.GenerateTile(Scene, new Engineer_1.default.Math.Vertex(j + 1, i + 1, 0), Tilesets.Floor, FloorIndex, Engineer_1.default.Math.Color.FromRGBA(255, 255, 255, 255));
+                    LevelGenerator.GenerateTile(Scene, new Engineer_1.default.Math.Vertex(j + 1, i + 1, 0), Tilesets.WallLower, WallIndex, Engineer_1.default.Math.Color.FromRGBA(255, 255, 255, 255));
                 }
                 else if (NewChunk.Fields[i][j] == 3) {
-                    LevelGenerator.GenerateTile(Scene, new Engineer_1.default.Math.Vertex(j + 1, i + 1, 0), Tilesets.WallUpper, 0, Engineer_1.default.Math.Color.FromRGBA(255, 255, 255, 255));
+                    var WallIndex = Math.floor((Math.random() * Tilesets.WallLower.Images.length) + 1);
+                    LevelGenerator.GenerateTile(Scene, new Engineer_1.default.Math.Vertex(j + 1, i + 1, 0), Tilesets.WallUpper, WallIndex, Engineer_1.default.Math.Color.FromRGBA(255, 255, 255, 255));
                     ColliderGenerator_1.ColliderGenerator.GenerateColliderTile(Scene, j + 1, i + 1, 1, 1);
                 }
                 else if (NewChunk.Fields[i][j] == 4) {
@@ -50464,24 +50658,77 @@ var LevelGenerator = /** @class */ (function () {
         }
     };
     LevelGenerator.GenerateCeilingTile = function (Scene, Tilesets, C, X, Y) {
-        var Horizontal = X >= 1 && X + 1 < C.Dimensions.X && C.Fields[Y][X - 1] == 4 && C.Fields[Y][X + 1] == 4;
-        var Vertical = Y >= 1 && Y + 1 < C.Dimensions.Y && C.Fields[Y - 1][X] == 4 && C.Fields[Y + 1][X] == 4;
-        if (Horizontal && Vertical) {
-            LevelGenerator.GenerateTile(Scene, new Engineer_1.default.Math.Vertex(X + 1, Y + 1, 0), Tilesets.Ceiling, 0, Engineer_1.default.Math.Color.FromRGBA(255, 255, 255, 255));
-            ColliderGenerator_1.ColliderGenerator.GenerateColliderTile(Scene, X + 1, Y + 1, 1, 1);
-        }
-        else if (Horizontal) {
-            LevelGenerator.GenerateTile(Scene, new Engineer_1.default.Math.Vertex(X + 1, Y + 1, 0), Tilesets.CeilingHorizontal, 0, Engineer_1.default.Math.Color.FromRGBA(255, 255, 255, 255));
-            ColliderGenerator_1.ColliderGenerator.GenerateColliderTile(Scene, X + 1, Y + 1, 1, 1);
-        }
-        else if (Vertical) {
-            LevelGenerator.GenerateTile(Scene, new Engineer_1.default.Math.Vertex(X + 1, Y + 1, 0), Tilesets.CeilingVertical, 0, Engineer_1.default.Math.Color.FromRGBA(255, 255, 255, 255));
-            ColliderGenerator_1.ColliderGenerator.GenerateColliderTile(Scene, X + 1, Y + 1, 1, 1);
+        if (Tilesets.CeilingType == LevelTileset_1.LevelTilesetCeilingType.Bordered)
+            this.GenerateBorderedCeilingTile(Scene, Tilesets, C, X, Y);
+    };
+    LevelGenerator.GenerateBorderedCeilingTile = function (Scene, Tilesets, C, X, Y) {
+        var Index = 0;
+        var Up = Y >= 1 && C.Fields[Y - 1][X] == 4;
+        var Down = Y + 1 < C.Dimensions.Y && C.Fields[Y + 1][X] == 4;
+        var Left = X >= 1 && C.Fields[Y][X - 1] == 4;
+        var Right = X + 1 < C.Dimensions.X && C.Fields[Y][X + 1] == 4;
+        if (Up) {
+            if (Down) {
+                if (Left) {
+                    if (Right)
+                        Index = 17;
+                    else
+                        Index = 14;
+                }
+                else {
+                    if (Right)
+                        Index = 16;
+                    else
+                        Index = 6;
+                }
+            }
+            else {
+                if (Left) {
+                    if (Right)
+                        Index = 15;
+                    else
+                        Index = 3;
+                }
+                else {
+                    if (Right)
+                        Index = 4;
+                    else
+                        Index = 12;
+                }
+            }
         }
         else {
-            LevelGenerator.GenerateTile(Scene, new Engineer_1.default.Math.Vertex(X + 1, Y + 1, 0), Tilesets.Ceiling, 0, Engineer_1.default.Math.Color.FromRGBA(255, 255, 255, 255));
-            ColliderGenerator_1.ColliderGenerator.GenerateColliderTile(Scene, X + 1, Y + 1, 1, 1);
+            if (Down) {
+                if (Left) {
+                    if (Right)
+                        Index = 13;
+                    else
+                        Index = 2;
+                }
+                else {
+                    if (Right)
+                        Index = 1;
+                    else
+                        Index = 10;
+                }
+            }
+            else {
+                if (Left) {
+                    if (Right)
+                        Index = 5;
+                    else
+                        Index = 11;
+                }
+                else {
+                    if (Right)
+                        Index = 9;
+                    else
+                        Index = 17;
+                }
+            }
         }
+        LevelGenerator.GenerateTile(Scene, new Engineer_1.default.Math.Vertex(X + 1, Y + 1, 0), Tilesets.Ceiling, Index - 1, Engineer_1.default.Math.Color.FromRGBA(255, 255, 255, 255));
+        ColliderGenerator_1.ColliderGenerator.GenerateColliderTile(Scene, X + 1, Y + 1, 1, 1);
     };
     LevelGenerator.GenerateMegaChunk = function (L) {
         var MC = new ChunkGenerator_1.Chunk(new Engineer_1.default.Math.Vertex(L.Dimensions.X * 11 - 1, L.Dimensions.Y * 11 - 1), -1);
@@ -50519,7 +50766,7 @@ var LevelGenerator = /** @class */ (function () {
         }
     };
     LevelGenerator.GenerateLayout = function (Dimensions, LayoutClasses) {
-        var L = new Layout(Dimensions, -1);
+        var L = new Layout_1.Layout(Dimensions, -1);
         // For each element of each class
         for (var i = 0; i < LayoutClasses.length; i++) {
             for (var j = 0; j < LayoutClasses[i].Number; j++) {
@@ -50540,7 +50787,7 @@ var LevelGenerator = /** @class */ (function () {
                                 break;
                         }
                         if (EntryAvailable)
-                            Available.push(new LayoutEntry(LayoutClasses[i].Size, new Engineer_1.default.Math.Vertex(l, k, 0)));
+                            Available.push(new Layout_1.LayoutEntry(LayoutClasses[i].Size, new Engineer_1.default.Math.Vertex(l, k, 0)));
                     }
                 }
                 if (Available.length > 0) {
@@ -50636,77 +50883,10 @@ var LevelGenerator = /** @class */ (function () {
     return LevelGenerator;
 }());
 exports.LevelGenerator = LevelGenerator;
-var LevelTileset = /** @class */ (function () {
-    function LevelTileset() {
-        var FloorImages = [];
-        for (var i = 1; i < 16; i++) {
-            var s = i.toString();
-            if (i < 10)
-                s = "0" + i;
-            FloorImages.push("/build/resources/ruin/g" + s + ".png");
-        }
-        console.log(FloorImages);
-        this.Floor = new Engineer_1.default.Engine.TileCollection(null, FloorImages);
-        this.WallUpper = new Engineer_1.default.Engine.TileCollection(null, ["/build/resources/ruin/wu01.png"]);
-        this.WallLower = new Engineer_1.default.Engine.TileCollection(null, ["/build/resources/ruin/wd01.png"]);
-        this.Ceiling = new Engineer_1.default.Engine.TileCollection(null, ["/build/resources/ruin/cm01.png"]);
-        this.CeilingHorizontal = new Engineer_1.default.Engine.TileCollection(null, ["/build/resources/ruin/ch01.png"]);
-        this.CeilingVertical = new Engineer_1.default.Engine.TileCollection(null, ["/build/resources/ruin/cv01.png"]);
-    }
-    return LevelTileset;
-}());
-exports.LevelTileset = LevelTileset;
-var Layout = /** @class */ (function () {
-    function Layout(Dimensions, Value) {
-        this.Dimensions = Dimensions;
-        this.Data = [];
-        for (var i = 0; i < Dimensions.Y; i++) {
-            this.Data.push([]);
-            for (var j = 0; j < Dimensions.X; j++) {
-                this.Data[i].push(Value);
-            }
-        }
-        this.Entries = [];
-    }
-    Layout.prototype.Print = function () {
-        console.log("- - -");
-        for (var i = 0; i < this.Dimensions.Y; i++) {
-            var Line = i.toString();
-            if (Line.length < 2)
-                Line = "0" + i;
-            Line += ": ";
-            for (var j = 0; j < this.Dimensions.X; j++) {
-                if (this.Data[i][j] == -1)
-                    Line += "X, ";
-                else
-                    Line += this.Data[i][j] + ", ";
-            }
-            console.log(Line);
-        }
-        console.log("- - -");
-    };
-    return Layout;
-}());
-var LayoutEntry = /** @class */ (function () {
-    function LayoutEntry(Size, Location) {
-        this.Size = Size;
-        this.Location = Location;
-        this.Connections = [];
-        this.ConnectionsSide = [];
-    }
-    return LayoutEntry;
-}());
-var LayoutClass = /** @class */ (function () {
-    function LayoutClass(Size, Number) {
-        this.Size = Size;
-        this.Number = Number;
-    }
-    return LayoutClass;
-}());
 
 
 /***/ }),
-/* 48 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50881,7 +51061,7 @@ exports.Chunk = Chunk;
 
 
 /***/ }),
-/* 49 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50986,7 +51166,66 @@ var CollisionElement = /** @class */ (function () {
 
 
 /***/ }),
-/* 50 */
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Layout = /** @class */ (function () {
+    function Layout(Dimensions, Value) {
+        this.Dimensions = Dimensions;
+        this.Data = [];
+        for (var i = 0; i < Dimensions.Y; i++) {
+            this.Data.push([]);
+            for (var j = 0; j < Dimensions.X; j++) {
+                this.Data[i].push(Value);
+            }
+        }
+        this.Entries = [];
+    }
+    Layout.prototype.Print = function () {
+        console.log("- - -");
+        for (var i = 0; i < this.Dimensions.Y; i++) {
+            var Line = i.toString();
+            if (Line.length < 2)
+                Line = "0" + i;
+            Line += ": ";
+            for (var j = 0; j < this.Dimensions.X; j++) {
+                if (this.Data[i][j] == -1)
+                    Line += "X, ";
+                else
+                    Line += this.Data[i][j] + ", ";
+            }
+            console.log(Line);
+        }
+        console.log("- - -");
+    };
+    return Layout;
+}());
+exports.Layout = Layout;
+var LayoutEntry = /** @class */ (function () {
+    function LayoutEntry(Size, Location) {
+        this.Size = Size;
+        this.Location = Location;
+        this.Connections = [];
+        this.ConnectionsSide = [];
+    }
+    return LayoutEntry;
+}());
+exports.LayoutEntry = LayoutEntry;
+var LayoutClass = /** @class */ (function () {
+    function LayoutClass(Size, Number) {
+        this.Size = Size;
+        this.Number = Number;
+    }
+    return LayoutClass;
+}());
+exports.LayoutClass = LayoutClass;
+
+
+/***/ }),
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51003,7 +51242,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Engineer_1 = __webpack_require__(0);
-var HealthBorder_1 = __webpack_require__(13);
+var HealthBorder_1 = __webpack_require__(14);
 var HealthBar = /** @class */ (function (_super) {
     __extends(HealthBar, _super);
     function HealthBar(Scene) {
@@ -51054,7 +51293,7 @@ exports.HealthBar = HealthBar;
 
 
 /***/ }),
-/* 51 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51071,7 +51310,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Engineer_1 = __webpack_require__(0);
-var HealthBorder_1 = __webpack_require__(13);
+var HealthBorder_1 = __webpack_require__(14);
 var ManaBar = /** @class */ (function (_super) {
     __extends(ManaBar, _super);
     function ManaBar(Scene) {
@@ -51101,7 +51340,7 @@ exports.ManaBar = ManaBar;
 
 
 /***/ }),
-/* 52 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51140,7 +51379,7 @@ exports.Weapon = Weapon;
 
 
 /***/ }),
-/* 53 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51156,60 +51395,11 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Enemy_1 = __webpack_require__(58);
+var Enemy_1 = __webpack_require__(57);
 var Skeleton = /** @class */ (function (_super) {
     __extends(Skeleton, _super);
     function Skeleton(Scene, start_X, start_Y) {
-<<<<<<< Updated upstream
         return _super.call(this, Scene, start_X, start_Y) || this;
-=======
-        var _this = _super.call(this) || this;
-        _this.moveSpeed = 10;
-        _this.moveArea = 500;
-        _this.followArea = 300;
-        _this._MaxHealth = 100;
-        _this._Health = _this._MaxHealth;
-        _this._Damage = 25;
-        _this.Name = "Skeleton";
-        _this._Scene = Scene;
-        _this._Player_Collider = _this._Scene.Data["Character_Collider"];
-        _this._Player = _this._Scene.Data["Character"];
-        _this.counter = 0;
-        _this.rng_counter = 0;
-        _this.s_direction = Math.round(3 * Math.random());
-        _this.moving = true;
-        _this.following = false;
-        _this.Trans.Scale = new Engineer_1.default.Math.Vertex(100, 150, 1);
-        _this.Trans.Translation = new Engineer_1.default.Math.Vertex(start_X, start_Y, 0.5);
-        _this.SpriteSets = [new Engineer_1.default.Engine.SpriteSet(null, "S_WalkN"), new Engineer_1.default.Engine.SpriteSet(null, "S_WalkE"), new Engineer_1.default.Engine.SpriteSet(null, "S_WalkS"), new Engineer_1.default.Engine.SpriteSet(null, "S_WalkW"), new Engineer_1.default.Engine.SpriteSet(null, "S_AttN"), new Engineer_1.default.Engine.SpriteSet(null, "S_AttE"), new Engineer_1.default.Engine.SpriteSet(null, "S_AttS"), new Engineer_1.default.Engine.SpriteSet(null, "S_AttW")];
-        _this.SpriteSets[0].Sprites = ["/build/resources/skeleton/E_up00.png", "/build/resources/skeleton/E_up01.png", "/build/resources/skeleton/E_up02.png", "/build/resources/skeleton/E_up03.png", "/build/resources/skeleton/E_up04.png", "/build/resources/skeleton/E_up05.png", "/build/resources/skeleton/E_up06.png", "/build/resources/skeleton/E_up07.png", "/build/resources/skeleton/E_up08.png"];
-        _this.SpriteSets[1].Sprites = ["/build/resources/skeleton/E_rgt00.png", "/build/resources/skeleton/E_rgt01.png", "/build/resources/skeleton/E_rgt02.png", "/build/resources/skeleton/E_rgt03.png", "/build/resources/skeleton/E_rgt04.png", "/build/resources/skeleton/E_rgt05.png", "/build/resources/skeleton/E_rgt06.png", "/build/resources/skeleton/E_rgt07.png", "/build/resources/skeleton/E_rgt08.png"];
-        _this.SpriteSets[2].Sprites = ["/build/resources/skeleton/E_dwn00.png", "/build/resources/skeleton/E_dwn01.png", "/build/resources/skeleton/E_dwn02.png", "/build/resources/skeleton/E_dwn03.png", "/build/resources/skeleton/E_dwn04.png", "/build/resources/skeleton/E_dwn05.png", "/build/resources/skeleton/E_dwn06.png", "/build/resources/skeleton/E_dwn07.png", "/build/resources/skeleton/E_dwn08.png"];
-        _this.SpriteSets[3].Sprites = ["/build/resources/skeleton/E_lft00.png", "/build/resources/skeleton/E_lft01.png", "/build/resources/skeleton/E_lft02.png", "/build/resources/skeleton/E_lft03.png", "/build/resources/skeleton/E_lft04.png", "/build/resources/skeleton/E_lft05.png", "/build/resources/skeleton/E_lft06.png", "/build/resources/skeleton/E_lft07.png", "/build/resources/skeleton/E_lft08.png"];
-        _this.SpriteSets[4].Sprites = ["/build/resources/skeleton/S_slash_up00.png", "/build/resources/skeleton/S_slash_up01.png", "/build/resources/skeleton/S_slash_up02.png", "/build/resources/skeleton/S_slash_up03.png", "/build/resources/skeleton/S_slash_up04.png", "/build/resources/skeleton/S_slash_up05.png"];
-        _this.SpriteSets[5].Sprites = ["/build/resources/skeleton/S_slash_rgt00.png", "/build/resources/skeleton/S_slash_rgt01.png", "/build/resources/skeleton/S_slash_rgt02.png", "/build/resources/skeleton/S_slash_rgt03.png", "/build/resources/skeleton/S_slash_rgt04.png", "/build/resources/skeleton/S_slash_rgt05.png"];
-        _this.SpriteSets[6].Sprites = ["/build/resources/skeleton/S_slash_btm00.png", "/build/resources/skeleton/S_slash_btm01.png", "/build/resources/skeleton/S_slash_btm02.png", "/build/resources/skeleton/S_slash_btm03.png", "/build/resources/skeleton/S_slash_btm04.png", "/build/resources/skeleton/S_slash_btm05.png"];
-        _this.SpriteSets[7].Sprites = ["/build/resources/skeleton/S_slash_lft00.png", "/build/resources/skeleton/S_slash_lft01.png", "/build/resources/skeleton/S_slash_lft02.png", "/build/resources/skeleton/S_slash_lft03.png", "/build/resources/skeleton/S_slash_lft04.png", "/build/resources/skeleton/S_slash_lft05.png"];
-        _this.SpriteSets[0].Seed = 25;
-        _this.SpriteSets[1].Seed = 25;
-        _this.SpriteSets[2].Seed = 25;
-        _this.SpriteSets[3].Seed = 25;
-        _this.SpriteSets[4].Seed = 15;
-        _this.SpriteSets[5].Seed = 15;
-        _this.SpriteSets[6].Seed = 15;
-        _this.SpriteSets[7].Seed = 15;
-        _this.pos_x = _this.Trans.Translation.X;
-        _this.pos_y = _this.Trans.Translation.Y;
-        _this.Data["Enemy"] = true;
-        _this.Data["Collision"] = Engineer_1.default.Math.CollisionType.Radius2D;
-        _this._SolidColliders = _this._Scene.GetObjectsWithData("Solid", true);
-        _this._Scene.Events.TimeTick.push(_this.movement.bind(_this));
-        _this._Scene.Events.TimeTick.push(_this.attack.bind(_this));
-        _this._Scene.Events.TimeTick.push(_this.follow.bind(_this));
-        _this.Events.SpriteSetAnimationComplete.push(_this.doDamage.bind(_this));
-        _this._Scene.AddSceneObject(_this);
-        return _this;
->>>>>>> Stashed changes
     }
     Skeleton.prototype.doDamage = function (G, Args) {
         if (Args.CurrentSpriteSet == 4 || Args.CurrentSpriteSet == 5 || Args.CurrentSpriteSet == 6 || Args.CurrentSpriteSet == 7) {
@@ -51222,290 +51412,11 @@ exports.Skeleton = Skeleton;
 
 
 /***/ }),
-/* 54 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var Engineer_1 = __webpack_require__(0);
-var Player_1 = __webpack_require__(12);
-var Mechanics_1 = __webpack_require__(55);
-var Movement = /** @class */ (function () {
-    function Movement(Player, Scene) {
-        this._MoveSpeed = 5;
-        this._Direction = 2;
-        this._Player = Player;
-        this._PlayerKeys = new Player_1.PlayerKeyPress();
-        this._Scene = Scene;
-        this._Mechanics = new Mechanics_1.Mechanics(Player, Scene);
-        this._SolidColliders = this._Scene.GetObjectsWithData("Solid", true);
-        this._EnemyColliders = this._Scene.GetObjectsWithData("Enemy", true);
-        this._Scene.Events.KeyDown.push(this.KeyDown.bind(this));
-        this._Scene.Events.KeyUp.push(this.KeyUp.bind(this));
-        this._Scene.Events.TimeTick.push(this.GameUpdate.bind(this));
-    }
-    Object.defineProperty(Movement.prototype, "EnemyColliders", {
-        get: function () { return this._EnemyColliders; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Movement.prototype, "Direction", {
-        get: function () { return this._Direction; },
-        enumerable: true,
-        configurable: true
-    });
-    Movement.prototype.KeyDown = function (G, Args) {
-        if (Args.Key == Engineer_1.default.Engine.KeyType.KEY_W)
-            this._PlayerKeys.Up = true;
-        if (Args.Key == Engineer_1.default.Engine.KeyType.KEY_S)
-            this._PlayerKeys.Down = true;
-        if (Args.Key == Engineer_1.default.Engine.KeyType.KEY_A)
-            this._PlayerKeys.Left = true;
-        if (Args.Key == Engineer_1.default.Engine.KeyType.KEY_D)
-            this._PlayerKeys.Right = true;
-    };
-    Movement.prototype.KeyUp = function (G, Args) {
-        if (Args.Key == Engineer_1.default.Engine.KeyType.KEY_W)
-            this._PlayerKeys.Up = false;
-        if (Args.Key == Engineer_1.default.Engine.KeyType.KEY_S)
-            this._PlayerKeys.Down = false;
-        if (Args.Key == Engineer_1.default.Engine.KeyType.KEY_A)
-            this._PlayerKeys.Left = false;
-        if (Args.Key == Engineer_1.default.Engine.KeyType.KEY_D)
-            this._PlayerKeys.Right = false;
-    };
-    Movement.prototype.TryMovement = function (Player, Direction, Movement) {
-        Engineer_1.default.Util.Collision.CalculateObjectCollisions("Solid", Player, this._SolidColliders);
-        Engineer_1.default.Util.Collision.CalculateObjectCollisions("Enemy", Player, this._EnemyColliders);
-        if (!Player.Data["Collision_Solid"][Direction] && !Player.Data["Collision_Enemy"][Direction]) {
-            this._Scene.Trans.Translation = new Engineer_1.default.Math.Vertex(this._Scene.Trans.Translation.X - Movement.X, this._Scene.Trans.Translation.Y - Movement.Y, 0);
-            Player.Trans.Translation = new Engineer_1.default.Math.Vertex(Player.Trans.Translation.X + Movement.X, Player.Trans.Translation.Y + Movement.Y, 0);
-        }
-    };
-    Movement.prototype.GameUpdate = function (G, Args) {
-        if (this._PlayerKeys.Up) {
-            this.TryMovement(this._Player.Collider, "Top", new Engineer_1.default.Math.Vertex(0, -this._MoveSpeed, 0));
-            this._Direction = 0;
-            this._Player.UpdateSpriteSet(0);
-        }
-        if (this._PlayerKeys.Right) {
-            this.TryMovement(this._Player.Collider, "Right", new Engineer_1.default.Math.Vertex(+this._MoveSpeed, 0, 0));
-            this._Direction = 1;
-            this._Player.UpdateSpriteSet(1);
-        }
-        if (this._PlayerKeys.Down) {
-            this.TryMovement(this._Player.Collider, "Bottom", new Engineer_1.default.Math.Vertex(0, +this._MoveSpeed, 0));
-            this._Direction = 2;
-            this._Player.UpdateSpriteSet(2);
-        }
-        if (this._PlayerKeys.Left) {
-            this.TryMovement(this._Player.Collider, "Left", new Engineer_1.default.Math.Vertex(-this._MoveSpeed, 0, 0));
-            this._Direction = 3;
-            this._Player.UpdateSpriteSet(3);
-        }
-    };
-    return Movement;
-}());
-exports.Movement = Movement;
-
-
-/***/ }),
-/* 55 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var Mechanics = /** @class */ (function () {
-    function Mechanics(Player, Scene) {
-        this._Player = Player;
-        this._Scene = Scene;
-    }
-    return Mechanics;
-}());
-exports.Mechanics = Mechanics;
-
-
-/***/ }),
-<<<<<<< Updated upstream
-/* 55 */
-=======
-/* 56 */
->>>>>>> Stashed changes
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-var Engineer_1 = __webpack_require__(0);
-<<<<<<< Updated upstream
-var Window_1 = __webpack_require__(13);
-=======
-var Window_1 = __webpack_require__(14);
->>>>>>> Stashed changes
-var Inventory = /** @class */ (function (_super) {
-    __extends(Inventory, _super);
-    function Inventory(Scene) {
-        var _this = _super.call(this, Scene) || this;
-        _this.Trans.Scale = new Engineer_1.default.Math.Vertex(500, 800, 1);
-        _this.Trans.Translation = new Engineer_1.default.Math.Vertex(1600, 460, 2);
-        _this.CreateBorder();
-        _this.AddElement(new Engineer_1.default.Math.Vertex(200, 200, 2.5), new Engineer_1.default.Math.Vertex(300, 460, 1), 1, Engineer_1.default.Math.Color.FromRGBA(60, 60, 60, 255));
-        _this.AddElement(new Engineer_1.default.Math.Vertex(220, 80, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 0);
-        _this.AddElement(new Engineer_1.default.Math.Vertex(220, 80, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 2, Engineer_1.default.Math.Color.FromRGBA(30, 30, 30, 255));
-        _this.AddElement(new Engineer_1.default.Math.Vertex(120, 170, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 0);
-        _this.AddElement(new Engineer_1.default.Math.Vertex(120, 170, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 4, Engineer_1.default.Math.Color.FromRGBA(30, 30, 30, 255));
-        _this.AddElement(new Engineer_1.default.Math.Vertex(320, 170, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 0);
-        _this.AddElement(new Engineer_1.default.Math.Vertex(320, 170, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 5, Engineer_1.default.Math.Color.FromRGBA(30, 30, 30, 255));
-        _this.AddElement(new Engineer_1.default.Math.Vertex(220, 170, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 0);
-        _this.AddElement(new Engineer_1.default.Math.Vertex(220, 170, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 3, Engineer_1.default.Math.Color.FromRGBA(30, 30, 30, 255));
-        _this.AddElement(new Engineer_1.default.Math.Vertex(220, 310, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 0);
-        _this.AddElement(new Engineer_1.default.Math.Vertex(220, 310, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 2, Engineer_1.default.Math.Color.FromRGBA(30, 30, 30, 255));
-        for (var i = 0; i < 5; i++) {
-            for (var j = 0; j < 9; j++) {
-                _this.AddElement(new Engineer_1.default.Math.Vertex(j * 50, 480 + i * 50, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 0);
-            }
-        }
-        _this.Init();
-        _this.Hide();
-        return _this;
-    }
-    return Inventory;
-}(Window_1.Window));
-exports.Inventory = Inventory;
-
-
-/***/ }),
-/* 56 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-var Engineer_1 = __webpack_require__(0);
-var Window_1 = __webpack_require__(14);
-var SkillTree = /** @class */ (function (_super) {
-    __extends(SkillTree, _super);
-    function SkillTree(Scene) {
-        var _this = _super.call(this, Scene) || this;
-        _this.Trans.Scale = new Engineer_1.default.Math.Vertex(500, 800, 1);
-        _this.Trans.Translation = new Engineer_1.default.Math.Vertex(320, 460, 2);
-        _this.CreateBorder();
-        _this.AddElement(new Engineer_1.default.Math.Vertex(70, 350, 2.3), new Engineer_1.default.Math.Vertex(10, 650, 1), -1, Engineer_1.default.Math.Color.FromRGBA(60, 60, 60, 255), new Engineer_1.default.Math.Vertex(0, 0, 0));
-        _this.AddElement(new Engineer_1.default.Math.Vertex(200, 350, 2.3), new Engineer_1.default.Math.Vertex(10, 400, 1), -1, Engineer_1.default.Math.Color.FromRGBA(60, 60, 60, 255), new Engineer_1.default.Math.Vertex(0, 0, 0));
-        _this.AddElement(new Engineer_1.default.Math.Vertex(330, 350, 2.3), new Engineer_1.default.Math.Vertex(10, 650, 1), -1, Engineer_1.default.Math.Color.FromRGBA(60, 60, 60, 255), new Engineer_1.default.Math.Vertex(0, 0, 0));
-        _this.AddElement(new Engineer_1.default.Math.Vertex(135, 110, 2.3), new Engineer_1.default.Math.Vertex(10, 200, 1), -1, Engineer_1.default.Math.Color.FromRGBA(60, 60, 60, 255), new Engineer_1.default.Math.Vertex(0, 0, -45));
-        _this.AddElement(new Engineer_1.default.Math.Vertex(135, 590, 2.3), new Engineer_1.default.Math.Vertex(10, 200, 1), -1, Engineer_1.default.Math.Color.FromRGBA(60, 60, 60, 255), new Engineer_1.default.Math.Vertex(0, 0, 45));
-        _this.AddElement(new Engineer_1.default.Math.Vertex(265, 230, 2.3), new Engineer_1.default.Math.Vertex(10, 200, 1), -1, Engineer_1.default.Math.Color.FromRGBA(60, 60, 60, 255), new Engineer_1.default.Math.Vertex(0, 0, 45));
-        _this.AddElement(new Engineer_1.default.Math.Vertex(265, 470, 2.3), new Engineer_1.default.Math.Vertex(10, 200, 1), -1, Engineer_1.default.Math.Color.FromRGBA(60, 60, 60, 255), new Engineer_1.default.Math.Vertex(0, 0, -45));
-        _this.AddElement(new Engineer_1.default.Math.Vertex(70, 50, 2.5), new Engineer_1.default.Math.Vertex(80, 80, 1), 0);
-        _this.AddElement(new Engineer_1.default.Math.Vertex(70, 170, 2.5), new Engineer_1.default.Math.Vertex(80, 80, 1), 0);
-        _this.AddElement(new Engineer_1.default.Math.Vertex(70, 290, 2.5), new Engineer_1.default.Math.Vertex(80, 80, 1), 0);
-        _this.AddElement(new Engineer_1.default.Math.Vertex(70, 410, 2.5), new Engineer_1.default.Math.Vertex(80, 80, 1), 0);
-        _this.AddElement(new Engineer_1.default.Math.Vertex(70, 650, 2.5), new Engineer_1.default.Math.Vertex(80, 80, 1), 0);
-        _this.AddElement(new Engineer_1.default.Math.Vertex(200, 170, 2.5), new Engineer_1.default.Math.Vertex(80, 80, 1), 0);
-        _this.AddElement(new Engineer_1.default.Math.Vertex(200, 290, 2.5), new Engineer_1.default.Math.Vertex(80, 80, 1), 0);
-        _this.AddElement(new Engineer_1.default.Math.Vertex(200, 410, 2.5), new Engineer_1.default.Math.Vertex(80, 80, 1), 0);
-        _this.AddElement(new Engineer_1.default.Math.Vertex(200, 530, 2.5), new Engineer_1.default.Math.Vertex(80, 80, 1), 0);
-        _this.AddElement(new Engineer_1.default.Math.Vertex(330, 50, 2.5), new Engineer_1.default.Math.Vertex(80, 80, 1), 0);
-        _this.AddElement(new Engineer_1.default.Math.Vertex(330, 170, 2.5), new Engineer_1.default.Math.Vertex(80, 80, 1), 0);
-        _this.AddElement(new Engineer_1.default.Math.Vertex(330, 290, 2.5), new Engineer_1.default.Math.Vertex(80, 80, 1), 0);
-        _this.AddElement(new Engineer_1.default.Math.Vertex(330, 530, 2.5), new Engineer_1.default.Math.Vertex(80, 80, 1), 0);
-        _this.AddElement(new Engineer_1.default.Math.Vertex(330, 650, 2.5), new Engineer_1.default.Math.Vertex(80, 80, 1), 0);
-        _this.Init();
-        _this.Hide();
-        return _this;
-    }
-    return SkillTree;
-}(Window_1.Window));
-exports.SkillTree = SkillTree;
-
-
-/***/ }),
 /* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-Object.defineProperty(exports, "__esModule", { value: true });
-var TraitType;
-(function (TraitType) {
-    TraitType[TraitType["FIRE_RESIST"] = 0] = "FIRE_RESIST";
-    TraitType[TraitType["ICE_RESIST"] = 1] = "ICE_RESIST";
-    TraitType[TraitType["LIGHTNING_RESIST"] = 2] = "LIGHTNING_RESIST";
-    TraitType[TraitType["SLASH_RESIST"] = 3] = "SLASH_RESIST";
-    TraitType[TraitType["BLUNT_RESIST"] = 4] = "BLUNT_RESIST";
-    TraitType[TraitType["PIERCE_RESIST"] = 5] = "PIERCE_RESIST";
-})(TraitType || (TraitType = {}));
-exports.TraitType = TraitType;
-var Trait = /** @class */ (function () {
-    function Trait(type, value) {
-        this._Type = type;
-        this._Value = value;
-    }
-    Object.defineProperty(Trait.prototype, "Type", {
-        get: function () { return this._Type; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Trait.prototype, "Value", {
-        get: function () { return this._Value; },
-        enumerable: true,
-        configurable: true
-    });
-    return Trait;
-}());
-exports.Trait = Trait;
-var Traits = /** @class */ (function () {
-    function Traits() {
-        this._Traits = {};
-    }
-    Object.defineProperty(Traits.prototype, "Traits", {
-        get: function () { return this._Traits; },
-        enumerable: true,
-        configurable: true
-    });
-    Traits.prototype.Trait = function (type) { return this._Traits[type.valueOf()]; };
-    Traits.prototype.AddTrait = function (trait) {
-        if (this._Traits[trait.Type.valueOf()]) {
-            this._Traits[trait.Type.valueOf()] += trait.Value;
-        }
-        else {
-            this._Traits[trait.Type.valueOf()] = trait.Value;
-        }
-    };
-    return Traits;
-}());
-exports.Traits = Traits;
-
-
-/***/ }),
-/* 58 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -51518,7 +51429,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Engineer_1 = __webpack_require__(0);
-var Trait_1 = __webpack_require__(57);
+var Trait_1 = __webpack_require__(15);
 var Enemy = /** @class */ (function (_super) {
     __extends(Enemy, _super);
     function Enemy(Scene, start_X, start_Y) {
@@ -51746,6 +51657,328 @@ var Enemy = /** @class */ (function (_super) {
     return Enemy;
 }(Engineer_1.default.Engine.Sprite));
 exports.Enemy = Enemy;
+
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Engineer_1 = __webpack_require__(0);
+var Player_1 = __webpack_require__(13);
+var Mechanics_1 = __webpack_require__(59);
+var Movement = /** @class */ (function () {
+    function Movement(Player, Scene) {
+        this._MoveSpeed = 5;
+        this._Direction = 2;
+        this._Player = Player;
+        this._PlayerKeys = new Player_1.PlayerKeyPress();
+        this._Scene = Scene;
+        this._Mechanics = new Mechanics_1.Mechanics(Player, Scene);
+        this._SolidColliders = this._Scene.GetObjectsWithData("Solid", true);
+        this._EnemyColliders = this._Scene.GetObjectsWithData("Enemy", true);
+        this._Scene.Events.KeyDown.push(this.KeyDown.bind(this));
+        this._Scene.Events.KeyUp.push(this.KeyUp.bind(this));
+        this._Scene.Events.TimeTick.push(this.GameUpdate.bind(this));
+    }
+    Object.defineProperty(Movement.prototype, "EnemyColliders", {
+        get: function () { return this._EnemyColliders; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Movement.prototype, "Direction", {
+        get: function () { return this._Direction; },
+        enumerable: true,
+        configurable: true
+    });
+    Movement.prototype.KeyDown = function (G, Args) {
+        if (Args.Key == Engineer_1.default.Engine.KeyType.KEY_W)
+            this._PlayerKeys.Up = true;
+        if (Args.Key == Engineer_1.default.Engine.KeyType.KEY_S)
+            this._PlayerKeys.Down = true;
+        if (Args.Key == Engineer_1.default.Engine.KeyType.KEY_A)
+            this._PlayerKeys.Left = true;
+        if (Args.Key == Engineer_1.default.Engine.KeyType.KEY_D)
+            this._PlayerKeys.Right = true;
+    };
+    Movement.prototype.KeyUp = function (G, Args) {
+        if (Args.Key == Engineer_1.default.Engine.KeyType.KEY_W)
+            this._PlayerKeys.Up = false;
+        if (Args.Key == Engineer_1.default.Engine.KeyType.KEY_S)
+            this._PlayerKeys.Down = false;
+        if (Args.Key == Engineer_1.default.Engine.KeyType.KEY_A)
+            this._PlayerKeys.Left = false;
+        if (Args.Key == Engineer_1.default.Engine.KeyType.KEY_D)
+            this._PlayerKeys.Right = false;
+    };
+    Movement.prototype.TryMovement = function (Player, Direction, Movement) {
+        Engineer_1.default.Util.Collision.CalculateObjectCollisions("Solid", Player, this._SolidColliders);
+        Engineer_1.default.Util.Collision.CalculateObjectCollisions("Enemy", Player, this._EnemyColliders);
+        if (!Player.Data["Collision_Solid"][Direction] && !Player.Data["Collision_Enemy"][Direction]) {
+            this._Scene.Trans.Translation = new Engineer_1.default.Math.Vertex(this._Scene.Trans.Translation.X - Movement.X, this._Scene.Trans.Translation.Y - Movement.Y, 0);
+            Player.Trans.Translation = new Engineer_1.default.Math.Vertex(Player.Trans.Translation.X + Movement.X, Player.Trans.Translation.Y + Movement.Y, 0);
+        }
+    };
+    Movement.prototype.GameUpdate = function (G, Args) {
+        if (this._PlayerKeys.Up) {
+            this.TryMovement(this._Player.Collider, "Top", new Engineer_1.default.Math.Vertex(0, -this._MoveSpeed, 0));
+            this._Direction = 0;
+            this._Player.UpdateSpriteSet(0);
+        }
+        if (this._PlayerKeys.Right) {
+            this.TryMovement(this._Player.Collider, "Right", new Engineer_1.default.Math.Vertex(+this._MoveSpeed, 0, 0));
+            this._Direction = 1;
+            this._Player.UpdateSpriteSet(1);
+        }
+        if (this._PlayerKeys.Down) {
+            this.TryMovement(this._Player.Collider, "Bottom", new Engineer_1.default.Math.Vertex(0, +this._MoveSpeed, 0));
+            this._Direction = 2;
+            this._Player.UpdateSpriteSet(2);
+        }
+        if (this._PlayerKeys.Left) {
+            this.TryMovement(this._Player.Collider, "Left", new Engineer_1.default.Math.Vertex(-this._MoveSpeed, 0, 0));
+            this._Direction = 3;
+            this._Player.UpdateSpriteSet(3);
+        }
+    };
+    Movement.prototype.RemoveEnemy = function (nmy) {
+        for (var i = 0; i < this._EnemyColliders.length; i++) {
+            if (nmy == this._EnemyColliders[i].ID) {
+                this._EnemyColliders.splice(i, 1);
+            }
+        }
+    };
+    return Movement;
+}());
+exports.Movement = Movement;
+
+
+/***/ }),
+/* 59 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Mechanics = /** @class */ (function () {
+    function Mechanics(Player, Scene) {
+        this._Player = Player;
+        this._Scene = Scene;
+    }
+    return Mechanics;
+}());
+exports.Mechanics = Mechanics;
+
+
+/***/ }),
+/* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Engineer_1 = __webpack_require__(0);
+var Item_1 = __webpack_require__(61);
+var ItemWorld = /** @class */ (function () {
+    function ItemWorld(Player, Scene, Inv, ItemName, posX, posY) {
+        this._Inventory = Inv;
+        this._Scene = Scene;
+        this._Player = Player;
+        this._Item = new Item_1.Item(Player, Scene, ItemName, false);
+        this._Scene.Events.TimeTick.push(this.GameUpdate.bind(this));
+    }
+    ItemWorld.prototype.GameUpdate = function (G, Args) {
+        if (Engineer_1.default.Util.Collision.Check(this._Player.Collider, this._Item).Collision && this._Item.inInventory == false) {
+            this._Item.Active = false;
+            this._Scene.RemoveSceneObject(this._Item);
+            this.AddToInventory();
+            this._Item.inInventory = true;
+        }
+    };
+    ItemWorld.prototype.AddToInventory = function () {
+        this._Inventory.addToInv(this._Item);
+    };
+    return ItemWorld;
+}());
+exports.ItemWorld = ItemWorld;
+
+
+/***/ }),
+/* 61 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var Engineer_1 = __webpack_require__(0);
+var Item = /** @class */ (function (_super) {
+    __extends(Item, _super);
+    function Item(Player, Scene, ItemName, inInv) {
+        if (inInv === void 0) { inInv = true; }
+        var _this = _super.call(this) || this;
+        _this._inInventory = inInv;
+        _this.Name = ItemName;
+        _this._Scene = Scene;
+        _this._Player = Player;
+        Engineer_1.default.Util.Log.Error("/build/resources/items/" + ItemName + ".png");
+        _this.Collection = new Engineer_1.default.Engine.TileCollection(null, ["/build/resources/items/" + ItemName + ".png"]);
+        _this.Trans.Scale = new Engineer_1.default.Math.Vertex(80, 80, 1);
+        _this.Trans.Translation = new Engineer_1.default.Math.Vertex(300, 300, 0.5);
+        _this.Data["Item"] = true;
+        _this.Data["Collision"] = Engineer_1.default.Math.CollisionType.Rectangular2D;
+        _this._Scene.Events.MouseDown.push(_this.GameUpdate.bind(_this));
+        _this._Scene.AddSceneObject(_this);
+        return _this;
+    }
+    Object.defineProperty(Item.prototype, "inInventory", {
+        get: function () { return this._inInventory; },
+        set: function (inInv) { this._inInventory = inInv; },
+        enumerable: true,
+        configurable: true
+    });
+    Item.prototype.GameUpdate = function (G, Args) {
+        if (Args.MouseButton == 2 && this._inInventory == true) {
+            //equip | use                 
+        }
+    };
+    return Item;
+}(Engineer_1.default.Engine.Tile));
+exports.Item = Item;
+
+
+/***/ }),
+/* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var Engineer_1 = __webpack_require__(0);
+var Window_1 = __webpack_require__(16);
+var Inventory = /** @class */ (function (_super) {
+    __extends(Inventory, _super);
+    function Inventory(Scene) {
+        var _this = _super.call(this, Scene) || this;
+        _this.Trans.Scale = new Engineer_1.default.Math.Vertex(500, 800, 1);
+        _this.Trans.Translation = new Engineer_1.default.Math.Vertex(1600, 460, 2);
+        _this.currentRow = 0;
+        _this.currentCollumn = 0;
+        _this.CreateBorder();
+        _this.AddElement(new Engineer_1.default.Math.Vertex(200, 200, 2.5), new Engineer_1.default.Math.Vertex(300, 460, 1), 1, Engineer_1.default.Math.Color.FromRGBA(60, 60, 60, 255));
+        _this.AddElement(new Engineer_1.default.Math.Vertex(220, 80, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 0);
+        _this.AddElement(new Engineer_1.default.Math.Vertex(220, 80, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 2, Engineer_1.default.Math.Color.FromRGBA(30, 30, 30, 255));
+        _this.AddElement(new Engineer_1.default.Math.Vertex(120, 170, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 0);
+        _this.AddElement(new Engineer_1.default.Math.Vertex(120, 170, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 4, Engineer_1.default.Math.Color.FromRGBA(30, 30, 30, 255));
+        _this.AddElement(new Engineer_1.default.Math.Vertex(320, 170, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 0);
+        _this.AddElement(new Engineer_1.default.Math.Vertex(320, 170, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 5, Engineer_1.default.Math.Color.FromRGBA(30, 30, 30, 255));
+        _this.AddElement(new Engineer_1.default.Math.Vertex(220, 170, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 0);
+        _this.AddElement(new Engineer_1.default.Math.Vertex(220, 170, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 3, Engineer_1.default.Math.Color.FromRGBA(30, 30, 30, 255));
+        _this.AddElement(new Engineer_1.default.Math.Vertex(220, 310, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 0);
+        _this.AddElement(new Engineer_1.default.Math.Vertex(220, 310, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 2, Engineer_1.default.Math.Color.FromRGBA(30, 30, 30, 255));
+        for (var i = 0; i < 5; i++) {
+            for (var j = 0; j < 9; j++) {
+                _this.AddElement(new Engineer_1.default.Math.Vertex(j * 50, 480 + i * 50, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 0);
+            }
+        }
+        _this.Init();
+        _this.Hide();
+        return _this;
+    }
+    Inventory.prototype.addToInv = function (item) {
+        if (this.currentRow < 9 && this.currentCollumn < 5) {
+            this.currentRow++;
+            this.AddElement(new Engineer_1.default.Math.Vertex(this.currentRow * 50, 480 + this.currentCollumn * 50, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 0);
+        }
+        else if (this.currentRow == 9 && this.currentCollumn != 5) {
+            this.currentRow = 0;
+            this.currentCollumn++;
+            this.AddItem(item, new Engineer_1.default.Math.Vertex(this.currentRow * 50, 480 + this.currentCollumn * 50, 2.5), new Engineer_1.default.Math.Vertex(50, 50, 1), 0);
+        }
+        else if (this.currentRow == 9 && this.currentCollumn == 5) {
+            //no space
+        }
+    };
+    return Inventory;
+}(Window_1.Window));
+exports.Inventory = Inventory;
+
+
+/***/ }),
+/* 63 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var Engineer_1 = __webpack_require__(0);
+var Window_1 = __webpack_require__(16);
+var SkillTree = /** @class */ (function (_super) {
+    __extends(SkillTree, _super);
+    function SkillTree(Scene) {
+        var _this = _super.call(this, Scene) || this;
+        _this.Trans.Scale = new Engineer_1.default.Math.Vertex(500, 800, 1);
+        _this.Trans.Translation = new Engineer_1.default.Math.Vertex(320, 460, 2);
+        _this.CreateBorder();
+        _this.AddElement(new Engineer_1.default.Math.Vertex(70, 350, 2.3), new Engineer_1.default.Math.Vertex(10, 650, 1), -1, Engineer_1.default.Math.Color.FromRGBA(60, 60, 60, 255), new Engineer_1.default.Math.Vertex(0, 0, 0));
+        _this.AddElement(new Engineer_1.default.Math.Vertex(200, 350, 2.3), new Engineer_1.default.Math.Vertex(10, 400, 1), -1, Engineer_1.default.Math.Color.FromRGBA(60, 60, 60, 255), new Engineer_1.default.Math.Vertex(0, 0, 0));
+        _this.AddElement(new Engineer_1.default.Math.Vertex(330, 350, 2.3), new Engineer_1.default.Math.Vertex(10, 650, 1), -1, Engineer_1.default.Math.Color.FromRGBA(60, 60, 60, 255), new Engineer_1.default.Math.Vertex(0, 0, 0));
+        _this.AddElement(new Engineer_1.default.Math.Vertex(135, 110, 2.3), new Engineer_1.default.Math.Vertex(10, 200, 1), -1, Engineer_1.default.Math.Color.FromRGBA(60, 60, 60, 255), new Engineer_1.default.Math.Vertex(0, 0, -45));
+        _this.AddElement(new Engineer_1.default.Math.Vertex(135, 590, 2.3), new Engineer_1.default.Math.Vertex(10, 200, 1), -1, Engineer_1.default.Math.Color.FromRGBA(60, 60, 60, 255), new Engineer_1.default.Math.Vertex(0, 0, 45));
+        _this.AddElement(new Engineer_1.default.Math.Vertex(265, 230, 2.3), new Engineer_1.default.Math.Vertex(10, 200, 1), -1, Engineer_1.default.Math.Color.FromRGBA(60, 60, 60, 255), new Engineer_1.default.Math.Vertex(0, 0, 45));
+        _this.AddElement(new Engineer_1.default.Math.Vertex(265, 470, 2.3), new Engineer_1.default.Math.Vertex(10, 200, 1), -1, Engineer_1.default.Math.Color.FromRGBA(60, 60, 60, 255), new Engineer_1.default.Math.Vertex(0, 0, -45));
+        _this.AddElement(new Engineer_1.default.Math.Vertex(70, 50, 2.5), new Engineer_1.default.Math.Vertex(80, 80, 1), 0);
+        _this.AddElement(new Engineer_1.default.Math.Vertex(70, 170, 2.5), new Engineer_1.default.Math.Vertex(80, 80, 1), 0);
+        _this.AddElement(new Engineer_1.default.Math.Vertex(70, 290, 2.5), new Engineer_1.default.Math.Vertex(80, 80, 1), 0);
+        _this.AddElement(new Engineer_1.default.Math.Vertex(70, 410, 2.5), new Engineer_1.default.Math.Vertex(80, 80, 1), 0);
+        _this.AddElement(new Engineer_1.default.Math.Vertex(70, 650, 2.5), new Engineer_1.default.Math.Vertex(80, 80, 1), 0);
+        _this.AddElement(new Engineer_1.default.Math.Vertex(200, 170, 2.5), new Engineer_1.default.Math.Vertex(80, 80, 1), 0);
+        _this.AddElement(new Engineer_1.default.Math.Vertex(200, 290, 2.5), new Engineer_1.default.Math.Vertex(80, 80, 1), 0);
+        _this.AddElement(new Engineer_1.default.Math.Vertex(200, 410, 2.5), new Engineer_1.default.Math.Vertex(80, 80, 1), 0);
+        _this.AddElement(new Engineer_1.default.Math.Vertex(200, 530, 2.5), new Engineer_1.default.Math.Vertex(80, 80, 1), 0);
+        _this.AddElement(new Engineer_1.default.Math.Vertex(330, 50, 2.5), new Engineer_1.default.Math.Vertex(80, 80, 1), 0);
+        _this.AddElement(new Engineer_1.default.Math.Vertex(330, 170, 2.5), new Engineer_1.default.Math.Vertex(80, 80, 1), 0);
+        _this.AddElement(new Engineer_1.default.Math.Vertex(330, 290, 2.5), new Engineer_1.default.Math.Vertex(80, 80, 1), 0);
+        _this.AddElement(new Engineer_1.default.Math.Vertex(330, 530, 2.5), new Engineer_1.default.Math.Vertex(80, 80, 1), 0);
+        _this.AddElement(new Engineer_1.default.Math.Vertex(330, 650, 2.5), new Engineer_1.default.Math.Vertex(80, 80, 1), 0);
+        _this.Init();
+        _this.Hide();
+        return _this;
+    }
+    return SkillTree;
+}(Window_1.Window));
+exports.SkillTree = SkillTree;
 
 
 /***/ })
