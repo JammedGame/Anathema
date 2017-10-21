@@ -5,6 +5,7 @@ import { GameScene } from "./GameScene";
 import { HealthBar } from "./HealthBar";
 import { Weapon } from "./Weapon";
 import { Movement } from "./Movement";
+import { Trait, TraitType, Traits } from "./Trait" 
 
 class Player extends Engineer.Engine.Sprite {
     private _Scene: GameScene;
@@ -16,6 +17,7 @@ class Player extends Engineer.Engine.Sprite {
     private _mtAttRange:number;
     private _PlayerRightClick: boolean;
     private _PlayerLeftClick: boolean;
+    private _Traits: Traits;
     public get HealthBar(): any { return this._HealthBar; }
     public get Weapon(): Weapon { return this._Weapon; }
     public set Weapon(wpn: Weapon) { this._Weapon = wpn; }
@@ -24,6 +26,7 @@ class Player extends Engineer.Engine.Sprite {
 
     public constructor(Scene: GameScene) {
         super();
+        this._Traits = new Traits();
         this.Name = "Player";
         this._Scene = Scene;
         this.Fixed = true;        
