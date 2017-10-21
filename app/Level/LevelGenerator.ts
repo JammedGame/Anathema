@@ -34,7 +34,7 @@ class LevelGenerator
                 if(NewChunk.Fields[i][j] == 1 && Tilesets.LayoutType != LevelTilesetLayoutType.Story)
                 {
                     let Index = Math.floor((Math.random() * Tilesets.Floor.Images.length) + 1);
-                    LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+1,0), Tilesets.Floor, Index, Engineer.Math.Color.FromRGBA(255,255,255,255));
+                    //LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+1,0), Tilesets.Floor, Index, Engineer.Math.Color.FromRGBA(255,255,255,255));
                 }
                 else if(NewChunk.Fields[i][j] == 2)
                 {
