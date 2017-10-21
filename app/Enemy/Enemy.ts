@@ -5,7 +5,7 @@ import { GameScene } from "./../GameScene";
 import { Player } from "./../Player";
 import { Trait, TraitType, Traits } from "./../Trait" 
 
-abstract class Enemy extends Engineer.Engine.Sprite {
+abstract class Enemy extends Engineer.Engine.Sprite {      
     protected _Health: number;
     protected _MaxHealth: number;
     protected _Damage: number;
@@ -43,7 +43,7 @@ abstract class Enemy extends Engineer.Engine.Sprite {
     }
 
     public constructor(Scene: GameScene,start_X:number,start_Y:number) {
-        super();
+        super();        
         this._Traits = new Traits();
         this.moveSpeed = 10;
         this.moveArea = 500;

@@ -76,4 +76,11 @@ class Movement {
             this._Player.UpdateSpriteSet(3);
         }
     }
+    public RemoveEnemy(nmy: number){
+        for(let i=0;i<this._EnemyColliders.length;i++){
+            if(nmy==this._EnemyColliders[i].ID){
+                this._EnemyColliders.splice(i,1);
+            }
+        }
+    }
 }

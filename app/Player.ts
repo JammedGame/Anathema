@@ -163,10 +163,10 @@ class Player extends Engineer.Engine.Sprite {
         }
     }
     public DistroyEnemy(nmy: any): void {
-        nmy.Active = false;
-        Engineer.Util.Log.Error(nmy);
+        nmy.Active = false;        
         nmy._Scene.RemoveSceneObject(nmy);
-        Engineer.Util.Log.Error(nmy);
+        this._Scene.Movement.RemoveEnemy(nmy.ID);  
+        this.RemoveEnemy(nmy.ID);      
     }
     private MouseClick(G: any, Args: any) {
         if (Args.MouseButton == 0) {
@@ -176,6 +176,13 @@ class Player extends Engineer.Engine.Sprite {
         if (Args.MouseButton == 2) {
             this.BackUpSpriteSet = this.CurrentSpriteSet;
             this.UpdateSpriteSet(12 + this._Scene.Movement.Direction);
+        }
+    }
+    private RemoveEnemy(nmy:number){
+        for(let i=0;i<this._Enemy.length;i++){
+            if(nmy==this._Enemy[i].ID){
+                this._Enemy.splice(i,1);
+            }
         }
     }
 }
