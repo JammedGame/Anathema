@@ -16,16 +16,19 @@ class Player extends Unit
     public constructor(Scene: GameScene)
     {
         super(Scene);
-        this._Traits = new Traits();
         this.Name = "Player";
-        this._Scene = Scene;
-        this.Fixed = true;        
+        this.Fixed = true;
+        this.Data["Player"] = true;
+
         this.Trans.Scale = new Engineer.Math.Vertex(100, 150, 0);
         this.Trans.Translation = new Engineer.Math.Vertex(960, 540, 1);
-        this.LoadSprites();
-        this.Data["Player"] = true;
         this.CreateCollider();
+        this._Collider.Data["PlayerCollider"] = true;
+
+        this.LoadSprites();
+
         this._Scene.Events.MouseDown.push(this.MouseClick.bind(this));
+
         this._Scene.AddSceneObject(this);
         this._Scene.AddSceneObject(this._Collider);
     }
@@ -37,10 +40,9 @@ class Player extends Unit
     private ActionMove(Location: any)
     {
         Location = new Engineer.Math.Vertex(Location.X - this._Scene.Trans.Translation.X, Location.Y - this._Scene.Trans.Translation.Y);
-        console.log(Location);
         this._CurrentAction = new Move(this._Stats.MovementSpeed, null, "PlayerMove", this);
         this._CurrentAction.Target = Location;
-        this._CurrentAction.Prefs["ColliderTypes"] = ["Solid", "Enemy"];
+        this._CurrentAction.Prefs["ColliderTypes"] = ["Solid", "EnemyCollider"];
     }
     private LoadSprites()
     {

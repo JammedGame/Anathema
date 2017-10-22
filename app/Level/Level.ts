@@ -5,14 +5,12 @@ import Engineer from "./../Engineer";
 import { GameScene } from "./../GameScene";
 import { LevelGenerator } from "./LevelGenerator";
 import { LevelTileset, LevelTilesetLayoutType, LevelTilesetCeilingType, LevelTilesetFloorType } from "./LevelTileset";
-import { Skeleton } from "./../Enemy/Skeleton";
 
 class Level
 {
     private _TileScale:number;
     private _Tiles:any[];
     private _Tileset:any;
-    private _Enemies:Skeleton[];
     public constructor()
     {
         this._TileScale = 30;

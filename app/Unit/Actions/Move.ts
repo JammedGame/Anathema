@@ -43,7 +43,7 @@ class Move extends Action
         }
         else
         {
-            this._Collider.Trans.Translation = new Engineer.Math.Vertex(this._Collider.Trans.Translation.X + Movement.X, this._Collider.Trans.Translation.Y + Movement.Y, 0);
+            this._Owner.Trans.Translation = this._Collider.Trans.Translation = new Engineer.Math.Vertex(this._Collider.Trans.Translation.X + Movement.X, this._Collider.Trans.Translation.Y + Movement.Y, 0.3);
         }
         if(Engineer.Math.Vertex.Distance(this._Collider.Trans.Translation, this._Target) < 5) return false;
         return true;

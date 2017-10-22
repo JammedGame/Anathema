@@ -22,6 +22,7 @@ class Unit extends Engineer.Engine.Sprite
     {
         super();
         this._Scene = Scene;
+        this._Traits = new Traits();
         this._Stats = new Stats();
         this._Stats.Store();
     }
@@ -57,7 +58,6 @@ class Unit extends Engineer.Engine.Sprite
         let Angle = Engineer.Math.Vertex.Angle(new Engineer.Math.Vertex(0, -1, 0), Direction);
         Angle += 90;
         if(Angle > 360) Angle -= 360;
-        console.log(Angle);
         if(Angle > 45 && Angle <= 135) return 1;
         if(Angle > 135 && Angle <= 225) return 2;
         if(Angle > 225 && Angle <= 315) return 3;

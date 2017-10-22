@@ -10,6 +10,8 @@ class Stats
     private _MaxMana:number;
     private _BaseDamage:number;
     private _MovementSpeed:number;
+    private _Sight:number;
+    private _Radius:number;
     private _BaseStats:Stats;
     public get Health():number { return this._Health; }
     public set Health(value:number) { this._Health = value; }
@@ -23,6 +25,10 @@ class Stats
     public set BaseDamage(value:number) { this._BaseDamage = value; }
     public get MovementSpeed():number { return this._MovementSpeed; }
     public set MovementSpeed(value:number) { this._MovementSpeed = value; }
+    public get Sight():number { return this._Sight; }
+    public set Sight(value:number) { this._Sight = value; }
+    public get Radius():number { return this._Radius; }
+    public set Radius(value:number) { this._Radius = value; }
     public constructor(Old?:Stats)
     {
         if(Old != null)
@@ -37,6 +43,8 @@ class Stats
             this._MaxMana = 30;
             this._BaseDamage = 10;
             this._MovementSpeed = 3;
+            this._Sight = 800;
+            this._Radius = 100;
         }
     }
     public Copy() : Stats
@@ -51,6 +59,8 @@ class Stats
         this._MaxMana = Other._MaxMana;
         this._BaseDamage = Other._BaseDamage;
         this._MovementSpeed = Other._MovementSpeed;
+        this._Sight = Other._Sight;
+        this._Radius = Other._Radius;
     }
     public Store() : void
     {

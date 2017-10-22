@@ -5,8 +5,7 @@ import Engineer from "./Engineer";
 import { Level } from "./Level/Level";
 import { LocalSettings } from "./LocalSettings";
 import { Player } from "./Unit/Player";
-import { Skeleton } from "./Enemy/Skeleton";
-import { Movement } from "./Movement";
+import { Skeleton } from "./Unit/Enemies/Skeleton";
 import { ItemWorld } from "./Items/ItemWorld";
 import { Inventory } from "./UI/Inventory";
 import { SkillTree } from "./UI/SkillTree";
@@ -20,11 +19,9 @@ class GameScene extends Engineer.Engine.Scene2D
     private _Skeleton: Skeleton;
     private _ItemWorld: ItemWorld;
     private _Inventory: Inventory;
-    private _Movement: Movement;
     private _SkillTree: SkillTree;
     private _HealthBar: HealthBar;
     private _ManaBar: ManaBar;
-    public get Movement(): Movement { return this._Movement; }
     public constructor()
     {
         super();
@@ -37,11 +34,10 @@ class GameScene extends Engineer.Engine.Scene2D
     {
         this._Level.Init(this);
         this._Player = new Player(this);
-        for (let i = 0; i < 10; i++)
+        for (let i = 0; i < 1; i++)
         {
-            //this._Skeleton = new Skeleton(this, Math.random() * 1980, Math.random() * 1080);
-        }
-        //this._Movement = new Movement(this._Player, this);        
+            this._Skeleton = new Skeleton(this, Math.random() * 1980, Math.random() * 1080);
+        }  
         this._Inventory = new Inventory(this);
         this._SkillTree = new SkillTree(this);
         this._HealthBar = new HealthBar(this, this._Player);
@@ -68,5 +64,6 @@ class GameScene extends Engineer.Engine.Scene2D
     private SceneUpdate()
     {
         this._Player.Update();
+        this._Skeleton.Update();
     }
 }

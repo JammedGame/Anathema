@@ -2,7 +2,7 @@ export { Window };
 
 import Engineer from "./../Engineer";
 import { GameScene } from "./../GameScene";
-import { Player } from "./../Player";
+import { Player } from "./../Unit/Player";
 import { Item } from "../Items/Item";
 
 class Window extends Engineer.Engine.Tile
