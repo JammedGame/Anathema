@@ -28,6 +28,7 @@ class Unit extends Engineer.Engine.Sprite
         this._Traits = new Traits();
         this._Stats = new Stats();
         this._Stats.Store();
+        this._DamagedEvent = [];
     }
     public Update()
     {
