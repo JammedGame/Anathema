@@ -48,6 +48,7 @@ class Window extends Engineer.Engine.Tile
         }        
         for(let i = 0; i < this._Item.length; i++)
         {
+            
             for(let j=0;j<this._Item[i].length && this._Item[i][j]!=null;j++){
             this._Item[i][j].Fixed = true;
             this._Scene.AddSceneObject(this._Item[i][j]);                 
@@ -60,9 +61,11 @@ class Window extends Engineer.Engine.Tile
         this.Active = true;
         for(let i = 0; i < this._Elements.length; i++) this._Elements[i].Active = true;
         for(let i = 0; i < this._Decorations.length; i++) this._Decorations[i].Active = true;
-        for(let i = 0; i < this._Item.length; i++){
-            for(let j=0;j<this._Item[i].length && this._Item[i][j]!=null;j++){
-                this._Item[i][j].Active = true;
+        for(let i = 0; i < this._Item.length; i++){            
+            for(let j=0;j<this._Item[i].length;j++){
+                if(this._Item[i][j]!=null){
+                    this._Item[i][j].Active = true;
+                }                              
             }
         }
     }
@@ -73,8 +76,10 @@ class Window extends Engineer.Engine.Tile
         for(let i = 0; i < this._Elements.length; i++) this._Elements[i].Active = false;
         for(let i = 0; i < this._Decorations.length; i++) this._Decorations[i].Active = false;
         for(let i = 0; i < this._Item.length; i++){
-            for(let j=0;j<this._Item[i].length && this._Item[i][j]!=null;j++){
-                this._Item[i][j].Active = false;
+            for(let j=0;j<this._Item[i].length;j++){
+                if(this._Item[i][j]!=null){
+                    this._Item[i][j].Active = false;
+                }                        
             }
         }
     }
