@@ -32,7 +32,7 @@ class Item extends Engineer.Engine.Tile
         this._Scene.AddSceneObject(this);
     }
     private GameUpdate(G:any, Args:any)
-    {   
+    {
         if (Args.MouseButton == 2 && this._inInventory==true) 
         {
                 //equip | use                 

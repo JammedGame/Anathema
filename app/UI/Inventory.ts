@@ -10,6 +10,8 @@ class Inventory extends Window
 {  
     private currentCollumn;
     private currentRow;
+    private clickedItem:boolean;
+    private TileField:any[][];
 
     public constructor(Scene:GameScene)
     {
@@ -17,7 +19,9 @@ class Inventory extends Window
         this.Trans.Scale = new Engineer.Math.Vertex(500,800,1);
         this.Trans.Translation = new Engineer.Math.Vertex(1600, 460, 2);
         this.currentCollumn = 0;
-        this.currentRow=0;        
+        this.currentRow=0;     
+        this.clickedItem=false;   
+        this.TileField=[];
         
         this.CreateBorder();
         this.AddElement(new Engineer.Math.Vertex(200,200,2.5), new Engineer.Math.Vertex(300,460,1), 1, Engineer.Math.Color.FromRGBA(60,60,60,255));
@@ -33,28 +37,30 @@ class Inventory extends Window
         this.AddElement(new Engineer.Math.Vertex(220,310,2.5), new Engineer.Math.Vertex(50,50,1), 2, Engineer.Math.Color.FromRGBA(30,30,30,255));
         for(let i = 0; i < 5; i++)
         {
+            this.TileField[i]=[];
             for(let j = 0; j < 9; j++)
-            {
-                this.AddElement(new Engineer.Math.Vertex(j * 50, 480 + i * 50, 2.5), new Engineer.Math.Vertex(50,50,1), 0);
+            {                  
+                this.TileField[i][j]=this.AddElement(new Engineer.Math.Vertex(j * 50, 480 + i * 50, 2.5), new Engineer.Math.Vertex(50,50,1), 0);
+                this.TileField[i][j].Events.MouseDown.push(this.MouseDown.bind(this));
             }
-        }
+        }        
         this.Init();
         this.Hide();
     }
     public addToInv(item:Item):void
     {
-        if(this.currentCollumn<8 && this.currentRow<5)
-        {            
-            this.AddItem(item, new Engineer.Math.Vertex(this.currentCollumn * 50, 480 + this.currentRow * 50, 2.5), new Engineer.Math.Vertex(50,50,1), 0);    
-            this.currentCollumn++;
+        this.AddItem(item,this.firstFit(),new Engineer.Math.Vertex(50,50,1),0);
+    }
+    private MouseDown(G: any, Args: any) {
+        if (Args.MouseButton == 0) {
+           Engineer.Util.Log.Error(Args);
+
         }
-        else if(this.currentCollumn==8 && this.currentRow!=5){        
-        this.AddItem(item, new Engineer.Math.Vertex(this.currentCollumn * 50, 480 + this.currentRow * 50, 2.5), new Engineer.Math.Vertex(50,50,1), 0);
-        this.currentCollumn=0; 
-        this.currentRow++;
-        }        
-        else if(this.currentCollumn==8 && this.currentRow==5) {
-            //no space
+    }
+    public moveItem(item:Item){
+        if(this.Active)
+        {
+
         }
-    }    
+    }
 }

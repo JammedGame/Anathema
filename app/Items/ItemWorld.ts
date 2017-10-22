@@ -23,7 +23,7 @@ class ItemWorld
         
     }
     private GameUpdate(G:any, Args:any)
-    {   
+    {
         if(Engineer.Util.Collision.Check(this._Player.Collider,this._Item).Collision && this._Item.inInventory==false)
         {
             this._Item.Active=false;            
