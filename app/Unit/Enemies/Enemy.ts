@@ -8,6 +8,7 @@ import { Player } from "./../Player";
 import { Stats } from "./../Stats";
 import { Action } from "./../Actions/Action";
 import { Move } from "./../Actions/Move";
+import { Attack } from "./../Actions/Attack";
 
 class Enemy extends Unit
 {
@@ -54,7 +55,12 @@ class Enemy extends Unit
     protected Behaviour()
     {
         // Virtual
-        if(Engineer.Math.Vertex.Distance(this._Collider.Trans.Translation, this._Player.Collider.Trans.Translation) < this._Stats.Sight)
+        if(Engineer.Math.Vertex.Distance(this._Collider.Trans.Translation, this._Player.Collider.Trans.Translation) < this._Stats.Radius)
+        {
+            this._CurrentAction = new Attack(null, "EnemyMove", this);
+            this._CurrentAction.Target = this._Player;
+        }
+        else if(Engineer.Math.Vertex.Distance(this._Collider.Trans.Translation, this._Player.Collider.Trans.Translation) < this._Stats.Sight)
         {
             let Location:any = new Engineer.Math.Vertex(this._Player.Collider.Trans.Translation.X, this._Player.Collider.Trans.Translation.Y);
             this._CurrentAction = new Move(this._Stats.MovementSpeed, null, "EnemyMove", this);

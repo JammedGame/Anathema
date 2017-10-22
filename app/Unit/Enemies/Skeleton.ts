@@ -15,6 +15,8 @@ class Skeleton extends Enemy
     public constructor(Scene: GameScene, X:number, Y:number)
     {
         super(Scene, X, Y);
+        this._Stats.BaseDamage = 3;
+        this._Stats.Store();
         this.LoadSprites();
     }
     private LoadSprites()

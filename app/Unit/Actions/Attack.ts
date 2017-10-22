@@ -37,5 +37,6 @@ class Attack extends Action
         this._Target.Stats.Health -= this._Owner.Stats.BaseDamage;
         this._Target.Invoke("Damaged");
         if(this._Target.Stats.Health < 0) this._Target.Destroy(); 
+        this._Completed = true;
     }
 }
