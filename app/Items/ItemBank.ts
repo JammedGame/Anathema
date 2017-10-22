@@ -8,5 +8,5 @@ import{ Inventory } from "../UI/Inventory";
 
 class ItemBank extends Engineer.Engine.Sprite
 {
-     public 
+     
 }
