@@ -18,7 +18,7 @@ class ItemWorld
         this._Inventory=Inv;
         this._Scene = Scene;
         this._Player = Player;
-        this._Item=new Item(Player, Scene, ItemName, false);
+        this._Item=new Item(Player, Scene, ItemName, posX, posY, false);
         this._Scene.Events.TimeTick.push(this.GameUpdate.bind(this));
         
     }
@@ -28,12 +28,8 @@ class ItemWorld
         {
             this._Item.Active=false;            
             this._Scene.RemoveSceneObject(this._Item);  
-            this.AddToInventory();
+            this._Inventory.addToInv(this._Item);
             this._Item.inInventory=true; 
         }
-    }
-
-    private AddToInventory(){
-        this._Inventory.addToInv(this._Item);
-    }
+    }  
 }

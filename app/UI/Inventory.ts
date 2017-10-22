@@ -8,16 +8,16 @@ import { Item } from "../Items/Item";
 
 class Inventory extends Window
 {  
-    private currentRow;
     private currentCollumn;
+    private currentRow;
 
     public constructor(Scene:GameScene)
     {
         super(Scene);
         this.Trans.Scale = new Engineer.Math.Vertex(500,800,1);
         this.Trans.Translation = new Engineer.Math.Vertex(1600, 460, 2);
-        this.currentRow = 0;
-        this.currentCollumn=0;        
+        this.currentCollumn = 0;
+        this.currentRow=0;        
         
         this.CreateBorder();
         this.AddElement(new Engineer.Math.Vertex(200,200,2.5), new Engineer.Math.Vertex(300,460,1), 1, Engineer.Math.Color.FromRGBA(60,60,60,255));
@@ -42,18 +42,18 @@ class Inventory extends Window
         this.Hide();
     }
     public addToInv(item:Item):void
-    {        
-        if(this.currentRow<9 && this.currentCollumn<5)
-        {
-            this.currentRow++;   
-            this.AddElement(new Engineer.Math.Vertex(this.currentRow * 50, 480 + this.currentCollumn * 50, 2.5), new Engineer.Math.Vertex(50,50,1), 0);    
-        }        
-        else if(this.currentRow==9 && this.currentCollumn!=5){
-        this.currentRow=0; 
-        this.currentCollumn++;
-        this.AddItem(item, new Engineer.Math.Vertex(this.currentRow * 50, 480 + this.currentCollumn * 50, 2.5), new Engineer.Math.Vertex(50,50,1), 0);
+    {
+        if(this.currentCollumn<8 && this.currentRow<5)
+        {            
+            this.AddItem(item, new Engineer.Math.Vertex(this.currentCollumn * 50, 480 + this.currentRow * 50, 2.5), new Engineer.Math.Vertex(50,50,1), 0);    
+            this.currentCollumn++;
         }
-        else if(this.currentRow==9 && this.currentCollumn==5) {
+        else if(this.currentCollumn==8 && this.currentRow!=5){        
+        this.AddItem(item, new Engineer.Math.Vertex(this.currentCollumn * 50, 480 + this.currentRow * 50, 2.5), new Engineer.Math.Vertex(50,50,1), 0);
+        this.currentCollumn=0; 
+        this.currentRow++;
+        }        
+        else if(this.currentCollumn==8 && this.currentRow==5) {
             //no space
         }
     }    

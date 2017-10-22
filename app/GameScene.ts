@@ -46,7 +46,9 @@ class GameScene extends Engineer.Engine.Scene2D
         this._SkillTree = new SkillTree(this);
         this._HealthBar = new HealthBar(this, this._Player);
         this._ManaBar = new ManaBar(this, this._Player);
-        this._ItemWorld = new ItemWorld(this._Player, this,this._Inventory,"BeastSlayer",300,300);
+        for(let i=0;i<20;i++){
+        this._ItemWorld = new ItemWorld(this._Player, this,this._Inventory,"BeastSlayer",500,500);
+        }
         this.Events.KeyPress.push(this.KeyPress.bind(this));
     }
     private KeyPress(G: any, Args: any): void
