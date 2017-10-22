@@ -27,20 +27,4 @@ class Unit extends Engineer.Engine.Sprite
         super();
         this._Scene = Scene;
     }
-    public movement(): void
-    {
-
-    }
-
-    abstract doDamage(G: any, Args: any);
-
-    public attack(): void {
-
-    }
-    public checkMove(): number {
-
-    }
-    public follow(): void {
-
-    }
 }
