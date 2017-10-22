@@ -32,7 +32,7 @@ class HealthBar extends Engineer.Engine.Tile
     }
     public Update(Stats:Stats)
     {
-        if(Stats.Health == 0) this.Active = false;
+        if(Stats.Health <= 0) this.Active = false;
         else
         {
             this.Active = true;

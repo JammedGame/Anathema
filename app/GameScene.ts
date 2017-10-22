@@ -11,6 +11,7 @@ import { Inventory } from "./UI/Inventory";
 import { SkillTree } from "./UI/SkillTree";
 import { HealthBar } from "./UI/HealthBar";
 import { ManaBar } from "./UI/ManaBar";
+import { MainHud } from "./UI/MainHud";
 
 class GameScene extends Engineer.Engine.Scene2D
 {
@@ -22,6 +23,7 @@ class GameScene extends Engineer.Engine.Scene2D
     private _SkillTree: SkillTree;
     private _HealthBar: HealthBar;
     private _ManaBar: ManaBar;
+    private _MainHud: MainHud;
     public constructor()
     {
         super();
@@ -42,6 +44,7 @@ class GameScene extends Engineer.Engine.Scene2D
         this._SkillTree = new SkillTree(this);
         this._HealthBar = new HealthBar(this, this._Player);
         this._ManaBar = new ManaBar(this, this._Player);
+        this._MainHud = new MainHud(this);
         for(let i=0;i<20;i++){
         this._ItemWorld = new ItemWorld(this._Player, this,this._Inventory,"BeastSlayer",500,500);
         }

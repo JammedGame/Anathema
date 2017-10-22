@@ -29,7 +29,6 @@ class Window extends Engineer.Engine.Tile
         }
         this._DecorationT = new Engineer.Engine.TileCollection(null, ["/build/resources/border_c.png","/build/resources/border_h.png","/build/resources/border_v.png"]);
         this._ElementT = new Engineer.Engine.TileCollection(null, ["/build/resources/elements/grid.png","/build/resources/elements/vorlok.png","/build/resources/elements/helm.png","/build/resources/elements/armor.png","/build/resources/elements/wand.png","/build/resources/elements/tome.png"]);
-        
     }
     public Init() : void
     {
