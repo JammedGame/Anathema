@@ -1,9 +1,9 @@
 export { Unit };
 
-import Engineer from "./Engineer";
+import Engineer from "./../Engineer";
 
-import { GameScene } from "./GameScene";
-import { Trait, TraitType, Traits } from "./Trait" 
+import { GameScene } from "./../GameScene";
+import { Trait, TraitType, Traits } from "./../Trait" 
 
 class Unit extends Engineer.Engine.Sprite
 {
