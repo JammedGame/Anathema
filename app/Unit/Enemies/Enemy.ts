@@ -45,6 +45,12 @@ class Enemy extends Unit
             else this.CalculateSpriteSet(0, this._LastDirection);
         }
     }
+    public Destroy()
+    {
+        // Override
+        this._Scene.RemoveSceneObject(this._Collider);
+        this._Scene.RemoveSceneObject(this);
+    }
     protected Behaviour()
     {
         // Virtual

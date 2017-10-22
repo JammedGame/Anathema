@@ -19,6 +19,7 @@ class Move extends Action
     public Apply(Scene:GameScene) : boolean
     {
         // Override
+        if(!this._Target) return false;
         this._Collider = this._Owner.Collider;
         if(!this._Collider) return false;
         let Movement = new Engineer.Math.Vertex(this._Target.X - this._Collider.Trans.Translation.X, this._Target.Y - this._Collider.Trans.Translation.Y, 0);

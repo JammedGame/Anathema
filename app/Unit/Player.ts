@@ -7,7 +7,7 @@ import { Unit } from "./Unit";
 import { Stats } from "./Stats";
 import { Action } from "./Actions/Action";
 import { Move } from "./Actions/Move";
-import { Trait, TraitType, Traits } from "./../Trait" 
+import { Traits } from "./Trait" 
 
 class Player extends Unit
 {

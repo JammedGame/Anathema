@@ -6,7 +6,7 @@ import { GameScene } from "./../GameScene";
 import { Stats } from "./Stats";
 import { Action } from "./Actions/Action";
 import { Move } from "./Actions/Move";
-import { Trait, TraitType, Traits } from "./../Trait" 
+import { Traits } from "./Trait" 
 
 class Unit extends Engineer.Engine.Sprite
 {
@@ -16,8 +16,11 @@ class Unit extends Engineer.Engine.Sprite
     protected _Stats:Stats
     protected _Traits:Traits;
     protected _Scene:GameScene;
+    protected _DamagedEvent:Function[];
     public get Collider(): any { return this._Collider; }
     public get Stats(): Stats { return this._Stats; }
+    public get DamagedEvent(): Function[] { return this._DamagedEvent; }
+    public set DamagedEvent(value:Function[]) { this._DamagedEvent = value; }
     public constructor(Scene:GameScene)
     {
         super();
@@ -41,6 +44,20 @@ class Unit extends Engineer.Engine.Sprite
                 this.CalculateSpriteSet(this._CurrentAction.Set, this._CurrentAction.Direction);
             }
             else this.CalculateSpriteSet(0, this._LastDirection);
+        }
+    }
+    public Destroy()
+    {
+        // Virtual
+    }
+    public Invoke(Event:string)
+    {
+        if(Event == "Damaged")
+        {
+            for(let i = 0; i < this._DamagedEvent.length; i++)
+            {
+                this._DamagedEvent[i](this._Stats);
+            }
         }
     }
     protected CreateCollider()
