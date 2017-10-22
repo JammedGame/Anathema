@@ -6,7 +6,8 @@ import { Weapon } from "./Weapon";
 import { Movement } from "./Movement";
 import { Trait, TraitType, Traits } from "./Trait" 
 
-class Player extends Engineer.Engine.Sprite {
+class Player extends Engineer.Engine.Sprite
+{
     private _Scene: GameScene;
     private _Collider: any;
     private _Weapon: Weapon;
@@ -17,11 +18,10 @@ class Player extends Engineer.Engine.Sprite {
     private _PlayerLeftClick: boolean;
     private _Traits: Traits;
     public get Weapon(): Weapon { return this._Weapon; }
-    public set Weapon(wpn: Weapon) { this._Weapon = wpn; }
+    public set Weapon(value: Weapon) { this._Weapon = value; }
     public get Collider(): any { return this._Collider; }
-
-
-    public constructor(Scene: GameScene) {
+    public constructor(Scene: GameScene)
+    {
         super();
         this._Traits = new Traits();
         this.Name = "Player";
