@@ -10,7 +10,7 @@ import { Layout, LayoutClass, LayoutEntry } from "./Layout";
 
 class LevelGenerator
 {
-    private static _FieldSize:number = 80;
+    private static _FieldSize:number = 120;
     public static Generate(Scene:GameScene, Tilesets:LevelTileset) : void
     {
         //let NewChunk:Chunk = ChunkGenerator.Generate(1, new Engineer.Math.Vertex(24,15,0));
@@ -24,17 +24,19 @@ class LevelGenerator
                 if(Tilesets.LayoutType == LevelTilesetLayoutType.Story)
                 {
                     let Index = Math.floor((Math.random() * Tilesets.Floor.Images.length) + 1);
+                    let Color = Engineer.Math.Color.FromRGBA(255,255,255,255);
+                    if(NewChunk.Fields[i][j] == 0 || NewChunk.Fields[i][j] == -1) Color = Engineer.Math.Color.FromRGBA(180, 180, 180,255);
                     if(Tilesets.FloorType == LevelTilesetFloorType.Checkered)
                     {
-                        if((j + i) % 2 == 0) LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+1,0), Tilesets.FloorSet1, Index, Engineer.Math.Color.FromRGBA(255,255,255,255));
-                        else LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+1,0), Tilesets.FloorSet2, Index, Engineer.Math.Color.FromRGBA(255,255,255,255));
+                        if((j + i) % 2 == 0) LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+1,0), Tilesets.FloorSet1, Index, Color);
+                        else LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+1,0), Tilesets.FloorSet2, Index, Color);
                     }
-                    else LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+1,0), Tilesets.Floor, Index, Engineer.Math.Color.FromRGBA(255,255,255,255));
+                    else LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+1,0), Tilesets.Floor, Index, Color);
                 }
                 if(NewChunk.Fields[i][j] == 1 && Tilesets.LayoutType != LevelTilesetLayoutType.Story)
                 {
                     let Index = Math.floor((Math.random() * Tilesets.Floor.Images.length) + 1);
-                    //LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+1,0), Tilesets.Floor, Index, Engineer.Math.Color.FromRGBA(255,255,255,255));
+                    LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+1,0), Tilesets.Floor, Index, Engineer.Math.Color.FromRGBA(255,255,255,255));
                 }
                 else if(NewChunk.Fields[i][j] == 2)
                 {
