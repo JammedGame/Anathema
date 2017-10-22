@@ -21,8 +21,8 @@ class Level
     }
     public Init(Scene:GameScene) : void
     {
-        let Tileset:LevelTileset = new LevelTileset("Ruin", LevelTilesetLayoutType.Bordered, LevelTilesetFloorType.Uniform, LevelTilesetCeilingType.Bordered, [16,1]);
-        //let Tileset:LevelTileset = new LevelTileset("Cathedral", LevelTilesetLayoutType.Story, LevelTilesetFloorType.Checkered, LevelTilesetCeilingType.Crested, [1,1]);
+        //let Tileset:LevelTileset = new LevelTileset("Ruin", LevelTilesetLayoutType.Bordered, LevelTilesetFloorType.Uniform, LevelTilesetCeilingType.Bordered, [16,1]);
+        let Tileset:LevelTileset = new LevelTileset("Cathedral", LevelTilesetLayoutType.Story, LevelTilesetFloorType.Checkered, LevelTilesetCeilingType.Crested, [1,1]);
         LevelGenerator.Generate(Scene, Tileset);
     }
 }

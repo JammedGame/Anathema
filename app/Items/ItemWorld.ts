@@ -2,7 +2,7 @@ export { ItemWorld };
 
 import Engineer from "./../Engineer";
 import { GameScene } from "./../GameScene";
-import { Player } from "./../Player";
+import { Player } from "./../Unit/Player";
 import{ Item } from "./Item";
 import{ Inventory } from "../UI/Inventory";
 
@@ -18,7 +18,7 @@ class ItemWorld
         this._Inventory=Inv;
         this._Scene = Scene;
         this._Player = Player;
-        this._Item=new Item(Player, Scene, ItemName, false);
+        this._Item = new Item(Player, Scene, ItemName, false);
         this._Scene.Events.TimeTick.push(this.GameUpdate.bind(this));
         
     }

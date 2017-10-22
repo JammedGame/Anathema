@@ -1,7 +1,7 @@
 export { HealthBar };
 
 import Engineer from "./../Engineer";
-import { Player } from "./../Player";
+import { Player } from "./../Unit/Player";
 import { GameScene } from "./../GameScene";
 import { BarBorder } from "./BarBorder";
 
