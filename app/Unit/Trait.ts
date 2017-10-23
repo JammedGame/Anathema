@@ -61,9 +61,20 @@ class Traits
     private _Traits: Trait[];
     public get Traits(): Trait[]  { return this._Traits; }
     public set Traits(value:Trait[]) { this._Traits = value; }
-    public constructor()
+    public constructor(Old?:Traits)
     {
         this._Traits = [];
+        if(Old != null)
+        {
+            for(let i = 0; i < Old._Traits.length; i++)
+            {
+                this._Traits.push(Old._Traits[i].Copy());
+            }
+        }
+    }
+    public Copy() : Traits
+    {
+        return new Traits(this);
     }
     public Apply(Stats:Stats) : void
     {

@@ -9,17 +9,22 @@ import { Action } from "./Actions/Action";
 import { Move } from "./Actions/Move";
 import { Attack } from "./Actions/Attack";
 import { Traits } from "./Trait" 
+import { Inventory } from "./Items/Inventory";
 
 class Player extends Unit
 {
     private _PlayerRightClick: boolean;
     private _PlayerLeftClick: boolean;
+    private _Inventory: Inventory;
+    public get Inventory():Inventory { return this._Inventory; }
     public constructor(Scene: GameScene)
     {
         super(Scene);
         this.Name = "Player";
         this.Fixed = true;
         this.Data["Player"] = true;
+
+        this._Inventory = new Inventory();
 
         this.Trans.Scale = new Engineer.Math.Vertex(100, 150, 0);
         this.Trans.Translation = new Engineer.Math.Vertex(960, 540, 1);

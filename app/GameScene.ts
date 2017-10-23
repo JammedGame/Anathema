@@ -6,8 +6,9 @@ import { Level } from "./Level/Level";
 import { LocalSettings } from "./LocalSettings";
 import { Player } from "./Unit/Player";
 import { Skeleton } from "./Unit/Enemies/Skeleton";
-import { ItemWorld } from "./Items/ItemWorld";
-import { Inventory } from "./UI/Inventory";
+import { ItemWorld } from "./Unit/Items/ItemWorld";
+import { ItemBank } from "./Unit/Items/ItemBank";
+import { InventoryWindow } from "./UI/Inventory/InventoryWindow";
 import { SkillTree } from "./UI/SkillTree";
 import { HealthBar } from "./UI/HealthBar";
 import { ManaBar } from "./UI/ManaBar";
@@ -19,11 +20,12 @@ class GameScene extends Engineer.Engine.Scene2D
     private _Player: Player;
     private _Skeleton: Skeleton;
     private _ItemWorld: ItemWorld;
-    private _Inventory: Inventory;
+    private _Inventory: InventoryWindow;
     private _SkillTree: SkillTree;
     private _HealthBar: HealthBar;
     private _ManaBar: ManaBar;
     private _MainHud: MainHud;
+    private _ItemBank: ItemBank;
     public constructor()
     {
         super();
@@ -39,15 +41,14 @@ class GameScene extends Engineer.Engine.Scene2D
         for (let i = 0; i < 1; i++)
         {
             this._Skeleton = new Skeleton(this, Math.random() * 1980, Math.random() * 1080);
-        }  
-        this._Inventory = new Inventory(this);
+        } 
+        this._ItemBank = new ItemBank();
+        this._Inventory = new InventoryWindow(this, this._Player.Inventory);
         this._SkillTree = new SkillTree(this);
         this._HealthBar = new HealthBar(this, this._Player);
         this._ManaBar = new ManaBar(this, this._Player);
         this._MainHud = new MainHud(this);
-        for(let i=0;i<20;i++){
-        this._ItemWorld = new ItemWorld(this._Player, this,this._Inventory,"BeastSlayer",500,500);
-        }
+        this._ItemWorld = new ItemWorld(this._Player, this, this._ItemBank.Items[0],500, 500);
         this.Events.KeyPress.push(this.KeyPress.bind(this));
         this.Events.TimeTick.push(this.SceneUpdate.bind(this));
     }
