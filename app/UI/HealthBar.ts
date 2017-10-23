@@ -22,9 +22,9 @@ class HealthBar extends Engineer.Engine.Tile
         this.Fixed = true;
         this._PrevLocation = 0;
         this._Size = 150;
-        this._OriginalY = 950;
+        this._OriginalY = 1000;
         this.Trans.Scale = new Engineer.Math.Vertex(this._Size, this._Size, 1);
-        this.Trans.Translation = new Engineer.Math.Vertex(150, this._OriginalY, 0.5);
+        this.Trans.Translation = new Engineer.Math.Vertex(650, this._OriginalY, 0.5);
         this.Paint = Engineer.Math.Color.FromRGBA(255,69,0,255);
         this._BarBorder = new BarBorder(this.Trans.Translation);
         Scene.AddSceneObject(this);

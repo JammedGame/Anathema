@@ -77,7 +77,7 @@ class LevelTileset
         }
         this._WallUpper = new Engineer.Engine.TileCollection(null, WallUpperImages);
         this._WallLower = new Engineer.Engine.TileCollection(null, WallLowerImages);
-        let CeilingLength = 1;
+        let CeilingLength = 2;
         if(this._CeilingType == LevelTilesetCeilingType.Crested) CeilingLength = 13;
         if(this._CeilingType == LevelTilesetCeilingType.Bordered) CeilingLength = 17;
         let CeilingImages:string[] = [];
