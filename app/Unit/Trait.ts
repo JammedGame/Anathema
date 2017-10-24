@@ -84,8 +84,21 @@ class Traits
             {
                 if(this._Traits[i].Entries[j].Type == "HPBonus") Stats.MaxHealth += this._Traits[i].Entries[j].Value;
                 if(this._Traits[i].Entries[j].Type == "HPBonusPercent") Stats.MaxHealth += this._Traits[i].Entries[j].Value * Stats.MaxHealth;
+                if(this._Traits[i].Entries[j].Type == "DamageBonus") Stats.BaseDamage += this._Traits[i].Entries[j].Value;
+                if(this._Traits[i].Entries[j].Type == "SpeedBonus") Stats.MovementSpeed += this._Traits[i].Entries[j].Value;
+                if(this._Traits[i].Entries[j].Type == "FireResist") Stats.FireResist += this._Traits[i].Entries[j].Value;
+                if(this._Traits[i].Entries[j].Type == "ColdResist") Stats.ColdResist += this._Traits[i].Entries[j].Value;
+                if(this._Traits[i].Entries[j].Type == "LightningResist") Stats.LightningResist += this._Traits[i].Entries[j].Value;
+                if(this._Traits[i].Entries[j].Type == "PierceResist") Stats.PierceResist += this._Traits[i].Entries[j].Value;
+                if(this._Traits[i].Entries[j].Type == "SlashResist") Stats.SlashResist += this._Traits[i].Entries[j].Value;
+                if(this._Traits[i].Entries[j].Type == "BluntResist") Stats.BluntResist += this._Traits[i].Entries[j].Value;
+                if(this._Traits[i].Entries[j].Type == "FireDamage") Stats.FireDamage += this._Traits[i].Entries[j].Value;
+                if(this._Traits[i].Entries[j].Type == "ColdDamage") Stats.ColdDamage += this._Traits[i].Entries[j].Value;
+                if(this._Traits[i].Entries[j].Type == "LightningDamage") Stats.LightningDamage += this._Traits[i].Entries[j].Value;
+                if(this._Traits[i].Entries[j].Type == "PierceDamage") Stats.PierceDamage += this._Traits[i].Entries[j].Value;
+                if(this._Traits[i].Entries[j].Type == "SlashDamage") Stats.SlashDamage += this._Traits[i].Entries[j].Value;
+                if(this._Traits[i].Entries[j].Type == "BluntDamage") Stats.BluntDamage += this._Traits[i].Entries[j].Value;
             }
         }
     }
 }
-

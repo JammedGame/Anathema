@@ -1,5 +1,4 @@
 export { Stats };
-
 import Engineer from "./../Engineer";
 
 class Stats
@@ -13,6 +12,18 @@ class Stats
     private _Sight:number;
     private _Radius:number;
     private _BaseStats:Stats;
+    private _FireResist:number;
+    private _ColdResist:number;
+    private _LightningResist:number;
+    private _PierceResist:number;
+    private _SlashResist:number;
+    private _BluntResist:number;
+    private _PierceDamage:number;
+    private _SlashDamage:number;
+    private _BluntDamage:number;
+    private _FireDamage:number;
+    private _ColdDamage:number;
+    private _LightningDamage:number;
     public get Health():number { return this._Health; }
     public set Health(value:number) { this._Health = value; }
     public get MaxHealth():number { return this._MaxHealth; }
@@ -29,6 +40,30 @@ class Stats
     public set Sight(value:number) { this._Sight = value; }
     public get Radius():number { return this._Radius; }
     public set Radius(value:number) { this._Radius = value; }
+    public get FireResist():number { return this._FireResist; }
+    public set FireResist(value:number) { this._FireResist = value; }
+    public get ColdResist():number { return this._ColdResist; }
+    public set ColdResist(value:number) { this._ColdResist = value; } 
+    public get LightningResist():number { return this._LightningResist; }
+    public set LightningResist(value:number) { this._LightningResist = value; }
+    public get PierceResist():number { return this._PierceResist; }
+    public set PierceResist(value:number) { this._PierceResist = value; }
+    public get SlashResist():number { return this._SlashResist; }
+    public set SlashResist(value:number) { this._SlashResist = value; }
+    public get BluntResist():number { return this._BluntResist; }
+    public set BluntResist(value:number) { this._BluntResist = value; }
+    public get PierceDamage():number { return this._PierceDamage; }
+    public set PierceDamage(value:number) { this._PierceDamage = value; }
+    public get SlashDamage():number { return this._SlashDamage; }
+    public set SlashDamage(value:number) { this._SlashDamage = value; }
+    public get BluntDamage():number { return this._BluntDamage; }
+    public set BluntDamage(value:number) { this._BluntDamage = value; }
+    public get FireDamage():number { return this._FireDamage; }
+    public set FireDamage(value:number) { this._FireDamage = value; }
+    public get ColdDamage():number { return this._ColdDamage; }
+    public set ColdDamage(value:number) { this._ColdDamage = value; }
+    public get LightningDamage():number { return this._LightningDamage; }
+    public set LightningDamage(value:number) { this._LightningDamage = value; }
     public constructor(Old?:Stats)
     {
         if(Old != null)
@@ -45,6 +80,9 @@ class Stats
             this._MovementSpeed = 3;
             this._Sight = 800;
             this._Radius = 100;
+            this._ColdResist = 0;
+            this._FireResist = 0;
+            this._LightningResist = 0;
         }
     }
     public Copy() : Stats
@@ -61,6 +99,9 @@ class Stats
         this._MovementSpeed = Other._MovementSpeed;
         this._Sight = Other._Sight;
         this._Radius = Other._Radius;
+        this._FireResist = Other._FireResist;
+        this._ColdResist = Other._ColdResist;
+        this._LightningResist = Other.LightningResist;
     }
     public Store() : void
     {
