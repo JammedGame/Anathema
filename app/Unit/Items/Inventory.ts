@@ -13,16 +13,25 @@ class Inventory
     private _Chest:Item;
     private _Gloves:Item;
     private _Boots:Item;
+    private _Greaves:Item;
     private _Weapon:Item;
     private _OffHand:Item;
     private _BackPack:Item[];
     private _OnUpdate:Function[];
     public get Head():Item { return this._Head; }
+    public set Head(value:Item) { this._Head = value; }
     public get Chest():Item { return this._Chest; }
+    public set Chest(value:Item) { this._Chest = value; }
     public get Gloves():Item { return this._Gloves; }
+    public set Gloves(value:Item) { this._Gloves = value; }
     public get Boots():Item { return this._Boots; }
+    public set Boots(value:Item) { this._Boots = value; }
+    public get Greaves():Item { return this._Greaves; }
+    public set Greaves(value:Item) { this._Greaves = value; }
     public get Weapon():Item { return this._Weapon; }
+    public set Weapon(value:Item) { this._Weapon = value; }
     public get OffHand():Item { return this._OffHand; }
+    public set OffHand(value:Item) { this._OffHand = value; }
     public get BackPack():Item[] { return this._BackPack; }
     public get OnUpdate():Function[] { return this._OnUpdate; }
     public set OnUpdate(value:Function[]) { this._OnUpdate = value; }
@@ -34,6 +43,7 @@ class Inventory
             if(Old._Chest) this._Chest = Old._Chest.Copy();
             if(Old._Gloves) this._Gloves = Old._Gloves.Copy();
             if(Old._Boots) this._Boots = Old._Boots.Copy();
+            if(Old._Greaves) this._Greaves = Old._Greaves.Copy();
             if(Old._Weapon) this._Weapon = Old._Weapon.Copy();
             if(Old._OffHand) this._OffHand = Old._OffHand.Copy();
             this._BackPack = [];
@@ -91,6 +101,7 @@ class Inventory
         if(this._Chest) this._Chest.Apply(Stats);
         if(this._Gloves) this._Gloves.Apply(Stats);
         if(this._Boots) this._Boots.Apply(Stats);
+        if(this._Greaves) this._Greaves.Apply(Stats);
         if(this._Weapon) this._Weapon.Apply(Stats);
         if(this._OffHand) this._OffHand.Apply(Stats);
         for(let i = 0; i < this._BackPack.length; i++)

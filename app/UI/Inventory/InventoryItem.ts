@@ -12,8 +12,8 @@ class InventoryItem extends Engineer.Engine.Tile
     {
         super();
         this._Item = Item;
-        this.Index = Item.ArtInventoryIndex;
         this.Collection = InventoryCollection.Single;
+        this.Index = Item.ArtInventoryIndex;
         this.Trans.Scale = new Engineer.Math.Vertex(80, 80, 1);
         this.Trans.Translation = new Engineer.Math.Vertex(X, Y, 2.8);
     }
