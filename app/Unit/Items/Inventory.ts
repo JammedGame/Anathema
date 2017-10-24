@@ -18,6 +18,7 @@ class Inventory
     private _OffHand:Item;
     private _BackPack:Item[];
     private _OnUpdate:Function[];
+    private _OnEquip:Function[];
     public get Head():Item { return this._Head; }
     public set Head(value:Item) { this._Head = value; }
     public get Chest():Item { return this._Chest; }
@@ -35,6 +36,8 @@ class Inventory
     public get BackPack():Item[] { return this._BackPack; }
     public get OnUpdate():Function[] { return this._OnUpdate; }
     public set OnUpdate(value:Function[]) { this._OnUpdate = value; }
+    public get OnEquip():Function[] { return this._OnEquip; }
+    public set OnEquip(value:Function[]) { this._OnEquip = value; }
     public constructor(Old?:Inventory)
     {
         if(Old != null)
@@ -53,6 +56,7 @@ class Inventory
                 else this._BackPack.push(null);
             }
             this._OnUpdate = [];
+            this._OnEquip = [];
         }
         else
         {
@@ -62,6 +66,7 @@ class Inventory
                 this._BackPack.push(null);
             }
             this._OnUpdate = [];
+            this._OnEquip = [];
         }
     }
     public Loot(Item:Item) : boolean
@@ -93,6 +98,13 @@ class Inventory
         for(let i = 0; i < this._OnUpdate.length; i++)
         {
             this._OnUpdate[i]();
+        }
+    }
+    public InvokeEquiped()
+    {
+        for(let i = 0; i < this._OnEquip.length; i++)
+        {
+            this._OnEquip[i]();
         }
     }
     public Apply(Stats:Stats) : void

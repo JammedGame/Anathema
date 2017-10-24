@@ -129,6 +129,7 @@ class InventoryWindow extends Window
                 else
                 {
                     this._Inventory[this._Dragged.Data["Slot"]] = null;
+                    this._Inventory.InvokeEquiped();
                 }
                 this._Dragged.Data["Index"] = Sender.Data["SlotIndex"];
                 this._Inventory.BackPack[Sender.Data["SlotIndex"]] = this._Dragged.Item;
@@ -150,6 +151,7 @@ class InventoryWindow extends Window
                 {
                     this._Inventory.Loot(Previous);
                 }
+                this._Inventory.InvokeEquiped();
             }
             else if(this._Inventory.CanLoot())
             {

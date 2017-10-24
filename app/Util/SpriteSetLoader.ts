@@ -6,15 +6,21 @@ const SpriteSetResourcePath = "/build/resources/spritesets/";
 
 class SpriteSetLoader
 {
-    public static LoadSets(Sprite:any, KeyWord:string, SubDir?:string)
+    public static LoadSets(Sprite:any, KeyWord:string, SetsLength?:number[], SubDir?:string)
     {
         Sprite.SpriteSets = [];
-        SpriteSetLoader.LoadSetCollection(Sprite, SpriteSetResourcePath + "Walk/" + KeyWord, "Idle", 1);
-        SpriteSetLoader.LoadSetCollection(Sprite, SpriteSetResourcePath + "Walk/" + KeyWord, "Walk", 9);
-        SpriteSetLoader.LoadSetCollection(Sprite, SpriteSetResourcePath + "AttackSlash/" + KeyWord, "Slash", 6);
-        SpriteSetLoader.LoadSetCollection(Sprite, SpriteSetResourcePath + "AttackThurst/" + KeyWord, "Thurst", 8);
-        SpriteSetLoader.LoadSetCollection(Sprite, SpriteSetResourcePath + "AttackBow/" + KeyWord, "Bow", 13);
-        SpriteSetLoader.LoadSetCollection(Sprite, SpriteSetResourcePath + "SpellCast/" + KeyWord, "Cast", 7);
+        if(!SubDir) SubDir = "";
+        if(SetsLength) SpriteSetLoader.LoadCollections(Sprite, KeyWord, SetsLength, SubDir);
+        else SpriteSetLoader.LoadCollections(Sprite, KeyWord, [1,9,6,8,13,7], SubDir);
+    }
+    private static LoadCollections(Sprite:any, KeyWord:string, SetsLength:number[], SubDir:string)
+    {
+        SpriteSetLoader.LoadSetCollection(Sprite, SpriteSetResourcePath + "Walk/" + SubDir + KeyWord + "/", "Idle", SetsLength[0]);
+        SpriteSetLoader.LoadSetCollection(Sprite, SpriteSetResourcePath + "Walk/" + SubDir + KeyWord  + "/", "Walk", SetsLength[1]);
+        SpriteSetLoader.LoadSetCollection(Sprite, SpriteSetResourcePath + "AttackSlash/" + SubDir + KeyWord + "/", "Slash", SetsLength[2]);
+        SpriteSetLoader.LoadSetCollection(Sprite, SpriteSetResourcePath + "AttackThurst/" + SubDir + KeyWord + "/", "Thurst", SetsLength[3]);
+        SpriteSetLoader.LoadSetCollection(Sprite, SpriteSetResourcePath + "AttackBow/" + SubDir + KeyWord + "/", "Bow", SetsLength[4]);
+        SpriteSetLoader.LoadSetCollection(Sprite, SpriteSetResourcePath + "SpellCast/" + SubDir + KeyWord + "/", "Cast", SetsLength[5]);
     }
     private static LoadSetCollection(Sprite:any, Path:string, Name:string, Length:number)
     {
@@ -28,7 +34,7 @@ class SpriteSetLoader
         let Set = new Engineer.Engine.SpriteSet(null, Name + "_" + Direction);
         Set.Seed = 5;
         Set.Sprites = [];
-        for (let i = 0; i < Length; i++) Set.Sprites.push(Path + "/" + Direction + i + ".png");
+        for (let i = 0; i < Length; i++) Set.Sprites.push(Path + Direction + i + ".png");
         return Set;
     }
 }
