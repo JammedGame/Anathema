@@ -58,7 +58,7 @@ class GameScene extends Engineer.Engine.Scene2D
         this._ItemWorld = new ItemWorld(this._Player, this, this._ItemBank.Items[3],700, 500);
         this._ItemWorld = new ItemWorld(this._Player, this, this._ItemBank.Items[4],800, 500);
         this._ItemWorld = new ItemWorld(this._Player, this, this._ItemBank.Items[0],500, 500);
-        this._Effect = new Effect(this,"CurseAOE", new Engineer.Math.Vertex(600,600,0), new Engineer.Math.Vertex(200,200,0), 5, 5, 1, 8, 0, 30, 30, 85);
+        this._Effect = new Effect(this,"CurseAOE", new Engineer.Math.Vertex(600,600,0), new Engineer.Math.Vertex(150,150,0), 5, 5, 0.0166, 50, 0, 10, 10, 5, Engineer.Math.Color.FromRGBA(255, 0, 0, 255));
         this.Events.KeyPress.push(this.KeyPress.bind(this));
         this.Events.TimeTick.push(this.SceneUpdate.bind(this));
     }
