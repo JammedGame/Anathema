@@ -211,7 +211,7 @@ class LevelGenerator
     {
         for(let i = E.Connections.length - 1; i >= 0; i--)
         {
-            if(F.indexOf(E.Connections[i]) != -1)
+            if(E.Connections.length > 1 && F.indexOf(E.Connections[i]) != -1)
             {
                 E.Connections.splice(i, 1);
                 E.ConnectionsSide.splice(i, 1);
