@@ -185,15 +185,16 @@ class InventoryWindow extends Window
             this._Dragged = null;
         }
     }
-    
     private ItemDragStart(G:any, Args:any)
     {
+        if(!this.Visible) return;
         let Sender = Args.Sender;
         this._Dragged = Sender;
         this._Dragged.Trans.Scale = new Engineer.Math.Vertex(60,60,1);
     }
     private MouseMove(G:any, Args:any)
     {
+        if(!this.Visible) return;
         if(this._Dragged)
         {
             this._Dragged.Trans.Translation = new Engineer.Math.Vertex(Args.Location.X, Args.Location.Y, this._Dragged.Trans.Translation.Z);
