@@ -83,6 +83,9 @@ class Stats
             this._ColdResist = 0;
             this._FireResist = 0;
             this._LightningResist = 0;
+            this._PierceResist=0;
+            this._SlashResist=0;
+            this._BluntResist=0;
         }
     }
     public Copy() : Stats
@@ -102,6 +105,9 @@ class Stats
         this._FireResist = Other._FireResist;
         this._ColdResist = Other._ColdResist;
         this._LightningResist = Other.LightningResist;
+        this._PierceResist=Other._PierceResist;
+        this._SlashResist=Other._SlashResist;
+        this._BluntResist=Other._BluntResist;
     }
     public Store() : void
     {
