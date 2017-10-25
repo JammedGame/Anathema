@@ -17,13 +17,12 @@ class Effect extends Engineer.Engine.Sprite
     private _Speed:number;
     private _GrowthX:number;
     private _GrowthY:number;
-    private _FadeSpeed:number;
-    private _Color:any;
+    private _FadeSpeed:number;    
     private _UpdateCounter:number;
     private _DurationCounter:number;
     private _AddedOnScene:boolean;
 
-    public constructor(Scene:GameScene, pngName:string, Location:any, SizeScale:any, Length:number, Seed:number, UpdateInterval:number, Duration:number, Speed?:number, GrowthX?:number, GrowthY?:number, FadeSpeed?:number, Color?:any){
+    public constructor(Scene:GameScene, pngName:string, Location:any, SizeScale:any, Length:number, Seed:number, UpdateInterval:number, Duration:number, Speed?:number, GrowthX?:number, GrowthY?:number, FadeSpeed?:number, StartColor?:any){
         super();
         this.SpriteSets = [];
         this.SpriteSets.push(this.LoadSingleSet("Effect", pngName, Length, Seed));
@@ -40,18 +39,20 @@ class Effect extends Engineer.Engine.Sprite
         if(GrowthX!=null){this._GrowthX = GrowthX;}
         if(GrowthY!=null){this._GrowthY = GrowthY;}
         if(FadeSpeed!=null){this._FadeSpeed = FadeSpeed;}
-        if(Color!=null){this._Color = Color;}
+        if(StartColor!=null){this.Paint = StartColor;}
         
-        this._Scene.Events.KeyPress.push(this.KeyPress.bind(this));
+        this._Scene.Events.KeyPress.push(this.KeyPress.bind(this));        
     }
 
     private KeyPress(G: any, Args: any): void
     {
         if (Args.Key == 113)
-        {
-            //Engineer.Util.Log.Error(this._SizeScale);
-            this.Trans.Scale = new Engineer.Math.Vertex(this._SizeScale.X,this._SizeScale.Y,0);
+        {            
+            this.Paint = Engineer.Math.Color.FromRGBA(this.Paint.R, this.Paint.G, this.Paint.B, 255);
+            this.Trans.Scale = new Engineer.Math.Vertex(this._SizeScale.X, this._SizeScale.Y,0);
             this.Trans.Translation = this._Location;
+            this._UpdateCounter=0;
+            this._DurationCounter=0;
             this._KeyPressed=true;
             this.Active = true; 
             if(!this._AddedOnScene)
@@ -70,9 +71,10 @@ class Effect extends Engineer.Engine.Sprite
         return Set;
     }
     public Update()
-    {        
+    {             
+          
         if(this._UpdateCounter >= this._UpdateInterval*60 && this._KeyPressed)
-        {
+        {Engineer.Util.Log.Error(this.Paint); 
             this._UpdateCounter=0;
             if(this._DurationCounter <=this._Duration)
             {
@@ -94,15 +96,14 @@ class Effect extends Engineer.Engine.Sprite
                 }
                 
                 if(this._FadeSpeed!=null)
-                {
+                {                    
                     if(this.Paint.A - this._FadeSpeed >= 0)
-                    {
-                        Engineer.Util.Log.Error(this.Paint);               
-                        this.Paint = Engineer.Math.Color.FromRGBA(this.Paint.R, this.Paint.G, this.Paint.B, this.Paint.A-this._FadeSpeed);                      
+                    {                       
+                        this.Paint = Engineer.Math.Color.FromRGBA(this.Paint.R, this.Paint.G, this.Paint.B, this.Paint.A - this._FadeSpeed);                    
                     }
                     else
                     {
-                        this.Paint.A=0;
+                        this.Paint = Engineer.Math.Color.FromRGBA(this.Paint.R, this.Paint.G, this.Paint.B, 0);
                     }
                 }
             }
@@ -112,12 +113,10 @@ class Effect extends Engineer.Engine.Sprite
                 //this._Scene.RemoveSceneObject(this);
                 this.Active=false;
                 this.SpriteSets[0].Seed=this._Seed;
-                this.Trans.Scale = new Engineer.Math.Vertex(this._SizeScale.X,this._SizeScale.Y,0);             
-                this.Paint.A = 255;
+                this.Trans.Scale = new Engineer.Math.Vertex(this._SizeScale.X,this._SizeScale.Y,0);
                 this._KeyPressed = false;
                 this._DurationCounter=0;
-            }
-            
+            }            
         }
         else
         {
