@@ -13,6 +13,7 @@ import { SkillTree } from "./UI/SkillTree";
 import { HealthBar } from "./UI/HealthBar";
 import { ManaBar } from "./UI/ManaBar";
 import { MainHud } from "./UI/MainHud";
+import { Effect } from "./Unit/Actions/Effect";
 
 class GameScene extends Engineer.Engine.Scene2D
 {
@@ -26,6 +27,7 @@ class GameScene extends Engineer.Engine.Scene2D
     private _ManaBar: ManaBar;
     private _MainHud: MainHud;
     private _ItemBank: ItemBank;
+    private _Effect: Effect;
     public constructor()
     {
         super();
@@ -52,6 +54,8 @@ class GameScene extends Engineer.Engine.Scene2D
         this._ItemWorld = new ItemWorld(this._Player, this, this._ItemBank.Items[2],600, 500);
         this._ItemWorld = new ItemWorld(this._Player, this, this._ItemBank.Items[3],700, 500);
         this._ItemWorld = new ItemWorld(this._Player, this, this._ItemBank.Items[4],800, 500);
+        this._ItemWorld = new ItemWorld(this._Player, this, this._ItemBank.Items[0],500, 500);
+        this._Effect = new Effect(this,"CurseAOE", new Engineer.Math.Vertex(600,600,0), new Engineer.Math.Vertex(200,200,0), 5, 5, 1, 8, 0, 30, 30, 85);
         this.Events.KeyPress.push(this.KeyPress.bind(this));
         this.Events.TimeTick.push(this.SceneUpdate.bind(this));
     }
@@ -72,5 +76,6 @@ class GameScene extends Engineer.Engine.Scene2D
     {
         this._Player.Update();
         this._Skeleton.Update();
+        this._Effect.Update();
     }
 }
