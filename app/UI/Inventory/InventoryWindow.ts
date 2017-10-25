@@ -185,11 +185,12 @@ class InventoryWindow extends Window
             this._Dragged = null;
         }
     }
+    
     private ItemDragStart(G:any, Args:any)
     {
         let Sender = Args.Sender;
         this._Dragged = Sender;
-        this._Dragged.Trans.Scale = new Engineer.Math.Vertex(50,50,1);
+        this._Dragged.Trans.Scale = new Engineer.Math.Vertex(60,60,1);
     }
     private MouseMove(G:any, Args:any)
     {
@@ -197,5 +198,32 @@ class InventoryWindow extends Window
         {
             this._Dragged.Trans.Translation = new Engineer.Math.Vertex(Args.Location.X, Args.Location.Y, this._Dragged.Trans.Translation.Z);
         }
+        let OverlayTarget = false;
+        for(let i = 0; i < this._InventoryItems.length; i++)
+        {
+            if(Engineer.Math.Vertex.Distance(this._InventoryItems[i].Trans.Translation, Args.Location) < 60)
+            {
+                this.ShowItemOverlay(this._InventoryItems[i]);
+                OverlayTarget = true;
+                break;
+            }
+        }
+        if(!OverlayTarget) this.HideItemOverlay();
+    }
+    private ShowItemOverlay(Item:InventoryItem)
+    {
+        let Overlay = document.getElementById("item-overlay");
+        Overlay.style.top = (Item.Trans.Translation.Y + Item.Trans.Scale.Y / 2 + 10) + "px";
+        Overlay.style.left = (Item.Trans.Translation.X - 100) + "px";
+        Overlay.style.display = "block";
+        let OverlayName = document.getElementById("item-overlay-name");
+        OverlayName.innerHTML = Item.Item.Name;
+        let OverlayType = document.getElementById("item-overlay-type");
+        OverlayType.innerHTML = Item.Item.Data["Type"];
+    }
+    private HideItemOverlay()
+    {
+        let Overlay = document.getElementById("item-overlay");
+        Overlay.style.display = "none";
     }
 }
