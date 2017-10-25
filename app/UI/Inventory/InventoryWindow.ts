@@ -41,16 +41,28 @@ class InventoryWindow extends Window
             {
                 if(this._Inventory.BackPack[i * BackPackX + j] != null)
                 {
-                    let InvItem = new InventoryItem(this._Inventory.BackPack[i * BackPackX + j], 1400 + j * 50, 590 + i * 50);
-                    InvItem.Data["Index"] = i * BackPackX + j;
-                    InvItem.Fixed = true;
-                    InvItem.Active = this.Visible;
-                    InvItem.Events.MouseDown.push(this.ItemDragStart.bind(this));
-                    this._InventoryItems.push(InvItem);
-                    this._Scene.AddSceneObject(InvItem);
+                    this.CreateInventoryItem(i * BackPackX + j, "BackPack", this._Inventory.BackPack[i * BackPackX + j], new Engineer.Math.Vertex(1400 + j * 50, 590 + i * 50,0));
                 }
             }
-        }       
+        }
+        if(this._Inventory.Head) this.CreateInventoryItem(-1, "Head", this._Inventory.Head, this.Data["HeadSlot"].Trans.Translation);
+        if(this._Inventory.Chest) this.CreateInventoryItem(-1, "Chest", this._Inventory.Chest, this.Data["ChestSlot"].Trans.Translation);
+        if(this._Inventory.Gloves) this.CreateInventoryItem(-1, "Gloves", this._Inventory.Gloves, this.Data["GlovesSlot"].Trans.Translation);
+        if(this._Inventory.Boots) this.CreateInventoryItem(-1, "Boots", this._Inventory.Boots, this.Data["BootsSlot"].Trans.Translation);
+        if(this._Inventory.Greaves) this.CreateInventoryItem(-1, "Greaves", this._Inventory.Greaves, this.Data["GreavesSlot"].Trans.Translation);
+        if(this._Inventory.Weapon) this.CreateInventoryItem(-1, "Weapon", this._Inventory.Weapon, this.Data["WeaponSlot"].Trans.Translation);
+        if(this._Inventory.OffHand) this.CreateInventoryItem(-1, "OffHand", this._Inventory.OffHand, this.Data["OffHandSlot"].Trans.Translation);
+    }
+    public CreateInventoryItem(Index:number, Type:string, Item:Item, Location:any)
+    {
+        let InvItem = new InventoryItem(Item, Location.X, Location.Y, Index == -1);
+        InvItem.Data["Index"] = Index;
+        InvItem.Data["Slot"] = Type;
+        InvItem.Fixed = true;
+        InvItem.Active = this.Visible;
+        InvItem.Events.MouseDown.push(this.ItemDragStart.bind(this));
+        this._InventoryItems.push(InvItem);
+        this._Scene.AddSceneObject(InvItem);
     }
     public Show() : void
     {
@@ -74,30 +86,37 @@ class InventoryWindow extends Window
         this.Trans.Translation = new Engineer.Math.Vertex(1600, 460, 2);
         this.CreateBorder();
         let Head:any = this.AddElement(new Engineer.Math.Vertex(220,80,2.5), new Engineer.Math.Vertex(50,50,1), 0);
+        this.Data["HeadSlot"] = Head;
         Head.Data["Slot"] = true;
         Head.Data["SlotType"] = "Head";
         Head.Events.MouseUp.push(this.SlotMouseUp.bind(this));
         let Weapon:any = this.AddElement(new Engineer.Math.Vertex(120,170,2.5), new Engineer.Math.Vertex(50,50,1), 0);
+        this.Data["WeaponSlot"] = Weapon;
         Weapon.Data["Slot"] = true;
         Weapon.Data["SlotType"] = "Weapon";
         Weapon.Events.MouseUp.push(this.SlotMouseUp.bind(this));
         let OffHand = this.AddElement(new Engineer.Math.Vertex(320,170,2.5), new Engineer.Math.Vertex(50,50,1), 0);
+        this.Data["OffHandSlot"] = OffHand;
         OffHand.Data["Slot"] = true;
         OffHand.Data["SlotType"] = "OffHand";
         OffHand.Events.MouseUp.push(this.SlotMouseUp.bind(this));
         let Chest = this.AddElement(new Engineer.Math.Vertex(220,170,2.5), new Engineer.Math.Vertex(50,50,1), 0);
+        this.Data["ChestSlot"] = Chest;
         Chest.Data["Slot"] = true;
         Chest.Data["SlotType"] = "Chest";
         Chest.Events.MouseUp.push(this.SlotMouseUp.bind(this));
         let Gloves = this.AddElement(new Engineer.Math.Vertex(120,260,2.5), new Engineer.Math.Vertex(50,50,1), 0);
+        this.Data["GlovesSlot"] = Gloves;
         Gloves.Data["Slot"] = true;
         Gloves.Data["SlotType"] = "Gloves";
         Gloves.Events.MouseUp.push(this.SlotMouseUp.bind(this));
         let Greaves = this.AddElement(new Engineer.Math.Vertex(220,260,2.5), new Engineer.Math.Vertex(50,50,1), 0);
+        this.Data["GreavesSlot"] = Greaves;
         Greaves.Data["Slot"] = true;
         Greaves.Data["SlotType"] = "Greaves";
         Greaves.Events.MouseUp.push(this.SlotMouseUp.bind(this));
         let Boots = this.AddElement(new Engineer.Math.Vertex(220,350,2.5), new Engineer.Math.Vertex(50,50,1), 0);
+        this.Data["BootsSlot"] = Boots;
         Boots.Data["Slot"] = true;
         Boots.Data["SlotType"] = "Boots";
         Boots.Events.MouseUp.push(this.SlotMouseUp.bind(this));
@@ -146,6 +165,7 @@ class InventoryWindow extends Window
                 this._Dragged.Data["Index"] = -1;
                 this._Dragged.Data["Slot"] = Sender.Data["SlotType"];
                 this._Inventory[Sender.Data["SlotType"]] = this._Dragged.Item;
+                this._Dragged.Trans.Scale = new Engineer.Math.Vertex(80,80,1);
                 this._Dragged.Trans.Translation = Sender.Trans.Translation;
                 if(Previous)
                 {
@@ -169,6 +189,7 @@ class InventoryWindow extends Window
     {
         let Sender = Args.Sender;
         this._Dragged = Sender;
+        this._Dragged.Trans.Scale = new Engineer.Math.Vertex(50,50,1);
     }
     private MouseMove(G:any, Args:any)
     {

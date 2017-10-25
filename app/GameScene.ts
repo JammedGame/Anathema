@@ -48,7 +48,10 @@ class GameScene extends Engineer.Engine.Scene2D
         this._HealthBar = new HealthBar(this, this._Player);
         this._ManaBar = new ManaBar(this, this._Player);
         this._MainHud = new MainHud(this);
-        this._ItemWorld = new ItemWorld(this._Player, this, this._ItemBank.Items[0],500, 500);
+        this._ItemWorld = new ItemWorld(this._Player, this, this._ItemBank.Items[1],500, 500);
+        this._ItemWorld = new ItemWorld(this._Player, this, this._ItemBank.Items[2],600, 500);
+        this._ItemWorld = new ItemWorld(this._Player, this, this._ItemBank.Items[3],700, 500);
+        this._ItemWorld = new ItemWorld(this._Player, this, this._ItemBank.Items[4],800, 500);
         this.Events.KeyPress.push(this.KeyPress.bind(this));
         this.Events.TimeTick.push(this.SceneUpdate.bind(this));
     }

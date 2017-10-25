@@ -19,8 +19,16 @@ class ItemBank
         BasicSword.Data["Type"] = "Weapon";
         this._Items.push(BasicSword);
 
-        let Robe = new Item(null, "Robe", [0,29,29]);
-        Robe.Data["Type"] = "Chest";
-        this._Items.push(Robe);
+        let Boots = new Item(null, "Boots", [2,32,32]);
+        Boots.Data["Type"] = "Boots";
+        this._Items.push(Boots);
+
+        let Chest = new Item(null, "Chest", [4,39,39]);
+        Chest.Data["Type"] = "Chest";
+        this._Items.push(Chest);
+
+        let Greaves = new Item(null, "Greaves", [5,45,45]);
+        Greaves.Data["Type"] = "Greaves";
+        this._Items.push(Greaves);
     }
 }
