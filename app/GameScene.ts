@@ -38,7 +38,7 @@ class GameScene extends Engineer.Engine.Scene2D
     {
         this._Level.Init(this);
         this._Player = new Player(this);
-        for (let i = 0; i < 1; i++)
+        for (let i = 0; i < 10; i++)
         {
             this._Skeleton = new Skeleton(this, Math.random() * 1980, Math.random() * 1080);
         } 
