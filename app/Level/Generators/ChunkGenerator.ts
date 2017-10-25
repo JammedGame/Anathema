@@ -1,6 +1,6 @@
 export { ChunkGenerator, Chunk }
 
-import Engineer from "./../Engineer";
+import Engineer from "./../../Engineer";
 
 class ChunkGenerator
 {

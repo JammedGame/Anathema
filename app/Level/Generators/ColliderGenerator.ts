@@ -1,8 +1,8 @@
 export { ColliderGenerator }
 
-import Engineer from "./../Engineer";
+import Engineer from "./../../Engineer";
 
-import { GameScene } from "./../GameScene";
+import { GameScene } from "./../../GameScene";
 
 class ColliderGenerator
 {

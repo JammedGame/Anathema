@@ -3,6 +3,7 @@ export { GameScene };
 import Engineer from "./Engineer";
 
 import { Level } from "./Level/Level";
+import { LevelTilesetCollection } from "./Level/Tilesets/LevelTilesetCollection";
 import { LocalSettings } from "./LocalSettings";
 import { Player } from "./Unit/Player";
 import { Skeleton } from "./Unit/Enemies/Skeleton";
@@ -32,18 +33,20 @@ class GameScene extends Engineer.Engine.Scene2D
     {
         super();
         this.Name = "GameScene";
-        this.BackColor = Engineer.Math.Color.FromRGBA(0, 0, 0, 255);
-        this._Level = new Level();
         this.Init();
     }
     public Init(): void
     {
-        this._Level.Init(this);
+        this.BackColor = Engineer.Math.Color.FromRGBA(0, 0, 0, 255);
+        let Enemies = [];
         this._Player = new Player(this);
-        for (let i = 0; i < 10; i++)
+        for (let i = 0; i < 100; i++)
         {
-            this._Skeleton = new Skeleton(this, Math.random() * 1980, Math.random() * 1080);
-        } 
+            Enemies.push(new Skeleton(this, 0, 0));
+        }
+        let LevelTilesets = new LevelTilesetCollection();
+        this._Level = new Level(10, LevelTilesets.Items["Cathedral"], Enemies);
+        this._Level.Init(this);
         this._ItemBank = new ItemBank();
         this._Inventory = new InventoryWindow(this, this._Player.Inventory);
         this._SkillTree = new SkillTree(this);
@@ -74,8 +77,8 @@ class GameScene extends Engineer.Engine.Scene2D
     }
     private SceneUpdate()
     {
+        //this._Level.Update();
         this._Player.Update();
-        this._Skeleton.Update();
         this._Effect.Update();
     }
 }
