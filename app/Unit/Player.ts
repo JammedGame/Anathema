@@ -12,13 +12,16 @@ import { Traits } from "./Trait"
 import { Inventory } from "./Items/Inventory";
 import { SpriteSetLoader } from "./../Util/SpriteSetLoader";
 import { EquipedCollection } from "./Items/EquipedCollection";
+import { PlayerActions } from "./PlayerActions";
 
 class Player extends Unit
 {
-    private _PlayerRightClick: boolean;
-    private _PlayerLeftClick: boolean;
+    private _LeftClick: boolean;
+    private _RightClick: boolean;
+    private _LastMouseLocation: any;
     private _Inventory: Inventory;
     private _EquipedCollection: EquipedCollection;
+    private _Actions:PlayerActions;
     private _EquipedItems:any[];
     public get Inventory():Inventory { return this._Inventory; }
     public constructor(Scene: GameScene)
@@ -32,40 +35,48 @@ class Player extends Unit
         this._EquipedCollection = new EquipedCollection();
         this._EquipedItems = [];
         this._Inventory.OnEquip.push(this.Equip.bind(this));
+        this._Actions = new PlayerActions(this, Scene);
 
         this.Trans.Scale = new Engineer.Math.Vertex(100, 150, 0);
         this.Trans.Translation = new Engineer.Math.Vertex(960, 540, 1);
         this.CreateCollider();
         this._Collider.Data["PlayerCollider"] = true;
         SpriteSetLoader.LoadSets(this, "Human");
-        this._Scene.Events.MouseDown.push(this.MouseClick.bind(this));
+        this._Scene.Events.MouseDown.push(this.MouseDown.bind(this));
+        this._Scene.Events.MouseUp.push(this.MouseUp.bind(this));
+        this._Scene.Events.MouseMove.push(this.MouseMove.bind(this));
         this._Scene.AddSceneObject(this);
         this._Scene.AddSceneObject(this._Collider);
 
         this.Equip();
     }
-    private MouseClick(G: any, Args: any)
+    private MouseDown(G: any, Args: any)
     {
-        let Location = new Engineer.Math.Vertex(Args.Location.X - this._Scene.Trans.Translation.X, Args.Location.Y - this._Scene.Trans.Translation.Y);
-        if (Args.MouseButton == 0)
+        if (Args.MouseButton == 0) this._LeftClick = true;
+        if (Args.MouseButton == 2) this._RightClick = true;
+    }
+    private MouseUp(G: any, Args: any)
+    {
+        if (Args.MouseButton == 0) this._LeftClick = false;
+        if (Args.MouseButton == 2) this._RightClick = false;
+    }
+    private MouseMove(G: any, Args: any)
+    {
+        this._LastMouseLocation = Args.Location;
+    }
+    public UpdateCurrentAction(Action:Action)
+    {
+        this._CurrentAction = Action;
+    }
+    public Update()
+    {
+        if(this._LastMouseLocation)
         {
-            let Enemies = this._Scene.GetObjectsWithData("Enemy", true);
-            let Attack:boolean = false;
-            for(let i = 0; i < Enemies.length; i++)
-            {
-                if(Engineer.Math.Vertex.Distance(Enemies[i].Trans.Translation, Location) < Enemies[i].Trans.Scale.Y)
-                {
-                    if(Engineer.Math.Vertex.Distance(Enemies[i].Trans.Translation, this._Collider.Trans.Translation) < this._Stats.Radius)
-                    {
-                        Attack = true;
-                        this.ActionAttack(Enemies[i]);
-                        break;
-                    }    
-                }
-            }
-            if(!Attack) this.ActionMove(Location);
+            let Location = new Engineer.Math.Vertex(this._LastMouseLocation.X - this._Scene.Trans.Translation.X, this._LastMouseLocation.Y - this._Scene.Trans.Translation.Y);
+            if (this._LeftClick) this._Actions.Apply("LM", Location);
+            if (this._RightClick) this._Actions.Apply("RM", Location);
         }
-        if (Args.MouseButton == 2) {}
+        super.Update();
     }
     private Equip()
     {
@@ -78,6 +89,7 @@ class Player extends Unit
         if(this._Inventory.Boots) this.EquipItem(this._Inventory.Boots.ArtEquipedIndex, 1.2);
         if(this._Inventory.Gloves) this.EquipItem(this._Inventory.Gloves.ArtEquipedIndex, 1.2);
         if(this._Inventory.Head) this.EquipItem(this._Inventory.Head.ArtEquipedIndex, 1.2);
+        for(let i = 0; i < this._EquipedItems.length; i++) this._EquipedItems[i].UpdateSpriteSet(this.CurrentSpriteSet);
     }
     private EquipItem(Index:number, Offset:number)
     {
@@ -87,17 +99,6 @@ class Player extends Unit
         Sprite.Trans.Translation = new Engineer.Math.Vertex(960, 540, Offset);
         this._EquipedItems.push(Sprite);
         this._Scene.AddSceneObject(Sprite);
-    }
-    private ActionMove(Location: any)
-    {
-        this._CurrentAction = new Move(this._Stats.MovementSpeed, null, "PlayerMove", this);
-        this._CurrentAction.Target = Location;
-        this._CurrentAction.Prefs["ColliderTypes"] = ["Solid", "EnemyCollider"];
-    }
-    private ActionAttack(Enemy: any)
-    {
-        this._CurrentAction = new Attack(null, "PlayerAttack", this);
-        this._CurrentAction.Target = Enemy;
     }
     private UpdateStats()
     {

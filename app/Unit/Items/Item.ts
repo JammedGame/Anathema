@@ -20,7 +20,7 @@ class Item
     public get ArtWorldIndex():number { return this._ArtWorldIndex; }
     public get ArtInventoryIndex():number { return this._ArtInventoryIndex; }
     public Data: { [key: string]:any; } = {};
-    public constructor(Old?:Item, Name?:string, Indices?:number[], Traits?:Traits)
+    public constructor(Old?:Item, Name?:string, Indices?:number[], ItemTraits?:Traits)
     {
         if(Old != null)
         {
@@ -48,7 +48,8 @@ class Item
                 this._ArtWorldIndex = -1;
                 this._ArtInventoryIndex = -1;
             }
-            if(Traits) this._Traits = Traits;
+            if(Traits) this._Traits = ItemTraits;
+            else this._Traits = new Traits();
         }
     }
     public Copy() : Item

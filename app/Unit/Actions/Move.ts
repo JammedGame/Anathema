@@ -23,12 +23,14 @@ class Move extends Action
         this._Collider = this._Owner.Collider;
         if(!this._Collider) return false;
         let Movement = new Engineer.Math.Vertex(this._Target.X - this._Collider.Trans.Translation.X, this._Target.Y - this._Collider.Trans.Translation.Y, 0);
+        if(this._Owner.Data["Player"] && Movement.Length() < 10) return false;
         Movement = Movement.Normalize().Scalar(this._Speed);
         let ColliderTypes:string[] = this.Prefs["ColliderTypes"];
         let Collision = new Engineer.Math.CollisionValue();
         for(let i = 0; i < ColliderTypes.length; i++)
         {
             let Colliders = Scene.GetObjectsWithData(ColliderTypes[i], true);
+            if(Colliders.length == 0) continue;
             if(Colliders.indexOf(this._Collider) != -1) Colliders.splice(Colliders.indexOf(this._Collider), 1);
             Engineer.Util.Collision.CalculateObjectCollisions(ColliderTypes[i], this._Collider, Colliders);
             Collision = Engineer.Math.CollisionValue.Combine(Collision, this._Collider.Data["Collision_" + ColliderTypes[i]]);

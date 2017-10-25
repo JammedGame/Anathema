@@ -58,7 +58,8 @@ class Enemy extends Unit
         if(Engineer.Math.Vertex.Distance(this._Collider.Trans.Translation, this._Player.Collider.Trans.Translation) < this._Stats.Radius)
         {
             this._CurrentAction = new Attack(null, "EnemyMove", this);
-            this._CurrentAction.Target = this._Player;
+            this._CurrentAction.Prefs["TargetType"] = "Player";
+            this._CurrentAction.Target = this._Player.Collider.Trans.Translation;
         }
         else if(Engineer.Math.Vertex.Distance(this._Collider.Trans.Translation, this._Player.Collider.Trans.Translation) < this._Stats.Sight)
         {
