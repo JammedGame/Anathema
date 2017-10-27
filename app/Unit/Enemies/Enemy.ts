@@ -18,7 +18,7 @@ class Enemy extends Unit
         super(Scene);
         this.Name = "Enemy";
         this.Data["Enemy"] = true;
-        this._Player = this._Scene.Data["Character"];
+        this._Player = this._Scene.Data["Player"];
 
         this.Trans.Scale = new Engineer.Math.Vertex(100, 150, 1);
         this.Trans.Translation = new Engineer.Math.Vertex(X, Y, 0.5);

@@ -31,15 +31,15 @@ class LevelGenerator
                     if(NewChunk.Fields[i][j] == 0 || NewChunk.Fields[i][j] == -1) Color = Engineer.Math.Color.FromRGBA(180, 180, 180,255);
                     if(Level.Tileset.FloorType == LevelTilesetFloorType.Checkered)
                     {
-                        if((j + i) % 2 == 0) LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+1,0), Level.Tileset.FloorSet1, Index, Color);
-                        else LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+1,0), Level.Tileset.FloorSet2, Index, Color);
+                        if((j + i) % 2 == 0) LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j,i,0), Level.Tileset.FloorSet1, Index, Color);
+                        else LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j,i,0), Level.Tileset.FloorSet2, Index, Color);
                     }
-                    else LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+1,0), Level.Tileset.Floor, Index, Color);
+                    else LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j,i,0), Level.Tileset.Floor, Index, Color);
                 }
                 if(NewChunk.Fields[i][j] == 1 && Level.Tileset.LayoutType != LevelTilesetLayoutType.Story)
                 {
                     let Index = Math.floor((Math.random() * Level.Tileset.Floor.Images.length) + 1);
-                    LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+1,0), Level.Tileset.Floor, Index, Engineer.Math.Color.FromRGBA(255,255,255,255));
+                    LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j,i,0), Level.Tileset.Floor, Index, Engineer.Math.Color.FromRGBA(255,255,255,255));
                 }
                 else if(NewChunk.Fields[i][j] == 2)
                 {
@@ -48,13 +48,13 @@ class LevelGenerator
                 else if(NewChunk.Fields[i][j] == 3)
                 {
                     let WallIndex = Math.floor((Math.random() * Level.Tileset.WallLower.Images.length) + 1);
-                    LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+1,0), Level.Tileset.WallUpper, WallIndex, Engineer.Math.Color.FromRGBA(255,255,255,255));
-                    ColliderGenerator.GenerateColliderTile(Scene,j+1,i+1,1,1);
+                    LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j,i,0), Level.Tileset.WallUpper, WallIndex, Engineer.Math.Color.FromRGBA(255,255,255,255));
+                    ColliderGenerator.GenerateColliderTile(Scene,j,i,1,1);
                     if(i + 1 < NewChunk.Dimensions.Y && NewChunk.Fields[i + 1][j] == 2)
                     {
                         let FloorIndex = Math.floor((Math.random() * Level.Tileset.Floor.Images.length) + 1);
-                        LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+2,0), Level.Tileset.Floor, FloorIndex, Engineer.Math.Color.FromRGBA(255,255,255,255));
-                        LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j+1,i+2,0), Level.Tileset.WallLower, WallIndex, Engineer.Math.Color.FromRGBA(255,255,255,255));
+                        LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j,i+1,0), Level.Tileset.Floor, FloorIndex, Engineer.Math.Color.FromRGBA(255,255,255,255));
+                        LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j,i+1,0), Level.Tileset.WallLower, WallIndex, Engineer.Math.Color.FromRGBA(255,255,255,255));
                     }
                 }
                 else if(NewChunk.Fields[i][j] == 4)
@@ -63,7 +63,8 @@ class LevelGenerator
                 }
             }
         }
-        LevelContentGenerator.Generate(Level);
+        console.log(Scene);
+        LevelContentGenerator.Generate(Level, Scene, Scene.Data["Player"]);
     }
     private static GenerateCeilingTile(Scene:GameScene, Tilesets:LevelTileset, C:Chunk, X:number, Y:number) : void
     {
@@ -82,8 +83,8 @@ class LevelGenerator
         let Left = X >= 1 && C.Fields[Y][X - 1] == 4;
         let Right = X + 1 < C.Dimensions.X && C.Fields[Y][X + 1] == 4;
         let Index = LevelTilesetCeilingCalculation.CalculateBordered(Up,Down,Left,Right);
-        LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(X+1,Y+1,0), Tilesets.Ceiling, Index - 1, Engineer.Math.Color.FromRGBA(255,255,255,255));
-        ColliderGenerator.GenerateColliderTile(Scene,X+1,Y+1,1,1);
+        LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(X,Y,0), Tilesets.Ceiling, Index - 1, Engineer.Math.Color.FromRGBA(255,255,255,255));
+        ColliderGenerator.GenerateColliderTile(Scene,X,Y,1,1);
     }
     private static GenerateCrestedCeilingTile(Scene:GameScene, Tilesets:LevelTileset, C:Chunk, X:number, Y:number) : void
     {
@@ -99,8 +100,8 @@ class LevelGenerator
         if(Y + 1 < C.Dimensions.Y) WM[7] =  C.Fields[Y + 1][X];
         if(X + 1 < C.Dimensions.X && Y + 1 < C.Dimensions.Y) WM[8] =  C.Fields[Y + 1][X + 1];
         let Index = LevelTilesetCeilingCalculation.CalculateCrested(WM);
-        LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(X+1,Y+1,0), Tilesets.Ceiling, Index - 1, Engineer.Math.Color.FromRGBA(255,255,255,255));
-        ColliderGenerator.GenerateColliderTile(Scene,X+1,Y+1,1,1);
+        LevelGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(X,Y,0), Tilesets.Ceiling, Index - 1, Engineer.Math.Color.FromRGBA(255,255,255,255));
+        ColliderGenerator.GenerateColliderTile(Scene,X,Y,1,1);
     }
     private static GenerateMegaChunk(L:Layout, Tilesets:LevelTileset) : Chunk
     {

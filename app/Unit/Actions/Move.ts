@@ -42,7 +42,7 @@ class Move extends Action
         if(this._Owner.Data["Player"])
         {
             Scene.Trans.Translation = new Engineer.Math.Vertex(Scene.Trans.Translation.X - Movement.X, Scene.Trans.Translation.Y - Movement.Y, 0);
-            this._Collider.Trans.Translation = new Engineer.Math.Vertex(this._Collider.Trans.Translation.X + Movement.X, this._Collider.Trans.Translation.Y + Movement.Y, 0);
+            this._Collider.Trans.Translation = new Engineer.Math.Vertex(this._Collider.Trans.Translation.X + Movement.X, this._Collider.Trans.Translation.Y + Movement.Y, 2);
         }
         else
         {

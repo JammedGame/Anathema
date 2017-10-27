@@ -30,6 +30,7 @@ class Player extends Unit
         this.Name = "Player";
         this.Fixed = true;
         this.Data["Player"] = true;
+        Scene.Data["Player"] = this;
 
         this._Inventory = new Inventory();
         this._EquipedCollection = new EquipedCollection();
@@ -37,6 +38,7 @@ class Player extends Unit
         this._Inventory.OnEquip.push(this.Equip.bind(this));
         this._Actions = new PlayerActions(this, Scene);
 
+        Scene.Trans.Translation = new Engineer.Math.Vertex(960, 540, 1);
         this.Trans.Scale = new Engineer.Math.Vertex(100, 150, 0);
         this.Trans.Translation = new Engineer.Math.Vertex(960, 540, 1);
         this.CreateCollider();

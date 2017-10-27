@@ -44,6 +44,7 @@ class LayoutEntry
     public Connections:LayoutEntry[];
     public ConnectionsSide:number[];
     public Chunk:any;
+    public Locations:any[];
     public constructor(Size:number, Location:any)
     {
         this.Size = Size;

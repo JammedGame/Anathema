@@ -65,8 +65,9 @@ class Unit extends Engineer.Engine.Sprite
     {
         this._Collider = new Engineer.Engine.Tile();
         this._Collider.Trans.Scale = new Engineer.Math.Vertex(this.Trans.Scale.X, this.Trans.Scale.Y, 1);
-        this._Collider.Trans.Translation = new Engineer.Math.Vertex(this.Trans.Translation.X, this.Trans.Translation.Y, 0);
+        this._Collider.Trans.Translation = new Engineer.Math.Vertex(this.Trans.Translation.X, this.Trans.Translation.Y, 2);
         this._Collider.Active = false;
+        this._Collider.Paint = Engineer.Math.Color.FromRGBA(255,0,0,120);
         this._Collider.Data["Collision"] = Engineer.Math.CollisionType.Radius2D;
         this._Scene.Data["Character_Collider"] = this._Collider;
         this._Scene.Data["Character"] = this;
