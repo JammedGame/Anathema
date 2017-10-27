@@ -77,7 +77,7 @@ class GameScene extends Engineer.Engine.Scene2D
     }
     private SceneUpdate()
     {
-        //this._Level.Update();
+        this._Level.Update();
         this._Player.Update();
         this._Effect.Update();
     }
