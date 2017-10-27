@@ -9,18 +9,18 @@ class Item
 {
     private _ID:string;
     private _Name:string;
-    private _ArtEquipedIndex:number;
+    private _ArtEquipedIndex:string;
     private _ArtWorldIndex:number;
     private _ArtInventoryIndex:number;
     private _Traits:Traits;
     public get ID():string { return this._ID; }
     public get Name():string { return this._Name; }
     public set Name(value:string) { this._Name = value; }
-    public get ArtEquipedIndex():number { return this._ArtEquipedIndex; }
+    public get ArtEquipedIndex():string { return this._ArtEquipedIndex; }
     public get ArtWorldIndex():number { return this._ArtWorldIndex; }
     public get ArtInventoryIndex():number { return this._ArtInventoryIndex; }
     public Data: { [key: string]:any; } = {};
-    public constructor(Old?:Item, Name?:string, Indices?:number[], ItemTraits?:Traits)
+    public constructor(Old?:Item, Name?:string, Indices?:any[], ItemTraits?:Traits)
     {
         if(Old != null)
         {
@@ -44,7 +44,7 @@ class Item
             }
             else
             {
-                this._ArtEquipedIndex = -1;
+                this._ArtEquipedIndex = "";
                 this._ArtWorldIndex = -1;
                 this._ArtInventoryIndex = -1;
             }

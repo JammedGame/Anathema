@@ -82,18 +82,20 @@ class Player extends Unit
     }
     private Equip()
     {
-        /*for(let i = 0; i < this._EquipedItems.length; i++) this._Scene.RemoveSceneObject(this._EquipedItems[i]);
+        for(let i = 0; i < this._EquipedItems.length; i++) this._Scene.RemoveSceneObject(this._EquipedItems[i]);
         this._EquipedItems = [];
         if(this._Inventory.Greaves) this.EquipItem(this._Inventory.Greaves.ArtEquipedIndex, 1.2);
-        else this.EquipItem(1, 1.2);
+        else this.EquipItem("RedPants", 1.2);
         if(this._Inventory.Chest) this.EquipItem(this._Inventory.Chest.ArtEquipedIndex, 1.2);
-        else this.EquipItem(0, 1.2);
+        else this.EquipItem("WhiteShirt", 1.2);
         if(this._Inventory.Boots) this.EquipItem(this._Inventory.Boots.ArtEquipedIndex, 1.2);
         if(this._Inventory.Gloves) this.EquipItem(this._Inventory.Gloves.ArtEquipedIndex, 1.2);
         if(this._Inventory.Head) this.EquipItem(this._Inventory.Head.ArtEquipedIndex, 1.2);
-        for(let i = 0; i < this._EquipedItems.length; i++) this._EquipedItems[i].UpdateSpriteSet(this.CurrentSpriteSet);*/
+        else this.EquipItem("BedHeadGray", 1.2);
+        if(!this._Inventory.Head || !this._Inventory.Head.Data["Full"]) this.EquipItem("GrayBeard", 1.2);
+        for(let i = 0; i < this._EquipedItems.length; i++) this._EquipedItems[i].UpdateSpriteSet(this.CurrentSpriteSet);
     }
-    private EquipItem(Index:number, Offset:number)
+    private EquipItem(Index:string, Offset:number)
     {
         let Sprite = this._EquipedCollection.Items[Index].Copy();
         Sprite.Fixed = true;

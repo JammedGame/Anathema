@@ -16,6 +16,7 @@ class Skeleton extends Enemy
         this._Stats.Health = 30;
         this._Stats.MaxHealth = 30;
         this._Stats.Store();
+        this._AttackIndex = 1;
         SpriteSetLoader.LoadSets(this, "Skeleton");
     }
 }

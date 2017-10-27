@@ -12,13 +12,15 @@ import { Attack } from "./../Actions/Attack";
 
 class Enemy extends Unit
 {
-    private _Player:Player;
+    protected _AttackIndex:number;
+    protected _Player:Player;
     public constructor(Scene: GameScene, X:number, Y:number)
     {
         super(Scene);
         this.Name = "Enemy";
         this.Data["Enemy"] = true;
         this._Player = this._Scene.Data["Player"];
+        this._AttackIndex = 0;
 
         this.Trans.Scale = new Engineer.Math.Vertex(100, 150, 1);
         this.Trans.Translation = new Engineer.Math.Vertex(X, Y, 0.5);
@@ -41,7 +43,8 @@ class Enemy extends Unit
             if(this._CurrentAction)
             {
                 this._LastDirection = this._CurrentAction.Direction;
-                this.CalculateSpriteSet(this._CurrentAction.Set, this._CurrentAction.Direction);
+                if(this._CurrentAction.Set == 2) this.CalculateSpriteSet(this._CurrentAction.Set + this._AttackIndex, this._CurrentAction.Direction);
+                else this.CalculateSpriteSet(this._CurrentAction.Set, this._CurrentAction.Direction);
             }
             else this.CalculateSpriteSet(0, this._LastDirection);
         }
