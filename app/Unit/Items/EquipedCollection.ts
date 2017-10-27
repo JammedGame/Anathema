@@ -10,7 +10,7 @@ class EquipedCollection
     public constructor()
     {
         this._Items = [];
-        for(let i = 1; i < 7; i++)
+        for(let i = 1; i < 0; i++)
         {
             let s:string = i.toString();
             if(i < 10) s = "00" + s;

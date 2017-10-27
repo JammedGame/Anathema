@@ -15,12 +15,12 @@ class SpriteSetLoader
     }
     private static LoadCollections(Sprite:any, KeyWord:string, SetsLength:number[], SubDir:string)
     {
-        SpriteSetLoader.LoadSetCollection(Sprite, SpriteSetResourcePath + "Walk/" + SubDir + KeyWord + "/", "Idle", SetsLength[0]);
-        SpriteSetLoader.LoadSetCollection(Sprite, SpriteSetResourcePath + "Walk/" + SubDir + KeyWord  + "/", "Walk", SetsLength[1]);
-        SpriteSetLoader.LoadSetCollection(Sprite, SpriteSetResourcePath + "AttackSlash/" + SubDir + KeyWord + "/", "Slash", SetsLength[2]);
-        SpriteSetLoader.LoadSetCollection(Sprite, SpriteSetResourcePath + "AttackThurst/" + SubDir + KeyWord + "/", "Thurst", SetsLength[3]);
-        SpriteSetLoader.LoadSetCollection(Sprite, SpriteSetResourcePath + "AttackBow/" + SubDir + KeyWord + "/", "Bow", SetsLength[4]);
-        SpriteSetLoader.LoadSetCollection(Sprite, SpriteSetResourcePath + "SpellCast/" + SubDir + KeyWord + "/", "Cast", SetsLength[5]);
+        SpriteSetLoader.LoadSetCollection(Sprite, SpriteSetResourcePath + SubDir + KeyWord + "/Walk/", "Idle", SetsLength[0]);
+        SpriteSetLoader.LoadSetCollection(Sprite, SpriteSetResourcePath + SubDir + KeyWord + "/Walk/", "Walk", SetsLength[1]);
+        SpriteSetLoader.LoadSetCollection(Sprite, SpriteSetResourcePath + SubDir + KeyWord + "/AttackSlash/", "Slash", SetsLength[2]);
+        SpriteSetLoader.LoadSetCollection(Sprite, SpriteSetResourcePath + SubDir + KeyWord + "/AttackThurst/", "Thurst", SetsLength[3]);
+        SpriteSetLoader.LoadSetCollection(Sprite, SpriteSetResourcePath + SubDir + KeyWord + "/AttackBow/", "Bow", SetsLength[4]);
+        SpriteSetLoader.LoadSetCollection(Sprite, SpriteSetResourcePath + SubDir + KeyWord + "/SpellCast/", "Cast", SetsLength[5]);
     }
     private static LoadSetCollection(Sprite:any, Path:string, Name:string, Length:number)
     {

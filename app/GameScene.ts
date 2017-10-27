@@ -7,8 +7,9 @@ import { LevelTilesetCollection } from "./Level/Tilesets/LevelTilesetCollection"
 import { LocalSettings } from "./LocalSettings";
 import { Player } from "./Unit/Player";
 import { Skeleton } from "./Unit/Enemies/Skeleton";
+import { Orc } from "./Unit/Enemies/Orc";
 import { ItemWorld } from "./Unit/Items/ItemWorld";
-import { ItemBank } from "./Unit/Items/ItemBank";
+import { ItemCollection } from "./Unit/Items/ItemCollection";
 import { InventoryWindow } from "./UI/Inventory/InventoryWindow";
 import { SkillTree } from "./UI/SkillTree";
 import { HealthBar } from "./UI/HealthBar";
@@ -27,7 +28,7 @@ class GameScene extends Engineer.Engine.Scene2D
     private _HealthBar: HealthBar;
     private _ManaBar: ManaBar;
     private _MainHud: MainHud;
-    private _ItemBank: ItemBank;
+    private _ItemBank: ItemCollection;
     private _Effect: Effect;
     public constructor()
     {
@@ -40,14 +41,12 @@ class GameScene extends Engineer.Engine.Scene2D
         this.BackColor = Engineer.Math.Color.FromRGBA(0, 0, 0, 255);
         let Enemies = [];
         this._Player = new Player(this);
-        for (let i = 0; i < 100; i++)
-        {
-            Enemies.push(new Skeleton(this, 0, 0));
-        }
+        for (let i = 0; i < 90; i++) Enemies.push(new Skeleton(this, 0, 0));
+        for (let i = 0; i < 10; i++) Enemies.push(new Orc(this, 0, 0));
         let LevelTilesets = new LevelTilesetCollection();
         this._Level = new Level(10, LevelTilesets.Items["Cathedral"], Enemies);
         this._Level.Init(this);
-        this._ItemBank = new ItemBank();
+        this._ItemBank = new ItemCollection();
         this._Inventory = new InventoryWindow(this, this._Player.Inventory);
         this._SkillTree = new SkillTree(this);
         this._HealthBar = new HealthBar(this, this._Player);
