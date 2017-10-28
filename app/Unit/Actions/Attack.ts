@@ -6,6 +6,7 @@ import { Action } from "./Action";
 import { GameScene } from "./../../GameScene";
 import { ItemWorld } from "./../Items/ItemWorld";
 import { ItemCollection } from "./../Items/ItemCollection";
+import { Stats } from "./../Stats";
 
 class Attack extends Action
 {
@@ -58,7 +59,7 @@ class Attack extends Action
         this._Owner.Events.SpriteSetAnimationComplete.splice(this._Owner.Events.SpriteSetAnimationComplete.indexOf(this.OnFinish.bind(this)), 1);
         if(this._Victim)
         {
-            this._Victim.Stats.Health -= this._Owner.Stats.BaseDamage;
+            this._Victim.Stats.Health -= this.DamageTaken(this._Owner);
             this._Victim.Invoke("Damaged");
             if(this._Victim.Stats.Health < 0)
             {
@@ -73,4 +74,47 @@ class Attack extends Action
         this._InProgress = false;
         this._Completed = true;
     }
+    private DamageTaken(_Owner)
+    { 
+       let DMGTaken = 0; 
+
+        if(_Owner.Stats.FireDamage){
+        let Damage = _Owner.Stats.FireDamage;
+        let Resist = this._Victim.Stats.FireResist;
+        DMGTaken += (1 - Resist/(Damage+Resist))*Damage;
+        }
+    
+        if(_Owner.Stats.ColdDamage){
+        let Damage = _Owner.Stats.ColdDamage;
+        let Resist = this._Victim.Stats.ColdResist;
+        DMGTaken += (1 - Resist/(Damage+Resist))*Damage;
+        }
+        
+        if(_Owner.Stats.LightningDamage){
+        let Damage = _Owner.Stats.LightningDamage;
+        let Resist = this._Victim.Stats.LightningResist;
+        DMGTaken += (1 - Resist/(Damage+Resist))*Damage;
+        }
+
+        if(_Owner.Stats.PierceDamage){
+        let Damage = _Owner.Stats.PierceDamage;
+        let Resist = this._Victim.Stats.PierceResist;
+        DMGTaken += (1 - Resist/(Damage+Resist))*Damage;
+        }
+
+        if(_Owner.Stats.SlashDamage){
+        let Damage = _Owner.Stats.SlashDamage;
+        let Resist = this._Victim.Stats.SlashResist;
+        DMGTaken += (1 - Resist/(Damage+Resist))*Damage;
+        }
+    
+        if(_Owner.Stats.BluntDamage){
+        let Damage = _Owner.Stats.BluntDamage;
+        let Resist = this._Victim.Stats.BluntResist;
+        DMGTaken += (1 - Resist/(Damage+Resist))*Damage;
+        }
+    
+        return DMGTaken;
+    }
+
 }

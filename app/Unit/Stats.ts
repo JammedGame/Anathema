@@ -87,6 +87,12 @@ class Stats
             this._PierceResist=0;
             this._SlashResist=0;
             this._BluntResist=0;
+            this._FireDamage=0;
+            this._ColdDamage=0;
+            this._LightningDamage=0;
+            this._PierceDamage=0;
+            this._BluntDamage=0;
+            this._SlashDamage=0;
         }
     }
     public Copy() : Stats
@@ -105,10 +111,16 @@ class Stats
         this._Radius = Other._Radius;
         this._FireResist = Other._FireResist;
         this._ColdResist = Other._ColdResist;
-        this._LightningResist = Other.LightningResist;
-        this._PierceResist=Other._PierceResist;
-        this._SlashResist=Other._SlashResist;
-        this._BluntResist=Other._BluntResist;
+        this._LightningResist = Other._LightningResist;
+        this._PierceResist = Other._PierceResist;
+        this._SlashResist = Other._SlashResist;
+        this._BluntResist = Other._BluntResist;
+        this._FireDamage = Other._FireDamage;
+        this._ColdDamage = Other._ColdDamage;
+        this._LightningDamage = Other._LightningDamage;
+        this._PierceDamage = Other._PierceDamage;
+        this._SlashDamage = Other._SlashDamage;
+        this._BluntDamage = Other._BluntDamage;
     }
     public Store() : void
     {
