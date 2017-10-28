@@ -77,32 +77,24 @@ class Attack extends Action
     }
     private DamageTaken(_Owner)
     { 
-        let DMGTaken = 0; 
-        
+        let DMGTaken = _Owner.Stats.BaseDamage;
         if(_Owner.Stats.FireDamage) 
             DMGTaken += this.DamageCalculation(_Owner.Stats.FireDamage, this._Victim.Stats.FireResist);
-        
         if(_Owner.Stats.ColdDamage)
             DMGTaken += this.DamageCalculation(_Owner.Stats.ColdDamage, this._Victim.Stats.ColdResist);
-        
         if(_Owner.Stats.LightningDamage)
-            DMGTaken += this.DamageCalculation(_Owner.Stats.LighningDamage, this._Victim.Stats.LighningResist);
-    
+            DMGTaken += this.DamageCalculation(_Owner.Stats.LightningDamage, this._Victim.Stats.LightningResist);
         if(_Owner.Stats.PierceDamage)
             DMGTaken += this.DamageCalculation(_Owner.Stats.PierceDamage, this._Victim.Stats.PierceResist);
-          
-        if(_Owner.Stats.ColdDamage)
+        if(_Owner.Stats.SlashDamage)
             DMGTaken += this.DamageCalculation(_Owner.Stats.SlashDamage, this._Victim.Stats.SlashResist);
-        
-        if(_Owner.Stats.ColdDamage)
-            DMGTaken += this.DamageCalculation(_Owner.Blunt.ColdDamage, this._Victim.Stats.BluntResist);
-
-            
+        if(_Owner.Stats.BluntDamage)
+            DMGTaken += this.DamageCalculation(_Owner.Stats.BluntDamage, this._Victim.Stats.BluntResist);
         return DMGTaken;
     }
     private DamageCalculation(Damage:number, Resist:number)
     {
-        return (1 - Resist/(Damage+Resist))*Damage;
+        return (1 - Resist * 1.0/(Damage+Resist))*Damage;
     }
 
 }
