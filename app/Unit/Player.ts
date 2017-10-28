@@ -91,8 +91,8 @@ class Player extends Unit
         if(this._Inventory.Boots) this.EquipItem(this._Inventory.Boots.ArtEquipedIndex, 1.2);
         if(this._Inventory.Gloves) this.EquipItem(this._Inventory.Gloves.ArtEquipedIndex, 1.2);
         if(this._Inventory.Head) this.EquipItem(this._Inventory.Head.ArtEquipedIndex, 1.2);
-        else this.EquipItem("BedHeadGray", 1.2);
-        if(!this._Inventory.Head || !this._Inventory.Head.Data["Full"]) this.EquipItem("GrayBeard", 1.2);
+        else this.EquipItem("Bandana", 1.2);
+        if(!this._Inventory.Head || !this._Inventory.Head.Data["Full"]) this.EquipItem("RedBeard", 1.2);
         if(this._Inventory.Weapon) this.EquipItem(this._Inventory.Weapon.ArtEquipedIndex, 1.2);
         for(let i = 0; i < this._EquipedItems.length; i++) this._EquipedItems[i].UpdateSpriteSet(this.CurrentSpriteSet);
     }

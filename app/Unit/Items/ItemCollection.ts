@@ -30,13 +30,13 @@ class ItemCollection
         this._Items.push(BasicSword);
 
         let BasicSpear = new Item(null, "Basic Spear", ["Spear",9,9], DamageTraits.Copy());
-        BasicSword.Traits.Traits[0].Entries[0].Value = 20;
+        BasicSpear.Traits.Traits[0].Entries[0].Value = 20;
         BasicSpear.Data["Type"] = "Weapon";
         BasicSpear.Data["WeaponGroup"] = 1;
         this._Items.push(BasicSpear);
 
         let BasicBow = new Item(null, "Basic Bow", ["Bow",12,12], DamageTraits.Copy());
-        BasicSword.Traits.Traits[0].Entries[0].Value = 12;
+        BasicBow.Traits.Traits[0].Entries[0].Value = 12;
         BasicBow.Data["Type"] = "Weapon";
         BasicBow.Data["WeaponGroup"] = 2;
         this._Items.push(BasicBow);

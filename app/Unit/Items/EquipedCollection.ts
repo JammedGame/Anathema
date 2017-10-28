@@ -44,6 +44,7 @@ class EquipedCollection
         this.LoadSpriteSet("LegionSkirt", "Legs");
         this.LoadSpriteSet("BedHeadGray", "Looks");
         this.LoadSpriteSet("GrayBeard", "Looks");
+        this.LoadSpriteSet("RedBeard", "Looks");
         this.LoadSpriteSet("BrownShirt", "Torso");
         this.LoadSpriteSet("ChainMail", "Torso");
         this.LoadSpriteSet("ChainTabard", "Torso");
