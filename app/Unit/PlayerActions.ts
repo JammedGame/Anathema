@@ -11,6 +11,10 @@ class PlayerActions
 {
     private _LeftMouse:Action;
     private _RightMouse:Action;
+    private _ActionQ:Action;
+    private _ActionW:Action;
+    private _ActionE:Action;
+    private _ActionR:Action;
     private _Player:Player;
     private _Scene:GameScene;
     private _Actions:Action[];
@@ -32,6 +36,10 @@ class PlayerActions
         this._Actions.push(ActionAttack);
         this._LeftMouse = ActionAttack;
         this._RightMouse = ActionAttack;
+        this._ActionQ = this._ActionMove;
+        this._ActionW = null;
+        this._ActionE = null;
+        this._ActionR = null;
     }
     public Apply(Code:string, Target:any)
     {
@@ -52,6 +60,26 @@ class PlayerActions
         {
             this._RightMouse.Target = Target;
             this._Player.UpdateCurrentAction(this._RightMouse);
+        }
+        else if(Code == "Q" && this._ActionQ)
+        {
+            this._ActionQ.Target = Target;
+            this._Player.UpdateCurrentAction(this._ActionQ);
+        }
+        else if(Code == "W" && this._ActionW)
+        {
+            this._ActionW.Target = Target;
+            this._Player.UpdateCurrentAction(this._ActionW);
+        }
+        else if(Code == "E" && this._ActionQ)
+        {
+            this._ActionE.Target = Target;
+            this._Player.UpdateCurrentAction(this._ActionE);
+        }
+        else if(Code == "R" && this._ActionR)
+        {
+            this._ActionR.Target = Target;
+            this._Player.UpdateCurrentAction(this._ActionR);
         }
     }
 }

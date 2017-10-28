@@ -18,6 +18,10 @@ class Player extends Unit
 {
     private _LeftClick: boolean;
     private _RightClick: boolean;
+    private _QDown:boolean;
+    private _WDown:boolean;
+    private _EDown:boolean;
+    private _RDown:boolean;
     private _LastMouseLocation: any;
     private _Inventory: Inventory;
     private _EquipedCollection: EquipedCollection;
@@ -47,6 +51,8 @@ class Player extends Unit
         this._Scene.Events.MouseDown.push(this.MouseDown.bind(this));
         this._Scene.Events.MouseUp.push(this.MouseUp.bind(this));
         this._Scene.Events.MouseMove.push(this.MouseMove.bind(this));
+        this._Scene.Events.KeyDown.push(this.KeyDown.bind(this));
+        this._Scene.Events.KeyUp.push(this.KeyUp.bind(this));
         this._Scene.AddSceneObject(this);
         this._Scene.AddSceneObject(this._Collider);
 
@@ -62,6 +68,20 @@ class Player extends Unit
         if (Args.MouseButton == 0) this._LeftClick = false;
         if (Args.MouseButton == 2) this._RightClick = false;
     }
+    private KeyDown(G: any, Args: any)
+    {
+        if (Args.Key == 81) this._QDown = true;
+        if (Args.Key == 87) this._WDown = true;
+        if (Args.Key == 69) this._EDown = true;
+        if (Args.Key == 82) this._RDown = true;
+    }
+    private KeyUp(G: any, Args: any)
+    {
+        if (Args.Key == 81) this._QDown = false;
+        if (Args.Key == 87) this._WDown = false;
+        if (Args.Key == 69) this._EDown = false;
+        if (Args.Key == 82) this._RDown = false;
+    }
     private MouseMove(G: any, Args: any)
     {
         this._LastMouseLocation = Args.Location;
@@ -76,7 +96,11 @@ class Player extends Unit
         {
             let Location = new Engineer.Math.Vertex(this._LastMouseLocation.X - this._Scene.Trans.Translation.X, this._LastMouseLocation.Y - this._Scene.Trans.Translation.Y);
             if (this._LeftClick) this._Actions.Apply("LM", Location);
-            if (this._RightClick) this._Actions.Apply("RM", Location);
+            else if (this._RightClick) this._Actions.Apply("RM", Location);
+            else if (this._QDown) this._Actions.Apply("Q", Location);
+            else if (this._WDown) this._Actions.Apply("W", Location);
+            else if (this._EDown) this._Actions.Apply("E", Location);
+            else if (this._RDown) this._Actions.Apply("R", Location);
         }
         super.Update();
     }
