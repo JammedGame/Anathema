@@ -83,16 +83,22 @@ class MainHud extends Window
     {
         if(this._PlayerActions.LeftMouse == null) this._LeftClick.Index = 0;
         else this._LeftClick.Index = this._PlayerActions.LeftMouse.Art;
+        this._LeftClick.Modified = true;
         if(this._PlayerActions.RightMouse == null) this._RightClick.Index = 0;
         else this._RightClick.Index = this._PlayerActions.RightMouse.Art;
+        this._RightClick.Modified = true;
         if(this._PlayerActions.ActionQ == null) this._QDown.Index = 0;
         else this._QDown.Index = this._PlayerActions.ActionQ.Art;
+        this._QDown.Modified = true;
         if(this._PlayerActions.ActionW == null) this._WDown.Index = 0;
         else this._WDown.Index = this._PlayerActions.ActionW.Art;
+        this._WDown.Modified = true;
         if(this._PlayerActions.ActionE == null) this._EDown.Index = 0;
         else this._EDown.Index = this._PlayerActions.ActionE.Art;
+        this._EDown.Modified = true;
         if(this._PlayerActions.ActionR == null) this._RDown.Index = 0;
         else this._RDown.Index = this._PlayerActions.ActionR.Art;
+        this._RDown.Modified = true;
     }
     private InventoryButtonInvoke() : void
     {
