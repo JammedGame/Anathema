@@ -51,23 +51,25 @@ class GameScene extends Engineer.Engine.Scene2D
         this._SkillTree = new SkillTree(this);
         this._HealthBar = new HealthBar(this, this._Player);
         this._ManaBar = new ManaBar(this, this._Player);
-        this._MainHud = new MainHud(this);
+        this._MainHud = new MainHud(this, this._Player.Actions);
+        this._MainHud.InventoryButtonClick.push(this.ToggleInventory.bind(this));
         this._Effect = new Effect(this,"CurseAOE", new Engineer.Math.Vertex(600,600,0), new Engineer.Math.Vertex(150,150,0), 5, 5, 0.0166, 50, 0, 10, 10, 5, Engineer.Math.Color.FromRGBA(255, 0, 0, 255));
         this.Events.KeyPress.push(this.KeyPress.bind(this));
         this.Events.TimeTick.push(this.SceneUpdate.bind(this));
     }
     private KeyPress(G: any, Args: any): void
     {
-        if (Args.Key == 105)
-        {
-            if (this._Inventory.Visible) this._Inventory.Hide();
-            else this._Inventory.Show();
-        }
+        if (Args.Key == 105) this.ToggleInventory();
         else if (Args.Key == 116)
         {
             if (this._SkillTree.Visible) this._SkillTree.Hide();
             else this._SkillTree.Show();
         }
+    }
+    private ToggleInventory() : void
+    {
+        if (this._Inventory.Visible) this._Inventory.Hide();
+        else this._Inventory.Show();
     }
     private SceneUpdate()
     {

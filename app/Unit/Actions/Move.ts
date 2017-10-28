@@ -14,6 +14,7 @@ class Move extends Action
     {
         super(Old, ID, Owner);
         this._Set = 1;
+        this._Art = 1;
         this._Speed = Speed;
     }
     public Apply(Scene:GameScene) : boolean

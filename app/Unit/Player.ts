@@ -27,6 +27,7 @@ class Player extends Unit
     private _EquipedCollection: EquipedCollection;
     private _Actions:PlayerActions;
     private _EquipedItems:any[];
+    public get Actions():PlayerActions { return this._Actions; }
     public get Inventory():Inventory { return this._Inventory; }
     public constructor(Scene: GameScene)
     {
