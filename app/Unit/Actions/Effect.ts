@@ -34,20 +34,20 @@ class Effect extends Engineer.Engine.Sprite
         this._Duration = Duration;
         this._UpdateCounter = 0;
         this._DurationCounter = 0;
-        this._AddedOnScene = false;        
+        this._AddedOnScene = false;
         if(Speed!=null){this._Speed = Speed;}
         if(GrowthX!=null){this._GrowthX = GrowthX;}
         if(GrowthY!=null){this._GrowthY = GrowthY;}
         if(FadeSpeed!=null){this._FadeSpeed = FadeSpeed;}
         if(StartColor!=null){this.Paint = StartColor;}
         
-        this._Scene.Events.KeyPress.push(this.KeyPress.bind(this));        
+        this._Scene.Events.KeyPress.push(this.KeyPress.bind(this));
     }
 
     private KeyPress(G: any, Args: any): void
     {
-        /*if (Args.Key == 113)
-        {            
+        if (Args.Key == 122)
+        {
             this.Paint = Engineer.Math.Color.FromRGBA(this.Paint.R, this.Paint.G, this.Paint.B, 255);
             this.Trans.Scale = new Engineer.Math.Vertex(this._SizeScale.X, this._SizeScale.Y,0);
             this.Trans.Translation = this._Location;
@@ -59,8 +59,8 @@ class Effect extends Engineer.Engine.Sprite
             {
                 this._Scene.AddSceneObject(this);
                 this._AddedOnScene=true;
-            }           
-        }*/
+            }
+        }
     }
     private LoadSingleSet(SpriteSetName:string, pngName:String, Length:number, Seed:number) : any
     {
@@ -72,10 +72,10 @@ class Effect extends Engineer.Engine.Sprite
     }
     public Update()
     {             
-        if(this._UpdateCounter >= this._UpdateInterval*60 && this._KeyPressed)
+        if(this._UpdateCounter >= this._UpdateInterval && this._KeyPressed)
         {
             this._UpdateCounter=0;
-            if(this._DurationCounter <=this._Duration)
+            if(this._DurationCounter <=this._Duration*60)
             {
                 this._DurationCounter++;
                 if(this.SpriteSets[0].Seed > 0 && this.SpriteSets[0].Seed <20)

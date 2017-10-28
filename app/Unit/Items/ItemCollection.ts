@@ -250,7 +250,7 @@ class ItemCollection
         PlateGloves.Data["Type"] = "Gloves";
         this._Items.push(PlateGloves);
 
-        let PlateBoots = new Item(null, "Plate Boots", ["PlateBoots",46,46]);
+        let PlateBoots = new Item(null, "Plate Boots", ["PlateBoots",47,47]);
         PlateBoots.Data["Type"] = "Boots";
         this._Items.push(PlateBoots);
 

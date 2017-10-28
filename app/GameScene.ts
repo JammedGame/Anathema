@@ -53,7 +53,7 @@ class GameScene extends Engineer.Engine.Scene2D
         this._ManaBar = new ManaBar(this, this._Player);
         this._MainHud = new MainHud(this, this._Player.Actions);
         this._MainHud.InventoryButtonClick.push(this.ToggleInventory.bind(this));
-        this._Effect = new Effect(this,"CurseAOE", new Engineer.Math.Vertex(600,600,0), new Engineer.Math.Vertex(150,150,0), 5, 5, 0.0166, 50, 0, 10, 10, 5, Engineer.Math.Color.FromRGBA(255, 0, 0, 255));
+        this._Effect = new Effect(this,"CurseAOE", new Engineer.Math.Vertex(this._Player.Collider.Trans.Translation.X,this._Player.Collider.Trans.Translation.Y,0), new Engineer.Math.Vertex(150,150,0), 5, 5, 0, 3, 0, 2, 2, 5, Engineer.Math.Color.FromRGBA(255, 0, 0, 255));
         this.Events.KeyPress.push(this.KeyPress.bind(this));
         this.Events.TimeTick.push(this.SceneUpdate.bind(this));
     }
