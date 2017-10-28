@@ -16,6 +16,7 @@ class EquipedCollection
         this.LoadSpriteSet("GoldPlateShoes", "Feet");
         this.LoadSpriteSet("MaroonShoes", "Feet");
         this.LoadSpriteSet("PlateShoes", "Feet");
+        this.LoadSpriteSet("LegionSandals", "Feet");
         this.LoadSpriteSet("GoldPlateGloves", "Hands");
         this.LoadSpriteSet("LeatherBracers", "Hands");
         this.LoadSpriteSet("PlateGloves", "Hands");
@@ -27,6 +28,12 @@ class EquipedCollection
         this.LoadSpriteSet("LeatherCap", "Head");
         this.LoadSpriteSet("PlateHelm", "Head");
         this.LoadSpriteSet("RobeHood", "Head");
+        this.LoadSpriteSet("LegionSteelHelm", "Head");
+        this.LoadSpriteSet("LegionBronzeHelm", "Head");
+        this.LoadSpriteSet("LegionGoldHelm", "Head");
+        this.LoadSpriteSet("LegionSteelHelmCrest", "Head");
+        this.LoadSpriteSet("LegionBronzeHelmCrest", "Head");
+        this.LoadSpriteSet("LegionGoldHelmCrest", "Head");
         this.LoadSpriteSet("GoldPlateGreaves", "Legs");
         this.LoadSpriteSet("MagentaPants", "Legs");
         this.LoadSpriteSet("PlateGreaves", "Legs");
@@ -34,6 +41,7 @@ class EquipedCollection
         this.LoadSpriteSet("RobeSkirt", "Legs");
         this.LoadSpriteSet("TealPants", "Legs");
         this.LoadSpriteSet("WhitePants", "Legs");
+        this.LoadSpriteSet("LegionSkirt", "Legs");
         this.LoadSpriteSet("BedHeadGray", "Looks");
         this.LoadSpriteSet("GrayBeard", "Looks");
         this.LoadSpriteSet("BrownShirt", "Torso");
@@ -48,6 +56,9 @@ class EquipedCollection
         this.LoadSpriteSet("PlateArms", "Torso");
         this.LoadSpriteSet("TealShirt", "Torso");
         this.LoadSpriteSet("WhiteShirt", "Torso");
+        this.LoadSpriteSet("LegionSteel", "Torso");
+        this.LoadSpriteSet("LegionBronze", "Torso");
+        this.LoadSpriteSet("LegionGold", "Torso");
         this.LoadSpriteSet("Arrow", "Weapon");
         this.LoadSpriteSet("ArrowSkeleton", "Weapon");
         this.LoadSpriteSet("Bow", "Weapon");
