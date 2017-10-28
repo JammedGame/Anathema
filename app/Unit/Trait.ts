@@ -8,6 +8,7 @@ class TraitEntry
     private _Value: number;
     public get Type(): string { return this._Type }
     public get Value(): number { return this._Value }
+    public set Value(value:number) { this._Value = value; }
     public constructor(Old:TraitEntry, Type?:string, Value?: number)
     {
         if(Old != null)

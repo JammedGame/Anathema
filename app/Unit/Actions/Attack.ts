@@ -4,6 +4,8 @@ import Engineer from "./../../Engineer";
 
 import { Action } from "./Action";
 import { GameScene } from "./../../GameScene";
+import { ItemWorld } from "./../Items/ItemWorld";
+import { ItemCollection } from "./../Items/ItemCollection";
 
 class Attack extends Action
 {
@@ -12,6 +14,7 @@ class Attack extends Action
     private _Speed:number;
     private _Collider:any;
     private _Victim:any;
+    private _Scene:GameScene;
     public get Direction():any { return new Engineer.Math.Vertex(this._Target.X - this._Collider.Trans.Translation.X, this._Target.Y - this._Collider.Trans.Translation.Y, 0); }
     public constructor(Old?:Attack, ID?:string, Owner?:any)
     {
@@ -27,6 +30,7 @@ class Attack extends Action
             this._Completed = false;
             return false;
         }
+        this._Scene = Scene;
         if(this._InProgress) return true;
         this._Collider = this._Owner.Collider;
         if(!this._Collider) return false;
@@ -56,7 +60,15 @@ class Attack extends Action
         {
             this._Victim.Stats.Health -= this._Owner.Stats.BaseDamage;
             this._Victim.Invoke("Damaged");
-            if(this._Victim.Stats.Health < 0) this._Victim.Destroy();
+            if(this._Victim.Stats.Health < 0)
+            {
+                this._Victim.Destroy();
+                if(this._Victim.Data["Enemy"])
+                {
+                    let Item = ItemCollection.Single.DropRandom();
+                    let WorldItem = new ItemWorld(this._Scene.Data["Player"], this._Scene, Item, this._Victim.Trans.Translation.X, this._Victim.Trans.Translation.Y);
+                }
+            }
         }
         this._InProgress = false;
         this._Completed = true;

@@ -19,6 +19,8 @@ class Item
     public get ArtEquipedIndex():string { return this._ArtEquipedIndex; }
     public get ArtWorldIndex():number { return this._ArtWorldIndex; }
     public get ArtInventoryIndex():number { return this._ArtInventoryIndex; }
+    public get Traits():Traits { return this._Traits; }
+    public set Traits(value:Traits) { this._Traits = value; }
     public Data: { [key: string]:any; } = {};
     public constructor(Old?:Item, Name?:string, Indices?:any[], ItemTraits?:Traits)
     {
@@ -58,6 +60,6 @@ class Item
     }
     public Apply(Stats:Stats)
     {
-        this._Traits.Apply(Stats);
+        if(this._Traits) this._Traits.Apply(Stats);
     }
 }

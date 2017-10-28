@@ -93,6 +93,7 @@ class Player extends Unit
         if(this._Inventory.Head) this.EquipItem(this._Inventory.Head.ArtEquipedIndex, 1.2);
         else this.EquipItem("BedHeadGray", 1.2);
         if(!this._Inventory.Head || !this._Inventory.Head.Data["Full"]) this.EquipItem("GrayBeard", 1.2);
+        if(this._Inventory.Weapon) this.EquipItem(this._Inventory.Weapon.ArtEquipedIndex, 1.2);
         for(let i = 0; i < this._EquipedItems.length; i++) this._EquipedItems[i].UpdateSpriteSet(this.CurrentSpriteSet);
     }
     private EquipItem(Index:string, Offset:number)
@@ -103,6 +104,7 @@ class Player extends Unit
         Sprite.Trans.Translation = new Engineer.Math.Vertex(960, 540, Offset);
         this._EquipedItems.push(Sprite);
         this._Scene.AddSceneObject(Sprite);
+        this.UpdateStats();
     }
     private UpdateStats()
     {
@@ -114,6 +116,7 @@ class Player extends Unit
     {
         let DirectionIndex = 0;
         if(Direction != null) DirectionIndex = this.CalculateDirection(Direction);
+        if(this._Inventory.Weapon && Set == 2) Set += this._Inventory.Weapon.Data["WeaponGroup"];
         let SetIndex = Set * 4 + DirectionIndex;
         this.UpdateSpriteSet(SetIndex);
         for(let i = 0; i < this._EquipedItems.length; i++) this._EquipedItems[i].UpdateSpriteSet(SetIndex);
