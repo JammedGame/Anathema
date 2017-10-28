@@ -12,9 +12,9 @@ class ItemCollection
     {
         this._Items = [];
 
-        let DamageTraitEntry = new TraitEntry(null, "DamageBonus", 10);
+        let DamageTraitEntry = new TraitEntry(null, "DamageBonus", 10, Engineer.Math.Color.FromRGBA(255,0,0,255));
         let DamageTrait = new Trait(null, "Damage");
-        DamageTrait.Entries.push(DamageTraitEntry);
+        DamageTrait.AddEntry(DamageTraitEntry);
         let DamageTraits = new Traits();
         DamageTraits.Traits.push(DamageTrait);
 

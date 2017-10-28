@@ -1,20 +1,25 @@
 export { TraitEntry, Trait, Traits};
 
+import Engineer from "./../Engineer";
+
 import { Stats } from "./Stats";
 
 class TraitEntry
 {
     private _Type: string;
     private _Value: number;
+    private _Color: any;
     public get Type(): string { return this._Type }
     public get Value(): number { return this._Value }
+    public get Color(): any { return this._Color; }
     public set Value(value:number) { this._Value = value; }
-    public constructor(Old:TraitEntry, Type?:string, Value?: number)
+    public constructor(Old:TraitEntry, Type?:string, Value?: number, Color?:any)
     {
         if(Old != null)
         {
             this._Type = Old._Type;
             this._Value = Old._Value;
+            this._Color = Old._Color;
         }
         else
         {
@@ -22,6 +27,8 @@ class TraitEntry
             else this._Type = "";
             if(Value) this._Value = Value;
             else this._Value = 0;
+            if(Color) this._Color = Color;
+            else this._Color = Engineer.Math.Color.White;
         }
     }
     public Copy() : TraitEntry
@@ -35,7 +42,7 @@ class Trait
     private _Name: string;
     private _Entries: TraitEntry[];
     public get Entries() : TraitEntry[] { return this._Entries; }
-    public set Entries( value:TraitEntry[] ) { this._Entries = value; }    
+    public Data: { [key: string]:any; } = {};
     public constructor(Old?:Trait, Name?:string)
     {
         if(Old != null)
@@ -50,6 +57,11 @@ class Trait
             else this._Name = "";
             this._Entries = [];
         }
+    }
+    public AddEntry(Entry:TraitEntry)
+    {
+        this.Data[Entry.Type] = Entry.Value;
+        this._Entries.push(Entry);
     }
     public Copy() : Trait
     {

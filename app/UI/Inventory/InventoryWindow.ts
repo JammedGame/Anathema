@@ -18,6 +18,10 @@ class InventoryWindow extends Window
     private _Inventory:Inventory;
     private _ArtCollection:InventoryCollection;
     private _InventoryItems:InventoryItem[];
+    private _Overlay:HTMLElement;
+    private _OverlayName:HTMLElement;
+    private _OverlayType:HTMLElement;
+    private _OverlayInfos:HTMLElement[];
     public constructor(Scene:GameScene, Inventory:Inventory)
     {
         super(Scene);
@@ -26,6 +30,11 @@ class InventoryWindow extends Window
         this._InventoryItems = [];
         this._Inventory.OnUpdate.push(this.Update.bind(this));
         Scene.Events.MouseMove.push(this.MouseMove.bind(this));
+        this._Overlay = document.getElementById("item-overlay");
+        this._OverlayName = document.getElementById("item-overlay-name");
+        this._OverlayType = document.getElementById("item-overlay-type");
+        this._OverlayInfos = [];
+        for(let i = 1; i < 6; i++) this._OverlayInfos.push(document.getElementById("item-info-" + i));
         this.InitElements();
     }
     public Update() : void
@@ -213,18 +222,24 @@ class InventoryWindow extends Window
     }
     private ShowItemOverlay(Item:InventoryItem)
     {
-        let Overlay = document.getElementById("item-overlay");
-        Overlay.style.top = (Item.Trans.Translation.Y + Item.Trans.Scale.Y / 2 + 10) + "px";
-        Overlay.style.left = (Item.Trans.Translation.X - 100) + "px";
-        Overlay.style.display = "block";
-        let OverlayName = document.getElementById("item-overlay-name");
-        OverlayName.innerHTML = Item.Item.Name;
-        let OverlayType = document.getElementById("item-overlay-type");
-        OverlayType.innerHTML = Item.Item.Data["Type"];
+        this._Overlay.style.top = (Item.Trans.Translation.Y + Item.Trans.Scale.Y / 2 + 10) + "px";
+        this._Overlay.style.left = (Item.Trans.Translation.X - 100) + "px";
+        this._Overlay.style.display = "block";
+        this._OverlayName.innerHTML = Item.Item.Name;
+        this._OverlayType.innerHTML = Item.Item.Data["Type"];
+        for(let i = 0; i < 5; i++)
+        {
+            if(Item.Item.Traits && Item.Item.Traits.Traits.length > 0 && Item.Item.Traits.Traits[0].Entries.length > i)
+            {
+                this._OverlayInfos[i].style.display = "block";
+                this._OverlayInfos[i].innerHTML = Item.Item.Traits.Traits[0].Entries[i].Type + ": " + Item.Item.Traits.Traits[0].Entries[i].Value;
+                this._OverlayInfos[i].style.color =  "rgb(" + Item.Item.Traits.Traits[0].Entries[i].Color.R + "," + Item.Item.Traits.Traits[0].Entries[i].Color.G + "," + Item.Item.Traits.Traits[0].Entries[i].Color.B + ")";
+            }
+            else this._OverlayInfos[i].style.display = "none";
+        }
     }
     private HideItemOverlay()
     {
-        let Overlay = document.getElementById("item-overlay");
-        Overlay.style.display = "none";
+        this._Overlay.style.display = "none";
     }
 }
