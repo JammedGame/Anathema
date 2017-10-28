@@ -77,45 +77,32 @@ class Attack extends Action
     }
     private DamageTaken(_Owner)
     { 
-       let DMGTaken = 0; 
-
-        if(_Owner.Stats.FireDamage){
-        let Damage = _Owner.Stats.FireDamage;
-        let Resist = this._Victim.Stats.FireResist;
-        DMGTaken += (1 - Resist/(Damage+Resist))*Damage;
-        }
-    
-        if(_Owner.Stats.ColdDamage){
-        let Damage = _Owner.Stats.ColdDamage;
-        let Resist = this._Victim.Stats.ColdResist;
-        DMGTaken += (1 - Resist/(Damage+Resist))*Damage;
-        }
+        let DMGTaken = 0; 
         
-        if(_Owner.Stats.LightningDamage){
-        let Damage = _Owner.Stats.LightningDamage;
-        let Resist = this._Victim.Stats.LightningResist;
-        DMGTaken += (1 - Resist/(Damage+Resist))*Damage;
-        }
-
-        if(_Owner.Stats.PierceDamage){
-        let Damage = _Owner.Stats.PierceDamage;
-        let Resist = this._Victim.Stats.PierceResist;
-        DMGTaken += (1 - Resist/(Damage+Resist))*Damage;
-        }
-
-        if(_Owner.Stats.SlashDamage){
-        let Damage = _Owner.Stats.SlashDamage;
-        let Resist = this._Victim.Stats.SlashResist;
-        DMGTaken += (1 - Resist/(Damage+Resist))*Damage;
-        }
+        if(_Owner.Stats.FireDamage) 
+            DMGTaken += this.DamageCalculation(_Owner.Stats.FireDamage, this._Victim.Stats.FireResist);
+        
+        if(_Owner.Stats.ColdDamage)
+            DMGTaken += this.DamageCalculation(_Owner.Stats.ColdDamage, this._Victim.Stats.ColdResist);
+        
+        if(_Owner.Stats.LightningDamage)
+            DMGTaken += this.DamageCalculation(_Owner.Stats.LighningDamage, this._Victim.Stats.LighningResist);
     
-        if(_Owner.Stats.BluntDamage){
-        let Damage = _Owner.Stats.BluntDamage;
-        let Resist = this._Victim.Stats.BluntResist;
-        DMGTaken += (1 - Resist/(Damage+Resist))*Damage;
-        }
-    
+        if(_Owner.Stats.PierceDamage)
+            DMGTaken += this.DamageCalculation(_Owner.Stats.PierceDamage, this._Victim.Stats.PierceResist);
+          
+        if(_Owner.Stats.ColdDamage)
+            DMGTaken += this.DamageCalculation(_Owner.Stats.SlashDamage, this._Victim.Stats.SlashResist);
+        
+        if(_Owner.Stats.ColdDamage)
+            DMGTaken += this.DamageCalculation(_Owner.Blunt.ColdDamage, this._Victim.Stats.BluntResist);
+
+            
         return DMGTaken;
+    }
+    private DamageCalculation(Damage:number, Resist:number)
+    {
+        return (1 - Resist/(Damage+Resist))*Damage;
     }
 
 }
