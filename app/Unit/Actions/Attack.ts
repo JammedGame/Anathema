@@ -22,6 +22,7 @@ class Attack extends Action
         super(Old, ID, Owner);
         this._Set = 2;
         this._Completed = false;
+        this._Art = 2;
     }
     public Apply(Scene:GameScene) : boolean
     {

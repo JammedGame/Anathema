@@ -46,7 +46,7 @@ class Effect extends Engineer.Engine.Sprite
 
     private KeyPress(G: any, Args: any): void
     {
-        if (Args.Key == 113)
+        /*if (Args.Key == 113)
         {            
             this.Paint = Engineer.Math.Color.FromRGBA(this.Paint.R, this.Paint.G, this.Paint.B, 255);
             this.Trans.Scale = new Engineer.Math.Vertex(this._SizeScale.X, this._SizeScale.Y,0);
@@ -60,7 +60,7 @@ class Effect extends Engineer.Engine.Sprite
                 this._Scene.AddSceneObject(this);
                 this._AddedOnScene=true;
             }           
-        }
+        }*/
     }
     private LoadSingleSet(SpriteSetName:string, pngName:String, Length:number, Seed:number) : any
     {
@@ -72,9 +72,8 @@ class Effect extends Engineer.Engine.Sprite
     }
     public Update()
     {             
-          
         if(this._UpdateCounter >= this._UpdateInterval*60 && this._KeyPressed)
-        {Engineer.Util.Log.Error(this.Paint); 
+        {
             this._UpdateCounter=0;
             if(this._DurationCounter <=this._Duration)
             {

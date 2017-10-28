@@ -19,6 +19,19 @@ class PlayerActions
     private _Scene:GameScene;
     private _Actions:Action[];
     private _ActionMove:Action;
+    public get LeftMouse():Action { return this._LeftMouse; }
+    public set LeftMouse(value:Action) { this._LeftMouse = value; }
+    public get RightMouse():Action { return this._RightMouse; }
+    public set RightMouse(value:Action) { this._RightMouse = value; }
+    public get ActionQ():Action { return this._ActionQ; }
+    public set ActionQ(value:Action) { this._ActionQ = value; }
+    public get ActionW():Action { return this._ActionW; }
+    public set ActionW(value:Action) { this._ActionW = value; }
+    public get ActionE():Action { return this._ActionE; }
+    public set ActionE(value:Action) { this._ActionE = value; }
+    public get ActionR():Action { return this._ActionR; }
+    public set ActionR(value:Action) { this._ActionR = value; }
+    public get Actions():Action[] { return this._Actions; }
     public constructor(Player:Player, Scene:GameScene)
     {
         this._Player = Player;
@@ -40,6 +53,14 @@ class PlayerActions
         this._ActionW = null;
         this._ActionE = null;
         this._ActionR = null;
+    }
+    public FindByArtIndex(Index:number)
+    {
+        if(Index == 0) return null;
+        for(let i = 0; i < this._Actions.length; i++)
+        {
+            if(this._Actions[i].Art == Index) return this._Actions[i];
+        }
     }
     public Apply(Code:string, Target:any)
     {
