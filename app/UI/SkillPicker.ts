@@ -25,8 +25,7 @@ class SkillPicker extends Window
             {
                 this._Elements[i].Index = Indices[i];
                 this._Elements[i].Data["Index"] = Indices[i];
-                this._Elements[i].Modified = true;
-                this._Elements[i].Trans.Translation = new Engineer.Math.Vertex(-35, 60 * i, 2.5);
+                this._Elements[i].Trans.Translation = new Engineer.Math.Vertex(Translation.X, this._Elements[i].Trans.Translation.Y, 2.5);
                 this._Elements[i].Active = true;
             }
             else
@@ -39,6 +38,7 @@ class SkillPicker extends Window
             }
         }
         this.Show();
+        this.Active = false;
     }
     private MouseDown(G:any, Args:any) : void
     {
