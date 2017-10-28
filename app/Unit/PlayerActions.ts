@@ -6,6 +6,7 @@ import { Stats } from "./Stats";
 import { Action } from "./Actions/Action";
 import { Move } from "./Actions/Move";
 import { Attack } from "./Actions/Attack";
+import { Cleave } from "./Actions/Cleave";
 
 class PlayerActions
 {
@@ -47,9 +48,12 @@ class PlayerActions
         let ActionAttack:Attack = new Attack(null, "PlayerAttack", this._Player);
         ActionAttack.Prefs["TargetType"] = "Enemy";
         this._Actions.push(ActionAttack);
+        let ActionCleave:Cleave = new Cleave(null, "PlayerCleave", this._Player);
+        ActionCleave.Prefs["TargetType"] = "Enemy";
+        this._Actions.push(ActionCleave);
         this._LeftMouse = ActionAttack;
         this._RightMouse = ActionAttack;
-        this._ActionQ = this._ActionMove;
+        this._ActionQ = ActionCleave;
         this._ActionW = null;
         this._ActionE = null;
         this._ActionR = null;

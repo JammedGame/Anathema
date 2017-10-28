@@ -36,6 +36,7 @@ class Player extends Unit
         this.Fixed = true;
         this.Data["Player"] = true;
         Scene.Data["Player"] = this;
+        this._Stats.Radius = 150;
 
         this._Inventory = new Inventory();
         this._EquipedCollection = new EquipedCollection();
