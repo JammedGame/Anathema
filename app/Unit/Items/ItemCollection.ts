@@ -54,55 +54,55 @@ class ItemCollection
         IronSword.Data["WeaponGroup"] = 0;
         this._Items.push(IronSword);
 
-        let BronzeSword = new Item(null, "Bronze Sword", ["Dagger",1,1], DamageTraits.Copy());
+        let BronzeSword = new Item(null, "Bronze Sword", ["Dagger",2,2], DamageTraits.Copy());
         BronzeSword.Traits.Traits[0].Entries[2].Value = 25;
         BronzeSword.Data["Type"] = "Weapon";
         BronzeSword.Data["WeaponGroup"] = 0;
         this._Items.push(BronzeSword);
 
-        let IronDagger = new Item(null, "Iron Dagger", ["Dagger",9,9], DamageTraits.Copy());
+        let IronDagger = new Item(null, "Iron Dagger", ["Dagger",14,14], DamageTraits.Copy());
         IronDagger.Traits.Traits[0].Entries[1].Value = 10;
         IronDagger.Data["Type"] = "Weapon";
         IronDagger.Data["WeaponGroup"] = 0;
         this._Items.push(IronDagger);
 
-        let BronzeDagger = new Item(null, "Bronze Dagger", ["Dagger",9,9], DamageTraits.Copy());
+        let BronzeDagger = new Item(null, "Bronze Dagger", ["Dagger",15,15], DamageTraits.Copy());
         BronzeDagger.Traits.Traits[0].Entries[1].Value = 20;
         BronzeDagger.Data["Type"] = "Weapon";
         BronzeDagger.Data["WeaponGroup"] = 0;
         this._Items.push(BronzeDagger);
 
-        let IronWarhammer = new Item(null, "Iron Warhammer", ["Dagger",9,9], DamageTraits.Copy());
+        let IronWarhammer = new Item(null, "Iron Warhammer", ["Dagger",16,16], DamageTraits.Copy());
         IronWarhammer.Traits.Traits[0].Entries[3].Value = 20;
         IronWarhammer.Data["Type"] = "Weapon";
         IronWarhammer.Data["WeaponGroup"] = 0;
         this._Items.push(IronWarhammer);
 
-        let BronzeWarhammer = new Item(null, "Bronze Warhammer", ["Dagger",9,9], DamageTraits.Copy());
+        let BronzeWarhammer = new Item(null, "Bronze Warhammer", ["Dagger",17,17], DamageTraits.Copy());
         BronzeWarhammer.Traits.Traits[0].Entries[3].Value = 30;
         BronzeWarhammer.Data["Type"] = "Weapon";
         BronzeWarhammer.Data["WeaponGroup"] = 0;
         this._Items.push(BronzeWarhammer);
 
-        let IronAxe = new Item(null, "Iron Axe", ["Dagger",9,9], DamageTraits.Copy());
+        let IronAxe = new Item(null, "Iron Axe", ["Dagger",3,3], DamageTraits.Copy());
         IronAxe.Traits.Traits[0].Entries[2].Value = 15;
         IronAxe.Data["Type"] = "Weapon";
         IronAxe.Data["WeaponGroup"] = 0;
         this._Items.push(IronAxe);
 
-        let BronzeAxe = new Item(null, "Bronze Axe", ["Dagger",9,9], DamageTraits.Copy());
+        let BronzeAxe = new Item(null, "Bronze Axe", ["Dagger",4,4], DamageTraits.Copy());
         BronzeAxe.Traits.Traits[0].Entries[2].Value = 20;
         BronzeAxe.Data["Type"] = "Weapon";
         BronzeAxe.Data["WeaponGroup"] = 0;
         this._Items.push(BronzeAxe);
 
-        let IronDoubleAxe = new Item(null, "IronDoubleAxe", ["Dagger",9,9], DamageTraits.Copy());
+        let IronDoubleAxe = new Item(null, "IronDoubleAxe", ["Dagger",6,6], DamageTraits.Copy());
         IronDoubleAxe.Traits.Traits[0].Entries[2].Value = 20;
         IronDoubleAxe.Data["Type"] = "Weapon";
         IronDoubleAxe.Data["WeaponGroup"] = 0;
         this._Items.push(IronDoubleAxe);
 
-        let BronzeDoubleAxe = new Item(null, "BronzeDoubleAxe", ["Dagger",9,9], DamageTraits.Copy());
+        let BronzeDoubleAxe = new Item(null, "BronzeDoubleAxe", ["Dagger",7,7], DamageTraits.Copy());
         BronzeDoubleAxe.Traits.Traits[0].Entries[2].Value = 25;
         BronzeDoubleAxe.Data["Type"] = "Weapon";
         BronzeDoubleAxe.Data["WeaponGroup"] = 0;
