@@ -175,8 +175,8 @@ class InventoryWindow extends Window
                 this._Dragged.Data["Slot"] = Sender.Data["SlotType"];
                 this._Inventory[Sender.Data["SlotType"]] = this._Dragged.Item;
                 this._Dragged.Trans.Scale = new Engineer.Math.Vertex(80,80,1);
-                this._Dragged.Trans.Translation = Sender.Trans.Translation;
-                if(Previous)
+                this._Dragged.Trans.Translation = Sender.Trans.Translation;                
+                if(Previous && Previous != this._Dragged.Item)
                 {
                     this._Inventory.Loot(Previous);
                 }
