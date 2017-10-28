@@ -10,7 +10,7 @@ class LevelTilesetCollection
     {
         this.Items = {};
         this.Items["Ruin"] = new LevelTileset("Ruin", LevelTilesetLayoutType.Bordered, LevelTilesetFloorType.Uniform, LevelTilesetCeilingType.Bordered, [16,1]);
-        this.Items["Cathedral"] = new LevelTileset("Cathedral", LevelTilesetLayoutType.Story, LevelTilesetFloorType.Checkered, LevelTilesetCeilingType.Crested, [1,8]);
+        this.Items["Cathedral"] = new LevelTileset("Cathedral", LevelTilesetLayoutType.Story, LevelTilesetFloorType.Checkered, LevelTilesetCeilingType.Crested, [4,8]);
     }
     public static Single:LevelTilesetCollection;
 }
