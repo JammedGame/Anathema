@@ -5,6 +5,7 @@ import { Player } from "./Player";
 import { Stats } from "./Stats";
 import { Action } from "./Actions/Action";
 import { Move } from "./Actions/Move";
+import { Teleport } from "./Actions/Teleport";
 import { Attack } from "./Actions/Attack";
 import { Cleave } from "./Actions/Cleave";
 
@@ -45,12 +46,16 @@ class PlayerActions
         this._ActionMove = new Move(this._Player.Stats.MovementSpeed, null, "PlayerMove", this._Player);
         this._ActionMove.Prefs["ColliderTypes"] = ["Solid", "EnemyCollider"];
         this._Actions.push(this._ActionMove);
+        
         let ActionAttack:Attack = new Attack(null, "PlayerAttack", this._Player);
         ActionAttack.Prefs["TargetType"] = "Enemy";
         this._Actions.push(ActionAttack);
         let ActionCleave:Cleave = new Cleave(null, "PlayerCleave", this._Player);
         ActionCleave.Prefs["TargetType"] = "Enemy";
         this._Actions.push(ActionCleave);
+        let ActionTeleport = new Teleport(null, "PlayerTeleport", this._Player);
+        ActionTeleport.Prefs["ColliderTypes"] = ["Solid", "EnemyCollider"];
+        this._Actions.push(ActionTeleport);
         this._LeftMouse = ActionAttack;
         this._RightMouse = ActionAttack;
         this._ActionQ = ActionCleave;

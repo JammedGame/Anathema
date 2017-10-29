@@ -6,8 +6,10 @@ class Stats
 {
     private _Health:number;
     private _MaxHealth:number;
+    private _HealthRegeneration:number;
     private _Mana:number;
     private _MaxMana:number;
+    private _ManaRegeneration:number;
     private _BaseDamage:number;
     private _MovementSpeed:number;
     private _Sight:number;
@@ -29,10 +31,14 @@ class Stats
     public set Health(value:number) { this._Health = value; }
     public get MaxHealth():number { return this._MaxHealth; }
     public set MaxHealth(value:number) { this._MaxHealth = value; }
+    public get HealthRegeneration():number { return this._HealthRegeneration; }
+    public set HealthRegeneration(value:number) { this._HealthRegeneration = value; }
     public get Mana():number { return this._Mana; }
     public set Mana(value:number) { this._Mana = value; }
     public get MaxMana():number { return this._MaxMana; }
     public set MaxMana(value:number) { this._MaxMana = value; }
+    public get ManaRegeneration():number { return this._ManaRegeneration; }
+    public set ManaRegeneration(value:number) { this._ManaRegeneration = value; }
     public get BaseDamage():number { return this._BaseDamage; }
     public set BaseDamage(value:number) { this._BaseDamage = value; }
     public get MovementSpeed():number { return this._MovementSpeed; }
@@ -75,8 +81,10 @@ class Stats
         {
             this._Health = 100;
             this._MaxHealth = 100;
+            this._HealthRegeneration = 0.0001;
             this._Mana = 30;
             this._MaxMana = 30;
+            this._ManaRegeneration = 0.01;
             this._BaseDamage = 10;
             this._MovementSpeed = 3;
             this._Sight = 800;
@@ -103,8 +111,10 @@ class Stats
     {
         this._Health = Other._Health;
         this._MaxHealth = Other._MaxHealth;
+        this._HealthRegeneration = Other._HealthRegeneration;
         this._Mana = Other._Mana;
         this._MaxMana = Other._MaxMana;
+        this._ManaRegeneration = Other._ManaRegeneration;
         this._BaseDamage = Other._BaseDamage;
         this._MovementSpeed = Other._MovementSpeed;
         this._Sight = Other._Sight;

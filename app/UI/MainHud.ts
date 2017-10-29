@@ -28,7 +28,7 @@ class MainHud extends Window
         this._PlayerActions = PlayerActions;
         this.Trans.Scale = new Engineer.Math.Vertex(435,120,1);
         this.Trans.Translation = new Engineer.Math.Vertex(960, 1035, 2);
-        this._ElementT = new Engineer.Engine.TileCollection(null, ["/build/resources/skills/None.png","/build/resources/skills/Move.png","/build/resources/skills/Attack.png","/build/resources/skills/Slash.png","/build/resources/elements/char.png","/build/resources/elements/inventory.png","/build/resources/elements/quests.png","/build/resources/elements/settings.png",]);
+        this._ElementT = new Engineer.Engine.TileCollection(null, ["/build/resources/skills/None.png","/build/resources/skills/Move.png","/build/resources/skills/Attack.png","/build/resources/skills/Slash.png","/build/resources/skills/Teleport.png","/build/resources/elements/char.png","/build/resources/elements/inventory.png","/build/resources/elements/quests.png","/build/resources/elements/settings.png",]);
         this._LeftClick = this.AddElement(new Engineer.Math.Vertex(10,10,2.5), new Engineer.Math.Vertex(80,80,1), 1);
         this._LeftClick.Data["Key"] = "LM";
         this._LeftClick.Events.MouseDown.push(this.CallSkillPicker.bind(this));
@@ -47,12 +47,12 @@ class MainHud extends Window
         this._RightClick = this.AddElement(new Engineer.Math.Vertex(325,10,2.5), new Engineer.Math.Vertex(80,80,1), 2);
         this._RightClick.Data["Key"] = "RM";
         this._RightClick.Events.MouseDown.push(this.CallSkillPicker.bind(this));
-        this.AddElement(new Engineer.Math.Vertex(85,38,2.5), new Engineer.Math.Vertex(50,30,1), 4, Engineer.Math.Color.FromRGBA(180,180,180,255));
-        this._InventoryButton = this.AddElement(new Engineer.Math.Vertex(140,38,2.5), new Engineer.Math.Vertex(50,30,1), 5, Engineer.Math.Color.FromRGBA(180,180,180,255));
+        this.AddElement(new Engineer.Math.Vertex(85,38,2.5), new Engineer.Math.Vertex(50,30,1), 5, Engineer.Math.Color.FromRGBA(180,180,180,255));
+        this._InventoryButton = this.AddElement(new Engineer.Math.Vertex(140,38,2.5), new Engineer.Math.Vertex(50,30,1), 6, Engineer.Math.Color.FromRGBA(180,180,180,255));
         this._InventoryButton.Events.MouseDown.push(this.InventoryButtonInvoke.bind(this));
         this._InventoryButtonClick = [];
-        this.AddElement(new Engineer.Math.Vertex(195,38,2.5), new Engineer.Math.Vertex(50,30,1), 6, Engineer.Math.Color.FromRGBA(180,180,180,255));
-        this.AddElement(new Engineer.Math.Vertex(250,38,2.5), new Engineer.Math.Vertex(50,30,1), 7, Engineer.Math.Color.FromRGBA(180,180,180,255));
+        this.AddElement(new Engineer.Math.Vertex(195,38,2.5), new Engineer.Math.Vertex(50,30,1), 7, Engineer.Math.Color.FromRGBA(180,180,180,255));
+        this.AddElement(new Engineer.Math.Vertex(250,38,2.5), new Engineer.Math.Vertex(50,30,1), 8, Engineer.Math.Color.FromRGBA(180,180,180,255));
         this.CreateBorder();
         this.Update();
         this.Init();

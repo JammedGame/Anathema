@@ -16,11 +16,8 @@ class Unit extends Engineer.Engine.Sprite
     protected _Stats:Stats
     protected _Traits:Traits;
     protected _Scene:GameScene;
-    protected _DamagedEvent:Function[];
     public get Collider(): any { return this._Collider; }
     public get Stats(): Stats { return this._Stats; }
-    public get DamagedEvent(): Function[] { return this._DamagedEvent; }
-    public set DamagedEvent(value:Function[]) { this._DamagedEvent = value; }
     public constructor(Scene:GameScene)
     {
         super();
@@ -28,7 +25,6 @@ class Unit extends Engineer.Engine.Sprite
         this._Traits = new Traits();
         this._Stats = new Stats();
         this._Stats.Store();
-        this._DamagedEvent = [];
     }
     public Update()
     {
@@ -46,20 +42,16 @@ class Unit extends Engineer.Engine.Sprite
             }
             else this.CalculateSpriteSet(0, this._LastDirection);
         }
+        let NewHealth = this._Stats.Health + this._Stats.HealthRegeneration;
+        if(NewHealth  > this._Stats.MaxHealth) this._Stats.Health = this._Stats.MaxHealth;
+        else this._Stats.Health = NewHealth;
+        let NewMana = this._Stats.Mana + this._Stats.ManaRegeneration;
+        if(NewMana > this._Stats.MaxMana) this._Stats.Mana = this._Stats.MaxMana;
+        else this._Stats.Mana = NewMana;
     }
     public Destroy()
     {
         // Virtual
-    }
-    public Invoke(Event:string)
-    {
-        if(Event == "Damaged")
-        {
-            for(let i = 0; i < this._DamagedEvent.length; i++)
-            {
-                this._DamagedEvent[i](this._Stats);
-            }
-        }
     }
     protected CreateCollider()
     {

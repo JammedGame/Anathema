@@ -17,7 +17,6 @@ class HealthBar extends Engineer.Engine.Tile
     {
         super();
         this._Player = Player;
-        this._Player.DamagedEvent.push(this.Update.bind(this));
         this.Name = "HealtBar";
         this.Fixed = true;
         this._PrevLocation = 0;

@@ -79,5 +79,7 @@ class GameScene extends Engineer.Engine.Scene2D
         this._Level.Update();
         this._Player.Update();
         this._Effect.Update();
+        this._HealthBar.Update(this._Player.Stats);
+        this._ManaBar.Update(this._Player.Stats);
     }
 }

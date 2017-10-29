@@ -3,47 +3,26 @@ export { Attack };
 import Engineer from "./../../Engineer";
 
 import { Action } from "./Action";
+import { AfterAnimation } from "./AfterAnimation";
 import { GameScene } from "./../../GameScene";
 import { ItemWorld } from "./../Items/ItemWorld";
 import { ItemCollection } from "./../Items/ItemCollection";
 import { Stats } from "./../Stats";
 
-class Attack extends Action
+class Attack extends AfterAnimation
 {
-    private _InProgress:boolean;
-    private _Completed:boolean;
     private _Speed:number;
     private _Victim:any;
-    protected _Scene:GameScene;
     public get Direction():any { return new Engineer.Math.Vertex(this._Target.X - this._Owner.Collider.Trans.Translation.X, this._Target.Y - this._Owner.Collider.Trans.Translation.Y, 0); }
     public constructor(Old?:Attack, ID?:string, Owner?:any)
     {
         super(Old, ID, Owner);
         this._Set = 2;
-        this._Completed = false;
         this._Art = 2;
     }
-    public Apply(Scene:GameScene) : boolean
+    protected Check()
     {
         // Override
-        if(this._Completed)
-        {
-            this._Completed = false;
-            return false;
-        }
-        if(this._InProgress) return true;
-        this._Scene = Scene;
-        if(!this.Prepare())
-        {
-            if(this._Art == 3) console.log("kurac");
-            return false;
-        }
-        this._InProgress = true;
-        this._Owner.Events.SpriteSetAnimationComplete.push(this.OnFinish.bind(this));
-        return true;
-    }
-    protected Prepare()
-    {
         let Collider = this._Owner.Collider;
         if(!Collider) return false;
         let Enemies = this._Scene.GetObjectsWithData(this.Prefs["TargetType"], true);
@@ -62,19 +41,12 @@ class Attack extends Action
         if(!this._Victim) return false;
         return true;
     }
-    private OnFinish()
+    protected ApplyAction()
     {
-        this._Owner.Events.SpriteSetAnimationComplete.splice(this._Owner.Events.SpriteSetAnimationComplete.indexOf(this.OnFinish.bind(this)), 1);
-        this.DamageApply();
-        this._InProgress = false;
-        this._Completed = true;
-    }
-    protected DamageApply()
-    {
+        // Override
         if(this._Victim)
         {
             this._Victim.Stats.Health -= this.DamageTaken(this._Owner, this._Victim, 1.0);
-            this._Victim.Invoke("Damaged");
             if(this._Victim.Stats.Health < 0)
             {
                 this._Victim.Destroy();

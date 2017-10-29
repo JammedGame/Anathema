@@ -16,9 +16,11 @@ class Cleave extends Attack
     {
         super(Old, ID, Owner);
         this._Art = 3;
+        this._ManaCost = 5;
     }
-    protected Prepare()
+    protected Check()
     {
+        // Override
         let Collider = this._Owner.Collider;
         if(!Collider) return false;
         let Enemies = this._Scene.GetObjectsWithData(this.Prefs["TargetType"], true);
@@ -41,8 +43,9 @@ class Cleave extends Attack
         }
         return true;
     }
-    protected DamageApply()
+    protected ApplyAction()
     {
+        // Override
         for(let i = 0; i < this._Victims.length; i++)
         {
             this._Victims[i].Stats.Health -= this.DamageTaken(this._Owner, this._Victims[i], 0.7);
