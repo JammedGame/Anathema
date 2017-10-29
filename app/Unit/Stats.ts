@@ -85,7 +85,7 @@ class Stats
             this._Mana = 30;
             this._MaxMana = 30;
             this._ManaRegeneration = 0.01;
-            this._BaseDamage = 10;
+            this._BaseDamage = 5;
             this._MovementSpeed = 3;
             this._Sight = 800;
             this._Radius = 100;
