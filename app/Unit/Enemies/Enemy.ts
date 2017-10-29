@@ -82,7 +82,7 @@ class Enemy extends Unit
             }
             else Path = new Engineer.Math.Vertex(this._Player.Collider.Trans.Translation.X, this._Player.Collider.Trans.Translation.Y);
             this._CurrentAction.Target = Path;
-            this._CurrentAction.Prefs["ColliderTypes"] = ["Solid", "EnemyCollider", "PlayerCollider"];
+            this._CurrentAction.Prefs["ColliderTypes"] = ["Solid", "PlayerCollider"];
         }
     }
 }

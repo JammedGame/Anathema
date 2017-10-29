@@ -22,6 +22,7 @@ class Teleport extends AfterAnimation
         // Override
         if(this._Cooldown) return false;
         let Collider = this._Owner.Collider.Copy();
+        Collider.Data["Collision"] = Engineer.Math.CollisionType.Radius2D;
         Collider.Trans.Translation = this._Target;
         let ColliderTypes:string[] = this.Prefs["ColliderTypes"];
         let Collision = new Engineer.Math.CollisionValue();
