@@ -14,11 +14,14 @@ class Level
     private _Tileset:LevelTileset;
     private _Layout:Layout;
     private _Enemies:Enemy[];
+    private _AccessMatrix:number[][];
     public get Size():number { return this._Size; }
     public get Tileset():LevelTileset { return this._Tileset; }
     public get Layout():Layout { return this._Layout; }
     public set Layout(value:Layout) { this._Layout = value; }
     public get Enemies():Enemy[] { return this._Enemies; }
+    public get AccessMatrix():number[][] { return this._AccessMatrix; }
+    public set AccessMatrix(value:number[][]) { this._AccessMatrix = value; } 
     public constructor(Size:number, Tileset:LevelTileset, Enemies:Enemy[])
     {
         this._Size = Size;
