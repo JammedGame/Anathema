@@ -27,7 +27,7 @@ class Unit extends Engineer.Engine.Sprite
         this._Stats = new Stats();
         this._Stats.Store();
     }
-    public Update()
+    public Update() : void
     {
         // Virtual
         if(this._CurrentAction)
@@ -50,11 +50,11 @@ class Unit extends Engineer.Engine.Sprite
         if(NewMana > this._Stats.MaxMana) this._Stats.Mana = this._Stats.MaxMana;
         else this._Stats.Mana = NewMana;
     }
-    public Destroy()
+    public Destroy() : void
     {
         // Virtual
     }
-    protected CreateCollider()
+    protected CreateCollider() : void
     {
         this._Collider = new Engineer.Engine.Tile();
         this._Collider.Trans.Scale = new Engineer.Math.Vertex(this.Trans.Scale.X, this.Trans.Scale.Y, 1);
@@ -75,13 +75,21 @@ class Unit extends Engineer.Engine.Sprite
         if(Angle > 225 && Angle <= 315) return 3;
         else return 0;
     }
-    protected CalculateSpriteSet(Set:number, Direction:any)
+    protected UpdateSeeds()
+    {
+        for(let i = 8; i < 20; i++)
+        {
+            this.SpriteSets[i].Seed = 21 - this._Stats.AttackSpeed;
+        }
+    }
+    protected CalculateSpriteSet(Set:number, Direction:any) : void
     {
         let DirectionIndex = 0;
         if(Direction != null) DirectionIndex = this.CalculateDirection(Direction);
         this.UpdateSpriteSet(Set * 4 + DirectionIndex);
     }
-    public getMatrixCoord(){
+    public MatrixCoord() : number[]
+    {
         let ConvX = Math.floor(this._Collider.Trans.Translation.X / 120);
         let ConvY = Math.floor(this._Collider.Trans.Translation.Y / 120);
         return [ConvX, ConvY];

@@ -85,20 +85,12 @@ class Attack extends AfterAnimation
     }
     public RngWithPercent(Chance:number):boolean
     {
-        let n:boolean[]=[];
-        for(let i=0;i<100;i++)
+        let N:boolean[]=[];
+        for(let i = 0; i < 100; i++)
         {
-            if(i<this._Owner.Stats.CritChance)
-            {
-                n[i]=true;
-            }
-            else
-            {
-                n[i]=false;
-            }
+            if(i<this._Owner.Stats.CritChance) N[i]=true;
+            else N[i]=false;
         }
-        let res:boolean=n[Math.round(Math.random()*99.0)];
-        return res;
+        return N[Math.round(Math.random()*99.0)];
     }
-
 }

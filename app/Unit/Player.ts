@@ -101,6 +101,7 @@ class Player extends Unit
         if(this._StatsUpdate)
         {
             this.UpdateStats();
+            this.UpdateSeeds();
             this._StatsUpdate = false;
         }
         if(this._LastMouseLocation)
@@ -130,6 +131,7 @@ class Player extends Unit
         if(!this._Inventory.Head || !this._Inventory.Head.Data["Full"]) this.EquipItem("RedBeard", 1.2);
         if(this._Inventory.Weapon) this.EquipItem(this._Inventory.Weapon.ArtEquipedIndex, 1.2);
         for(let i = 0; i < this._EquipedItems.length; i++) this._EquipedItems[i].UpdateSpriteSet(this.CurrentSpriteSet);
+        this.UpdateSeeds();
     }
     private EquipItem(Index:string, Offset:number)
     {
@@ -146,6 +148,17 @@ class Player extends Unit
         this._Stats.Reset();
         this._Traits.Apply(this._Stats);
         this._Inventory.Apply(this._Stats);
+    }
+    protected UpdateSeeds()
+    {
+        for(let i = 8; i < 20; i++)
+        {
+            this.SpriteSets[i].Seed = 21 - this._Stats.AttackSpeed;
+            for(let j = 0; j < this._EquipedItems.length; j++)
+            {
+                this._EquipedItems[j].SpriteSets[i].Seed = 21 - this._Stats.AttackSpeed;
+            }
+        }
     }
     protected CalculateSpriteSet(Set:number, Direction:any)
     {

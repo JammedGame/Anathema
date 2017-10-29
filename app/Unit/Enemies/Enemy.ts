@@ -76,8 +76,8 @@ class Enemy extends Unit
             this._CurrentAction = new Move(this._Stats.MovementSpeed, null, "EnemyMove", this);
             if(this._Pathfinder)
             {
-                let TargetLoc = this._Player.getMatrixCoord(); 
-                let MyLoc = this.getMatrixCoord(); 
+                let TargetLoc = this._Player.MatrixCoord(); 
+                let MyLoc = this.MatrixCoord(); 
                 let Path = this._Pathfinder.findShortestPath(MyLoc, TargetLoc);
                 if(Path[0]) {
                     let NextStepCoos = Path[0].coordinates;
