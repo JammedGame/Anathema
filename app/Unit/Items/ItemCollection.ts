@@ -194,7 +194,7 @@ class ItemCollection
         Gloves.Traits.Traits[0].Entries[4].Value = 10;
         this._Items.push(Gloves);
 
-        let Sandals = new Item(null, "Sandals", ["BrownShoes",27,27], ArmorTraits.Copy());
+        let Sandals = new Item(null, "Sandals", ["LegionSandals",27,27], ArmorTraits.Copy());
         Sandals.Data["Type"] = "Boots";
         Sandals.Traits.Traits[0].Entries[1].Value = 5;
         Sandals.Traits.Traits[0].Entries[3].Value = 15;
@@ -235,33 +235,32 @@ class ItemCollection
         Boots.Traits.Traits[0].Entries[3].Value = 15;
         Boots.Traits.Traits[0].Entries[4].Value = 10;
         this._Items.push(Boots);
-        
 
-        let LetherCowl = new Item(null, "Lether Cowl", ["LeatherCap",33,33], ArmorTraits.Copy());
+        let LetherCowl = new Item(null, "Leather Cowl", ["LeatherCap",33,33], ArmorTraits.Copy());
         LetherCowl.Data["Type"] = "Head";
         LetherCowl.Traits.Traits[0].Entries[0].Value = 5;
         LetherCowl.Traits.Traits[0].Entries[1].Value = 10;
         this._Items.push(LetherCowl);
 
-        let LetherChest = new Item(null, "Lether Chest", ["LeatherShoulders",34,34], ArmorTraits.Copy());
+        let LetherChest = new Item(null, "Leather Chest", ["LeatherShoulders",34,34], ArmorTraits.Copy());
         LetherChest.Data["Type"] = "Chest";
         LetherChest.Traits.Traits[0].Entries[0].Value = 5;
         LetherChest.Traits.Traits[0].Entries[1].Value = 10;
         this._Items.push(LetherChest);
 
-        let LetherGreaves = new Item(null, "Lether Greaves", ["GoldPlateGreaves",35,35], ArmorTraits.Copy());
+        let LetherGreaves = new Item(null, "Leather Greaves", ["RedPants",35,35], ArmorTraits.Copy());
         LetherGreaves.Data["Type"] = "Greaves";
         LetherGreaves.Traits.Traits[0].Entries[0].Value = 5;
         LetherGreaves.Traits.Traits[0].Entries[1].Value = 10;
         this._Items.push(LetherGreaves);
 
-        let LetherGloves = new Item(null, "Lether Gloves", ["LeatherBracers",36,36], ArmorTraits.Copy());
+        let LetherGloves = new Item(null, "Leather Gloves", ["LeatherBracers",36,36], ArmorTraits.Copy());
         LetherGloves.Data["Type"] = "Gloves";
         LetherGloves.Traits.Traits[0].Entries[0].Value = 5;
         LetherGloves.Traits.Traits[0].Entries[1].Value = 10;
         this._Items.push(LetherGloves);
 
-        let LetherBoots = new Item(null, "Lether Boots", ["BlackShoes",37,37], ArmorTraits.Copy());
+        let LetherBoots = new Item(null, "Leather Boots", ["BrownShoes",37,37], ArmorTraits.Copy());
         LetherBoots.Data["Type"] = "Boots";
         LetherBoots.Traits.Traits[0].Entries[0].Value = 5;
         LetherBoots.Traits.Traits[0].Entries[1].Value = 10;
@@ -334,7 +333,7 @@ class ItemCollection
     public DropRandom() : Item
     {
         let Index = Math.floor((Math.random() * this._Items.length));
-        return this._Items[Index];
+        return this._Items[Index].Copy();
     }
     public static Single:ItemCollection;
 }

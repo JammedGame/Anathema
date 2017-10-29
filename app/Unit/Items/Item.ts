@@ -32,6 +32,10 @@ class Item
             this._ArtWorldIndex = Old._ArtWorldIndex;
             this._ArtInventoryIndex = Old._ArtInventoryIndex;
             this._Traits = Old._Traits.Copy();
+            for (let Key in Old.Data)
+            {
+                this.Data[Key] = Old.Data[Key];
+            }
         }
         else
         {
