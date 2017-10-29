@@ -18,6 +18,8 @@ class Enemy extends Unit
     protected _Player:Player;
     protected _Trait: Trait;
     protected _Pathfinder: Pathfinder;
+    public get Pathfinder():Pathfinder { return this._Pathfinder; }
+    public set Pathfinder(value:Pathfinder) { this._Pathfinder = value; }
     public constructor(Scene: GameScene, X:number, Y:number)
     {
         super(Scene);
@@ -70,12 +72,16 @@ class Enemy extends Unit
         }
         else if(Engineer.Math.Vertex.Distance(this._Collider.Trans.Translation, this._Player.Collider.Trans.Translation) < this._Stats.Sight)
         {
-            // let Location:any = new Engineer.Math.Vertex(this._Player.Collider.Trans.Translation.X, this._Player.Collider.Trans.Translation.Y);
+            let Path = null;
             this._CurrentAction = new Move(this._Stats.MovementSpeed, null, "EnemyMove", this);
-            const targetLoc = [this._Player.Collider.Trans.Translation.x, this._Player.Collider.Trans.Translation.y];
-            const myLoc = [this._Collider.Trans.Translation.x, this._Collider.Trans.Translation.y]; 
-            const shortestPath = this._Pathfinder.findShortestPath(myLoc, targetLoc);
-            this._CurrentAction.Target = shortestPath;
+            if(this._Pathfinder)
+            {
+                let TargetLoc = [this._Player.Collider.Trans.Translation.x, this._Player.Collider.Trans.Translation.y];
+                let MyLoc = [this._Collider.Trans.Translation.x, this._Collider.Trans.Translation.y]; 
+                Path = this._Pathfinder.findShortestPath(MyLoc, TargetLoc)[0];
+            }
+            else Path = new Engineer.Math.Vertex(this._Player.Collider.Trans.Translation.X, this._Player.Collider.Trans.Translation.Y);
+            this._CurrentAction.Target = Path;
             this._CurrentAction.Prefs["ColliderTypes"] = ["Solid", "EnemyCollider", "PlayerCollider"];
         }
     }

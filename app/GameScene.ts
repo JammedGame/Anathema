@@ -16,6 +16,7 @@ import { HealthBar } from "./UI/HealthBar";
 import { ManaBar } from "./UI/ManaBar";
 import { MainHud } from "./UI/MainHud";
 import { Effect } from "./Unit/Actions/Effect";
+import { Pathfinder } from "./Pathfinder";
 
 class GameScene extends Engineer.Engine.Scene2D
 {
@@ -30,6 +31,7 @@ class GameScene extends Engineer.Engine.Scene2D
     private _MainHud: MainHud;
     private _ItemBank: ItemCollection;
     private _Effect: Effect;
+    private _Pathfinder: Pathfinder;
     public constructor()
     {
         super();
@@ -46,6 +48,8 @@ class GameScene extends Engineer.Engine.Scene2D
         let LevelTilesets = new LevelTilesetCollection();
         this._Level = new Level(10, LevelTilesets.Items["Cathedral"], Enemies);
         this._Level.Init(this);
+        this._Pathfinder = new Pathfinder(this._Level.AccessMatrix);
+        //for(let i = 0; i < Enemies.length; i++) Enemies[i].Pathfinder = this._Pathfinder;
         this._ItemBank = new ItemCollection();
         this._Inventory = new InventoryWindow(this, this._Player.Inventory);
         this._SkillTree = new SkillTree(this);
