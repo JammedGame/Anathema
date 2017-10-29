@@ -92,6 +92,7 @@ class Pathfinder
             }
         }
         // console.log(start);
+        if(!start) return [];
         let openList = [start];
         let closeList = [];
         let cameFrom = [];
