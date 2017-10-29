@@ -97,6 +97,11 @@ class Traits
             {
                 if(this._Traits[i].Entries[j].Type == "HPBonus") Stats.MaxHealth += this._Traits[i].Entries[j].Value;
                 if(this._Traits[i].Entries[j].Type == "HPBonusPercent") Stats.MaxHealth += this._Traits[i].Entries[j].Value * Stats.MaxHealth;
+                if(this._Traits[i].Entries[j].Type == "AttackSpeed") Stats.AttackSpeed += this._Traits[i].Entries[j].Value;
+                if(this._Traits[i].Entries[j].Type == "LifeSteal") Stats.LifeSteal += this._Traits[i].Entries[j].Value;
+                if(this._Traits[i].Entries[j].Type == "CritChance") Stats.CritChance += this._Traits[i].Entries[j].Value;
+                if(this._Traits[i].Entries[j].Type == "CritMultiplier") Stats.CritMultiplier += this._Traits[i].Entries[j].Value;
+                if(this._Traits[i].Entries[j].Type == "HpRegen") Stats.HealthRegeneration += this._Traits[i].Entries[j].Value;
                 if(this._Traits[i].Entries[j].Type == "DamageBonus") Stats.BaseDamage += this._Traits[i].Entries[j].Value;
                 if(this._Traits[i].Entries[j].Type == "SpeedBonus") Stats.MovementSpeed += this._Traits[i].Entries[j].Value;
                 if(this._Traits[i].Entries[j].Type == "FireResist") Stats.FireResist += this._Traits[i].Entries[j].Value;

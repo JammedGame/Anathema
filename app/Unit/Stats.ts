@@ -10,6 +10,10 @@ class Stats
     private _Mana:number;
     private _MaxMana:number;
     private _ManaRegeneration:number;
+    private _AttackSpeed:number;
+    private _LifeSteal:number;
+    private _CritChance:number;
+    private _CritMultiplier:number;
     private _BaseDamage:number;
     private _MovementSpeed:number;
     private _Sight:number;
@@ -39,6 +43,14 @@ class Stats
     public set MaxMana(value:number) { this._MaxMana = value; }
     public get ManaRegeneration():number { return this._ManaRegeneration; }
     public set ManaRegeneration(value:number) { this._ManaRegeneration = value; }
+    public get AttackSpeed():number { return this._AttackSpeed; }
+    public set AttackSpeed(value:number) { this._AttackSpeed = value; }
+    public get LifeSteal():number { return this._LifeSteal; }
+    public set LifeSteal(value:number) { this._LifeSteal = value; }
+    public get CritChance():number { return this._CritChance; }
+    public set CritChance(value:number) { this._CritChance = value; }
+    public get CritMultiplier():number { return this._CritMultiplier; }
+    public set CritMultiplier(value:number) { this._CritMultiplier = value; }
     public get BaseDamage():number { return this._BaseDamage; }
     public set BaseDamage(value:number) { this._BaseDamage = value; }
     public get MovementSpeed():number { return this._MovementSpeed; }
@@ -85,6 +97,10 @@ class Stats
             this._Mana = 30;
             this._MaxMana = 30;
             this._ManaRegeneration = 0.01;
+            this._AttackSpeed = 1;
+            this._LifeSteal=0;
+            this._CritChance=0;
+            this._CritMultiplier=2;
             this._BaseDamage = 5;
             this._MovementSpeed = 3;
             this._Sight = 800;
@@ -115,6 +131,10 @@ class Stats
         this._Mana = Other._Mana;
         this._MaxMana = Other._MaxMana;
         this._ManaRegeneration = Other._ManaRegeneration;
+        this._AttackSpeed = Other._AttackSpeed;
+        this._LifeSteal = Other._LifeSteal;
+        this._CritChance = Other._CritChance;
+        this._CritMultiplier = Other._CritMultiplier;
         this._BaseDamage = Other._BaseDamage;
         this._MovementSpeed = Other._MovementSpeed;
         this._Sight = Other._Sight;

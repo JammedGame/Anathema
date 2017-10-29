@@ -9,6 +9,8 @@ import { Teleport } from "./Actions/Utility/Teleport";
 import { Attack } from "./Actions/Attacks/Attack";
 import { Cleave } from "./Actions/Attacks/Cleave";
 import { Bloodlust } from "./Actions/TraitEffects/Bloodlust";
+import { Berserk } from "./Actions/TraitEffects/Berserk";
+import { Lunacy } from "./Actions/TraitEffects/Lunacy";
 
 class PlayerActions
 {
@@ -59,6 +61,10 @@ class PlayerActions
         this._Actions.push(ActionTeleport);
         let ActionBloodlust = new Bloodlust(null, "PlayerBloodlust", this._Player);
         this._Actions.push(ActionBloodlust);
+        let ActionBerserk = new Berserk(null, "PlayerBerserk", this._Player);
+        this._Actions.push(ActionBerserk);
+        let ActionLunacy = new Lunacy(null, "PlayerLunacy", this._Player);
+        this._Actions.push(ActionLunacy);
         this._LeftMouse = ActionAttack;
         this._RightMouse = ActionAttack;
         this._ActionQ = ActionCleave;

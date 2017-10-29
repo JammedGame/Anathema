@@ -35,10 +35,10 @@ class Attack extends AfterAnimation
                 {
                     this._Victim = Enemies[i];
                     break;
-                }    
+                }
             }
         }
-        if(!this._Victim) return false;
+        if(!this._Victim) return false;        
         return true;
     }
     protected ApplyAction()  : void
@@ -46,7 +46,11 @@ class Attack extends AfterAnimation
         // Override
         if(this._Victim)
         {
-            this._Victim.Stats.Health -= this.DamageTaken(this._Owner, this._Victim, 1.0);
+            let DamageDealt = this.DamageTaken(this._Owner, this._Victim, 1.0);    
+                        
+            this._Victim.Stats.Health -= DamageDealt;             
+            this._Owner.Stats.Health += DamageDealt * this._Owner.Stats.LifeSteal/100;
+            
             if(this._Victim.Stats.Health < 0)
             {
                 this._Victim.Destroy();
@@ -59,7 +63,7 @@ class Attack extends AfterAnimation
         }
     }
     protected DamageTaken(Attacker, Attacked, Factor) : number
-    { 
+    {
         let DMGTaken = Attacker.Stats.BaseDamage;
         if(Attacker.Stats.FireDamage) 
             DMGTaken += this.DamageCalculation(Attacker.Stats.FireDamage, Attacked.Stats.FireResist);
@@ -73,11 +77,28 @@ class Attack extends AfterAnimation
             DMGTaken += this.DamageCalculation(Attacker.Stats.SlashDamage, Attacked.Stats.SlashResist);
         if(Attacker.Stats.BluntDamage)
             DMGTaken += this.DamageCalculation(Attacker.Stats.BluntDamage, Attacked.Stats.BluntResist);
-        return DMGTaken * Factor;
+        return DMGTaken * Factor * (this.RngWithPercent(Attacker.Stats.CritChance)?(Attacker.Stats.CritMultiplier):1.0);
     }
     private DamageCalculation(Damage:number, Resist:number)  : number
     {
         return (1 - Resist * 1.0/(Damage+Resist))*Damage;
+    }
+    public RngWithPercent(Chance:number):boolean
+    {
+        let n:boolean[]=[];
+        for(let i=0;i<100;i++)
+        {
+            if(i<this._Owner.Stats.CritChance)
+            {
+                n[i]=true;
+            }
+            else
+            {
+                n[i]=false;
+            }
+        }
+        let res:boolean=n[Math.round(Math.random()*99.0)];
+        return res;
     }
 
 }

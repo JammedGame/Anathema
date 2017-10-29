@@ -16,7 +16,9 @@ class Bloodlust extends TraitEffect
         this._CooldownLength = 60;
         this._Art = 8;
         this._Trait = new Trait(null, "Bloodlust");
-        let Entry = new TraitEntry(null, "DamageBonus", 100);
+        let Entry = new TraitEntry(null, "DamageBonus", 20);
+        let Entry1 = new TraitEntry(null, "SpeedBonus", 1.5);
         this._Trait.AddEntry(Entry);
+        this._Trait.AddEntry(Entry1);
     }
 }
