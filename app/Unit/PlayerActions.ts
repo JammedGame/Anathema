@@ -5,9 +5,9 @@ import { Player } from "./Player";
 import { Stats } from "./Stats";
 import { Action } from "./Actions/Action";
 import { Move } from "./Actions/Move";
-import { Teleport } from "./Actions/Teleport";
-import { Attack } from "./Actions/Attack";
-import { Cleave } from "./Actions/Cleave";
+import { Teleport } from "./Actions/Utility/Teleport";
+import { Attack } from "./Actions/Attacks/Attack";
+import { Cleave } from "./Actions/Attacks/Cleave";
 
 class PlayerActions
 {

@@ -6,6 +6,7 @@ import { Player } from "./../Unit/Player";
 import { PlayerActions } from "./../Unit/PlayerActions";
 import { Window } from "./Window";
 import { SkillPicker } from "./SkillPicker";
+import { ActionArtCollection } from "./../Unit/Actions/ActionArtCollection";
 
 class MainHud extends Window
 {
@@ -28,31 +29,38 @@ class MainHud extends Window
         this._PlayerActions = PlayerActions;
         this.Trans.Scale = new Engineer.Math.Vertex(435,120,1);
         this.Trans.Translation = new Engineer.Math.Vertex(960, 1035, 2);
-        this._ElementT = new Engineer.Engine.TileCollection(null, ["/build/resources/skills/None.png","/build/resources/skills/Move.png","/build/resources/skills/Attack.png","/build/resources/skills/Slash.png","/build/resources/skills/Teleport.png","/build/resources/elements/char.png","/build/resources/elements/inventory.png","/build/resources/elements/quests.png","/build/resources/elements/settings.png",]);
+        let AAC = new ActionArtCollection();
+        this._ElementT = new Engineer.Engine.TileCollection(null, ["/build/resources/elements/char.png","/build/resources/elements/inventory.png","/build/resources/elements/quests.png","/build/resources/elements/settings.png",]);
         this._LeftClick = this.AddElement(new Engineer.Math.Vertex(10,10,2.5), new Engineer.Math.Vertex(80,80,1), 1);
+        this._LeftClick.Collection = ActionArtCollection.Single;
         this._LeftClick.Data["Key"] = "LM";
         this._LeftClick.Events.MouseDown.push(this.CallSkillPicker.bind(this));
         this._QDown = this.AddElement(new Engineer.Math.Vertex(85,-5,2.5), new Engineer.Math.Vertex(50,50,1), 3);
+        this._QDown.Collection = ActionArtCollection.Single;
         this._QDown.Data["Key"] = "Q";
         this._QDown.Events.MouseDown.push(this.CallSkillPicker.bind(this));
         this._WDown = this.AddElement(new Engineer.Math.Vertex(140,-5,2.5), new Engineer.Math.Vertex(50,50,1), 0);
+        this._WDown.Collection = ActionArtCollection.Single;
         this._WDown.Data["Key"] = "W";
         this._WDown.Events.MouseDown.push(this.CallSkillPicker.bind(this));
         this._EDown = this.AddElement(new Engineer.Math.Vertex(195,-5,2.5), new Engineer.Math.Vertex(50,50,1), 0);
+        this._EDown.Collection = ActionArtCollection.Single;
         this._EDown.Data["Key"] = "E";
         this._EDown.Events.MouseDown.push(this.CallSkillPicker.bind(this));
         this._RDown = this.AddElement(new Engineer.Math.Vertex(250,-5,2.5), new Engineer.Math.Vertex(50,50,1), 0);
+        this._RDown.Collection = ActionArtCollection.Single;
         this._RDown.Data["Key"] = "R";
         this._RDown.Events.MouseDown.push(this.CallSkillPicker.bind(this));
         this._RightClick = this.AddElement(new Engineer.Math.Vertex(325,10,2.5), new Engineer.Math.Vertex(80,80,1), 2);
+        this._RightClick.Collection = ActionArtCollection.Single;
         this._RightClick.Data["Key"] = "RM";
         this._RightClick.Events.MouseDown.push(this.CallSkillPicker.bind(this));
-        this.AddElement(new Engineer.Math.Vertex(85,38,2.5), new Engineer.Math.Vertex(50,30,1), 5, Engineer.Math.Color.FromRGBA(180,180,180,255));
-        this._InventoryButton = this.AddElement(new Engineer.Math.Vertex(140,38,2.5), new Engineer.Math.Vertex(50,30,1), 6, Engineer.Math.Color.FromRGBA(180,180,180,255));
+        this.AddElement(new Engineer.Math.Vertex(85,38,2.5), new Engineer.Math.Vertex(50,30,1), 0, Engineer.Math.Color.FromRGBA(180,180,180,255));
+        this._InventoryButton = this.AddElement(new Engineer.Math.Vertex(140,38,2.5), new Engineer.Math.Vertex(50,30,1), 1, Engineer.Math.Color.FromRGBA(180,180,180,255));
         this._InventoryButton.Events.MouseDown.push(this.InventoryButtonInvoke.bind(this));
         this._InventoryButtonClick = [];
-        this.AddElement(new Engineer.Math.Vertex(195,38,2.5), new Engineer.Math.Vertex(50,30,1), 7, Engineer.Math.Color.FromRGBA(180,180,180,255));
-        this.AddElement(new Engineer.Math.Vertex(250,38,2.5), new Engineer.Math.Vertex(50,30,1), 8, Engineer.Math.Color.FromRGBA(180,180,180,255));
+        this.AddElement(new Engineer.Math.Vertex(195,38,2.5), new Engineer.Math.Vertex(50,30,1), 2, Engineer.Math.Color.FromRGBA(180,180,180,255));
+        this.AddElement(new Engineer.Math.Vertex(250,38,2.5), new Engineer.Math.Vertex(50,30,1), 3, Engineer.Math.Color.FromRGBA(180,180,180,255));
         this.CreateBorder();
         this.Update();
         this.Init();
@@ -62,7 +70,7 @@ class MainHud extends Window
         this._PickKey = Args.Sender.Data["Key"];
         if(!this._Picker)
         {
-            this._Picker = new SkillPicker(this._Scene, this._ElementT, this.SkillPicked.bind(this));
+            this._Picker = new SkillPicker(this._Scene, ActionArtCollection.Single, this.SkillPicked.bind(this));
         }
         let Indices = [0];
         for(let i = 0; i < this._PlayerActions.Actions.length; i++) Indices.push(this._PlayerActions.Actions[i].Art);

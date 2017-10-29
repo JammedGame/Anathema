@@ -8,7 +8,7 @@ import { Player } from "./../Player";
 import { Stats } from "./../Stats";
 import { Action } from "./../Actions/Action";
 import { Move } from "./../Actions/Move";
-import { Attack } from "./../Actions/Attack";
+import { Attack } from "./../Actions/Attacks/Attack";
 import { Trait } from "../Trait";
 import { Pathfinder } from "../../Pathfinder";
 

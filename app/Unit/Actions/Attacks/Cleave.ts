@@ -1,14 +1,14 @@
 export { Cleave };
 
-import Engineer from "./../../Engineer";
+import Engineer from "./../../../Engineer";
 
-import { Action } from "./Action";
+import { Action } from "./../Action";
 import { Attack } from "./Attack";
-import { GameScene } from "./../../GameScene";
-import { ItemWorld } from "./../Items/ItemWorld";
-import { ItemCollection } from "./../Items/ItemCollection";
-import { Stats } from "./../Stats";
-import { Effect } from "./Effect";
+import { GameScene } from "./../../../GameScene";
+import { ItemWorld } from "./../../Items/ItemWorld";
+import { ItemCollection } from "./../../Items/ItemCollection";
+import { Stats } from "./../../Stats";
+import { Effect } from "./../Effect";
 
 class Cleave extends Attack
 {

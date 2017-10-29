@@ -1,13 +1,13 @@
 export { Attack };
 
-import Engineer from "./../../Engineer";
+import Engineer from "./../../../Engineer";
 
-import { Action } from "./Action";
-import { AfterAnimation } from "./AfterAnimation";
-import { GameScene } from "./../../GameScene";
-import { ItemWorld } from "./../Items/ItemWorld";
-import { ItemCollection } from "./../Items/ItemCollection";
-import { Stats } from "./../Stats";
+import { Action } from "./../Action";
+import { AfterAnimation } from "./../AfterAnimation";
+import { GameScene } from "./../../../GameScene";
+import { ItemWorld } from "./../../Items/ItemWorld";
+import { ItemCollection } from "./../../Items/ItemCollection";
+import { Stats } from "./../../Stats";
 
 class Attack extends AfterAnimation
 {

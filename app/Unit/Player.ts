@@ -7,7 +7,7 @@ import { Unit } from "./Unit";
 import { Stats } from "./Stats";
 import { Action } from "./Actions/Action";
 import { Move } from "./Actions/Move";
-import { Attack } from "./Actions/Attack";
+import { Attack } from "./Actions/Attacks/Attack";
 import { Traits } from "./Trait" 
 import { Inventory } from "./Items/Inventory";
 import { SpriteSetLoader } from "./../Util/SpriteSetLoader";

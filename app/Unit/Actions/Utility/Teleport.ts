@@ -1,19 +1,18 @@
 export { Teleport };
 
-import Engineer from "./../../Engineer";
+import Engineer from "./../../../Engineer";
 
-import { Action } from "./Action";
-import { AfterAnimation } from "./AfterAnimation";
-import { GameScene } from "./../../GameScene";
+import { Action } from "./../Action";
+import { AfterAnimation } from "./../AfterAnimation";
+import { GameScene } from "./../../../GameScene";
 
 class Teleport extends AfterAnimation
 {
-    private _Speed:number;
     public constructor(Old?:Teleport, ID?:string, Owner?:any)
     {
         super(Old, ID, Owner);
         this._Set = 5;
-        this._Art = 4;
+        this._Art = 22;
         this._ManaCost = 10;
         this._CooldownLength = 0.5;
     }

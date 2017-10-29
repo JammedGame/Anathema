@@ -40,6 +40,7 @@ class AfterAnimation extends Action
     }
     protected CheckManaCost() : boolean
     {
+        // Virtual
         let Estimated = this._Owner.Stats.Mana - this._ManaCost;
         if(Estimated >= 0)
         {
