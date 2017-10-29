@@ -20,7 +20,7 @@ class Attack extends AfterAnimation
         this._Set = 2;
         this._Art = 2;
     }
-    protected Check()
+    protected Check() : boolean
     {
         // Override
         let Collider = this._Owner.Collider;
@@ -41,7 +41,7 @@ class Attack extends AfterAnimation
         if(!this._Victim) return false;
         return true;
     }
-    protected ApplyAction()
+    protected ApplyAction()  : void
     {
         // Override
         if(this._Victim)
@@ -58,7 +58,7 @@ class Attack extends AfterAnimation
             }
         }
     }
-    protected DamageTaken(Attacker, Attacked, Factor)
+    protected DamageTaken(Attacker, Attacked, Factor) : number
     { 
         let DMGTaken = Attacker.Stats.BaseDamage;
         if(Attacker.Stats.FireDamage) 
@@ -75,7 +75,7 @@ class Attack extends AfterAnimation
             DMGTaken += this.DamageCalculation(Attacker.Stats.BluntDamage, Attacked.Stats.BluntResist);
         return DMGTaken * Factor;
     }
-    private DamageCalculation(Damage:number, Resist:number)
+    private DamageCalculation(Damage:number, Resist:number)  : number
     {
         return (1 - Resist * 1.0/(Damage+Resist))*Damage;
     }

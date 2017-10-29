@@ -28,16 +28,17 @@ class AfterAnimation extends Action
         this._Scene = Scene;
         if(!this.Check()) return false;
         if(!this.CheckManaCost()) return false;
+        this.ShowEffects();
         this._InProgress = true;
         this._Owner.Events.SpriteSetAnimationComplete.push(this.OnFinish.bind(this));
         return true;
     }
-    protected Check()
+    protected Check() : boolean
     {
         // Virtual
         return true;
     }
-    protected CheckManaCost()
+    protected CheckManaCost() : boolean
     {
         let Estimated = this._Owner.Stats.Mana - this._ManaCost;
         if(Estimated >= 0)
@@ -47,14 +48,18 @@ class AfterAnimation extends Action
         }
         return false;
     }
-    private OnFinish()
+    protected ShowEffects() : void
+    {
+        // Virtual
+    }
+    private OnFinish() : void
     {
         this._Owner.Events.SpriteSetAnimationComplete.splice(this._Owner.Events.SpriteSetAnimationComplete.indexOf(this.OnFinish.bind(this)), 1);
         this.ApplyAction();
         this._InProgress = false;
         this._Completed = true;
     }
-    protected ApplyAction()
+    protected ApplyAction() : void
     {
         // Virtual
     }
