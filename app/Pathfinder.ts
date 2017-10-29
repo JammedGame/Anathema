@@ -2,16 +2,18 @@ export { Pathfinder };
 
 class Pathfinder
 {
-    public constructor()
+    protected _LvlMatrix: number[][];
+    public constructor(matrix)
     {
+        this._LvlMatrix = matrix;
     }
 
-    public equal(p1, p2) 
+    private equal(p1, p2) 
     {
         return p1[0] === p2[0] && p1[1] === p2[1];
     }
     
-    public reconstructPath(currentNode) 
+    private reconstructPath(currentNode) 
     {
         let curr = currentNode;
         let ret = [];
@@ -22,18 +24,18 @@ class Pathfinder
         return ret.reverse();
     } 
 
-    public heuristic(p1, p2) 
+    private heuristic(p1, p2) 
     {
         const d1 = Math.abs (p2[0] - p1[0]);
         const d2 = Math.abs (p2[1] - p1[1]);
         return d1 + d2;
     }
 
-    public findNeighbors(graph, source) 
+    private findNeighbors(graph, source) 
     {
         const x = source.coordinates[0];
         const y = source.coordinates[1];
-    		const neighborhood = [
+    	const neighborhood = [
           [x+1, y],
           [x-1, y],
           [x, y+1],
@@ -53,17 +55,14 @@ class Pathfinder
         return neighbors;
     }    
 
-    public findShortestPath(graph, point1, point2) 
+    public findShortestPath(point1, point2) 
     {
-        // graph = [[1,1,1], [1,0,0], [1,1,1]];
-        // point1 = [0,1];
-        // point2 = [2,2];
         let vertex = [];
         let start;
         
         // convert graph to nodes
-        for(let i = 0; i < graph.length; i++) {
-          let row = graph[i];
+        for(let i = 0; i < this._LvlMatrix.length; i++) {
+          let row = this._LvlMatrix[i];
           for(var j = 0; j < row.length; j++) {
             if (row[j] == 1) {
               let node = {

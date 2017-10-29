@@ -9,11 +9,15 @@ import { Stats } from "./../Stats";
 import { Action } from "./../Actions/Action";
 import { Move } from "./../Actions/Move";
 import { Attack } from "./../Actions/Attack";
+import { Trait } from "../Trait";
+import { Pathfinder } from "../../Pathfinder";
 
 class Enemy extends Unit
 {
     protected _AttackIndex:number;
     protected _Player:Player;
+    protected _Trait: Trait;
+    protected _Pathfinder: Pathfinder;
     public constructor(Scene: GameScene, X:number, Y:number)
     {
         super(Scene);
@@ -66,9 +70,12 @@ class Enemy extends Unit
         }
         else if(Engineer.Math.Vertex.Distance(this._Collider.Trans.Translation, this._Player.Collider.Trans.Translation) < this._Stats.Sight)
         {
-            let Location:any = new Engineer.Math.Vertex(this._Player.Collider.Trans.Translation.X, this._Player.Collider.Trans.Translation.Y);
+            // let Location:any = new Engineer.Math.Vertex(this._Player.Collider.Trans.Translation.X, this._Player.Collider.Trans.Translation.Y);
             this._CurrentAction = new Move(this._Stats.MovementSpeed, null, "EnemyMove", this);
-            this._CurrentAction.Target = Location;
+            const targetLoc = [this._Player.Collider.Trans.Translation.x, this._Player.Collider.Trans.Translation.y];
+            const myLoc = [this._Collider.Trans.Translation.x, this._Collider.Trans.Translation.y]; 
+            const shortestPath = this._Pathfinder.findShortestPath(myLoc, targetLoc);
+            this._CurrentAction.Target = shortestPath;
             this._CurrentAction.Prefs["ColliderTypes"] = ["Solid", "EnemyCollider", "PlayerCollider"];
         }
     }
