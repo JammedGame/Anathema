@@ -22,6 +22,7 @@ class Player extends Unit
     private _WDown:boolean;
     private _EDown:boolean;
     private _RDown:boolean;
+    private _StatsUpdate:boolean;
     private _LastMouseLocation: any;
     private _Inventory: Inventory;
     private _EquipedCollection: EquipedCollection;
@@ -29,6 +30,8 @@ class Player extends Unit
     private _EquipedItems:any[];
     public get Actions():PlayerActions { return this._Actions; }
     public get Inventory():Inventory { return this._Inventory; }
+    public get StatsUpdate():boolean { return this._StatsUpdate; }
+    public set StatsUpdate(value:boolean) { this._StatsUpdate = value; }
     public constructor(Scene: GameScene)
     {
         super(Scene);
@@ -37,6 +40,7 @@ class Player extends Unit
         this.Data["Player"] = true;
         Scene.Data["Player"] = this;
         this._Stats.Radius = 150;
+        this._StatsUpdate = false;
 
         this._Inventory = new Inventory();
         this._EquipedCollection = new EquipedCollection();
@@ -94,6 +98,11 @@ class Player extends Unit
     }
     public Update()
     {
+        if(this._StatsUpdate)
+        {
+            this.UpdateStats();
+            this._StatsUpdate = false;
+        }
         if(this._LastMouseLocation)
         {
             let Location = new Engineer.Math.Vertex(this._LastMouseLocation.X - this._Scene.Trans.Translation.X, this._LastMouseLocation.Y - this._Scene.Trans.Translation.Y);

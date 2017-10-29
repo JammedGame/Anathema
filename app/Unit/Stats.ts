@@ -138,6 +138,10 @@ class Stats
     }
     public Reset() : void
     {
+        let Health = this._Health;
+        let Mana = this._Mana;
         this.Clone(this._BaseStats);
+        this._Health = Health;
+        this._Mana = Mana;
     }
 }

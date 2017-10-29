@@ -8,6 +8,7 @@ import { Move } from "./Actions/Move";
 import { Teleport } from "./Actions/Utility/Teleport";
 import { Attack } from "./Actions/Attacks/Attack";
 import { Cleave } from "./Actions/Attacks/Cleave";
+import { Bloodlust } from "./Actions/TraitEffects/Bloodlust";
 
 class PlayerActions
 {
@@ -56,6 +57,8 @@ class PlayerActions
         let ActionTeleport = new Teleport(null, "PlayerTeleport", this._Player);
         ActionTeleport.Prefs["ColliderTypes"] = ["Solid", "EnemyCollider"];
         this._Actions.push(ActionTeleport);
+        let ActionBloodlust = new Bloodlust(null, "PlayerBloodlust", this._Player);
+        this._Actions.push(ActionBloodlust);
         this._LeftMouse = ActionAttack;
         this._RightMouse = ActionAttack;
         this._ActionQ = ActionCleave;
