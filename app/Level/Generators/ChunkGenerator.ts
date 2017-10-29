@@ -103,7 +103,6 @@ class ChunkGenerator
     }
     public static FakeIsometric(NewChunk:Chunk, WallVoid:boolean) : void
     {
-        console.log(WallVoid);
         for(let i = 0; i < NewChunk.Dimensions.Y - 1; i++)
         {
             for(let j = 0; j < NewChunk.Dimensions.X; j++)
@@ -117,6 +116,21 @@ class ChunkGenerator
                 {
                     NewChunk.Fields[i+1][j] = 3;
                     if(i < NewChunk.Dimensions.Y - 2 && NewChunk.Fields[i+2][j] < 2) NewChunk.Fields[i+2][j] = 2;
+                }
+            }
+        }
+    }
+    public static FakeRoof(NewChunk:Chunk) : void
+    {
+        for(let i = 0; i < NewChunk.Dimensions.Y; i++)
+        {
+            for(let j = 0; j < NewChunk.Dimensions.X; j++)
+            {
+                if(NewChunk.Fields[i][j] == 4 || NewChunk.Fields[i][j] == 0 || NewChunk.Fields[i][j] == -1)
+                {
+                    //if(i > NewChunk.Dimensions.Y / 2) NewChunk.Fields[i][j] = 5;
+                    //else
+                    NewChunk.Fields[i][j] = 4;
                 }
             }
         }

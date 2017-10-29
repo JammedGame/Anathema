@@ -1,4 +1,4 @@
-export { LevelTileset, LevelTilesetLayoutType, LevelTilesetCeilingType, LevelTilesetFloorType }
+export { LevelTileset, LevelTilesetLayoutType, LevelTilesetCeilingType, LevelTilesetWallType, LevelTilesetFloorType }
 
 import Engineer from "./../../Engineer";
 
@@ -11,18 +11,25 @@ enum LevelTilesetCeilingType
 {
     Uniform = 0,
     Crested = 1,
-    Bordered = 2
+    Bordered = 2,
+    Roofed = 3
 }
 enum LevelTilesetFloorType
 {
     Uniform = 0,
     Checkered = 1
 }
+enum LevelTilesetWallType
+{
+    Uniform = 0,
+    Bordered = 1
+}
 class LevelTileset
 {
     private _Name:string;
     private _LayoutType:LevelTilesetLayoutType;
     private _FloorType:LevelTilesetFloorType;
+    private _WallType:LevelTilesetWallType;
     private _CeilingType:LevelTilesetCeilingType;
     private _Floor:any;
     private _FloorSet2:any;
@@ -31,6 +38,7 @@ class LevelTileset
     private _Ceiling:any;
     public get LayoutType() : LevelTilesetLayoutType { return this._LayoutType; }
     public get FloorType() : LevelTilesetFloorType { return this._FloorType; }
+    public get WallType() : LevelTilesetWallType { return this._WallType; }
     public get CeilingType() : LevelTilesetCeilingType { return this._CeilingType; }
     public get Floor() : any { return this._Floor; }
     public get FloorSet1() : any { return this._Floor; }
@@ -38,11 +46,12 @@ class LevelTileset
     public get WallUpper() : any { return this._WallUpper; }
     public get WallLower() : any { return this._WallLower; }
     public get Ceiling() : any { return this._Ceiling; }
-    public constructor(Name:string, LayoutType:LevelTilesetLayoutType, FloorType:LevelTilesetFloorType, CeilingType:LevelTilesetCeilingType, ArrayLengths:number[])
+    public constructor(Name:string, LayoutType:LevelTilesetLayoutType, FloorType:LevelTilesetFloorType, WallType:LevelTilesetWallType, CeilingType:LevelTilesetCeilingType, ArrayLengths:number[])
     {
         this._Name = Name;
         this._LayoutType = LayoutType;
         this._FloorType = FloorType;
+        this._WallType = WallType;
         this._CeilingType = CeilingType;
         this.Init(ArrayLengths);
         console.log(this);
@@ -78,6 +87,7 @@ class LevelTileset
         this._WallUpper = new Engineer.Engine.TileCollection(null, WallUpperImages);
         this._WallLower = new Engineer.Engine.TileCollection(null, WallLowerImages);
         let CeilingLength = 2;
+        if(this._CeilingType == LevelTilesetCeilingType.Roofed) CeilingLength = 6;
         if(this._CeilingType == LevelTilesetCeilingType.Crested) CeilingLength = 13;
         if(this._CeilingType == LevelTilesetCeilingType.Bordered) CeilingLength = 17;
         let CeilingImages:string[] = [];
