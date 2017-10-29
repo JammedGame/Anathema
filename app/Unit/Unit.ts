@@ -81,4 +81,9 @@ class Unit extends Engineer.Engine.Sprite
         if(Direction != null) DirectionIndex = this.CalculateDirection(Direction);
         this.UpdateSpriteSet(Set * 4 + DirectionIndex);
     }
+    public getMatrixCoord(){
+        let ConvX = Math.floor(this._Collider.Trans.Translation.X / 120);
+        let ConvY = Math.floor(this._Collider.Trans.Translation.Y / 120);
+        return [ConvX, ConvY];
+    }
 }
