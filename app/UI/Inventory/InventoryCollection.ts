@@ -7,7 +7,7 @@ class InventoryCollection extends Engineer.Engine.TileCollection
     public constructor()
     {
         super(null, []);
-        for(let i = 1; i < 48; i++)
+        for(let i = 1; i <= 48; i++)
         {
             let s:string = i.toString();
             if(i < 10) s = "00" + s;

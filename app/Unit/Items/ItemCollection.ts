@@ -24,7 +24,7 @@ class ItemCollection
         let DamageTraits = new Traits();
         DamageTraits.Traits.push(DamageTrait);
 
-
+    
         let BasicSword = new Item(null, "Basic Sword", ["Dagger",0,0], DamageTraits.Copy());
         BasicSword.Traits.Traits[0].Entries[2].Value = 10;
         BasicSword.Data["Type"] = "Weapon";
@@ -212,7 +212,7 @@ class ItemCollection
         let LetherBoots = new Item(null, "Lether Boots", ["BlackShoes",37,37]);
         LetherBoots.Data["Type"] = "Boots";
         this._Items.push(LetherBoots);
-
+        
         let ChainHelm = new Item(null, "Chain Helm", ["ChainHoodHat",38,38]);
         ChainHelm.Data["Type"] = "Head";
         this._Items.push(ChainHelm);
@@ -222,16 +222,16 @@ class ItemCollection
         this._Items.push(ChainMail);
 
         let GreavesMail = new Item(null, "Chain Mail", ["PlateGreaves",40,40]);
-        ChainMail.Data["Type"] = "Greaves";
-        this._Items.push(ChainMail);
+        GreavesMail.Data["Type"] = "Greaves";
+        this._Items.push(GreavesMail);
 
-        let ChainGloves = new Item(null, "Chain Gloves", ["ChainGloves",41,41]);
-        ChainMail.Data["Type"] = "Gloves";
-        this._Items.push(ChainMail);
+        let ChainGloves = new Item(null, "Chain Gloves", ["PlateGloves",41,41]);
+        ChainGloves.Data["Type"] = "Gloves";
+        this._Items.push(ChainGloves);
 
-        let ChainBoots = new Item(null, "Chain Mail", ["ChainBoots",42,42]);
-        ChainMail.Data["Type"] = "Boots";
-        this._Items.push(ChainMail);
+        let ChainBoots = new Item(null, "Chain Boots", ["PlateBoots",42,42]);
+        ChainBoots.Data["Type"] = "Boots";
+        this._Items.push(ChainBoots);
 
         let HelmetPlate = new Item(null, "Plate Helmet", ["PlateHelm",43,43]);
         HelmetPlate.Data["Type"] = "Head";

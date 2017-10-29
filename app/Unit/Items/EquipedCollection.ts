@@ -13,9 +13,9 @@ class EquipedCollection
         this.LoadSpriteSet("LeatherBelt", "Belt");
         this.LoadSpriteSet("BlackShoes", "Feet");
         this.LoadSpriteSet("BrownShoes", "Feet");
-        this.LoadSpriteSet("GoldPlateShoes", "Feet");
+        this.LoadSpriteSet("GoldPlateBoots", "Feet");
         this.LoadSpriteSet("MaroonShoes", "Feet");
-        this.LoadSpriteSet("PlateShoes", "Feet");
+        this.LoadSpriteSet("PlateBoots", "Feet");
         this.LoadSpriteSet("LegionSandals", "Feet");
         this.LoadSpriteSet("GoldPlateGloves", "Hands");
         this.LoadSpriteSet("LeatherBracers", "Hands");
