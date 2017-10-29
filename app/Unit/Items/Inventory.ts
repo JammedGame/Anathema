@@ -71,6 +71,7 @@ class Inventory
     }
     public Loot(Item:Item) : boolean
     {
+        if(this.AutoEquip(Item)) return true;
         for(let i = 0; i < this._BackPack.length; i++)
         {
             if(this._BackPack[i] == null)
@@ -79,6 +80,17 @@ class Inventory
                 this.InvokeUpdate();
                 return true;
             }
+        }
+        return false;
+    }
+    private AutoEquip(Item:Item) : boolean
+    {
+        if(!this[Item.Data["Type"]])
+        {
+            this[Item.Data["Type"]] = Item;
+            this.InvokeEquiped();
+            this.InvokeUpdate();
+            return true;
         }
         return false;
     }
