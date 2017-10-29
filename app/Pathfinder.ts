@@ -3,9 +3,28 @@ export { Pathfinder };
 class Pathfinder
 {
     protected _LvlMatrix: number[][];
+    protected _Graph: any[];
     public constructor(matrix)
     {
         this._LvlMatrix = matrix;
+        this._Graph = [];
+        for(let i = 0; i < matrix.length; i++) {
+          let row = matrix[i];
+          for(let j = 0; j < row.length; j++) {
+            if (row[j] == 1) {
+              let node = {
+                name: i+'_'+j,
+                coordinates: [i,j],
+                f: Infinity,
+                g: Infinity,
+                h: Infinity,
+                prev: null
+              };
+              this._Graph.push(node);
+            }
+          }
+        }
+        // console.log(this._Graph);
     }
 
     private equal(p1, p2) 
@@ -46,45 +65,37 @@ class Pathfinder
           [x+1, y-1]
         ];
       	let neighbors = [];
-        graph.forEach( function (node, index)
-        {
-          	neighborhood.forEach( function (place) {
-                if(this.equal(node.coordinates, place)) neighbors.push(index);
-            });
-        });
+        for(let i=0; i<graph.length; i++) {
+            for(let j=0; j<neighborhood.length; j++){
+                if(this.equal(graph[i].coordinates, neighborhood[j])) neighbors.push(i);
+            }
+        }
+        // graph.forEach( function (node, index)
+        // {
+        //   	neighborhood.forEach( function (place) {
+        //         if(this.equal(node.coordinates, place)) neighbors.push(index);
+        //     });
+        // });
         return neighbors;
     }    
 
     public findShortestPath(point1, point2) 
     {
-        let vertex = [];
+        // console.log(point1);
         let start;
         
-        // convert graph to nodes
-        for(let i = 0; i < this._LvlMatrix.length; i++) {
-          let row = this._LvlMatrix[i];
-          for(var j = 0; j < row.length; j++) {
-            if (row[j] == 1) {
-              let node = {
-                name: i+'_'+j,
-                coordinates: [i,j],
-                f: Infinity,
-                g: Infinity,
-                h: Infinity,
-                prev: null
-              };
-              if (this.equal(node.coordinates, point1)) {
-                  node.g = 0;
-                  start = node;
-              } else vertex.push(node);
+        for(let i = 0; i < this._Graph.length; i++) {
+            let node = this._Graph[i];
+            if (this.equal(node.coordinates, point1)) {
+                start = node;
+                break;
             }
-          }
         }
-
+        // console.log(start);
+        if(!start) return [];
         let openList = [start];
         let closeList = [];
         let cameFrom = [];
-        
         while(openList.length > 0) {
             let lowInd = 0;
             for(let i=0; i<openList.length; i++) {
@@ -96,11 +107,11 @@ class Pathfinder
             }
             openList.splice(lowInd, 1);
             closeList.push(currentNode);
-            let neighbors = this.findNeighbors(vertex, currentNode);
+            let neighbors = this.findNeighbors(this._Graph, currentNode);
             
             for(let i=0; i<neighbors.length; i++) {
                 let neighborIndex = neighbors[i];
-                const neighbor = vertex[neighborIndex];
+                const neighbor = this._Graph[neighborIndex];
 
                 // if neighbor in closed set then already evaluated
                 let isValuated = false;
@@ -109,7 +120,7 @@ class Pathfinder
                 }
                 if (isValuated) continue;
 
-                var gScore = currentNode.g + 1;
+                let gScore = currentNode.g + 1;
 
                 // if not in open set - add
                 let inOpenSet = false;

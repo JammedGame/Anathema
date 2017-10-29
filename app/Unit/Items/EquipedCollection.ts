@@ -70,6 +70,11 @@ class EquipedCollection
         this.LoadSpriteSet("SkeletonBow", "Weapon");
         this.LoadSpriteSet("Spear", "Weapon");
         this.LoadSpriteSet("Wand", "Weapon");
+        this.LoadSpriteSet("Axe", "Weapon");
+        this.LoadSpriteSet("Pickaxe", "Weapon");
+        this.LoadSpriteSet("LongKnife", "Weapon");
+        this.LoadSpriteSet("KiteShield", "Weapon");
+        this.LoadSpriteSet("Warhammer", "Weapon");
         EquipedCollection.Single = this;
     }
     private LoadSpriteSet(Set:string, Group:string) : void

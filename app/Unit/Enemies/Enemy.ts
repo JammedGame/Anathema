@@ -72,17 +72,24 @@ class Enemy extends Unit
         }
         else if(Engineer.Math.Vertex.Distance(this._Collider.Trans.Translation, this._Player.Collider.Trans.Translation) < this._Stats.Sight)
         {
-            let Path = null;
+            let NextStep = null;
             this._CurrentAction = new Move(this._Stats.MovementSpeed, null, "EnemyMove", this);
             if(this._Pathfinder)
             {
-                let TargetLoc = [this._Player.Collider.Trans.Translation.x, this._Player.Collider.Trans.Translation.y];
-                let MyLoc = [this._Collider.Trans.Translation.x, this._Collider.Trans.Translation.y]; 
-                Path = this._Pathfinder.findShortestPath(MyLoc, TargetLoc)[0];
+                let TargetLoc = this._Player.getMatrixCoord(); 
+                let MyLoc = this.getMatrixCoord(); 
+                let Path = this._Pathfinder.findShortestPath(MyLoc, TargetLoc);
+                if(Path[0]) {
+                    let NextStepCoos = Path[0].coordinates;
+                    let ConvX = NextStepCoos[0]*120;
+                    let ConvY = NextStepCoos[1]*120;
+                    NextStep = new Engineer.Math.Vertex(ConvX, ConvY);
+                } else 
+                NextStep = new Engineer.Math.Vertex(this._Player.Collider.Trans.Translation.X, this._Player.Collider.Trans.Translation.Y);
             }
-            else Path = new Engineer.Math.Vertex(this._Player.Collider.Trans.Translation.X, this._Player.Collider.Trans.Translation.Y);
-            this._CurrentAction.Target = Path;
-            this._CurrentAction.Prefs["ColliderTypes"] = ["Solid", "PlayerCollider"];
+            else NextStep = new Engineer.Math.Vertex(this._Player.Collider.Trans.Translation.X, this._Player.Collider.Trans.Translation.Y);
+            this._CurrentAction.Target = NextStep;
+            this._CurrentAction.Prefs["ColliderTypes"] = ["Solid", "EnemyCollider", "PlayerCollider"];
         }
     }
 }

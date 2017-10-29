@@ -25,16 +25,18 @@ class ItemWorld extends Engineer.Engine.Tile
         this._Scene = Scene;
         this._Player = Player;
         this._Item = Item;
-        this._Scene.Events.MouseDown.push(this.GameUpdate.bind(this));
+        this.Events.MouseDown.push(this.GameUpdate.bind(this));
         this._Scene.AddSceneObject(this);
     }
     private GameUpdate(G:any, Args:any)
     {
-        if(Engineer.Util.Collision.Check(this._Player.Collider, this).Collision)
+        if(Engineer.Math.Vertex.Distance(this._Player.Collider.Trans.Translation, this.Trans.Translation) < 300)
         {
-            if(this._Player.Inventory.Loot(this._Item))
+            if(this._Player.Inventory.CanLoot(this._Item))
             {
-                this._Scene.Events.MouseDown.splice(this._Scene.Events.MouseDown.indexOf(this.GameUpdate), 1);
+                this._Player.Inventory.Loot(this._Item)
+                this.Events.MouseDown.splice(this.Events.MouseDown.indexOf(this.GameUpdate), 1);
+                this.Active = false;
                 this._Scene.RemoveSceneObject(this);
             }
             else

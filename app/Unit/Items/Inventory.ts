@@ -82,16 +82,22 @@ class Inventory
         }
         return false;
     }
-    public CanLoot() : boolean
+    public CanLoot(Item?:Item) : boolean
     {
+        let CanLoot = false;
         for(let i = 0; i < this._BackPack.length; i++)
         {
+            if(Item && this._BackPack[i] && this._BackPack[i].ID == Item.ID)
+            {
+                CanLoot = false;
+                break;
+            }
             if(this._BackPack[i] == null)
             {
-                return true;
+                CanLoot = true;
             }
         }
-        return false;
+        return CanLoot;
     }
     private InvokeUpdate()
     {

@@ -47,49 +47,49 @@ class ItemCollection
         BasicSword.Data["WeaponGroup"] = 0;
         this._Items.push(BasicSword);
         
-        let IronSword = new Item(null, "Iron Sword", ["Dagger",1,1], DamageTraits.Copy());
+        let IronSword = new Item(null, "Iron Sword", ["LongKnife",1,1], DamageTraits.Copy());
         IronSword.Traits.Traits[0].Entries[2].Value = 15;
         IronSword.Data["Type"] = "Weapon";
         IronSword.Data["WeaponGroup"] = 0;
         this._Items.push(IronSword);
 
-        let BronzeSword = new Item(null, "Bronze Sword", ["Dagger",2,2], DamageTraits.Copy());
+        let BronzeSword = new Item(null, "Bronze Sword", ["LongKnife",2,2], DamageTraits.Copy());
         BronzeSword.Traits.Traits[0].Entries[2].Value = 25;
         BronzeSword.Data["Type"] = "Weapon";
         BronzeSword.Data["WeaponGroup"] = 0;
         this._Items.push(BronzeSword);
 
-        let BasicAxe = new Item(null, "Basic Axe", ["Dagger",3,3], DamageTraits.Copy());
+        let BasicAxe = new Item(null, "Basic Axe", ["Axe",3,3], DamageTraits.Copy());
         BasicAxe.Traits.Traits[0].Entries[2].Value = 10;
         BasicAxe.Data["Type"] = "Weapon";
         BasicAxe.Data["WeaponGroup"] = 0;
         this._Items.push(BasicAxe);
       
-        let IronAxe = new Item(null, "Iron Axe", ["Dagger",4,4], DamageTraits.Copy());
+        let IronAxe = new Item(null, "Iron Axe", ["Axe",4,4], DamageTraits.Copy());
         IronAxe.Traits.Traits[0].Entries[2].Value = 15;
         IronAxe.Data["Type"] = "Weapon";
         IronAxe.Data["WeaponGroup"] = 0;
         this._Items.push(IronAxe);
 
-        let BronzeAxe = new Item(null, "Bronze Axe", ["Dagger",5,5], DamageTraits.Copy());
+        let BronzeAxe = new Item(null, "Bronze Axe", ["Axe",5,5], DamageTraits.Copy());
         BronzeAxe.Traits.Traits[0].Entries[2].Value = 20;
         BronzeAxe.Data["Type"] = "Weapon";
         BronzeAxe.Data["WeaponGroup"] = 0;
         this._Items.push(BronzeAxe);
 
-        let BasicDoubleAxe = new Item(null, "BasicDoubleAxe", ["Dagger",6,6], DamageTraits.Copy());
+        let BasicDoubleAxe = new Item(null, "BasicDoubleAxe", ["Axe",6,6], DamageTraits.Copy());
         BasicDoubleAxe.Traits.Traits[0].Entries[2].Value = 17;
         BasicDoubleAxe.Data["Type"] = "Weapon";
         BasicDoubleAxe.Data["WeaponGroup"] = 0;
         this._Items.push(BasicDoubleAxe);
 
-        let IronDoubleAxe = new Item(null, "IronDoubleAxe", ["Dagger",7,7], DamageTraits.Copy());
+        let IronDoubleAxe = new Item(null, "IronDoubleAxe", ["Axe",7,7], DamageTraits.Copy());
         IronDoubleAxe.Traits.Traits[0].Entries[2].Value = 22;
         IronDoubleAxe.Data["Type"] = "Weapon";
         IronDoubleAxe.Data["WeaponGroup"] = 0;
         this._Items.push(IronDoubleAxe);
 
-        let BronzeDoubleAxe = new Item(null, "BronzeDoubleAxe", ["Dagger",8,8], DamageTraits.Copy());
+        let BronzeDoubleAxe = new Item(null, "BronzeDoubleAxe", ["Axe",8,8], DamageTraits.Copy());
         IronDoubleAxe.Traits.Traits[0].Entries[2].Value = 28;
         IronDoubleAxe.Data["Type"] = "Weapon";
         IronDoubleAxe.Data["WeaponGroup"] = 0;
@@ -119,7 +119,7 @@ class ItemCollection
         Shortbow.Data["WeaponGroup"] = 2;
         this._Items.push(Shortbow);
 
-        let Longbow = new Item(null, "Longbow", ["Bow",13,13], DamageTraits.Copy());
+        let Longbow = new Item(null, "Longbow", ["GreatBow",13,13], DamageTraits.Copy());
         Longbow.Traits.Traits[0].Entries[1].Value = 16;
         Longbow.Data["Type"] = "Weapon";
         Longbow.Data["WeaponGroup"] = 2;
@@ -137,13 +137,13 @@ class ItemCollection
         BronzeDagger.Data["WeaponGroup"] = 0;
         this._Items.push(BronzeDagger);
 
-        let IronWarhammer = new Item(null, "Iron Warhammer", ["Dagger",16,16], DamageTraits.Copy());
+        let IronWarhammer = new Item(null, "Iron Warhammer", ["Warhammer",16,16], DamageTraits.Copy());
         IronWarhammer.Traits.Traits[0].Entries[3].Value = 20;
         IronWarhammer.Data["Type"] = "Weapon";
         IronWarhammer.Data["WeaponGroup"] = 0;
         this._Items.push(IronWarhammer);
 
-        let BronzeWarhammer = new Item(null, "Bronze Warhammer", ["Dagger",17,17], DamageTraits.Copy());
+        let BronzeWarhammer = new Item(null, "Bronze Warhammer", ["Warhammer",17,17], DamageTraits.Copy());
         BronzeWarhammer.Traits.Traits[0].Entries[3].Value = 27;
         BronzeWarhammer.Data["Type"] = "Weapon";
         BronzeWarhammer.Data["WeaponGroup"] = 0;
@@ -194,7 +194,7 @@ class ItemCollection
         Gloves.Traits.Traits[0].Entries[4].Value = 10;
         this._Items.push(Gloves);
 
-        let Sandals = new Item(null, "Sandals", ["BrownShoes",27,27], ArmorTraits.Copy());
+        let Sandals = new Item(null, "Sandals", ["LegionSandals",27,27], ArmorTraits.Copy());
         Sandals.Data["Type"] = "Boots";
         Sandals.Traits.Traits[0].Entries[1].Value = 5;
         Sandals.Traits.Traits[0].Entries[3].Value = 15;
@@ -235,33 +235,32 @@ class ItemCollection
         Boots.Traits.Traits[0].Entries[3].Value = 15;
         Boots.Traits.Traits[0].Entries[4].Value = 10;
         this._Items.push(Boots);
-        
 
-        let LetherCowl = new Item(null, "Lether Cowl", ["LeatherCap",33,33], ArmorTraits.Copy());
+        let LetherCowl = new Item(null, "Leather Cowl", ["LeatherCap",33,33], ArmorTraits.Copy());
         LetherCowl.Data["Type"] = "Head";
         LetherCowl.Traits.Traits[0].Entries[0].Value = 5;
         LetherCowl.Traits.Traits[0].Entries[1].Value = 10;
         this._Items.push(LetherCowl);
 
-        let LetherChest = new Item(null, "Lether Chest", ["LeatherShoulders",34,34], ArmorTraits.Copy());
+        let LetherChest = new Item(null, "Leather Chest", ["LeatherShoulders",34,34], ArmorTraits.Copy());
         LetherChest.Data["Type"] = "Chest";
         LetherChest.Traits.Traits[0].Entries[0].Value = 5;
         LetherChest.Traits.Traits[0].Entries[1].Value = 10;
         this._Items.push(LetherChest);
 
-        let LetherGreaves = new Item(null, "Lether Greaves", ["GoldPlateGreaves",35,35], ArmorTraits.Copy());
+        let LetherGreaves = new Item(null, "Leather Greaves", ["RedPants",35,35], ArmorTraits.Copy());
         LetherGreaves.Data["Type"] = "Greaves";
         LetherGreaves.Traits.Traits[0].Entries[0].Value = 5;
         LetherGreaves.Traits.Traits[0].Entries[1].Value = 10;
         this._Items.push(LetherGreaves);
 
-        let LetherGloves = new Item(null, "Lether Gloves", ["LeatherBracers",36,36], ArmorTraits.Copy());
+        let LetherGloves = new Item(null, "Leather Gloves", ["LeatherBracers",36,36], ArmorTraits.Copy());
         LetherGloves.Data["Type"] = "Gloves";
         LetherGloves.Traits.Traits[0].Entries[0].Value = 5;
         LetherGloves.Traits.Traits[0].Entries[1].Value = 10;
         this._Items.push(LetherGloves);
 
-        let LetherBoots = new Item(null, "Lether Boots", ["BlackShoes",37,37], ArmorTraits.Copy());
+        let LetherBoots = new Item(null, "Leather Boots", ["BrownShoes",37,37], ArmorTraits.Copy());
         LetherBoots.Data["Type"] = "Boots";
         LetherBoots.Traits.Traits[0].Entries[0].Value = 5;
         LetherBoots.Traits.Traits[0].Entries[1].Value = 10;
@@ -334,7 +333,7 @@ class ItemCollection
     public DropRandom() : Item
     {
         let Index = Math.floor((Math.random() * this._Items.length));
-        return this._Items[Index];
+        return this._Items[Index].Copy();
     }
     public static Single:ItemCollection;
 }
