@@ -16,7 +16,7 @@ class Bleed extends TraitEffect
         this._CooldownLength = 60;
         this._Art = 4;
         this._Trait = new Trait(null, "Bleed");
-        let Entry = new TraitEntry(null, "BleedChance", 80);
+        let Entry = new TraitEntry(null, "BleedChance", 100);
         this._Trait.AddEntry(Entry);
     }
 }
