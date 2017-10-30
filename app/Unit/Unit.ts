@@ -45,6 +45,7 @@ class Unit extends Engineer.Engine.Sprite
         }
         let NewHealth = this._Stats.Health + this._Stats.HealthRegeneration;
         if(NewHealth  > this._Stats.MaxHealth) this._Stats.Health = this._Stats.MaxHealth;
+        if(NewHealth<=0)this.Destroy();
         else this._Stats.Health = NewHealth;
         let NewMana = this._Stats.Mana + this._Stats.ManaRegeneration;
         if(NewMana > this._Stats.MaxMana) this._Stats.Mana = this._Stats.MaxMana;
