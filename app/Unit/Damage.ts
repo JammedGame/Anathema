@@ -54,20 +54,37 @@ class Damage
         if(Attacker.Stats.BluntDamage)
             DMGTaken += this.DamageCalculation(Attacker.Stats.BluntDamage, Attacked.Stats.BluntResist);
         let TotalDMG = DMGTaken * Factor * (this.RngWithPercent(Attacker.Stats.CritChance)?(Attacker.Stats.CritMultiplier):1.0);
-        let BleedHit=this.RngWithPercent(Attacker.Stats.BleedChance)        
+        let BleedHit=this.RngWithPercent(Attacker.Stats.BleedChance)                
+        // if(BleedHit && Attacked.Stats.HealthRegeneration > 0)
+        //     {
+        //         this._OldHpReg = Attacked.Stats.HealthRegeneration;
+        //         Attacked.StatsUpdate = true;
+        //         Attacked.Stats.HealthRegeneration -= (0.05 * TotalDMG);
+        //         setTimeout(this.RemoveNegativeEffect.bind(this), 5 * 1000, Attacked);
+        //     }
         if(BleedHit)
-            {   
-                let OldHpReg = Attacked.Stats.HealthRegeneration;
-                Attacked.StatsUpdate = true;
-                Attacked.Stats.HealthRegeneration -= (0.05*TotalDMG)
-                setTimeout(this.RemoveNegativeEffect.bind(this), 5 * 1000, Attacked, OldHpReg);
-                Attacked.Stats.HealthRegeneration
-            }
+        {
+            setTimeout(this.BleedDOT.bind(this), 1 * 1000, Attacked, TotalDMG);
+        }
         return TotalDMG;
     }
     private DamageCalculation(Damage:number, Resist:number)  : number
     {
         return (1 - Resist * 1.0/(Damage+Resist))*Damage;
+    }
+    private BleedDOT(Attacked: any, TotalDMG: number)
+    {
+        /*if(this._BleedCounter<3)
+        {   
+            this._BleedCounter++;
+            Attacked.Stats.Health -= (0.05 * TotalDMG);
+            if(Attacked.Stats.Health<=0)
+            {
+                Attacked.Destroy();
+            }
+            else setTimeout(this.BleedDOT.bind(this), 1 * 1000, Attacked, TotalDMG);
+         }
+         this._BleedCounter=0;*/
     }
     private RngWithPercent(Chance:number):boolean
     {

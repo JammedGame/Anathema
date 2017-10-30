@@ -2,8 +2,9 @@ export { Cleave };
 
 import Engineer from "./../../../Engineer";
 
-import { Action } from "./../Action";
 import { Attack } from "./Attack";
+import { Action } from "./../Action";
+import { Damage } from "./../../Damage";
 import { GameScene } from "./../../../GameScene";
 import { ItemWorld } from "./../../Items/ItemWorld";
 import { ItemCollection } from "./../../Items/ItemCollection";
@@ -64,20 +65,6 @@ class Cleave extends Attack
     protected ApplyAction() : void
     {
         // Override
-        for(let i = 0; i < this._Victims.length; i++)
-        {
-            let dmg = this.DamageTaken(this._Owner, this._Victims[i], 0.7);            
-            this._Victims[i].Stats.Health -= dmg;
-            if(this._Victims[i].Stats.Health < 0)
-            {
-                this._Victims[i].Destroy();
-                if(this._Victims[i].Data["Enemy"])
-                {
-                    let Item = ItemCollection.Single.DropRandom();
-                    let WorldItem = new ItemWorld(this._Scene.Data["Player"], this._Scene, Item, this._Victims[i].Trans.Translation.X, this._Victims[i].Trans.Translation.Y);
-                }
-            }
-        }
-        this._Slash.Active = false;
+        if(this._Victims.length > 0) Damage.Single.AreaDamage(this._Owner, this._Victims, 1.0);
     }
 }

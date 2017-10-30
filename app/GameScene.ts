@@ -17,6 +17,7 @@ import { ManaBar } from "./UI/ManaBar";
 import { MainHud } from "./UI/MainHud";
 import { Effect } from "./Unit/Actions/Effect";
 import { Pathfinder } from "./Pathfinder";
+import { Damage } from "./Unit/Damage";
 
 class GameScene extends Engineer.Engine.Scene2D
 {
@@ -46,6 +47,7 @@ class GameScene extends Engineer.Engine.Scene2D
         for (let i = 0; i < 90; i++) Enemies.push(new Skeleton(this, 0, 0));
         for (let i = 0; i < 10; i++) Enemies.push(new Orc(this, 0, 0));
         let LevelTilesets = new LevelTilesetCollection();
+        let DamageCalculation = new Damage(this);
         this._Level = new Level(10, LevelTilesets.Items["Cathedral"], Enemies);
         this._Level.Init(this);
         this._Pathfinder = new Pathfinder(this._Level.AccessMatrix);
