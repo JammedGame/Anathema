@@ -60,8 +60,6 @@ class EquipedCollection
         this.LoadSpriteSet("LegionSteel", "Torso");
         this.LoadSpriteSet("LegionBronze", "Torso");
         this.LoadSpriteSet("LegionGold", "Torso");
-        this.LoadSpriteSet("Arrow", "Weapon");
-        this.LoadSpriteSet("ArrowSkeleton", "Weapon");
         this.LoadSpriteSet("Bow", "Weapon");
         this.LoadSpriteSet("Dagger", "Weapon");
         this.LoadSpriteSet("GreatBow", "Weapon");

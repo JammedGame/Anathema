@@ -62,8 +62,7 @@ class Unit extends Engineer.Engine.Sprite
         this._Collider.Active = false;
         this._Collider.Paint = Engineer.Math.Color.FromRGBA(255,0,0,120);
         this._Collider.Data["Collision"] = Engineer.Math.CollisionType.Radius2D;
-        this._Scene.Data["Character_Collider"] = this._Collider;
-        this._Scene.Data["Character"] = this;
+        this._Collider.Data["Character"] = this;
     }
     protected CalculateDirection(Direction:any) : number
     {
