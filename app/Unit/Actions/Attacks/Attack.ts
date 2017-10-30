@@ -11,7 +11,7 @@ import { Stats } from "./../../Stats";
 
 class Attack extends AfterAnimation
 {
-    private _OldHpReg:number;    
+    private _BleedCounter:number;    
     private _Victim:any;    
     public get Direction():any { return new Engineer.Math.Vertex(this._Target.X - this._Owner.Collider.Trans.Translation.X, this._Target.Y - this._Owner.Collider.Trans.Translation.Y, 0); }
     public constructor(Old?:Attack, ID?:string, Owner?:any)
@@ -19,6 +19,7 @@ class Attack extends AfterAnimation
         super(Old, ID, Owner);
         this._Set = 2;
         this._Art = 2;
+        this._BleedCounter = 0;
     }
     protected Check() : boolean
     {
@@ -64,6 +65,8 @@ class Attack extends AfterAnimation
     }
     protected DamageTaken(Attacker, Attacked, Factor) : number
     {
+        
+        console.log(Attacker._Stats.Health);
         let DMGTaken = Attacker.Stats.BaseDamage;
         if(Attacker.Stats.FireDamage) 
             DMGTaken += this.DamageCalculation(Attacker.Stats.FireDamage, Attacked.Stats.FireResist);
@@ -79,13 +82,17 @@ class Attack extends AfterAnimation
             DMGTaken += this.DamageCalculation(Attacker.Stats.BluntDamage, Attacked.Stats.BluntResist);
         let TotalDMG = DMGTaken * Factor * (this.RngWithPercent(Attacker.Stats.CritChance)?(Attacker.Stats.CritMultiplier):1.0);
         let BleedHit=this.RngWithPercent(Attacker.Stats.BleedChance)                
-        if(BleedHit && Attacked.Stats.HealthRegeneration > 0)
-            {
-                this._OldHpReg = Attacked.Stats.HealthRegeneration;
-                Attacked.StatsUpdate = true;
-                Attacked.Stats.HealthRegeneration -= (0.05 * TotalDMG)
-                setTimeout(this.RemoveNegativeEffect.bind(this), 5 * 1000, Attacked);
-            }
+        // if(BleedHit && Attacked.Stats.HealthRegeneration > 0)
+        //     {
+        //         this._OldHpReg = Attacked.Stats.HealthRegeneration;
+        //         Attacked.StatsUpdate = true;
+        //         Attacked.Stats.HealthRegeneration -= (0.05 * TotalDMG);
+        //         setTimeout(this.RemoveNegativeEffect.bind(this), 5 * 1000, Attacked);
+        //     }
+        if(BleedHit)
+        {
+            setTimeout(this.BleedDOT.bind(this), 1 * 1000, Attacked, TotalDMG);
+        }
         return TotalDMG;
     }
     private DamageCalculation(Damage:number, Resist:number)  : number
@@ -102,13 +109,25 @@ class Attack extends AfterAnimation
         }
         return N[Math.round(Math.random()*99.0)];
     }
-    private RemoveNegativeEffect(Attacked: any)
-    {        
-        if(Attacked!=null)
-        {
-            Engineer.Util.Log.Error(Attacked.Stats.HealthRegeneration);
-            Attacked.Stats.HealthRegeneration=this._OldHpReg;
-            Engineer.Util.Log.Error(Attacked.Stats.HealthRegeneration); 
-        }
+    // private RemoveNegativeEffect(Attacked: any)
+    // {
+    //     if(Attacked!=null)
+    //     {
+    //         Attacked.Stats.HealthRegeneration=this._OldHpReg;
+    //     }
+    // }
+    private BleedDOT(Attacked: any, TotalDMG: number)
+    {
+        if(this._BleedCounter<3)
+        {   
+            this._BleedCounter++;
+            Attacked.Stats.Health -= (0.05 * TotalDMG);
+            if(Attacked.Stats.Health<=0)
+            {
+                Attacked.Destroy();
+            }
+            else setTimeout(this.BleedDOT.bind(this), 1 * 1000, Attacked, TotalDMG);
+         }
+         this._BleedCounter=0;
     }
 }
