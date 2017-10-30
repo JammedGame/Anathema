@@ -65,6 +65,6 @@ class Cleave extends Attack
     protected ApplyAction() : void
     {
         // Override
-        if(this._Victims.length > 0) Damage.Single.AreaDamage(this._Owner, this._Victims, 1.0);
+        if(this._Victims.length > 0) Damage.Single.AreaDamage(this._Owner, this._Victims, 0.7);
     }
 }

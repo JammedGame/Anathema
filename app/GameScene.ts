@@ -18,6 +18,7 @@ import { MainHud } from "./UI/MainHud";
 import { Effect } from "./Unit/Actions/Effect";
 import { Pathfinder } from "./Pathfinder";
 import { Damage } from "./Unit/Damage";
+import { Projectile } from "./Unit/Projectiles/Projectile";
 
 class GameScene extends Engineer.Engine.Scene2D
 {
@@ -33,6 +34,8 @@ class GameScene extends Engineer.Engine.Scene2D
     private _ItemBank: ItemCollection;
     private _Effect: Effect;
     private _Pathfinder: Pathfinder;
+    private _Projectiles: Projectile[];
+    public get Projectiles():Projectile[] { return this._Projectiles; }
     public constructor()
     {
         super();
@@ -63,6 +66,7 @@ class GameScene extends Engineer.Engine.Scene2D
         this._Effect.Growth = new Engineer.Math.Vertex(3,3,0);
         this._Effect.Duration = 3;
         this._Effect.Fade = 1;
+        this._Projectiles = [];
         this.Events.KeyPress.push(this.KeyPress.bind(this));
         this.Events.TimeTick.push(this.SceneUpdate.bind(this));
     }
@@ -82,6 +86,7 @@ class GameScene extends Engineer.Engine.Scene2D
     }
     private SceneUpdate()
     {
+        for(let i = 0; i < this._Projectiles.length; i++) this._Projectiles[i].Update();
         this._Level.Update();
         this._Player.Update();
         this._Effect.Update();

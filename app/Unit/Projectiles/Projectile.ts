@@ -7,6 +7,7 @@ import { Unit } from "./../Unit";
 import { Stats } from "./../Stats";
 import { Action } from "./../Actions/Action";
 import { Move } from "./../Actions/Move";
+import { Damage } from "./../Damage";
 
 class Projectile extends Unit
 {
@@ -22,6 +23,7 @@ class Projectile extends Unit
         this._RadiusDamage = false;
         this._Radius = 100;
         this._DamageFactor = 1.0;
+        this.Prefs = {};
         this.Prefs["ColliderTypes"] = ColliderTypes;
     }
     public Init(Target:any) : void
@@ -60,19 +62,19 @@ class Projectile extends Unit
             {
                 if(!this._RadiusDamage && Engineer.Math.Collision.Check(this._Collider, Colliders[i]).Collision)
                 {
-                    this.Damage();
+                    this.Damage(Colliders[i].Data["Character"]);
                     if(!this._Area) break;
                 }
                 else if(Engineer.Math.Vertex.Distance(this._Collider.Trans.Translation, Colliders[i].Trans.Translation))
                 {
-                    this.Damage();
+                    this.Damage(Colliders[i].Data["Character"]);
                     if(!this._Area) break;
                 }
             }
         }
     }
-    protected Damage() : void
+    protected Damage(Victim:Unit) : void
     {
-        // Virtual
+        Damage.Single.SingleDamage(this, Victim, this._DamageFactor);
     }
 }

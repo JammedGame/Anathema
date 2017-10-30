@@ -9,22 +9,34 @@ import { GameScene } from "./../../../GameScene";
 import { ItemWorld } from "./../../Items/ItemWorld";
 import { ItemCollection } from "./../../Items/ItemCollection";
 import { Stats } from "./../../Stats";
+import { Projectile } from "./../../Projectiles/Projectile";
+import { Arrow } from "./../../Projectiles/Arrow";
 
 class Attack extends AfterAnimation
 {
+    private _Range:boolean;
     private _BleedCounter:number;    
-    private _Victim:any;    
+    private _Victim:any;
+    private _Projectile:Projectile;
+    public get Range():boolean { return this._Range; }
+    public set Range(value:boolean) { this._Range = value; }
     public get Direction():any { return new Engineer.Math.Vertex(this._Target.X - this._Owner.Collider.Trans.Translation.X, this._Target.Y - this._Owner.Collider.Trans.Translation.Y, 0); }
     public constructor(Old?:Attack, ID?:string, Owner?:any)
     {
         super(Old, ID, Owner);
         this._Set = 2;
         this._Art = 2;
+        this._Range = false;
         this._BleedCounter = 0;
     }
     protected Check() : boolean
     {
         // Override
+        if(!this._Projectile)
+        {
+            this._Projectile = new Arrow(this._Scene, [this.Prefs["TargetType"]]);
+            this._Projectile.Stats = this._Owner.Stats;
+        }
         let Collider = this._Owner.Collider;
         if(!Collider) return false;
         let Enemies = this._Scene.GetObjectsWithData(this.Prefs["TargetType"], true);
@@ -46,6 +58,15 @@ class Attack extends AfterAnimation
     protected ApplyAction()  : void
     {
         // Override
-        if(this._Victim) Damage.Single.SingleDamage(this._Owner, this._Victim, 1.0);
+        if(this._Victim)
+        {
+            if(!this._Range) Damage.Single.SingleDamage(this._Owner, this._Victim, 1.0);
+            else
+            {
+                let NewProjectile = this._Projectile;
+                this._Scene.AddSceneObject(NewProjectile);
+                this._Scene.Projectiles.push(NewProjectile);
+            }
+        }
     }
 }

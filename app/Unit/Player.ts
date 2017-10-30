@@ -40,6 +40,8 @@ class Player extends Unit
         this.Data["Player"] = true;
         Scene.Data["Player"] = this;
         this._Stats.Radius = 150;
+        this._Stats.AttackSpeed = 15;
+        this._Stats.Store();
         this._StatsUpdate = false;
 
         this._Inventory = new Inventory();

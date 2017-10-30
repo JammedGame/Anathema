@@ -17,8 +17,4 @@ class Arrow extends Projectile
         super(Scene, ColliderTypes);
         SpriteSetLoader.LoadSets(this, "Arrow", null, "Projectiles/");
     }
-    protected Apply() : void
-    {
-        
-    }
 }

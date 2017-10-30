@@ -18,6 +18,7 @@ class Unit extends Engineer.Engine.Sprite
     protected _Scene:GameScene;
     public get Collider(): any { return this._Collider; }
     public get Stats(): Stats { return this._Stats; }
+    public set Stats(value:Stats) { this._Stats = value; }
     public get Traits(): Traits { return this._Traits; }
     public constructor(Scene:GameScene)
     {
