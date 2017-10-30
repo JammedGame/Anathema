@@ -77,7 +77,17 @@ class Attack extends AfterAnimation
             DMGTaken += this.DamageCalculation(Attacker.Stats.SlashDamage, Attacked.Stats.SlashResist);
         if(Attacker.Stats.BluntDamage)
             DMGTaken += this.DamageCalculation(Attacker.Stats.BluntDamage, Attacked.Stats.BluntResist);
-        return DMGTaken * Factor * (this.RngWithPercent(Attacker.Stats.CritChance)?(Attacker.Stats.CritMultiplier):1.0);
+        let TotalDMG = DMGTaken * Factor * (this.RngWithPercent(Attacker.Stats.CritChance)?(Attacker.Stats.CritMultiplier):1.0);
+        let BleedHit=this.RngWithPercent(Attacker.Stats.BleedChance)        
+        if(BleedHit)
+            {   
+                let OldHpReg = Attacked.Stats.HealthRegeneration;
+                Attacked.StatsUpdate = true;
+                Attacked.Stats.HealthRegeneration -= (0.05*TotalDMG)
+                setTimeout(this.RemoveNegativeEffect.bind(this), 5 * 1000, Attacked, OldHpReg);
+                Attacked.Stats.HealthRegeneration
+            }
+        return TotalDMG;
     }
     private DamageCalculation(Damage:number, Resist:number)  : number
     {
@@ -88,9 +98,13 @@ class Attack extends AfterAnimation
         let N:boolean[]=[];
         for(let i = 0; i < 100; i++)
         {
-            if(i<this._Owner.Stats.CritChance) N[i]=true;
+            if(i<Chance) N[i]=true;
             else N[i]=false;
         }
         return N[Math.round(Math.random()*99.0)];
+    }
+    private RemoveNegativeEffect(Attacked: any, OldHpReg:number)
+    {
+        Attacked.Stats.HealthRegeneration=OldHpReg;
     }
 }

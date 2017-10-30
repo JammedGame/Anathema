@@ -14,6 +14,7 @@ class Stats
     private _LifeSteal:number;
     private _CritChance:number;
     private _CritMultiplier:number;
+    private _BleedChance:number;
     private _BaseDamage:number;
     private _MovementSpeed:number;
     private _Sight:number;
@@ -51,6 +52,8 @@ class Stats
     public set CritChance(value:number) { this._CritChance = value; }
     public get CritMultiplier():number { return this._CritMultiplier; }
     public set CritMultiplier(value:number) { this._CritMultiplier = value; }
+    public get BleedChance():number { return this._CritChance; }
+    public set BleedChance(value:number) { this._CritChance = value; }
     public get BaseDamage():number { return this._BaseDamage; }
     public set BaseDamage(value:number) { this._BaseDamage = value; }
     public get MovementSpeed():number { return this._MovementSpeed; }
@@ -96,11 +99,12 @@ class Stats
             this._HealthRegeneration = 0.0001;
             this._Mana = 30;
             this._MaxMana = 30;
-            this._ManaRegeneration = 0.01;
+            this._ManaRegeneration = 0.1;
             this._AttackSpeed = 1;
-            this._LifeSteal=0;
-            this._CritChance=0;
-            this._CritMultiplier=2;
+            this._LifeSteal = 0;
+            this._CritChance = 0;
+            this._CritMultiplier = 2;
+            this._BleedChance = 0;
             this._BaseDamage = 5;
             this._MovementSpeed = 3;
             this._Sight = 800;
@@ -108,15 +112,15 @@ class Stats
             this._ColdResist = 0;
             this._FireResist = 0;
             this._LightningResist = 0;
-            this._PierceResist=0;
-            this._SlashResist=0;
-            this._BluntResist=0;
-            this._FireDamage=0;
-            this._ColdDamage=0;
-            this._LightningDamage=0;
-            this._PierceDamage=0;
-            this._BluntDamage=0;
-            this._SlashDamage=0;
+            this._PierceResist = 0;
+            this._SlashResist = 0;
+            this._BluntResist = 0;
+            this._FireDamage = 0;
+            this._ColdDamage = 0;
+            this._LightningDamage = 0;
+            this._PierceDamage = 0;
+            this._BluntDamage = 0;
+            this._SlashDamage = 0;
         }
     }
     public Copy() : Stats

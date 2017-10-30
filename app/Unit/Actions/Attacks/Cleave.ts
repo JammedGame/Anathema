@@ -22,7 +22,7 @@ class Cleave extends Attack
         this._ManaCost = 5;
     }
     protected Check() : boolean
-    {
+    {     
         // Override
         let Collider = this._Owner.Collider;
         if(!Collider) return false;
@@ -66,8 +66,8 @@ class Cleave extends Attack
         // Override
         for(let i = 0; i < this._Victims.length; i++)
         {
-            this._Victims[i].Stats.Health -= this.DamageTaken(this._Owner, this._Victims[i], 0.7);
-            this._Victims[i].Invoke("Damaged");
+            let dmg = this.DamageTaken(this._Owner, this._Victims[i], 0.7);            
+            this._Victims[i].Stats.Health -= dmg;
             if(this._Victims[i].Stats.Health < 0)
             {
                 this._Victims[i].Destroy();
