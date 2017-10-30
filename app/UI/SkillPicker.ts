@@ -6,13 +6,16 @@ import { Window } from "./Window";
 
 class SkillPicker extends Window
 {
+    private _Shown:boolean;
     private _Callback:Function;
     public constructor(Scene:GameScene, ElementT:any, CallBack:Function)
     {
         super(Scene);
+        this._Shown = false;
         this._Callback = CallBack;
         this._ElementT = ElementT;
         this.Active = false;
+
         this.Init();
     }
     public Pick(Indices:number[], Translation:any)
@@ -37,11 +40,19 @@ class SkillPicker extends Window
                 this._Scene.AddSceneObject(Element);
             }
         }
+        this._Shown = true;
         this.Show();
         this.Active = false;
     }
+    public Hide() : void
+    {
+        // Override
+        super.Hide();
+        this._Shown = false;
+    }
     private MouseDown(G:any, Args:any) : void
     {
+        if(!this._Shown) return;
         this._Callback(Args.Sender.Data["Index"]);
     }
 }

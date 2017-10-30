@@ -65,7 +65,7 @@ class MainHud extends Window
         this.Update();
         this.Init();
     }
-    private CallSkillPicker(G:any, Args:any)
+    private CallSkillPicker(G:any, Args:any) : void
     {
         this._PickKey = Args.Sender.Data["Key"];
         if(!this._Picker)
@@ -76,7 +76,7 @@ class MainHud extends Window
         for(let i = 0; i < this._PlayerActions.Actions.length; i++) Indices.push(this._PlayerActions.Actions[i].Art);
         this._Picker.Pick(Indices, Args.Sender.Trans.Translation);
     }
-    private SkillPicked(Index:number)
+    private SkillPicked(Index:number) : void
     {
         if(this._PickKey == "LM") this._PlayerActions.LeftMouse = this._PlayerActions.FindByArtIndex(Index);
         else if(this._PickKey == "RM") this._PlayerActions.RightMouse = this._PlayerActions.FindByArtIndex(Index);
