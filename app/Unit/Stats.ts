@@ -32,6 +32,7 @@ class Stats
     private _FireDamage:number;
     private _ColdDamage:number;
     private _LightningDamage:number;
+    private _Bleeding:boolean;    
     public get Health():number { return this._Health; }
     public set Health(value:number) { this._Health = value; }
     public get MaxHealth():number { return this._MaxHealth; }
@@ -86,6 +87,8 @@ class Stats
     public set ColdDamage(value:number) { this._ColdDamage = value; }
     public get LightningDamage():number { return this._LightningDamage; }
     public set LightningDamage(value:number) { this._LightningDamage = value; }
+    public get Bleeding():boolean { return this._Bleeding; }
+    public set Bleeding(value:boolean) { this._Bleeding = value; }
     public constructor(Old?:Stats)
     {
         if(Old != null)
@@ -121,6 +124,7 @@ class Stats
             this._PierceDamage = 0;
             this._BluntDamage = 0;
             this._SlashDamage = 0;
+            this._Bleeding = false;
         }
     }
     public Copy() : Stats

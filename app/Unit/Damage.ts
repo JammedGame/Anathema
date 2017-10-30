@@ -54,17 +54,11 @@ class Damage
         if(Attacker.Stats.BluntDamage)
             DMGTaken += this.DamageCalculation(Attacker.Stats.BluntDamage, Attacked.Stats.BluntResist);
         let TotalDMG = DMGTaken * Factor * (this.RngWithPercent(Attacker.Stats.CritChance)?(Attacker.Stats.CritMultiplier):1.0);
-        let BleedHit=this.RngWithPercent(Attacker.Stats.BleedChance)                
-        // if(BleedHit && Attacked.Stats.HealthRegeneration > 0)
-        //     {
-        //         this._OldHpReg = Attacked.Stats.HealthRegeneration;
-        //         Attacked.StatsUpdate = true;
-        //         Attacked.Stats.HealthRegeneration -= (0.05 * TotalDMG);
-        //         setTimeout(this.RemoveNegativeEffect.bind(this), 5 * 1000, Attacked);
-        //     }
-        if(BleedHit)
-        {
-            setTimeout(this.BleedDOT.bind(this), 1 * 1000, Attacked, TotalDMG);
+        let BleedHit=this.RngWithPercent(Attacker.Stats.BleedChance)    
+        if(BleedHit && !Attacked.Stats.Bleeding)
+        {   
+            Attacked.Stats.Bleeding = true;
+            setTimeout(this.BleedDOT.bind(this), 1 * 1000, Attacked, TotalDMG, 0, 3);
         }
         return TotalDMG;
     }
@@ -72,19 +66,18 @@ class Damage
     {
         return (1 - Resist * 1.0/(Damage+Resist))*Damage;
     }
-    private BleedDOT(Attacked: any, TotalDMG: number)
+    private BleedDOT(Attacked: any, TotalDMG: number, BleedTick:number, BleedDuration:number)
     {
-        /*if(this._BleedCounter<3)
-        {   
-            this._BleedCounter++;
+        if(BleedTick<BleedDuration)
+        {
+            BleedTick++;
             Attacked.Stats.Health -= (0.05 * TotalDMG);
             if(Attacked.Stats.Health<=0)
             {
                 Attacked.Destroy();
             }
-            else setTimeout(this.BleedDOT.bind(this), 1 * 1000, Attacked, TotalDMG);
+            else setTimeout(this.BleedDOT.bind(this), 1 * 1000, Attacked, TotalDMG, BleedTick, BleedDuration);
          }
-         this._BleedCounter=0;*/
     }
     private RngWithPercent(Chance:number):boolean
     {
@@ -95,10 +88,6 @@ class Damage
             else N[i]=false;
         }
         return N[Math.round(Math.random()*99.0)];
-    }
-    private RemoveNegativeEffect(Attacked: any, OldHpReg:number)
-    {
-        Attacked.Stats.HealthRegeneration=OldHpReg;
-    }
+    }    
     public static Single:Damage;
 }
