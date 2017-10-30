@@ -101,6 +101,7 @@ class Traits
                 if(this._Traits[i].Entries[j].Type == "LifeSteal") Stats.LifeSteal += this._Traits[i].Entries[j].Value;
                 if(this._Traits[i].Entries[j].Type == "CritChance") Stats.CritChance += this._Traits[i].Entries[j].Value;
                 if(this._Traits[i].Entries[j].Type == "CritMultiplier") Stats.CritMultiplier += this._Traits[i].Entries[j].Value;
+                if(this._Traits[i].Entries[j].Type == "BleedChance") Stats.BleedChance += this._Traits[i].Entries[j].Value;
                 if(this._Traits[i].Entries[j].Type == "HpRegen") Stats.HealthRegeneration += this._Traits[i].Entries[j].Value;
                 if(this._Traits[i].Entries[j].Type == "DamageBonus") Stats.BaseDamage += this._Traits[i].Entries[j].Value;
                 if(this._Traits[i].Entries[j].Type == "SpeedBonus") Stats.MovementSpeed += this._Traits[i].Entries[j].Value;

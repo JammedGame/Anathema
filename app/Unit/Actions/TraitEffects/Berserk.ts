@@ -16,8 +16,8 @@ class Berserk extends TraitEffect
         this._CooldownLength = 60;
         this._Art = 12;
         this._Trait = new Trait(null, "Berserk");
-        let Entry = new TraitEntry(null, "AttackSpeed", 19);
-        let Entry1 = new TraitEntry(null, "HpRegen", 0.15);
+        let Entry = new TraitEntry(null, "AttackSpeed", 10);
+        let Entry1 = new TraitEntry(null, "HpRegen", 0.1);
         this._Trait.AddEntry(Entry);
         this._Trait.AddEntry(Entry1);
     }
