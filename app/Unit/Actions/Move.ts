@@ -6,16 +6,14 @@ import { Action } from "./Action";
 import { GameScene } from "./../../GameScene";
 
 class Move extends Action
-{
-    private _Speed:number;
-    private _Collider:any;
+{    private _Collider:any;
     public get Direction():any { return new Engineer.Math.Vertex(this._Target.X - this._Collider.Trans.Translation.X, this._Target.Y - this._Collider.Trans.Translation.Y, 0); }
-    public constructor(Speed:number, Old?:Move, ID?:string, Owner?:any)
+    public constructor(MS:number, Old?:Move, ID?:string, Owner?:any)
     {
         super(Old, ID, Owner);
         this._Set = 1;
         this._Art = 1;
-        this._Speed = Speed;
+        this._Owner.Stats._MovementSpeed = MS;
     }
     public Apply(Scene:GameScene) : boolean
     {
@@ -25,7 +23,7 @@ class Move extends Action
         if(!this._Collider) return false;
         let Movement = new Engineer.Math.Vertex(this._Target.X - this._Collider.Trans.Translation.X, this._Target.Y - this._Collider.Trans.Translation.Y, 0);
         if(this._Owner.Data["Player"] && Movement.Length() < 10) return false;
-        Movement = Movement.Normalize().Scalar(this._Speed);
+        Movement = Movement.Normalize().Scalar(this._Owner.Stats._MovementSpeed);
         let ColliderTypes:string[] = this.Prefs["ColliderTypes"];
         let Collision = new Engineer.Math.CollisionValue();
         for(let i = 0; i < ColliderTypes.length; i++)
