@@ -32,30 +32,35 @@ class Player extends Unit
     public get Inventory():Inventory { return this._Inventory; }
     public get StatsUpdate():boolean { return this._StatsUpdate; }
     public set StatsUpdate(value:boolean) { this._StatsUpdate = value; }
-    public constructor(Scene: GameScene)
+    public constructor(Old:Player, Scene: GameScene)
     {
-        super(Scene);
-        this.Name = "Player";
-        this.Fixed = true;
-        this.Data["Player"] = true;
-        Scene.Data["Player"] = this;
-        this._Stats.Radius = 150;
-        this._Stats.AttackSpeed = 15;
-        this._Stats.Store();
+        super(Old, Scene);
         this._StatsUpdate = false;
-
-        this._Inventory = new Inventory();
         this._EquipedCollection = new EquipedCollection();
         this._EquipedItems = [];
-        this._Inventory.OnEquip.push(this.Equip.bind(this));
-        this._Actions = new PlayerActions(this, Scene);
-
-        Scene.Trans.Translation = new Engineer.Math.Vertex(960, 540, 1);
-        this.Trans.Scale = new Engineer.Math.Vertex(100, 150, 0);
-        this.Trans.Translation = new Engineer.Math.Vertex(960, 540, 1);
-        this.CreateCollider();
-        this._Collider.Data["PlayerCollider"] = true;
-        SpriteSetLoader.LoadSets(this, "Human");
+        if(Old != null)
+        {
+            this._Inventory = Old._Inventory.Copy();
+            this._Collider = Old._Collider.Copy();
+        }
+        else
+        {
+            this.Name = "Player";
+            this.Fixed = true;
+            this.Data["Player"] = true;
+            Scene.Data["Player"] = this;
+            this._Stats.Radius = 150;
+            this._Stats.AttackSpeed = 15;
+            this._Stats.Store();
+            this._Inventory = new Inventory();
+            this._Actions = new PlayerActions(this, Scene);
+            Scene.Trans.Translation = new Engineer.Math.Vertex(960, 540, 1);
+            this.Trans.Scale = new Engineer.Math.Vertex(100, 150, 0);
+            this.Trans.Translation = new Engineer.Math.Vertex(960, 540, 1);
+            this.CreateCollider();
+            this._Collider.Data["PlayerCollider"] = true;
+            SpriteSetLoader.LoadSets(this, "Human");
+        }
         this._Scene.Events.MouseDown.push(this.MouseDown.bind(this));
         this._Scene.Events.MouseUp.push(this.MouseUp.bind(this));
         this._Scene.Events.MouseMove.push(this.MouseMove.bind(this));
@@ -63,8 +68,12 @@ class Player extends Unit
         this._Scene.Events.KeyUp.push(this.KeyUp.bind(this));
         this._Scene.AddSceneObject(this);
         this._Scene.AddSceneObject(this._Collider);
-
+        this._Inventory.OnEquip.push(this.Equip.bind(this));
         this.Equip();
+    }
+    public Copy() : Player
+    {
+        return new Player(this, this._Scene);    
     }
     private MouseDown(G: any, Args: any)
     {
@@ -131,7 +140,12 @@ class Player extends Unit
         if(this._Inventory.Head) this.EquipItem(this._Inventory.Head.ArtEquipedIndex, 1.2);
         else this.EquipItem("Bandana", 1.2);
         if(!this._Inventory.Head || !this._Inventory.Head.Data["Full"]) this.EquipItem("RedBeard", 1.2);
-        if(this._Inventory.Weapon) this.EquipItem(this._Inventory.Weapon.ArtEquipedIndex, 1.2);
+        if(this._Inventory.Weapon)
+        {
+            this.EquipItem(this._Inventory.Weapon.ArtEquipedIndex, 1.2);
+            if(this._Inventory.Weapon.Data["WeaponGroup"] == 2) this._Actions.ActionAttack.Range = true;
+            else this._Actions.ActionAttack.Range = false;
+        }
         for(let i = 0; i < this._EquipedItems.length; i++) this._EquipedItems[i].UpdateSpriteSet(this.CurrentSpriteSet);
         this.UpdateSeeds();
     }

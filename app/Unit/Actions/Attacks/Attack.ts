@@ -34,7 +34,7 @@ class Attack extends AfterAnimation
         // Override
         if(!this._Projectile)
         {
-            this._Projectile = new Arrow(this._Scene, [this.Prefs["TargetType"]]);
+            this._Projectile = new Arrow(null, this._Scene, [this.Prefs["TargetType"] + "Collider"]);
             this._Projectile.Stats = this._Owner.Stats;
         }
         let Collider = this._Owner.Collider;
@@ -45,14 +45,14 @@ class Attack extends AfterAnimation
         {
             if(Engineer.Math.Vertex.Distance(Enemies[i].Collider.Trans.Translation, this._Target) < Enemies[i].Trans.Scale.Y)
             {
-                if(Engineer.Math.Vertex.Distance(Enemies[i].Collider.Trans.Translation, Collider.Trans.Translation) < this._Owner.Stats.Radius)
+                if(Engineer.Math.Vertex.Distance(Enemies[i].Collider.Trans.Translation, Collider.Trans.Translation) < this._Owner.Stats.Radius || this._Range)
                 {
                     this._Victim = Enemies[i];
                     break;
                 }
             }
         }
-        if(!this._Victim) return false;        
+        if(!this._Victim) return false;       
         return true;
     }
     protected ApplyAction()  : void
@@ -63,7 +63,9 @@ class Attack extends AfterAnimation
             if(!this._Range) Damage.Single.SingleDamage(this._Owner, this._Victim, 1.0);
             else
             {
-                let NewProjectile = this._Projectile;
+                let NewProjectile:Projectile = this._Projectile.Copy();
+                NewProjectile.Trans.Translation = this._Owner.Collider.Trans.Translation;
+                NewProjectile.Init(this._Victim.Trans.Translation);
                 this._Scene.AddSceneObject(NewProjectile);
                 this._Scene.Projectiles.push(NewProjectile);
             }

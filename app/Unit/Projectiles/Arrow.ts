@@ -12,9 +12,16 @@ import { SpriteSetLoader } from "./../../Util/SpriteSetLoader";
 
 class Arrow extends Projectile
 {
-    public constructor(Scene:GameScene, ColliderTypes:string[])
+    public constructor(Old:Arrow, Scene:GameScene, ColliderTypes:string[])
     {
-        super(Scene, ColliderTypes);
-        SpriteSetLoader.LoadSets(this, "Arrow", null, "Projectiles/");
+        super(Old, Scene, ColliderTypes);
+        if(Old != null)
+        {
+
+        }
+        else
+        {
+            SpriteSetLoader.LoadSets(this, "Skeleton");
+        }
     }
 }

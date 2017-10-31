@@ -20,13 +20,30 @@ class Unit extends Engineer.Engine.Sprite
     public get Stats(): Stats { return this._Stats; }
     public set Stats(value:Stats) { this._Stats = value; }
     public get Traits(): Traits { return this._Traits; }
-    public constructor(Scene:GameScene)
+    public constructor(Old:Unit, Scene:GameScene)
     {
-        super();
-        this._Scene = Scene;
-        this._Traits = new Traits();
-        this._Stats = new Stats();
+        super(Old);
+        if(Old != null)
+        {
+            this._Scene = Scene;
+            this._Traits = Old._Traits.Copy();
+            this._Stats = Old._Stats.Copy();
+            for (let Key in Old.Data)
+            {
+                this.Data[Key] = Old.Data[Key];
+            }
+        }
+        else
+        {
+            this._Scene = Scene;
+            this._Traits = new Traits();
+            this._Stats = new Stats();
+        }
         this._Stats.Store();
+    }
+    public Copy() : Unit
+    {
+        return new Unit(this, this._Scene);    
     }
     public Update() : void
     {
@@ -64,7 +81,7 @@ class Unit extends Engineer.Engine.Sprite
         this._Collider.Active = false;
         this._Collider.Paint = Engineer.Math.Color.FromRGBA(255,0,0,120);
         this._Collider.Data["Collision"] = Engineer.Math.CollisionType.Radius2D;
-        this._Collider.Data["Character"] = this;
+        this._Collider.Data["Owner"] = this;
     }
     protected CalculateDirection(Direction:any) : number
     {

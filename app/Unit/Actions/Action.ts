@@ -18,6 +18,7 @@ class Action
     protected _Scene:GameScene;
     public Prefs: { [key: string]:any; };
     public get Set():number { return this._Set; }
+    public set Set(value:number) { this._Set = value; }
     public get Art():number { return this._Art; }
     public get Level():number { return this._Level; }
     public set Level(value:number) { this._Level = value; }

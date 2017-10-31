@@ -46,9 +46,9 @@ class GameScene extends Engineer.Engine.Scene2D
     {
         this.BackColor = Engineer.Math.Color.FromRGBA(0, 0, 0, 255);
         let Enemies = [];
-        this._Player = new Player(this);
-        for (let i = 0; i < 90; i++) Enemies.push(new Skeleton(this, 0, 0));
-        for (let i = 0; i < 10; i++) Enemies.push(new Orc(this, 0, 0));
+        this._Player = new Player(null, this);
+        for (let i = 0; i < 90; i++) Enemies.push(new Skeleton(null, this));
+        for (let i = 0; i < 10; i++) Enemies.push(new Orc(null, this));
         let LevelTilesets = new LevelTilesetCollection();
         let DamageCalculation = new Damage(this);
         this._Level = new Level(10, LevelTilesets.Items["Cathedral"], Enemies);

@@ -24,7 +24,8 @@ class PlayerActions
     private _Player:Player;
     private _Scene:GameScene;
     private _Actions:Action[];
-    private _ActionMove:Action;
+    private _ActionMove:Move;
+    private _ActionAttack:Attack;
     public get LeftMouse():Action { return this._LeftMouse; }
     public set LeftMouse(value:Action) { this._LeftMouse = value; }
     public get RightMouse():Action { return this._RightMouse; }
@@ -38,6 +39,10 @@ class PlayerActions
     public get ActionR():Action { return this._ActionR; }
     public set ActionR(value:Action) { this._ActionR = value; }
     public get Actions():Action[] { return this._Actions; }
+    public get ActionMove():Move { return this._ActionMove; }
+    public set ActionMove(value:Move) { this._ActionMove = value; }
+    public get ActionAttack():Attack { return this._ActionAttack; }
+    public set ActionAttack(value:Attack) { this._ActionAttack = value; }
     public constructor(Player:Player, Scene:GameScene)
     {
         this._Player = Player;
@@ -51,25 +56,32 @@ class PlayerActions
         this._ActionMove.Prefs["ColliderTypes"] = ["Solid", "EnemyCollider"];
         this._Actions.push(this._ActionMove);
         
-        let ActionAttack:Attack = new Attack(null, "PlayerAttack", this._Player);
-        ActionAttack.Prefs["TargetType"] = "Enemy";
-        this._Actions.push(ActionAttack);
+        this._ActionAttack = new Attack(null, "PlayerAttack", this._Player);
+        this._ActionAttack.Prefs["TargetType"] = "Enemy";
+        this._Actions.push(this._ActionAttack);
+
         let ActionCleave:Cleave = new Cleave(null, "PlayerCleave", this._Player);
         ActionCleave.Prefs["TargetType"] = "Enemy";
         this._Actions.push(ActionCleave);
+
         let ActionBleed = new Bleed(null, "PlayerBleed", this._Player);
         this._Actions.push(ActionBleed);
+
         let ActionTeleport = new Teleport(null, "PlayerTeleport", this._Player);
         ActionTeleport.Prefs["ColliderTypes"] = ["Solid", "EnemyCollider"];
         this._Actions.push(ActionTeleport);
+
         let ActionBloodlust = new Bloodlust(null, "PlayerBloodlust", this._Player);
         this._Actions.push(ActionBloodlust);
+
         let ActionBerserk = new Berserk(null, "PlayerBerserk", this._Player);
-        this._Actions.push(ActionBerserk);        
+        this._Actions.push(ActionBerserk);      
+
         let ActionLunacy = new Lunacy(null, "PlayerLunacy", this._Player);
         this._Actions.push(ActionLunacy);
-        this._LeftMouse = ActionAttack;
-        this._RightMouse = ActionAttack;
+
+        this._LeftMouse = this._ActionAttack;
+        this._RightMouse = this._ActionAttack;
         this._ActionQ = ActionCleave;
         this._ActionW = null;
         this._ActionE = null;

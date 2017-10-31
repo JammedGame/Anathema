@@ -69,6 +69,10 @@ class Inventory
             this._OnEquip = [];
         }
     }
+    public Copy() : Inventory
+    {
+        return new Inventory(this);
+    }
     public Loot(Item:Item) : boolean
     {
         if(this.AutoEquip(Item)) return true;
