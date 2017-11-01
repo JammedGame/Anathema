@@ -9,6 +9,7 @@ import { SpriteSetLoader } from "./../../Util/SpriteSetLoader";
 
 class Orc extends Enemy
 {
+    private static _Sets:any[];
     public constructor(Old:Orc, Scene: GameScene)
     {
         super(Old, Scene);
@@ -19,7 +20,16 @@ class Orc extends Enemy
             this._Stats.Health = 50;
             this._Stats.MaxHealth = 50;
             this._Stats.Store();
-            SpriteSetLoader.LoadSets(this, "Orc");
+            this.SpriteSets = this.LoadSets();
         }
+    }
+    protected LoadSets() : any []
+    {
+        if(!Orc._Sets)
+        {
+            SpriteSetLoader.LoadSets(this, "Orc");
+            Orc._Sets = this.SpriteSets;
+        }
+        return Orc._Sets;
     }
 }

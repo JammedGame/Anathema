@@ -9,6 +9,7 @@ import { SpriteSetLoader } from "./../../Util/SpriteSetLoader";
 
 class Skeleton extends Enemy
 {
+    private static _Sets:any[];
     public constructor(Old:Skeleton, Scene: GameScene)
     {
         super(Old, Scene);
@@ -22,7 +23,16 @@ class Skeleton extends Enemy
             this._Stats.PierceResist = 20;        
             this._Stats.Store();
             this._AttackIndex = 1;
-            SpriteSetLoader.LoadSets(this, "Skeleton");
+            this.SpriteSets = this.LoadSets();
         }
+    }
+    protected LoadSets() : any []
+    {
+        if(!Skeleton._Sets)
+        {
+            SpriteSetLoader.LoadSets(this, "Skeleton");
+            Skeleton._Sets = this.SpriteSets;
+        }
+        return Skeleton._Sets;
     }
 }
