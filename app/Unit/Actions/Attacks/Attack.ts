@@ -32,7 +32,7 @@ class Attack extends AfterAnimation
     protected Check() : boolean
     {
         // Override
-        if(!this._Projectile)
+        if(!this._Projectile && this._Range)
         {
             this._Projectile = new Arrow(null, this._Scene, [this.Prefs["TargetType"] + "Collider"]);
             this._Projectile.Stats = this._Owner.Stats;
@@ -66,6 +66,7 @@ class Attack extends AfterAnimation
                 let NewProjectile:Projectile = this._Projectile.Copy();
                 NewProjectile.Trans.Translation = this._Owner.Collider.Trans.Translation;
                 NewProjectile.Init(this._Victim.Trans.Translation);
+                NewProjectile.Stats.MovementSpeed = 25;
                 this._Scene.AddSceneObject(NewProjectile);
                 this._Scene.Projectiles.push(NewProjectile);
             }

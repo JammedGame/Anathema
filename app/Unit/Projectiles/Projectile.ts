@@ -85,20 +85,15 @@ class Projectile extends Unit
         let ColliderTypes:string[] = this.Data["ColliderTypes"];
         for(let i = 0; i < ColliderTypes.length; i++)
         {
-            let Colliders = this._Scene.GetObjectsWithData(ColliderTypes[i], true);
-            if(Colliders.length == 0) continue;
+            let PossibleColliders = this._Scene.GetObjectsWithData(ColliderTypes[i], true);
+            if(PossibleColliders.length == 0) continue;
+            if(PossibleColliders.indexOf(this._Collider) != -1) PossibleColliders.splice(PossibleColliders.indexOf(this._Collider), 1);
+            Engineer.Util.Collision.CalculateObjectCollisions(ColliderTypes[i], this._Collider, PossibleColliders);
+            let Colliders = this._Collider.Data["Colliders_" + ColliderTypes[i]];
             for(let j = 0; j < Colliders.length; j++)
             {
-                let PossibleColliders = this._Scene.GetObjectsWithData(ColliderTypes[i], true);
-                if(PossibleColliders.length == 0) continue;
-                if(PossibleColliders.indexOf(this._Collider) != -1) PossibleColliders.splice(PossibleColliders.indexOf(this._Collider), 1);
-                Engineer.Util.Collision.CalculateObjectCollisions(ColliderTypes[i], this._Collider, PossibleColliders);
-                let Colliders = this._Collider.Data["Colliders_" + ColliderTypes[i]];
-                for(let k = 0; k < Colliders.length; k++)
-                {
-                    this.Damage(Colliders[i].Data["Owner"]);
-                    if(!this._Area) break; 
-                }
+                this.Damage(Colliders[j].Data["Owner"]);
+                if(!this._Area) break; 
             }
         }
         this.Destroy();
