@@ -8,7 +8,7 @@ import { Unit } from "./../Unit";
 import { Stats } from "./../Stats";
 import { Action } from "./../Actions/Action";
 import { Move } from "./../Actions/Move";
-import { SpriteSetLoader } from "./../../Util/SpriteSetLoader";
+
 
 class Arrow extends Projectile
 {
@@ -21,7 +21,7 @@ class Arrow extends Projectile
         }
         else
         {
-            SpriteSetLoader.LoadSets(this, "Skeleton");
+            this.LoadSets("Arrow", 1);
         }
     }
 }

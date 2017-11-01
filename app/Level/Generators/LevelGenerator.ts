@@ -17,6 +17,7 @@ class LevelGenerator
     public static Generate(Scene:GameScene, Level:Level) : void
     {
         let L = LevelGenerator.GenerateLayout(new Engineer.Math.Vertex(5,5,0), [new LayoutClass(3,1), new LayoutClass(2,3), new LayoutClass(1,1000)]);
+        //let L = LevelGenerator.GenerateLayout(new Engineer.Math.Vertex(2,2,0), [new LayoutClass(1,1000)]);
         Level.Layout = L;
         let NewChunk:Chunk = LevelGenerator.GenerateMegaChunk(L, Level.Tileset);
         Level.AccessMatrix = NewChunk.AccessMatrix();

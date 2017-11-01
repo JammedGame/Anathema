@@ -1,4 +1,4 @@
-export { SpriteSetLoader };
+export { SpriteSetLoader, SpriteSetResourcePath };
 
 import Engineer from "./../Engineer";
 
@@ -22,7 +22,7 @@ class SpriteSetLoader
         SpriteSetLoader.LoadSetCollection(Sprite, SpriteSetResourcePath + SubDir + KeyWord + "/AttackBow/", "Bow", SetsLength[4]);
         SpriteSetLoader.LoadSetCollection(Sprite, SpriteSetResourcePath + SubDir + KeyWord + "/SpellCast/", "Cast", SetsLength[5]);
     }
-    private static LoadSetCollection(Sprite:any, Path:string, Name:string, Length:number)
+    public static LoadSetCollection(Sprite:any, Path:string, Name:string, Length:number)
     {
         Sprite.SpriteSets.push(SpriteSetLoader.LoadSingleSet(Path, Name, "Up", Length));
         Sprite.SpriteSets.push(SpriteSetLoader.LoadSingleSet(Path, Name, "Right", Length));
@@ -35,6 +35,15 @@ class SpriteSetLoader
         Set.Seed = 5;
         Set.Sprites = [];
         for (let i = 0; i < Length; i++) Set.Sprites.push(Path + Direction + i + ".png");
+        return Set;
+    }
+    public static LoadSet(Path:string, KeyWord:string, Length:number, Seed?:number) : any
+    {
+        let Set = new Engineer.Engine.SpriteSet(null, KeyWord);
+        if(Seed) Set.Seed = Seed;
+        else Set.Seed = 5;
+        Set.Sprites = [];
+        for (let i = 0; i < Length; i++) Set.Sprites.push(Path + KeyWord + "/Animation" + i + ".png");
         return Set;
     }
 }

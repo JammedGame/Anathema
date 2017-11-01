@@ -8,9 +8,11 @@ import { Stats } from "./../Stats";
 import { Action } from "./../Actions/Action";
 import { Move } from "./../Actions/Move";
 import { Damage } from "./../Damage";
+import { SpriteSetLoader, SpriteSetResourcePath } from "./../../Util/SpriteSetLoader";
 
 class Projectile extends Unit
 {
+    private _Applying:boolean;
     protected _Area:boolean;
     protected _RadiusDamage:boolean;
     protected _Radius:number;
@@ -18,6 +20,7 @@ class Projectile extends Unit
     public constructor(Old:Projectile, Scene:GameScene, ColliderTypes:string[])
     {
         super(Old, Scene);
+        this._Applying = false;
         if(Old != null)
         {
             this._Area = Old._Area;
@@ -77,33 +80,50 @@ class Projectile extends Unit
     protected Apply() : void
     {
         // Virtual
+        if(this._Applying) return;
+        this._Applying = true;
         let ColliderTypes:string[] = this.Data["ColliderTypes"];
-        let Hit = false;
         for(let i = 0; i < ColliderTypes.length; i++)
         {
             let Colliders = this._Scene.GetObjectsWithData(ColliderTypes[i], true);
             if(Colliders.length == 0) continue;
             for(let j = 0; j < Colliders.length; j++)
             {
-                if(!this._RadiusDamage && Engineer.Util.Collision.Check(this._Collider, Colliders[i]).Collision)
+                let PossibleColliders = this._Scene.GetObjectsWithData(ColliderTypes[i], true);
+                if(PossibleColliders.length == 0) continue;
+                if(PossibleColliders.indexOf(this._Collider) != -1) PossibleColliders.splice(PossibleColliders.indexOf(this._Collider), 1);
+                Engineer.Util.Collision.CalculateObjectCollisions(ColliderTypes[i], this._Collider, PossibleColliders);
+                let Colliders = this._Collider.Data["Colliders_" + ColliderTypes[i]];
+                for(let k = 0; k < Colliders.length; k++)
                 {
                     this.Damage(Colliders[i].Data["Owner"]);
-                    Hit = true;
-                    if(!this._Area) break;
-                }
-                else if(this._RadiusDamage && Engineer.Math.Vertex.Distance(this._Collider.Trans.Translation, Colliders[i].Trans.Translation))
-                {
-                    this.Damage(Colliders[i].Data["Owner"]);
-                    Hit = true;
-                    if(!this._Area) break;
+                    if(!this._Area) break; 
                 }
             }
-            if(Hit) break;
         }
         this.Destroy();
     }
     protected Damage(Victim:Unit) : void
     {
         Damage.Single.SingleDamage(this, Victim, this._DamageFactor);
+    }
+    protected LoadSets(KeyWord:string, Length:number, Seed?:number)
+    {
+        let Set = SpriteSetLoader.LoadSet(SpriteSetResourcePath + "Projectiles/", KeyWord, Length, Seed);
+        this.SpriteSets.push(Set);
+        this.UpdateSpriteSet(0);
+    }
+    protected CalculateSpriteSet(Set:number, Direction:any) : void
+    {
+        // Override
+        let Angle = this.CalculateDirection(Direction);
+        this.Trans.Rotation.Z = Angle;
+    }
+    protected CalculateDirection(Direction:any) : number
+    {
+        // Override
+        let Angle = Engineer.Math.Vertex.Angle(new Engineer.Math.Vertex(0, -1, 0), Direction);
+        Angle += 90;
+        return Angle;
     }
 }

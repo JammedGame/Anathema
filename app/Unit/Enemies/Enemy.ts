@@ -49,7 +49,7 @@ class Enemy extends Unit
     public Update()
     {
         // Virtual
-        //if(!this._CurrentAction) this.Behaviour();
+        if(!this._CurrentAction) this.Behaviour();
         if(this._CurrentAction)
         {
             if(!this._CurrentAction.Apply(this._Scene))
