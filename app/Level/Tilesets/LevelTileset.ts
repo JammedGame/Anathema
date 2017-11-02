@@ -30,7 +30,8 @@ enum LevelTilesetFillType
 {
     None = 0,
     Floor = 1,
-    Ceiling = 2
+    Ceiling = 2,
+    Separate = 3
 }
 class LevelTileset
 {
@@ -44,6 +45,7 @@ class LevelTileset
     private _WallUpper:any;
     private _WallLower:any;
     private _Ceiling:any;
+    private _Separate:any;
     public get LayoutType() : LevelTilesetLayoutType { return this._LayoutType; }
     public get FloorType() : LevelTilesetFloorType { return this._FloorType; }
     public get WallType() : LevelTilesetWallType { return this._WallType; }
@@ -53,6 +55,7 @@ class LevelTileset
     public get WallUpper() : any { return this._WallUpper; }
     public get WallLower() : any { return this._WallLower; }
     public get Ceiling() : any { return this._Ceiling; }
+    public get Separate() : any { return this._Separate; }
     public constructor(Name:string, LayoutType:LevelTilesetLayoutType, FloorType:LevelTilesetFloorType, WallType:LevelTilesetWallType, CeilingType:LevelTilesetCeilingType, FillType:LevelTilesetFillType, ArrayLengths:number[])
     {
         this._Name = Name;
@@ -97,5 +100,13 @@ class LevelTileset
             CeilingImages.push("/build/resources/tilesets/"+this._Name.toLowerCase()+"/c"+s+".png");
         }
         this._Ceiling = new Engineer.Engine.TileCollection(null, CeilingImages);
+        let SeparateImages:string[] = [];
+        for(let i = 1; i < ArrayLengths[2] + 1; i++)
+        {
+            let s = i.toString();
+            if(i < 10) s = "0" + i;
+            SeparateImages.push("/build/resources/tilesets/"+this._Name.toLowerCase()+"/s"+s+".png");
+        }
+        this._Separate = new Engineer.Engine.TileCollection(null, SeparateImages);
     }
 }

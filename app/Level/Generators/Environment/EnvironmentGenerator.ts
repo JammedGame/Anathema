@@ -60,6 +60,7 @@ class EnvironmentGenerator
                 {
                     if(Level.Tileset.FillType == LevelTilesetFillType.Ceiling) EnvironmentGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j,i,0), Level.Tileset.Ceiling, Art.Fields[i][j], Engineer.Math.Color.White);
                     else if(Level.Tileset.FillType == LevelTilesetFillType.Floor) EnvironmentGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j,i,0), Level.Tileset.Floor, Art.Fields[i][j], Engineer.Math.Color.FromRGBA(180,180,180,255));
+                    else if(Level.Tileset.FillType == LevelTilesetFillType.Separate) EnvironmentGenerator.GenerateTile(Scene, new Engineer.Math.Vertex(j,i,0), Level.Tileset.Separate, Art.Fields[i][j], Engineer.Math.Color.FromRGBA(180,180,180,255));
                 }
             }
         }

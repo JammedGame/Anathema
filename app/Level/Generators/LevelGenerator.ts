@@ -7,7 +7,7 @@ import { ColliderGenerator } from "./ColliderGenerator";
 import { LevelContentGenerator } from "./LevelContentGenerator";
 import { GameScene } from "./../../GameScene";
 import { Level } from "./../Level";
-import { LevelTileset, LevelTilesetCeilingType, LevelTilesetLayoutType, LevelTilesetWallType, LevelTilesetFloorType } from "./../Tilesets/LevelTileset";
+import { LevelTileset, LevelTilesetCeilingType, LevelTilesetLayoutType, LevelTilesetWallType, LevelTilesetFloorType, LevelTilesetFillType } from "./../Tilesets/LevelTileset";
 import { Layout, LayoutClass, LayoutEntry } from "./../Layout";
 import { EnvironmentGenerator } from "./Environment/EnvironmentGenerator";
 
@@ -35,7 +35,7 @@ class LevelGenerator
             ChunkGenerator.Insert(MC, NewChunk, new Engineer.Math.Vertex(L.Entries[i].Location.X * 11, L.Entries[i].Location.Y * 11, 0));
         }
         LevelGenerator.ConnectMegaChunk(MC, L);
-        ChunkGenerator.FakeIsometric(MC, Tilesets.LayoutType != LevelTilesetLayoutType.Story && Tilesets.CeilingType != LevelTilesetCeilingType.Uniform && Tilesets.CeilingType != LevelTilesetCeilingType.Roofed);
+        ChunkGenerator.FakeIsometric(MC, Tilesets.LayoutType != LevelTilesetLayoutType.Story && Tilesets.FillType == LevelTilesetFillType.None);
         if(Tilesets.CeilingType == LevelTilesetCeilingType.Roofed) ChunkGenerator.FakeRoof(MC);
         return MC;
     }

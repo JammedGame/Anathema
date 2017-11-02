@@ -19,6 +19,10 @@ class EnvironmentFloorGenerator
                 {
                     Art.Fields[i][j] = EnvironmentFloorGenerator.GenerateFloor(Level, C, j, i);
                 }
+                else if((C.Fields[i][j] == 0 || C.Fields[i][j] == -1) && Level.Tileset.FillType == LevelTilesetFillType.Separate)
+                {
+                    Art.Fields[i][j] = EnvironmentFloorGenerator.GenerateSeparateUniform(Level);
+                }
             }
         }
     }
@@ -37,6 +41,10 @@ class EnvironmentFloorGenerator
     private static GenerateUniform(Level:Level) : number
     {
         return EnvironmentFloorGeneratorCalculations.RandomNumber(Level.Tileset.Floor.Images.length);
+    }
+    private static GenerateSeparateUniform(Level:Level) : number
+    {
+        return EnvironmentFloorGeneratorCalculations.RandomNumber(Level.Tileset.Separate.Images.length);
     }
 }
 class EnvironmentFloorGeneratorCalculations
