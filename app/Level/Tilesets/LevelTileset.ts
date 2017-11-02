@@ -12,7 +12,8 @@ enum LevelTilesetCeilingType
     Uniform = 0,
     Crested = 1,
     Bordered = 2,
-    Roofed = 3
+    Roofed = 3,
+    Divided = 4
 }
 enum LevelTilesetFloorType
 {
@@ -22,7 +23,8 @@ enum LevelTilesetFloorType
 enum LevelTilesetWallType
 {
     Uniform = 0,
-    Bordered = 1
+    Bordered = 1,
+    Divided = 2
 }
 class LevelTileset
 {

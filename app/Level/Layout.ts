@@ -5,6 +5,7 @@ class Layout
     public Dimensions:any;
     public Data:number[][];
     public Entries:LayoutEntry[];
+    public Chunk:any;
     public constructor(Dimensions:any, Value:number)
     {
         this.Dimensions = Dimensions;
