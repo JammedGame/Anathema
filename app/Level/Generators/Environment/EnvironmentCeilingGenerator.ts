@@ -4,7 +4,7 @@ import Engineer from "./../../../Engineer";
 
 import { Level } from "./../../Level";
 import { Chunk } from "./../ChunkGenerator";
-import { LevelTilesetCeilingType } from "../../Tilesets/LevelTileset";
+import { LevelTilesetCeilingType, LevelTilesetFillType } from "../../Tilesets/LevelTileset";
 
 class EnvironmentCeilingGenerator
 {
@@ -15,7 +15,7 @@ class EnvironmentCeilingGenerator
         {
             for(let j = 0; j < C.Dimensions.X; j++)
             {
-                if(C.Fields[i][j] == 4)
+                if(C.Fields[i][j] == 4 || ((C.Fields[i][j] == 0 || C.Fields[i][j] == -1) && Level.Tileset.FillType == LevelTilesetFillType.Ceiling))
                 {
                     Art.Fields[i][j] = EnvironmentCeilingGenerator.GenerateCeiling(Level, C, j, i);
                 }

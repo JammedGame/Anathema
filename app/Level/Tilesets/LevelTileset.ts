@@ -1,4 +1,4 @@
-export { LevelTileset, LevelTilesetLayoutType, LevelTilesetCeilingType, LevelTilesetWallType, LevelTilesetFloorType }
+export { LevelTileset, LevelTilesetLayoutType, LevelTilesetCeilingType, LevelTilesetWallType, LevelTilesetFloorType, LevelTilesetFillType }
 
 import Engineer from "./../../Engineer";
 
@@ -26,6 +26,12 @@ enum LevelTilesetWallType
     Bordered = 1,
     Divided = 2
 }
+enum LevelTilesetFillType
+{
+    None = 0,
+    Floor = 1,
+    Ceiling = 2
+}
 class LevelTileset
 {
     private _Name:string;
@@ -33,8 +39,8 @@ class LevelTileset
     private _FloorType:LevelTilesetFloorType;
     private _WallType:LevelTilesetWallType;
     private _CeilingType:LevelTilesetCeilingType;
+    private _FillType:LevelTilesetFillType;
     private _Floor:any;
-    private _FloorSet2:any;
     private _WallUpper:any;
     private _WallLower:any;
     private _Ceiling:any;
@@ -42,41 +48,32 @@ class LevelTileset
     public get FloorType() : LevelTilesetFloorType { return this._FloorType; }
     public get WallType() : LevelTilesetWallType { return this._WallType; }
     public get CeilingType() : LevelTilesetCeilingType { return this._CeilingType; }
+    public get FillType() : LevelTilesetFillType { return this._FillType; }
     public get Floor() : any { return this._Floor; }
-    public get FloorSet1() : any { return this._Floor; }
-    public get FloorSet2() : any { return this._FloorSet2; }
     public get WallUpper() : any { return this._WallUpper; }
     public get WallLower() : any { return this._WallLower; }
     public get Ceiling() : any { return this._Ceiling; }
-    public constructor(Name:string, LayoutType:LevelTilesetLayoutType, FloorType:LevelTilesetFloorType, WallType:LevelTilesetWallType, CeilingType:LevelTilesetCeilingType, ArrayLengths:number[])
+    public constructor(Name:string, LayoutType:LevelTilesetLayoutType, FloorType:LevelTilesetFloorType, WallType:LevelTilesetWallType, CeilingType:LevelTilesetCeilingType, FillType:LevelTilesetFillType, ArrayLengths:number[])
     {
         this._Name = Name;
         this._LayoutType = LayoutType;
         this._FloorType = FloorType;
         this._WallType = WallType;
         this._CeilingType = CeilingType;
+        this._FillType = FillType;
         this.Init(ArrayLengths);
         console.log(this);
     }
     private Init(ArrayLengths:number[]) : void
     {
         let FloorImages:string[] = [];
-        let FloorSet2Images:string[] = [];
         for(let i = 1; i < ArrayLengths[0] + 1; i++)
         {
             let s = i.toString();
             if(i < 10) s = "0" + i;
             FloorImages.push("/build/resources/tilesets/"+this._Name.toLowerCase()+"/g"+s+".png");
-            if(this._FloorType == LevelTilesetFloorType.Checkered)
-            {
-                FloorSet2Images.push("/build/resources/tilesets/"+this._Name.toLowerCase()+"/g"+s+"t02.png");
-            }
         }
         this._Floor = new Engineer.Engine.TileCollection(null, FloorImages);
-        if(this._FloorType == LevelTilesetFloorType.Checkered)
-        {
-            this._FloorSet2 = new Engineer.Engine.TileCollection(null, FloorSet2Images);
-        }
         let WallUpperImages:string[] = [];
         let WallLowerImages:string[] = [];
         for(let i = 1; i < ArrayLengths[1] + 1; i++)

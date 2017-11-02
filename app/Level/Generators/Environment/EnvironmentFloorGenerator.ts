@@ -4,7 +4,7 @@ import Engineer from "./../../../Engineer";
 
 import { Level } from "./../../Level";
 import { Chunk } from "./../ChunkGenerator";
-import { LevelTilesetFloorType } from "../../Tilesets/LevelTileset";
+import { LevelTilesetFloorType, LevelTilesetFillType } from "../../Tilesets/LevelTileset";
 
 class EnvironmentFloorGenerator
 {
@@ -15,7 +15,7 @@ class EnvironmentFloorGenerator
         {
             for(let j = 0; j < C.Dimensions.X; j++)
             {
-                if(C.Fields[i][j] == 1)
+                if(C.Fields[i][j] == 1 || ((C.Fields[i][j] == 0 || C.Fields[i][j] == -1) && Level.Tileset.FillType == LevelTilesetFillType.Floor))
                 {
                     Art.Fields[i][j] = EnvironmentFloorGenerator.GenerateFloor(Level, C, j, i);
                 }
@@ -31,8 +31,8 @@ class EnvironmentFloorGenerator
     private static GenerateCheckered(Level:Level, X:number, Y:number) : number
     {
         let Set2:boolean = (X + Y) % 2 == 0;
-        if(Set2) return Level.Tileset.Floor.length / 2 + EnvironmentFloorGeneratorCalculations.RandomNumber(Level.Tileset.Floor.length / 2);
-        return EnvironmentFloorGeneratorCalculations.RandomNumber(Level.Tileset.Floor.length / 2);
+        if(Set2) return Level.Tileset.Floor.Images.length / 2 + EnvironmentFloorGeneratorCalculations.RandomNumber(Level.Tileset.Floor.Images.length / 2);
+        return EnvironmentFloorGeneratorCalculations.RandomNumber(Level.Tileset.Floor.Images.length / 2);
     }
     private static GenerateUniform(Level:Level) : number
     {
