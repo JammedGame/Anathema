@@ -10,7 +10,7 @@ class ColliderGenerator
     private static FieldSize:number = 120;
     public static Generate(Scene:GameScene, Level:Level, Access:number[][]) : void
     {
-       ColliderGenerator.GenerateColliders(Scene, Level.Layout.Dimensions, Access)
+       ColliderGenerator.GenerateColliders(Scene, Level.Layout.Chunk.Dimensions, Access);
     }
     private static GenerateColliders(Scene:GameScene, Dimensions:any, Access:number[][])
     {
@@ -28,7 +28,7 @@ class ColliderGenerator
         NewTile.Data["Solid"] = true;
         NewTile.Data["Collision"] = Engineer.Math.CollisionType.Rectangular2D;
         NewTile.Trans.Translation = new Engineer.Math.Vertex(X * ColliderGenerator.FieldSize, Y * ColliderGenerator.FieldSize, 0);
-        NewTile.Trans.Scale = new Engineer.Math.Vertex(Size * ColliderGenerator.FieldSize, Size * ColliderGenerator.FieldSize, 1);
+        NewTile.Trans.Scale = new Engineer.Math.Vertex(ColliderGenerator.FieldSize, ColliderGenerator.FieldSize, 1);
         NewTile.Active = false;
         NewTile.Paint = Engineer.Math.Color.FromRGBA(0,255,0,120);
         Scene.AddSceneObject(NewTile);

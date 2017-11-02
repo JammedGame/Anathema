@@ -20,6 +20,7 @@ class LevelGenerator
         Level.Layout.Chunk = LevelGenerator.GenerateMegaChunk(Level.Layout, Level.Tileset);
         Level.AccessMatrix = Level.Layout.Chunk.AccessMatrix();
         EnvironmentGenerator.Generate(Scene, Level);
+        ColliderGenerator.Generate(Scene, Level, Level.AccessMatrix);
         LevelContentGenerator.Generate(Level, Scene, Scene.Data["Player"]);
     }
     private static GenerateMegaChunk(L:Layout, Tilesets:LevelTileset) : Chunk
