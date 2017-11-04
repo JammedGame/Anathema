@@ -30,5 +30,12 @@ class SquareChunkGenerator extends ChunkGenerator
                 C.Fields[Y][X] = 4;
             }
         }
+        for(let Y = Half - Radius + 1; Y <= Half + Radius - 1; Y++)
+        {
+            for(let X = Half - Radius + 1; X <= Half + Radius - 1; X++)
+            {
+                C.Fields[Y][X] = 0;
+            }
+        }
     }
 }
