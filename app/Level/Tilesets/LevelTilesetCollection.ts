@@ -12,7 +12,7 @@ class LevelTilesetCollection
 
         this.Items["Beach"] = new LevelTileset("Beach");
         this.Items["Beach"].FillType = LevelTilesetFillType.Ceiling;
-        this.Items["Beach"].ChunkTypes = ["CorneredSquare"];
+        this.Items["Beach"].ChunkTypes = ["VaryingFourCircles"];
         //this.Items["Beach"].ChunkTypes = ["Cornered", "Cube"];
         this.Items["Beach"].Init([5,1,0]);
 

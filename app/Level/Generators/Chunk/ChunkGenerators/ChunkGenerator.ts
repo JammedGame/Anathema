@@ -23,4 +23,8 @@ class ChunkGenerator
         for(let i = 0; i < C.Dimensions.X; i++) C.Fields[0][i] = 4;
         for(let i = 0; i < C.Dimensions.X; i++) C.Fields[C.Dimensions.Y - 1][i] = 4;
     }
+    protected RandomNumber(Size:number)
+    {
+        return Math.floor((Math.random() * Size));
+    }
 }
