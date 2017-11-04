@@ -4,7 +4,9 @@ import { GlobalChunkGenerator } from "./../GlobalChunkGenerator";
 import { ChunkGenerator } from "./ChunkGenerator";
 import { CorneredChunkGenerator } from "./CorneredChunkGenerator";
 import { PillaredChunkGenerator } from "./PillaredChunkGenerator";
-import { TorusChunkGenerator } from "./TorusChunkGenerator";
+import { SquareChunkGenerator } from "./SquareChunkGenerator";
+import { CorneredSquareChunkGenerator } from "./CorneredSquareChunkGenerator";
+import { CircleChunkGenerator } from "./CircleChunkGenerator";
 
 class GeneratorTypesImporter
 {
@@ -13,6 +15,8 @@ class GeneratorTypesImporter
         GCG.AddChunkGenerator(new ChunkGenerator);
         GCG.AddChunkGenerator(new CorneredChunkGenerator);
         GCG.AddChunkGenerator(new PillaredChunkGenerator);
-        GCG.AddChunkGenerator(new TorusChunkGenerator);
+        GCG.AddChunkGenerator(new SquareChunkGenerator);
+        GCG.AddChunkGenerator(new CorneredSquareChunkGenerator);
+        GCG.AddChunkGenerator(new CircleChunkGenerator);
     }
 }

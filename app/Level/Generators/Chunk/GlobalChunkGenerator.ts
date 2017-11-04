@@ -21,6 +21,7 @@ class GlobalChunkGenerator
         this._Available = [];
         for(let i = 0; i < Available.length; i++)
         {
+            if(!this._Data[Available[i]]) continue;
             this._Available.push(this._Data[Available[i]]);
         }
     }
@@ -32,7 +33,6 @@ class GlobalChunkGenerator
     }
     public GenerateRandom(Dimensions:any) : Chunk
     {
-        console.log(this._Available);
         let Index = this.RandomNumber(this._Available.length);
         return this.Generate(this._Available[Index], Dimensions)
     }
