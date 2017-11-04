@@ -7,6 +7,7 @@ import { DiagonalChunkGenerator } from "./DiagonalChunkGenerator";
 import { PillaredChunkGenerator } from "./PillaredChunkGenerator";
 import { SquareChunkGenerator } from "./SquareChunkGenerator";
 import { CorneredSquareChunkGenerator } from "./CorneredSquareChunkGenerator";
+import { VaryingCorneredSquareChunkGenerator } from "./VaryingCorneredSquareChunkGenerator";
 import { CircleChunkGenerator } from "./CircleChunkGenerator";
 import { FourCirclesChunkGenerator } from "./FourCirclesChunkGenerator";
 import { VaryingFourCirclesChunkGenerator } from "./VaryingFourCirclesChunkGenerator";
@@ -23,6 +24,7 @@ class GeneratorTypesImporter
         GCG.AddChunkGenerator(new PillaredChunkGenerator);
         GCG.AddChunkGenerator(new SquareChunkGenerator);
         GCG.AddChunkGenerator(new CorneredSquareChunkGenerator);
+        GCG.AddChunkGenerator(new VaryingCorneredSquareChunkGenerator);
         GCG.AddChunkGenerator(new CircleChunkGenerator);
         GCG.AddChunkGenerator(new FourCirclesChunkGenerator);
         GCG.AddChunkGenerator(new VaryingFourCirclesChunkGenerator);

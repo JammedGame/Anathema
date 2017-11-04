@@ -24,11 +24,14 @@ class LevelTilesetCollection
         this.Items["Town"].WallType = LevelTilesetWallType.Bordered;
         this.Items["Town"].CeilingType = LevelTilesetCeilingType.Roofed;
         this.Items["Town"].FillType = LevelTilesetFillType.Ceiling;
+        this.Items["Town"].ChunkTypes = ["VaryingCorneredSquare"];
         this.Items["Town"].Init([3,7,0]);
         
         this.Items["Cathedral"] = new LevelTileset("Cathedral");
         this.Items["Cathedral"].FloorType = LevelTilesetFloorType.Checkered;
         this.Items["Cathedral"].CeilingType = LevelTilesetCeilingType.Crested;
+        this.Items["Cathedral"].FillType = LevelTilesetFillType.Floor;
+        this.Items["Cathedral"].ChunkTypes = ["Pillared", "Square"];
         this.Items["Cathedral"].Init([8,8,0]);
 
         this.Items["Graveyard"] = new LevelTileset("Graveyard");
