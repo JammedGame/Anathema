@@ -12,12 +12,12 @@ class LevelTilesetCollection
 
         this.Items["Beach"] = new LevelTileset("Beach");
         this.Items["Beach"].FillType = LevelTilesetFillType.Ceiling;
-        this.Items["Beach"].ChunkTypes = ["VaryingFourCircles"];
-        //this.Items["Beach"].ChunkTypes = ["Cornered", "Cube"];
+        this.Items["Beach"].ChunkTypes = ["Cornered", "CorneredSquare", "VaryingFourCircles", "Diagonal"];
         this.Items["Beach"].Init([5,1,0]);
 
         this.Items["Forest"] = new LevelTileset("Forest");
         this.Items["Forest"].FillType = LevelTilesetFillType.Ceiling;
+        this.Items["Forest"].ChunkTypes = ["ConnectedFourCircles", "VaryingFourCircles", "Grove", "Circle"];
         this.Items["Forest"].Init([1,1,0]);
 
         this.Items["Town"] = new LevelTileset("Town");

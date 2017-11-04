@@ -11,6 +11,7 @@ import { CircleChunkGenerator } from "./CircleChunkGenerator";
 import { FourCirclesChunkGenerator } from "./FourCirclesChunkGenerator";
 import { VaryingFourCirclesChunkGenerator } from "./VaryingFourCirclesChunkGenerator";
 import { ConnectedFourCirclesChunkGenerator } from "./ConnectedFourCirclesChunkGenerator";
+import { GroveChunkGenerator } from "./GroveChunkGenerator";
 
 class GeneratorTypesImporter
 {
@@ -26,5 +27,6 @@ class GeneratorTypesImporter
         GCG.AddChunkGenerator(new FourCirclesChunkGenerator);
         GCG.AddChunkGenerator(new VaryingFourCirclesChunkGenerator);
         GCG.AddChunkGenerator(new ConnectedFourCirclesChunkGenerator);
+        GCG.AddChunkGenerator(new GroveChunkGenerator);
     }
 }

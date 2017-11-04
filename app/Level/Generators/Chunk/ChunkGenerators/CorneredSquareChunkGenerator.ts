@@ -14,7 +14,7 @@ class CorneredSquareChunkGenerator extends SquareChunkGenerator
     {
         // Override
         super.Generate(C);
-        this.GenerateCenterCorners(C, 2.0 / 3);
+        this.GenerateCenterCorners(C, 0.66);
     }
     protected GenerateCenterCorners(C:Chunk, Factor:number) : void
     {

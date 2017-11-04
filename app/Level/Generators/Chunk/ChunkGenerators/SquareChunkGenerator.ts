@@ -14,7 +14,7 @@ class SquareChunkGenerator extends ChunkGenerator
     {
         // Override
         super.Generate(C);
-        this.GenerateCenter(C, 2.0 / 3);
+        this.GenerateCenter(C, 0.66);
     }
     protected GenerateCenter(C:Chunk, Factor:number) : void
     {
@@ -22,8 +22,7 @@ class SquareChunkGenerator extends ChunkGenerator
         if(C.Dimensions.X < 15) return;
         let Half = Math.floor(C.Dimensions.X / 2);
         let Radius = Math.floor(C.Dimensions.X * Factor / 2);
-        if(C.Dimensions.X < 20) Radius /= 2;
-        if(C.Dimensions.X < 10) Radius /= 2;
+        if(C.Dimensions.X < 25) Radius -= 2;
         for(let Y = Half - Radius; Y <= Half + Radius; Y++)
         {
             for(let X = Half - Radius; X <= Half + Radius; X++)
