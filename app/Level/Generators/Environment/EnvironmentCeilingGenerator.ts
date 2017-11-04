@@ -3,7 +3,7 @@ export { EnvironmentCeilingGenerator }
 import Engineer from "./../../../Engineer";
 
 import { Level } from "./../../Level";
-import { Chunk } from "./../ChunkGenerator";
+import { Chunk } from "./../Chunk/Chunk";
 import { LevelTilesetCeilingType, LevelTilesetFillType } from "../../Tilesets/LevelTileset";
 
 class EnvironmentCeilingGenerator

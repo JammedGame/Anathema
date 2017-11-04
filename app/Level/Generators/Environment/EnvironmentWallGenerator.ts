@@ -3,7 +3,7 @@ export { EnvironmentWallGenerator }
 import Engineer from "./../../../Engineer";
 
 import { Level } from "./../../Level";
-import { Chunk } from "./../ChunkGenerator";
+import { Chunk } from "./../Chunk/Chunk";
 import { LevelTilesetWallType } from "../../Tilesets/LevelTileset";
 
 class EnvironmentWallGenerator

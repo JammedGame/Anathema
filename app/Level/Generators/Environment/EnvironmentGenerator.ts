@@ -3,7 +3,7 @@ export { EnvironmentGenerator }
 import Engineer from "./../../../Engineer";
 
 import { Level } from "./../../Level";
-import { Chunk } from "./../ChunkGenerator";
+import { Chunk } from "./../Chunk/Chunk";
 import { GameScene } from "./../../../GameScene";
 import { ColliderGenerator } from "./../ColliderGenerator";
 import { LevelTileset, LevelTilesetFillType } from "./../../Tilesets/LevelTileset"; 

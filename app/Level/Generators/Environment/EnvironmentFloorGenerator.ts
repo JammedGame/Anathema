@@ -3,7 +3,7 @@ export { EnvironmentFloorGenerator }
 import Engineer from "./../../../Engineer";
 
 import { Level } from "./../../Level";
-import { Chunk } from "./../ChunkGenerator";
+import { Chunk } from "./../Chunk/Chunk";
 import { LevelTilesetFloorType, LevelTilesetFillType } from "../../Tilesets/LevelTileset";
 
 class EnvironmentFloorGenerator

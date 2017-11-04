@@ -2,20 +2,24 @@ export { LevelGenerator }
 
 import Engineer from "./../../Engineer";
 
-import { Chunk, ChunkGenerator } from "./ChunkGenerator";
+import { Chunk } from "./Chunk/Chunk";
+import { GlobalChunkGenerator } from "./Chunk/GlobalChunkGenerator";
 import { ColliderGenerator } from "./ColliderGenerator";
 import { LevelContentGenerator } from "./LevelContentGenerator";
 import { GameScene } from "./../../GameScene";
 import { Level } from "./../Level";
-import { LevelTileset, LevelTilesetCeilingType, LevelTilesetLayoutType, LevelTilesetWallType, LevelTilesetFloorType, LevelTilesetFillType } from "./../Tilesets/LevelTileset";
+import { LevelTileset, LevelTilesetCeilingType, LevelTilesetWallType, LevelTilesetFloorType, LevelTilesetFillType } from "./../Tilesets/LevelTileset";
 import { Layout, LayoutClass, LayoutEntry } from "./../Layout";
 import { EnvironmentGenerator } from "./Environment/EnvironmentGenerator";
 
 class LevelGenerator
 {
     private static _FieldSize:number = 120;
+    private static _ChunkGenerator:GlobalChunkGenerator;
     public static Generate(Scene:GameScene, Level:Level) : void
     {
+        if(!LevelGenerator._ChunkGenerator) LevelGenerator._ChunkGenerator = new GlobalChunkGenerator();
+        LevelGenerator._ChunkGenerator.Init(Level.Tileset.ChunkTypes);
         Level.Layout = LevelGenerator.GenerateLayout(new Engineer.Math.Vertex(5,5,0), [new LayoutClass(3,1), new LayoutClass(2,3), new LayoutClass(1,1000)]);
         Level.Layout.Chunk = LevelGenerator.GenerateMegaChunk(Level.Layout, Level.Tileset);
         Level.AccessMatrix = Level.Layout.Chunk.AccessMatrix();
@@ -30,14 +34,13 @@ class LevelGenerator
         {
             let Index = Math.floor((Math.random() * 4));
             if(Index == 4) Index = 3;
-            let NewChunk:Chunk = ChunkGenerator.GenerateWOFake(Index, new Engineer.Math.Vertex(L.Entries[i].Size * 11 - 1, L.Entries[i].Size * 11 - 1, 0));
-
+            let NewChunk:Chunk = LevelGenerator._ChunkGenerator.GenerateRandom(new Engineer.Math.Vertex(L.Entries[i].Size * 11 - 1, L.Entries[i].Size * 11 - 1, 0));
             L.Entries[i].Chunk = NewChunk;
-            ChunkGenerator.Insert(MC, NewChunk, new Engineer.Math.Vertex(L.Entries[i].Location.X * 11, L.Entries[i].Location.Y * 11, 0));
+            LevelGenerator._ChunkGenerator.Insert(MC, NewChunk, new Engineer.Math.Vertex(L.Entries[i].Location.X * 11, L.Entries[i].Location.Y * 11, 0));
         }
         LevelGenerator.ConnectMegaChunk(MC, L);
-        ChunkGenerator.FakeIsometric(MC, Tilesets.LayoutType != LevelTilesetLayoutType.Story && Tilesets.FillType == LevelTilesetFillType.None);
-        if(Tilesets.CeilingType == LevelTilesetCeilingType.Roofed) ChunkGenerator.FakeRoof(MC);
+        LevelGenerator._ChunkGenerator.FakeIsometric(MC, Tilesets.WallVoid);
+        if(Tilesets.CeilingType == LevelTilesetCeilingType.Roofed) LevelGenerator._ChunkGenerator.FakeRoof(MC);
         return MC;
     }
     private static CalculateLocation(E1:LayoutEntry, E2:LayoutEntry) : any
@@ -57,11 +60,11 @@ class LevelGenerator
             {
                 if(L.Entries[i].ConnectionsSide[j] == 1)
                 {
-                    ChunkGenerator.ConnectParts(MC, LevelGenerator.CalculateLocation(L.Entries[i], L.Entries[i].Connections[j]), "vertical", 10);
+                    LevelGenerator._ChunkGenerator.ConnectParts(MC, LevelGenerator.CalculateLocation(L.Entries[i], L.Entries[i].Connections[j]), "vertical", 10);
                 }
                 else if(L.Entries[i].ConnectionsSide[j] == 2)
                 {
-                    ChunkGenerator.ConnectParts(MC, LevelGenerator.CalculateLocation(L.Entries[i], L.Entries[i].Connections[j]), "horizontal", 10);
+                    LevelGenerator._ChunkGenerator.ConnectParts(MC, LevelGenerator.CalculateLocation(L.Entries[i], L.Entries[i].Connections[j]), "horizontal", 10);
                 }
             }
         }

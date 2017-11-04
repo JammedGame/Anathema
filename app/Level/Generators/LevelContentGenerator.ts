@@ -3,10 +3,11 @@ export { LevelContentGenerator }
 import Engineer from "./../../Engineer";
 
 import { Player } from "./../../Unit/Player";
-import { Chunk, ChunkGenerator } from "./ChunkGenerator";
+import { Chunk } from "./Chunk/Chunk";
+import { GlobalChunkGenerator } from "./Chunk/GlobalChunkGenerator";
 import { GameScene } from "./../../GameScene";
 import { Level } from "./../Level";
-import { LevelTileset, LevelTilesetCeilingType, LevelTilesetLayoutType, LevelTilesetFloorType} from "./../Tilesets/LevelTileset";
+import { LevelTileset, LevelTilesetCeilingType, LevelTilesetFloorType} from "./../Tilesets/LevelTileset";
 import { Layout, LayoutClass, LayoutEntry } from "./../Layout";
 
 class LevelContentGenerator

@@ -1,12 +1,7 @@
-export { LevelTileset, LevelTilesetLayoutType, LevelTilesetCeilingType, LevelTilesetWallType, LevelTilesetFloorType, LevelTilesetFillType }
+export { LevelTileset, LevelTilesetCeilingType, LevelTilesetWallType, LevelTilesetFloorType, LevelTilesetFillType }
 
 import Engineer from "./../../Engineer";
 
-enum LevelTilesetLayoutType
-{
-    Bordered = 0,
-    Story = 1
-}
 enum LevelTilesetCeilingType
 {
     Uniform = 0,
@@ -36,7 +31,7 @@ enum LevelTilesetFillType
 class LevelTileset
 {
     private _Name:string;
-    private _LayoutType:LevelTilesetLayoutType;
+    private _WallVoid:boolean;
     private _FloorType:LevelTilesetFloorType;
     private _WallType:LevelTilesetWallType;
     private _CeilingType:LevelTilesetCeilingType;
@@ -46,26 +41,33 @@ class LevelTileset
     private _WallLower:any;
     private _Ceiling:any;
     private _Separate:any;
-    public get LayoutType() : LevelTilesetLayoutType { return this._LayoutType; }
+    private _ChunkTypes:string[];
+    public get WallVoid() : boolean { return this._WallVoid; }
+    public set WallVoid(value:boolean) { this._WallVoid = value; }
     public get FloorType() : LevelTilesetFloorType { return this._FloorType; }
+    public set FloorType(value:LevelTilesetFloorType) { this._FloorType = value; }
     public get WallType() : LevelTilesetWallType { return this._WallType; }
+    public set WallType(value:LevelTilesetWallType) { this._WallType = value; }
     public get CeilingType() : LevelTilesetCeilingType { return this._CeilingType; }
+    public set CeilingType(value:LevelTilesetCeilingType) { this._CeilingType = value; }
     public get FillType() : LevelTilesetFillType { return this._FillType; }
+    public set FillType(value:LevelTilesetFillType) { this._FillType = value; }
     public get Floor() : any { return this._Floor; }
     public get WallUpper() : any { return this._WallUpper; }
     public get WallLower() : any { return this._WallLower; }
     public get Ceiling() : any { return this._Ceiling; }
     public get Separate() : any { return this._Separate; }
-    public constructor(Name:string, LayoutType:LevelTilesetLayoutType, FloorType:LevelTilesetFloorType, WallType:LevelTilesetWallType, CeilingType:LevelTilesetCeilingType, FillType:LevelTilesetFillType, ArrayLengths:number[])
+    public get ChunkTypes() : string[] { return this._ChunkTypes; }
+    public set ChunkTypes(value:string[]) { this._ChunkTypes = value; }
+    public constructor(Name:string)
     {
         this._Name = Name;
-        this._LayoutType = LayoutType;
-        this._FloorType = FloorType;
-        this._WallType = WallType;
-        this._CeilingType = CeilingType;
-        this._FillType = FillType;
-        this.Init(ArrayLengths);
-        console.log(this);
+        this._WallVoid = false;
+        this._FloorType = LevelTilesetFloorType.Uniform;
+        this._WallType = LevelTilesetWallType.Uniform;
+        this._CeilingType = LevelTilesetCeilingType.Uniform;
+        this._FillType = LevelTilesetFillType.None;
+        this._ChunkTypes = ["Basic"];
     }
     private Init(ArrayLengths:number[]) : void
     {
