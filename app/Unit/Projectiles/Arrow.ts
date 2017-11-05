@@ -12,9 +12,9 @@ import { Move } from "./../Actions/Move";
 
 class Arrow extends Projectile
 {
-    public constructor(Old:Arrow, Scene:GameScene, ColliderTypes:string[])
+    public constructor(Old:Arrow, ColliderTypes:string[], Scene?:GameScene)
     {
-        super(Old, Scene, ColliderTypes);
+        super(Old, ColliderTypes, Scene);
         if(Old != null)
         {
 

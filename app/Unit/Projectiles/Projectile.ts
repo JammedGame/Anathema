@@ -17,7 +17,7 @@ class Projectile extends Unit
     protected _RadiusDamage:boolean;
     protected _Radius:number;
     protected _DamageFactor:number;
-    public constructor(Old:Projectile, Scene:GameScene, ColliderTypes:string[])
+    public constructor(Old:Projectile, ColliderTypes:string[], Scene?:GameScene)
     {
         super(Old, Scene);
         this._Applying = false;
@@ -36,15 +36,13 @@ class Projectile extends Unit
             this._Radius = 100;
             this._DamageFactor = 1.0;
             this.Data["ColliderTypes"] = ColliderTypes;
-            this.CreateCollider();
             this._Collider.Data["ProjectileCollider"] = true;
         }
-        this._Scene.AddSceneObject(this);
-        this._Scene.AddSceneObject(this._Collider);
+        this.Init(Scene);
     }
     public Copy() : Projectile
     {
-        return new Projectile(this, this._Scene, null);    
+        return new Projectile(this, null, this._Scene);    
     }
     public Init(Target:any) : void
     {

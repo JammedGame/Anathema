@@ -10,7 +10,7 @@ import { SpriteSetLoader } from "./../../Util/SpriteSetLoader";
 class Skeleton extends Enemy
 {
     private static _Sets:any[];
-    public constructor(Old:Skeleton, Scene: GameScene)
+    public constructor(Old:Skeleton, Scene?: GameScene)
     {
         super(Old, Scene);
         if(Old != null) {}

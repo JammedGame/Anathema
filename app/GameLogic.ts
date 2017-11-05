@@ -14,14 +14,8 @@ class GameLogic
         this._Game = new Engineer.Engine.Game();
         this._Game.Name = "Anathema";
         this._Runner = new Engineer.Runner.Runner(this._Game, Engineer.Draw.DrawEngineType.ThreeJS);
-        let _Menu:any = new MainMenu();
-        _Menu.Data["Game"] = this._Game;
-        _Menu.Data["Runner"] = this._Runner;
+        let _Menu:any = new MainMenu(this._Runner, this._Game);
         this._Game.AddScene(_Menu);
-        let _GameScene:any = new GameScene();
-        _GameScene.Data["GameScene"] = this._Game;
-        _GameScene.Data["Runner"] = this._Runner;
-        this._Game.AddScene(_GameScene);
     }
     public Run() : void
     {

@@ -15,7 +15,7 @@ import { Arrow } from "./../../Projectiles/Arrow";
 class Attack extends AfterAnimation
 {
     private _Range:boolean;
-    private _BleedCounter:number;    
+    private _BleedCounter:number;
     private _Victim:any;
     private _Projectile:Projectile;
     public get Range():boolean { return this._Range; }
@@ -34,7 +34,7 @@ class Attack extends AfterAnimation
         // Override
         if(!this._Projectile && this._Range)
         {
-            this._Projectile = new Arrow(null, this._Scene, [this.Prefs["TargetType"] + "Collider"]);
+            this._Projectile = new Arrow(null, [this.Prefs["TargetType"] + "Collider"], this._Scene);
             this._Projectile.Stats = this._Owner.Stats;
         }
         let Collider = this._Owner.Collider;

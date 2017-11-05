@@ -32,7 +32,7 @@ class Player extends Unit
     public get Inventory():Inventory { return this._Inventory; }
     public get StatsUpdate():boolean { return this._StatsUpdate; }
     public set StatsUpdate(value:boolean) { this._StatsUpdate = value; }
-    public constructor(Old:Player, Scene: GameScene)
+    public constructor(Old:Player, Scene?: GameScene)
     {
         super(Old, Scene);
         this._StatsUpdate = false;
@@ -57,7 +57,6 @@ class Player extends Unit
             Scene.Trans.Translation = new Engineer.Math.Vertex(960, 540, 1);
             this.Trans.Scale = new Engineer.Math.Vertex(100, 150, 0);
             this.Trans.Translation = new Engineer.Math.Vertex(960, 540, 1);
-            this.CreateCollider();
             this._Collider.Data["PlayerCollider"] = true;
             SpriteSetLoader.LoadSets(this, "Human");
         }

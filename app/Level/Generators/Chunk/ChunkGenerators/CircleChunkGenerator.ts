@@ -14,7 +14,7 @@ class CircleChunkGenerator extends CorneredChunkGenerator
     {
         // Override
         super.Generate(C);
-        this.GenerateCenter(C, 1.0 / 2);
+        this.GenerateCenter(C, 0.5);
     }
     protected GenerateCenter(C:Chunk, Factor:number) : void
     {

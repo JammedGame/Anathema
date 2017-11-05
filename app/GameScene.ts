@@ -3,7 +3,6 @@ export { GameScene };
 import Engineer from "./Engineer";
 
 import { Level } from "./Level/Level";
-import { LevelTilesetCollection } from "./Level/Tilesets/LevelTilesetCollection";
 import { LocalSettings } from "./LocalSettings";
 import { Player } from "./Unit/Player";
 import { Skeleton } from "./Unit/Enemies/Skeleton";
@@ -16,12 +15,12 @@ import { HealthBar } from "./UI/HealthBar";
 import { ManaBar } from "./UI/ManaBar";
 import { MainHud } from "./UI/MainHud";
 import { Effect } from "./Unit/Actions/Effect";
-import { Pathfinder } from "./Pathfinder";
 import { Damage } from "./Unit/Damage";
 import { Projectile } from "./Unit/Projectiles/Projectile";
 
 class GameScene extends Engineer.Engine.Scene2D
 {
+    private _Pause:boolean;
     private _Level: Level;
     private _Player: Player;
     private _Skeleton: Skeleton;
@@ -32,29 +31,26 @@ class GameScene extends Engineer.Engine.Scene2D
     private _ManaBar: ManaBar;
     private _MainHud: MainHud;
     private _ItemBank: ItemCollection;
-    private _Effect: Effect;
-    private _Pathfinder: Pathfinder;
     private _Projectiles: Projectile[];
+    public get Pause():boolean { return this._Pause; }
+    public set Pause(value:boolean) { this._Pause = value; }
+    public get Player():Player { return this._Player; }
+    public set Player(value:Player) { this._Player = value; }
     public get Projectiles():Projectile[] { return this._Projectiles; }
     public constructor()
     {
         super();
         this.Name = "GameScene";
-        this.Init();
-    }
-    public Init(): void
-    {
-        this.BackColor = Engineer.Math.Color.FromRGBA(0, 0, 0, 255);
-        let Enemies = [];
+        this._Pause = false;
+        this._Projectiles = [];
         this._Player = new Player(null, this);
-        for (let i = 0; i < 90; i++) Enemies.push(new Skeleton(null, this));
-        for (let i = 0; i < 10; i++) Enemies.push(new Orc(null, this));
-        let LevelTilesets = new LevelTilesetCollection();
+    }
+    public Init(Level:Level): void
+    {
         let DamageCalculation = new Damage(this);
-        this._Level = new Level(10, LevelTilesets.Items["Cathedral"], Enemies);
+        this.BackColor = Engineer.Math.Color.FromRGBA(0, 0, 0, 255);
+        this._Level = Level;
         this._Level.Init(this);
-        this._Pathfinder = new Pathfinder(this._Level.AccessMatrix);
-        //for(let i = 0; i < Enemies.length; i++) Enemies[i].Pathfinder = this._Pathfinder;
         this._ItemBank = new ItemCollection();
         this._Inventory = new InventoryWindow(this, this._Player.Inventory);
         this._SkillTree = new SkillTree(this);
@@ -62,16 +58,12 @@ class GameScene extends Engineer.Engine.Scene2D
         this._ManaBar = new ManaBar(this, this._Player);
         this._MainHud = new MainHud(this, this._Player.Actions);
         this._MainHud.InventoryButtonClick.push(this.ToggleInventory.bind(this));
-        this._Effect = new Effect(this,"CurseAOE",5,new Engineer.Math.Vertex(200,200,1));
-        this._Effect.Growth = new Engineer.Math.Vertex(3,3,0);
-        this._Effect.Duration = 3;
-        this._Effect.Fade = 1;
-        this._Projectiles = [];
         this.Events.KeyPress.push(this.KeyPress.bind(this));
         this.Events.TimeTick.push(this.SceneUpdate.bind(this));
     }
     private KeyPress(G: any, Args: any): void
     {
+        if(this._Pause) return;
         if (Args.Key == 105) this.ToggleInventory();
         else if (Args.Key == 116)
         {
@@ -86,11 +78,14 @@ class GameScene extends Engineer.Engine.Scene2D
     }
     private SceneUpdate()
     {
+        if(this._Pause) return;
         for(let i = 0; i < this._Projectiles.length; i++) this._Projectiles[i].Update();
-        this._Level.Update();
-        this._Player.Update();
-        this._Effect.Update();
-        this._HealthBar.Update(this._Player.Stats);
-        this._ManaBar.Update(this._Player.Stats);
+        if(this._Level) this._Level.Update();
+        if(this._Player)
+        {
+            this._Player.Update();
+            if(this._HealthBar) this._HealthBar.Update(this._Player.Stats);
+            if(this._ManaBar) this._ManaBar.Update(this._Player.Stats);
+        }
     }
 }

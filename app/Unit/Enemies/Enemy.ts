@@ -20,7 +20,7 @@ class Enemy extends Unit
     protected _Pathfinder: Pathfinder;
     public get Pathfinder():Pathfinder { return this._Pathfinder; }
     public set Pathfinder(value:Pathfinder) { this._Pathfinder = value; }
-    public constructor(Old:Enemy, Scene: GameScene)
+    public constructor(Old:Enemy, Scene?: GameScene)
     {
         super(Old, Scene);
         if(Old != null)
@@ -33,22 +33,24 @@ class Enemy extends Unit
         {
             this.Name = "Enemy";
             this.Trans.Scale = new Engineer.Math.Vertex(100, 150, 1);
-            this._Player = this._Scene.Data["Player"];
             this._AttackIndex = 0;
             this.Data["Enemy"] = true;
-            this.CreateCollider();
             this._Collider.Data["EnemyCollider"] = true;
         }
-        this._Scene.AddSceneObject(this);
-        this._Scene.AddSceneObject(this._Collider);
     }
     public Copy() : Enemy
     {
-        return new Enemy(this, this._Scene);    
+        return new Enemy(this, this._Scene);
+    }
+    public Init(Scene:GameScene, Player?:Player) : void
+    {
+        super.Init(Scene);
+        this._Player = Player;
     }
     public Update()
     {
         // Virtual
+        if(!this._Scene) return;
         if(!this._CurrentAction) this.Behaviour();
         if(this._CurrentAction)
         {
@@ -74,6 +76,7 @@ class Enemy extends Unit
     protected Behaviour()
     {
         // Virtual
+        if(!this._Player) return;
         if(Engineer.Math.Vertex.Distance(this._Collider.Trans.Translation, this._Player.Collider.Trans.Translation) < this._Stats.Radius)
         {
             this._CurrentAction = new Attack(null, "EnemyMove", this);

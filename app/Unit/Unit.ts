@@ -20,7 +20,7 @@ class Unit extends Engineer.Engine.Sprite
     public get Stats(): Stats { return this._Stats; }
     public set Stats(value:Stats) { this._Stats = value; }
     public get Traits(): Traits { return this._Traits; }
-    public constructor(Old:Unit, Scene:GameScene)
+    public constructor(Old:Unit, Scene?:GameScene)
     {
         super(Old);
         if(Old != null)
@@ -38,8 +38,15 @@ class Unit extends Engineer.Engine.Sprite
             this._Scene = Scene;
             this._Traits = new Traits();
             this._Stats = new Stats();
+            this.CreateCollider();
         }
         this._Stats.Store();
+    }
+    public Init(Scene:GameScene)
+    {
+        this._Scene = Scene;
+        this._Scene.AddSceneObject(this);
+        this._Scene.AddSceneObject(this._Collider);
     }
     public Copy() : Unit
     {

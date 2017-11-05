@@ -2,13 +2,16 @@ export { MainMenu };
 
 import Engineer from "./Engineer";
 
+import { LevelManager } from "./LevelManager";
 import { LocalSettings } from "./LocalSettings";
 
 class MainMenu extends Engineer.Engine.Scene2D
 {
-    public constructor()
+    private _Manager:LevelManager;
+    public constructor(Runner:any, Game:any)
     {
         super();
+        this._Manager = new LevelManager(Runner, Game);
         this.Name = "Menu";
         this.Trans.Scale = new Engineer.Math.Vertex(LocalSettings.Window.Y / LocalSettings.Scale.Y, LocalSettings.Window.Y / LocalSettings.Scale.Y, 1);
         let Buttons:any = new Engineer.Engine.TileCollection(null, ["/build/resources/play.png"]);
@@ -23,7 +26,10 @@ class MainMenu extends Engineer.Engine.Scene2D
     }
     public PlayClick(G:any, Args:any)
     {
-        let Runner:any = this.Data["Runner"];
-        Runner.SwitchScene("GameScene", false);
+        this.StartLevel("Beach");
+    }
+    private StartLevel(Level:string)
+    {
+        this._Manager.StartLevel(Level);
     }
 }
