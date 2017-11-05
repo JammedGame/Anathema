@@ -28,10 +28,13 @@ class Unit extends Engineer.Engine.Sprite
             this._Scene = Scene;
             this._Traits = Old._Traits.Copy();
             this._Stats = Old._Stats.Copy();
+            this._Collider = Old._Collider.Copy();
             for (let Key in Old.Data)
             {
                 this.Data[Key] = Old.Data[Key];
             }
+            this._Collider.Data["Collision"] = Engineer.Math.CollisionType.Radius2D;
+            this._Collider.Data["Owner"] = this;
         }
         else
         {

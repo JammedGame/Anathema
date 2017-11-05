@@ -20,7 +20,7 @@ class LevelGenerator
     {
         if(!LevelGenerator._ChunkGenerator) LevelGenerator._ChunkGenerator = new GlobalChunkGenerator();
         LevelGenerator._ChunkGenerator.Init(Level.Tileset.ChunkTypes);
-        Level.Layout = LevelGenerator.GenerateLayout(new Engineer.Math.Vertex(5,5,0), [new LayoutClass(3,1), new LayoutClass(2,3), new LayoutClass(1,1000)]);
+        Level.Layout = LevelGenerator.GenerateLayout(new Engineer.Math.Vertex(Level.Size,Level.Size,0), [new LayoutClass(3,1), new LayoutClass(2,3), new LayoutClass(1,1000)]);
         Level.Layout.Chunk = LevelGenerator.GenerateMegaChunk(Level.Layout, Level.Tileset);
         Level.AccessMatrix = Level.Layout.Chunk.AccessMatrix();
         EnvironmentGenerator.Generate(Scene, Level);

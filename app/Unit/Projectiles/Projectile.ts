@@ -44,7 +44,7 @@ class Projectile extends Unit
     {
         return new Projectile(this, null, this._Scene);    
     }
-    public Init(Target:any) : void
+    public InitProjectile(Target:any) : void
     {
         this._Collider.Trans.Translation = this.Trans.Translation;
         this._CurrentAction = new Move(this.Stats.MovementSpeed, null, "ProjectileMove", this);

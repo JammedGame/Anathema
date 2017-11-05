@@ -65,8 +65,7 @@ class Player extends Unit
         this._Scene.Events.MouseMove.push(this.MouseMove.bind(this));
         this._Scene.Events.KeyDown.push(this.KeyDown.bind(this));
         this._Scene.Events.KeyUp.push(this.KeyUp.bind(this));
-        this._Scene.AddSceneObject(this);
-        this._Scene.AddSceneObject(this._Collider);
+        this.Init(Scene);
         this._Inventory.OnEquip.push(this.Equip.bind(this));
         this.Equip();
     }
@@ -137,7 +136,6 @@ class Player extends Unit
         if(this._Inventory.Boots) this.EquipItem(this._Inventory.Boots.ArtEquipedIndex, 1.2);
         if(this._Inventory.Gloves) this.EquipItem(this._Inventory.Gloves.ArtEquipedIndex, 1.2);
         if(this._Inventory.Head) this.EquipItem(this._Inventory.Head.ArtEquipedIndex, 1.2);
-        else this.EquipItem("Bandana", 1.2);
         if(!this._Inventory.Head || !this._Inventory.Head.Data["Full"]) this.EquipItem("RedBeard", 1.2);
         if(this._Inventory.Weapon)
         {

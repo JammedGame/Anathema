@@ -27,7 +27,7 @@ class Enemy extends Unit
         {
             this._Player = Old._Player;
             this._AttackIndex = Old._AttackIndex;
-            this._Collider = Old._Collider.Copy();
+            this._Collider.Data["EnemyCollider"] = true;
         }
         else
         {
@@ -87,20 +87,7 @@ class Enemy extends Unit
         {
             let NextStep = null;
             this._CurrentAction = new Move(this._Stats.MovementSpeed, null, "EnemyMove", this);
-            if(this._Pathfinder)
-            {
-                let TargetLoc = this._Player.MatrixCoord(); 
-                let MyLoc = this.MatrixCoord(); 
-                let Path = this._Pathfinder.findShortestPath(MyLoc, TargetLoc);
-                if(Path[0]) {
-                    let NextStepCoos = Path[0].coordinates;
-                    let ConvX = NextStepCoos[0]*120;
-                    let ConvY = NextStepCoos[1]*120;
-                    NextStep = new Engineer.Math.Vertex(ConvX, ConvY);
-                } else 
-                NextStep = new Engineer.Math.Vertex(this._Player.Collider.Trans.Translation.X, this._Player.Collider.Trans.Translation.Y);
-            }
-            else NextStep = new Engineer.Math.Vertex(this._Player.Collider.Trans.Translation.X, this._Player.Collider.Trans.Translation.Y);
+            NextStep = new Engineer.Math.Vertex(this._Player.Collider.Trans.Translation.X, this._Player.Collider.Trans.Translation.Y);
             this._CurrentAction.Target = NextStep;
             this._CurrentAction.Prefs["ColliderTypes"] = ["Solid", "EnemyCollider", "PlayerCollider"];
         }

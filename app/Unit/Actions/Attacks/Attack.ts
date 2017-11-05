@@ -65,7 +65,7 @@ class Attack extends AfterAnimation
             {
                 let NewProjectile:Projectile = this._Projectile.Copy();
                 NewProjectile.Trans.Translation = this._Owner.Collider.Trans.Translation;
-                NewProjectile.Init(this._Victim.Trans.Translation);
+                NewProjectile.InitProjectile(this._Victim.Trans.Translation);
                 NewProjectile.Stats.MovementSpeed = 25;
                 this._Scene.AddSceneObject(NewProjectile);
                 this._Scene.Projectiles.push(NewProjectile);

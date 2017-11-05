@@ -24,13 +24,12 @@ class LevelManager
         let TheEnemyCollection = new EnemyCollection();
         let TilesetCollection = new LevelTilesetCollection();
 
-        this.Items["Beach"] = new Level(null, 10, TilesetCollection.Items["Beach"]);
+        this.Items["Beach"] = new Level(null, 5, TilesetCollection.Items["Beach"]);
         this.Items["Beach"].AddEnemyEntry("Skeleton", 50);
     }
     public StartLevel(Level:string)
     {
         if(this._Level) this.Destroy();
-        console.log(this);
         if(!this.Items[Level]) return;
         this._Level = this.Items[Level].Copy();
         this._Scene = new GameScene();

@@ -52,6 +52,11 @@ class LevelContentGenerator
             return;
         }
         let EnemyIndex = LevelContentGenerator.RandomNumber(Enemies.length);
+        if(!LE)
+        {
+            Enemies.splice(EnemyIndex, 1);
+            return;
+        }
         let LocationIndex = LevelContentGenerator.RandomNumber(LE.Locations.length);
         Enemies[EnemyIndex].Trans.Translation = new Engineer.Math.Vertex(LE.Locations[LocationIndex].X, LE.Locations[LocationIndex].Y, 0.5);
         Enemies[EnemyIndex].Collider.Trans.Translation = new Engineer.Math.Vertex(LE.Locations[LocationIndex].X, LE.Locations[LocationIndex].Y, 0.5);
