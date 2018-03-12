@@ -31,19 +31,17 @@ class SpriteSetLoader
     }
     private static LoadSingleSet(Path:string, Name:string, Direction:string, Length:number) : any
     {
-        let Set = new Engineer.Engine.SpriteSet(null, Name + "_" + Direction);
+        let Set = new Engineer.SpriteSet(null, [], Name + "_" + Direction);
         Set.Seed = 5;
-        Set.Sprites = [];
-        for (let i = 0; i < Length; i++) Set.Sprites.push(Path + Direction + i + ".png");
+        for (let i = 0; i < Length; i++) Set.Images.push(Path + Direction + i + ".png");
         return Set;
     }
     public static LoadSet(Path:string, KeyWord:string, Length:number, Seed?:number) : any
     {
-        let Set = new Engineer.Engine.SpriteSet(null, KeyWord);
+        let Set = new Engineer.SpriteSet(null, [], KeyWord);
         if(Seed) Set.Seed = Seed;
         else Set.Seed = 5;
-        Set.Sprites = [];
-        for (let i = 0; i < Length; i++) Set.Sprites.push(Path + KeyWord + "/Animation" + i + ".png");
+        for (let i = 0; i < Length; i++) Set.Images.push(Path + KeyWord + "/Animation" + i + ".png");
         return Set;
     }
 }

@@ -7,7 +7,7 @@ import { Item } from "./Item";
 import { Inventory } from "./Inventory";
 import { WorldCollection } from "./WorldCollection";
 
-class ItemWorld extends Engineer.Engine.Tile
+class ItemWorld extends Engineer.Tile
 {
     private _Item:Item;
     private _Scene:GameScene;
@@ -15,13 +15,13 @@ class ItemWorld extends Engineer.Engine.Tile
     public constructor(Player:Player, Scene:GameScene, Item:Item, X:number, Y:number)
     {
         super();
-        this.Trans.Translation = new Engineer.Math.Vertex(X, Y, 0.2);
-        this.Trans.Scale = new Engineer.Math.Vertex(50, 50, 1);
+        this.Trans.Translation = new Engineer.Vertex(X, Y, 0.2);
+        this.Trans.Scale = new Engineer.Vertex(50, 50, 1);
         if(WorldCollection.Single == null) this.Collection = new WorldCollection();
         else this.Collection = WorldCollection.Single;
         this.Index = Item.ArtWorldIndex;
         this.Data["Item"] = true;
-        this.Data["Collision"] = Engineer.Math.CollisionType.Rectangular2D;
+        this.Data["Collision"] = Engineer.CollisionType.Rectangular2D;
         this._Scene = Scene;
         this._Player = Player;
         this._Item = Item;
@@ -30,7 +30,7 @@ class ItemWorld extends Engineer.Engine.Tile
     }
     private GameUpdate(G:any, Args:any)
     {
-        if(Engineer.Math.Vertex.Distance(this._Player.Collider.Trans.Translation, this.Trans.Translation) < 300)
+        if(Engineer.Vertex.Distance(this._Player.Collider.Trans.Translation, this.Trans.Translation) < 300)
         {
             if(this._Player.Inventory.CanLoot(this._Item))
             {

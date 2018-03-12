@@ -77,7 +77,7 @@ class EquipedCollection
     }
     private LoadSpriteSet(Set:string, Group:string) : void
     {
-        let Sprite = new Engineer.Engine.Sprite();
+        let Sprite = new Engineer.Sprite();
         SpriteSetLoader.LoadSets(Sprite, Set, null, "Items/" + Group + "/");
         this.Items[Set] = Sprite;
     }

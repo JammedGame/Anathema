@@ -78,7 +78,7 @@ class LevelTileset
             if(i < 10) s = "0" + i;
             FloorImages.push("/build/resources/tilesets/"+this._Name.toLowerCase()+"/g"+s+".png");
         }
-        this._Floor = new Engineer.Engine.TileCollection(null, FloorImages);
+        this._Floor = new Engineer.ImageCollection(null, FloorImages);
         let WallUpperImages:string[] = [];
         let WallLowerImages:string[] = [];
         for(let i = 1; i < ArrayLengths[1] + 1; i++)
@@ -88,8 +88,8 @@ class LevelTileset
             WallUpperImages.push("/build/resources/tilesets/"+this._Name.toLowerCase()+"/wu"+s+".png");
             WallLowerImages.push("/build/resources/tilesets/"+this._Name.toLowerCase()+"/wl"+s+".png");
         }
-        this._WallUpper = new Engineer.Engine.TileCollection(null, WallUpperImages);
-        this._WallLower = new Engineer.Engine.TileCollection(null, WallLowerImages);
+        this._WallUpper = new Engineer.ImageCollection(null, WallUpperImages);
+        this._WallLower = new Engineer.ImageCollection(null, WallLowerImages);
         let CeilingLength = 2;
         if(this._CeilingType == LevelTilesetCeilingType.Roofed) CeilingLength = 6;
         if(this._CeilingType == LevelTilesetCeilingType.Crested) CeilingLength = 13;
@@ -101,7 +101,7 @@ class LevelTileset
             if(i < 10) s = "0" + i;
             CeilingImages.push("/build/resources/tilesets/"+this._Name.toLowerCase()+"/c"+s+".png");
         }
-        this._Ceiling = new Engineer.Engine.TileCollection(null, CeilingImages);
+        this._Ceiling = new Engineer.ImageCollection(null, CeilingImages);
         let SeparateImages:string[] = [];
         for(let i = 1; i < ArrayLengths[2] + 1; i++)
         {
@@ -109,6 +109,6 @@ class LevelTileset
             if(i < 10) s = "0" + i;
             SeparateImages.push("/build/resources/tilesets/"+this._Name.toLowerCase()+"/s"+s+".png");
         }
-        this._Separate = new Engineer.Engine.TileCollection(null, SeparateImages);
+        this._Separate = new Engineer.ImageCollection(null, SeparateImages);
     }
 }

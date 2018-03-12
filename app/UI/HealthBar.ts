@@ -6,7 +6,7 @@ import { GameScene } from "./../GameScene";
 import { BarBorder } from "./BarBorder";
 import { Stats } from "./../Unit/Stats";
 
-class HealthBar extends Engineer.Engine.Tile
+class HealthBar extends Engineer.Tile
 {
     private _PrevLocation: number;
     private _Size: number;
@@ -22,9 +22,9 @@ class HealthBar extends Engineer.Engine.Tile
         this._PrevLocation = 0;
         this._Size = 150;
         this._OriginalY = 1000;
-        this.Trans.Scale = new Engineer.Math.Vertex(this._Size, this._Size, 1);
-        this.Trans.Translation = new Engineer.Math.Vertex(650, this._OriginalY, 0.5);
-        this.Paint = Engineer.Math.Color.FromRGBA(255,69,0,255);
+        this.Trans.Scale = new Engineer.Vertex(this._Size, this._Size, 1);
+        this.Trans.Translation = new Engineer.Vertex(650, this._OriginalY, 0.5);
+        this.Paint = Engineer.Color.FromRGBA(255,69,0,255);
         this._BarBorder = new BarBorder(this.Trans.Translation);
         Scene.AddSceneObject(this);
         Scene.AddSceneObject(this._BarBorder);
@@ -35,8 +35,8 @@ class HealthBar extends Engineer.Engine.Tile
         else
         {
             this.Active = true;
-            this.Trans.Translation = new Engineer.Math.Vertex(this.Trans.Translation.X, this._OriginalY + (this._Size - this.Trans.Scale.Y) / 2, 0.5);
-            this.Trans.Scale = new Engineer.Math.Vertex(this._Size, this._Size * (Stats.Health * 1.0 / Stats.MaxHealth), 1);
+            this.Trans.Translation = new Engineer.Vertex(this.Trans.Translation.X, this._OriginalY + (this._Size - this.Trans.Scale.Y) / 2, 0.5);
+            this.Trans.Scale = new Engineer.Vertex(this._Size, this._Size * (Stats.Health * 1.0 / Stats.MaxHealth), 1);
         }
     }
 }

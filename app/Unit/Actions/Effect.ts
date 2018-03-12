@@ -5,7 +5,7 @@ import Engineer from "./../../Engineer";
 
 const SpriteSetResourcePath = "/build/resources/effects/";
 
-class Effect extends Engineer.Engine.Sprite
+class Effect extends Engineer.Sprite
 {
     private _Duration:number;
     private _StartSeed:number;
@@ -43,8 +43,8 @@ class Effect extends Engineer.Engine.Sprite
         this._Speed = 0;
         this._Fade = 0;
         this._Size = Size;
-        this._Color = Engineer.Math.Color.White;
-        this._Growth = new Engineer.Math.Vertex(0,0,0);
+        this._Color = Engineer.Color.White;
+        this._Growth = new Engineer.Vertex(0,0,0);
         this.Active = false;
         this._Scene.AddSceneObject(this);
         this._Scene.Events.KeyPress.push(this.KeyPress.bind(this));
@@ -53,8 +53,8 @@ class Effect extends Engineer.Engine.Sprite
     {
         if(this.Active) return;
         this.Trans.Translation = Location;
-        this.Paint = Engineer.Math.Color.FromRGBA(this.Paint.R, this.Paint.G, this.Paint.B, 255);
-        this.Trans.Scale = new Engineer.Math.Vertex(this._Size.X, this._Size.Y,1);
+        this.Paint = Engineer.Color.FromRGBA(this.Paint.R, this.Paint.G, this.Paint.B, 255);
+        this.Trans.Scale = new Engineer.Vertex(this._Size.X, this._Size.Y,1);
         this.SpriteSets[0].Seed = this._StartSeed;
         this.Active = true;
         setTimeout(this.Complete.bind(this), this._Duration * 1000);
@@ -68,10 +68,9 @@ class Effect extends Engineer.Engine.Sprite
     }
     private LoadSingleSet(SpriteSetName:string, pngName:String, Length:number, Seed:number) : any
     {
-        let Set = new Engineer.Engine.SpriteSet(null, SpriteSetName);
+        let Set = new Engineer.SpriteSet(null, [], SpriteSetName);
         Set.Seed = Seed;
-        Set.Sprites = [];
-        for (let i = 0; i < Length; i++) Set.Sprites.push(SpriteSetResourcePath + pngName + i + ".png");
+        for (let i = 0; i < Length; i++) Set.Images.push(SpriteSetResourcePath + pngName + i + ".png");
         return Set;
     }
     private Complete()
@@ -86,10 +85,10 @@ class Effect extends Engineer.Engine.Sprite
             {
                 this.SpriteSets[0].Seed += this._Speed;
             }
-            this.Trans.Scale = new Engineer.Math.Vertex(this.Trans.Scale.X + this._Growth.X, this.Trans.Scale.Y + this._Growth.Y, 1);
+            this.Trans.Scale = new Engineer.Vertex(this.Trans.Scale.X + this._Growth.X, this.Trans.Scale.Y + this._Growth.Y, 1);
             let NewAlfa = this.Paint.A - this._Fade;
             if(NewAlfa < 0) NewAlfa = 0;
-            this.Paint = Engineer.Math.Color.FromRGBA(this.Paint.R, this.Paint.G, this.Paint.B, NewAlfa);
+            this.Paint = Engineer.Color.FromRGBA(this.Paint.R, this.Paint.G, this.Paint.B, NewAlfa);
         }
     }    
 }

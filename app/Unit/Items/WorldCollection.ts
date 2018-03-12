@@ -2,7 +2,7 @@ export { WorldCollection };
 
 import Engineer from "./../../Engineer";
 
-class WorldCollection extends Engineer.Engine.TileCollection
+class WorldCollection extends Engineer.ImageCollection
 {
     public constructor()
     {

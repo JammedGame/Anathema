@@ -1,4 +1,4 @@
 //import Engineer from "engineer-js";
-import Engineer from "../node_modules/engineer-js/app/app";
+import * as Engineer from "engineer-js";
 
 export default Engineer;

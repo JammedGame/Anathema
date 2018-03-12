@@ -20,20 +20,20 @@ class SkillPicker extends Window
     }
     public Pick(Indices:number[], Translation:any)
     {
-        this.Trans.Scale = new Engineer.Math.Vertex(30, 60 * Indices.length, 1);
-        this.Trans.Translation = new Engineer.Math.Vertex(Translation.X, Translation.Y - 30 * Indices.length - 80, 2.5);
+        this.Trans.Scale = new Engineer.Vertex(30, 60 * Indices.length, 1);
+        this.Trans.Translation = new Engineer.Vertex(Translation.X, Translation.Y - 30 * Indices.length - 80, 2.5);
         for(let i = 0; i < Indices.length; i++)
         {
             if(this._Elements.length > i)
             {
                 this._Elements[i].Index = Indices[i];
                 this._Elements[i].Data["Index"] = Indices[i];
-                this._Elements[i].Trans.Translation = new Engineer.Math.Vertex(Translation.X, this._Elements[i].Trans.Translation.Y, 2.5);
+                this._Elements[i].Trans.Translation = new Engineer.Vertex(Translation.X, this._Elements[i].Trans.Translation.Y, 2.5);
                 this._Elements[i].Active = true;
             }
             else
             {
-                let Element = this.AddElement(new Engineer.Math.Vertex(-35, 60 * i, 2.5), new Engineer.Math.Vertex(50,50,1), Indices[i]);
+                let Element = this.AddElement(new Engineer.Vertex(-35, 60 * i, 2.5), new Engineer.Vertex(50,50,1), Indices[i]);
                 Element.Data["Index"] = Indices[i];
                 Element.Events.MouseDown.push(this.MouseDown.bind(this));
                 Element.Fixed = true;
