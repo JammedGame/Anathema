@@ -26,7 +26,7 @@ class MainMenu extends Engineer.Engine.Scene2D
     }
     public PlayClick(G:any, Args:any)
     {
-        this.StartLevel("Beach");
+        this.StartLevel("Cathedral");
     }
     private StartLevel(Level:string)
     {
