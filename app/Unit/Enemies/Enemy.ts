@@ -32,7 +32,7 @@ class Enemy extends Unit
         else
         {
             this.Name = "Enemy";
-            this.Trans.Scale = new Engineer.Math.Vertex(100, 150, 1);
+            this.Trans.Scale = new Engineer.Vertex(100, 150, 1);
             this._AttackIndex = 0;
             this.Data["Enemy"] = true;
             this._Collider.Data["EnemyCollider"] = true;
@@ -77,17 +77,17 @@ class Enemy extends Unit
     {
         // Virtual
         if(!this._Player) return;
-        if(Engineer.Math.Vertex.Distance(this._Collider.Trans.Translation, this._Player.Collider.Trans.Translation) < this._Stats.Radius)
+        if(Engineer.Vertex.Distance(this._Collider.Trans.Translation, this._Player.Collider.Trans.Translation) < this._Stats.Radius)
         {
             this._CurrentAction = new Attack(null, "EnemyMove", this);
             this._CurrentAction.Prefs["TargetType"] = "Player";
             this._CurrentAction.Target = this._Player.Collider.Trans.Translation;
         }
-        else if(Engineer.Math.Vertex.Distance(this._Collider.Trans.Translation, this._Player.Collider.Trans.Translation) < this._Stats.Sight)
+        else if(Engineer.Vertex.Distance(this._Collider.Trans.Translation, this._Player.Collider.Trans.Translation) < this._Stats.Sight)
         {
             let NextStep = null;
             this._CurrentAction = new Move(this._Stats.MovementSpeed, null, "EnemyMove", this);
-            NextStep = new Engineer.Math.Vertex(this._Player.Collider.Trans.Translation.X, this._Player.Collider.Trans.Translation.Y);
+            NextStep = new Engineer.Vertex(this._Player.Collider.Trans.Translation.X, this._Player.Collider.Trans.Translation.Y, 0);
             this._CurrentAction.Target = NextStep;
             this._CurrentAction.Prefs["ColliderTypes"] = ["Solid", "EnemyCollider", "PlayerCollider"];
         }

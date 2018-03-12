@@ -4,7 +4,7 @@ import Engineer from "./../../Engineer";
 import { Item } from "./../../Unit/Items/Item";
 import { InventoryCollection } from "./InventoryCollection";
 
-class InventoryItem extends Engineer.Engine.Tile
+class InventoryItem extends Engineer.Tile
 {
     private _Item:Item;
     public get Item():Item { return this._Item; }
@@ -14,8 +14,8 @@ class InventoryItem extends Engineer.Engine.Tile
         this._Item = Item;
         this.Collection = InventoryCollection.Single;
         this.Index = Item.ArtInventoryIndex;
-        this.Trans.Scale = new Engineer.Math.Vertex(60, 60, 1);
-        if(Large) this.Trans.Scale = new Engineer.Math.Vertex(80, 80, 1);
-        this.Trans.Translation = new Engineer.Math.Vertex(X, Y, 2.8);
+        this.Trans.Scale = new Engineer.Vertex(60, 60, 1);
+        if(Large) this.Trans.Scale = new Engineer.Vertex(80, 80, 1);
+        this.Trans.Translation = new Engineer.Vertex(X, Y, 2.8);
     }
 }

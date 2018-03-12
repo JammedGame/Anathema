@@ -18,7 +18,7 @@ import { Effect } from "./Unit/Actions/Effect";
 import { Damage } from "./Unit/Damage";
 import { Projectile } from "./Unit/Projectiles/Projectile";
 
-class GameScene extends Engineer.Engine.Scene2D
+class GameScene extends Engineer.Scene2D
 {
     private _Pause:boolean;
     private _Level: Level;
@@ -48,7 +48,7 @@ class GameScene extends Engineer.Engine.Scene2D
     public Init(Level:Level): void
     {
         let DamageCalculation = new Damage(this);
-        this.BackColor = Engineer.Math.Color.FromRGBA(0, 0, 0, 255);
+        this.BackColor = Engineer.Color.FromRGBA(0, 0, 0, 255);
         this._Level = Level;
         this._Level.Init(this);
         this._ItemBank = new ItemCollection();

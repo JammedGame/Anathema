@@ -24,13 +24,13 @@ class ColliderGenerator
     }
     private static GenerateColliderTile(Scene:GameScene, X:number, Y:number, Size:number)
     {
-        let NewTile:any = new Engineer.Engine.Tile();
+        let NewTile:any = new Engineer.Tile();
         NewTile.Data["Solid"] = true;
-        NewTile.Data["Collision"] = Engineer.Math.CollisionType.Rectangular2D;
-        NewTile.Trans.Translation = new Engineer.Math.Vertex(X * ColliderGenerator.FieldSize, Y * ColliderGenerator.FieldSize, 0);
-        NewTile.Trans.Scale = new Engineer.Math.Vertex(ColliderGenerator.FieldSize, ColliderGenerator.FieldSize, 1);
+        NewTile.Data["Collision"] = Engineer.CollisionType.Rectangular2D;
+        NewTile.Trans.Translation = new Engineer.Vertex(X * ColliderGenerator.FieldSize, Y * ColliderGenerator.FieldSize, 0);
+        NewTile.Trans.Scale = new Engineer.Vertex(ColliderGenerator.FieldSize, ColliderGenerator.FieldSize, 1);
         NewTile.Active = false;
-        NewTile.Paint = Engineer.Math.Color.FromRGBA(0,255,0,120);
+        NewTile.Paint = Engineer.Color.FromRGBA(0,255,0,120);
         Scene.AddSceneObject(NewTile);
     }
 }

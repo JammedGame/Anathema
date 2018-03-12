@@ -2,7 +2,7 @@ export { ActionArtCollection };
 
 import Engineer from "./../../Engineer";
 
-class ActionArtCollection extends Engineer.Engine.TileCollection
+class ActionArtCollection extends Engineer.ImageCollection
 {
     public constructor()
     {

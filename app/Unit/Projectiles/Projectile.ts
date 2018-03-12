@@ -86,7 +86,7 @@ class Projectile extends Unit
             let PossibleColliders = this._Scene.GetObjectsWithData(ColliderTypes[i], true);
             if(PossibleColliders.length == 0) continue;
             if(PossibleColliders.indexOf(this._Collider) != -1) PossibleColliders.splice(PossibleColliders.indexOf(this._Collider), 1);
-            Engineer.Util.Collision.CalculateObjectCollisions(ColliderTypes[i], this._Collider, PossibleColliders);
+            Engineer.CollisionUtil.CalculateObjectCollisions(ColliderTypes[i], this._Collider, <Engineer.DrawObject[]>PossibleColliders);
             let Colliders = this._Collider.Data["Colliders_" + ColliderTypes[i]];
             for(let j = 0; j < Colliders.length; j++)
             {
@@ -115,7 +115,7 @@ class Projectile extends Unit
     protected CalculateDirection(Direction:any) : number
     {
         // Override
-        let Angle = Engineer.Math.Vertex.Angle(new Engineer.Math.Vertex(0, -1, 0), Direction);
+        let Angle = Engineer.Vertex.Angle(new Engineer.Vertex(0, -1, 0), Direction);
         Angle += 90;
         return Angle;
     }

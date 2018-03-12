@@ -24,7 +24,7 @@ class Action
     public set Level(value:number) { this._Level = value; }
     public get Target(): any { return this._Target; }
     public set Target(value:any) { this._Target = value; }
-    public get Direction():any { return new Engineer.Math.Vertex(this._Target.X - this._Owner.Collider.Trans.Translation.X, this._Target.Y - this._Owner.Collider.Trans.Translation.Y, 0); }
+    public get Direction():any { return new Engineer.Vertex(this._Target.X - this._Owner.Collider.Trans.Translation.X, this._Target.Y - this._Owner.Collider.Trans.Translation.Y, 0); }
     public constructor(Old?:Action, ID?:string, Owner?:any)
     {
         if(Old != null)

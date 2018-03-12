@@ -24,8 +24,8 @@ class LevelManager
         let TheEnemyCollection = new EnemyCollection();
         let TilesetCollection = new LevelTilesetCollection();
 
-        this.Items["Beach"] = new Level(null, 5, TilesetCollection.Items["Beach"]);
-        this.Items["Beach"].AddEnemyEntry("Skeleton", 50);
+        this.Items["Cathedral"] = new Level(null, 5, TilesetCollection.Items["Town"]);
+        this.Items["Cathedral"].AddEnemyEntry("Skeleton", 50);
     }
     public StartLevel(Level:string)
     {

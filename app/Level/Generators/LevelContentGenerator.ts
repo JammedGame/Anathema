@@ -20,10 +20,10 @@ class LevelContentGenerator
         let StarterEntry = L.Layout.Entries[StarterEntryIndex];
         let Start = LevelContentGenerator.RandomNumber(StarterEntry.Locations.length);
         let StartLocation = StarterEntry.Locations[Start];
-        Engineer.Util.Log.Print(StartLocation);
+        Engineer.Log.Info(StartLocation);
         StarterEntry.Locations.splice(Start, 1);
-        Scene.Trans.Translation = new Engineer.Math.Vertex(960-StartLocation.X, 540-StartLocation.Y, 0);
-        Player.Collider.Trans.Translation = new Engineer.Math.Vertex(StartLocation.X, StartLocation.Y, 3);
+        Scene.Trans.Translation = new Engineer.Vertex(960-StartLocation.X, 540-StartLocation.Y, 0);
+        Player.Collider.Trans.Translation = new Engineer.Vertex(StartLocation.X, StartLocation.Y, 3);
         let EntriesStrength = 0;
         for(let i = 0; i < L.Layout.Entries.length; i++) EntriesStrength += L.Layout.Entries[i].Size;
         EntriesStrength -= StarterEntry.Size;
@@ -48,7 +48,7 @@ class LevelContentGenerator
     {
         if(Enemies.length == 0)
         {
-            Engineer.Util.Log.Error("Enemy number exceeded!");
+            Engineer.Log.Error("Enemy number exceeded!");
             return;
         }
         let EnemyIndex = LevelContentGenerator.RandomNumber(Enemies.length);
@@ -58,8 +58,8 @@ class LevelContentGenerator
             return;
         }
         let LocationIndex = LevelContentGenerator.RandomNumber(LE.Locations.length);
-        Enemies[EnemyIndex].Trans.Translation = new Engineer.Math.Vertex(LE.Locations[LocationIndex].X, LE.Locations[LocationIndex].Y, 0.5);
-        Enemies[EnemyIndex].Collider.Trans.Translation = new Engineer.Math.Vertex(LE.Locations[LocationIndex].X, LE.Locations[LocationIndex].Y, 0.5);
+        Enemies[EnemyIndex].Trans.Translation = new Engineer.Vertex(LE.Locations[LocationIndex].X, LE.Locations[LocationIndex].Y, 0.5);
+        Enemies[EnemyIndex].Collider.Trans.Translation = new Engineer.Vertex(LE.Locations[LocationIndex].X, LE.Locations[LocationIndex].Y, 0.5);
         Enemies.splice(EnemyIndex, 1);
         LE.Locations.splice(LocationIndex, 1);
     }
@@ -76,7 +76,7 @@ class LevelContentGenerator
             {
                 if(LE.Chunk.Fields[i][j] == 1)
                 {
-                    LE.Locations.push(new Engineer.Math.Vertex((LE.Location.X * 11 + j) * this._FieldSize, (LE.Location.Y * 11 + i) * this._FieldSize));
+                    LE.Locations.push(new Engineer.Vertex((LE.Location.X * 11 + j) * this._FieldSize, (LE.Location.Y * 11 + i) * this._FieldSize, 0));
                 }
             }
         }

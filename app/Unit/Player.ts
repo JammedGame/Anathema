@@ -54,9 +54,9 @@ class Player extends Unit
             this._Stats.Store();
             this._Inventory = new Inventory();
             this._Actions = new PlayerActions(this, Scene);
-            Scene.Trans.Translation = new Engineer.Math.Vertex(960, 540, 1);
-            this.Trans.Scale = new Engineer.Math.Vertex(100, 150, 0);
-            this.Trans.Translation = new Engineer.Math.Vertex(960, 540, 1);
+            Scene.Trans.Translation = new Engineer.Vertex(960, 540, 1);
+            this.Trans.Scale = new Engineer.Vertex(100, 150, 0);
+            this.Trans.Translation = new Engineer.Vertex(960, 540, 1);
             this._Collider.Data["PlayerCollider"] = true;
             SpriteSetLoader.LoadSets(this, "Human");
         }
@@ -115,7 +115,7 @@ class Player extends Unit
         }
         if(this._LastMouseLocation)
         {
-            let Location = new Engineer.Math.Vertex(this._LastMouseLocation.X - this._Scene.Trans.Translation.X, this._LastMouseLocation.Y - this._Scene.Trans.Translation.Y);
+            let Location = new Engineer.Vertex(this._LastMouseLocation.X - this._Scene.Trans.Translation.X, this._LastMouseLocation.Y - this._Scene.Trans.Translation.Y, 0);
             if (this._LeftClick) this._Actions.Apply("LM", Location);
             else if (this._RightClick) this._Actions.Apply("RM", Location);
             else if (this._QDown) this._Actions.Apply("Q", Location);
@@ -150,8 +150,8 @@ class Player extends Unit
     {
         let Sprite = this._EquipedCollection.Items[Index].Copy();
         Sprite.Fixed = true;
-        Sprite.Trans.Scale = new Engineer.Math.Vertex(100, 150, 1);
-        Sprite.Trans.Translation = new Engineer.Math.Vertex(960, 540, Offset);
+        Sprite.Trans.Scale = new Engineer.Vertex(100, 150, 1);
+        Sprite.Trans.Translation = new Engineer.Vertex(960, 540, Offset);
         this._EquipedItems.push(Sprite);
         this._Scene.AddSceneObject(Sprite);
         this.UpdateStats();

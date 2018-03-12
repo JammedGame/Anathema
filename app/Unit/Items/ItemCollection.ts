@@ -12,15 +12,15 @@ class ItemCollection
     {
         this._Items = [];
 
-        let DamageTraitEntry = new TraitEntry(null, "DamageBonus", 5, Engineer.Math.Color.FromRGBA(255,255,255,255));
-        let PierceDamageTraitEntry = new TraitEntry(null, "PierceDamage", 0, Engineer.Math.Color.FromRGBA(205,133,63,255));
-        let SlashDamageTraitEntry = new TraitEntry(null, "SlashDamage", 0, Engineer.Math.Color.FromRGBA(205,133,63,255));
-        let BluntDamageTraitEntry = new TraitEntry(null, "BluntDamage", 0, Engineer.Math.Color.FromRGBA(205,133,63,255));
-        let PierceResistTraitEntry = new TraitEntry(null, "PierceResist", 0, Engineer.Math.Color.FromRGBA(205,133,63,255));
-        let SlashResistTraitEntry = new TraitEntry(null, "SlashResist", 0, Engineer.Math.Color.FromRGBA(205,133,63,255));
-        let BluntResistTraitEntry = new TraitEntry(null, "BluntResist", 0, Engineer.Math.Color.FromRGBA(205,133,63,255));
-        let FireResistTraitEntry = new TraitEntry(null, "FireResis", 0, Engineer.Math.Color.FromRGBA(255,0,0,255));
-        let ColdResistTraitEntry = new TraitEntry(null, "ColdResist", 0, Engineer.Math.Color.FromRGBA(0,0,255,255));
+        let DamageTraitEntry = new TraitEntry(null, "DamageBonus", 5, Engineer.Color.FromRGBA(255,255,255,255));
+        let PierceDamageTraitEntry = new TraitEntry(null, "PierceDamage", 0, Engineer.Color.FromRGBA(205,133,63,255));
+        let SlashDamageTraitEntry = new TraitEntry(null, "SlashDamage", 0, Engineer.Color.FromRGBA(205,133,63,255));
+        let BluntDamageTraitEntry = new TraitEntry(null, "BluntDamage", 0, Engineer.Color.FromRGBA(205,133,63,255));
+        let PierceResistTraitEntry = new TraitEntry(null, "PierceResist", 0, Engineer.Color.FromRGBA(205,133,63,255));
+        let SlashResistTraitEntry = new TraitEntry(null, "SlashResist", 0, Engineer.Color.FromRGBA(205,133,63,255));
+        let BluntResistTraitEntry = new TraitEntry(null, "BluntResist", 0, Engineer.Color.FromRGBA(205,133,63,255));
+        let FireResistTraitEntry = new TraitEntry(null, "FireResis", 0, Engineer.Color.FromRGBA(255,0,0,255));
+        let ColdResistTraitEntry = new TraitEntry(null, "ColdResist", 0, Engineer.Color.FromRGBA(0,0,255,255));
         
         let DamageTrait = new Trait(null, "Damage");
         let ArmorTrait = new Trait(null, "Armor");

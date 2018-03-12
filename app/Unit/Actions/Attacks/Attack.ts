@@ -20,7 +20,7 @@ class Attack extends AfterAnimation
     private _Projectile:Projectile;
     public get Range():boolean { return this._Range; }
     public set Range(value:boolean) { this._Range = value; }
-    public get Direction():any { return new Engineer.Math.Vertex(this._Target.X - this._Owner.Collider.Trans.Translation.X, this._Target.Y - this._Owner.Collider.Trans.Translation.Y, 0); }
+    public get Direction():any { return new Engineer.Vertex(this._Target.X - this._Owner.Collider.Trans.Translation.X, this._Target.Y - this._Owner.Collider.Trans.Translation.Y, 0); }
     public constructor(Old?:Attack, ID?:string, Owner?:any)
     {
         super(Old, ID, Owner);
@@ -39,13 +39,13 @@ class Attack extends AfterAnimation
         }
         let Collider = this._Owner.Collider;
         if(!Collider) return false;
-        let Enemies = this._Scene.GetObjectsWithData(this.Prefs["TargetType"], true);
+        let Enemies:any = <any[]>this._Scene.GetObjectsWithData(this.Prefs["TargetType"], true);
         this._Victim = null;
         for(let i = 0; i < Enemies.length; i++)
         {
-            if(Engineer.Math.Vertex.Distance(Enemies[i].Collider.Trans.Translation, this._Target) < Enemies[i].Trans.Scale.Y)
+            if(Engineer.Vertex.Distance(Enemies[i].Collider.Trans.Translation, this._Target) < Enemies[i].Trans.Scale.Y)
             {
-                if(Engineer.Math.Vertex.Distance(Enemies[i].Collider.Trans.Translation, Collider.Trans.Translation) < this._Owner.Stats.Radius || this._Range)
+                if(Engineer.Vertex.Distance(Enemies[i].Collider.Trans.Translation, Collider.Trans.Translation) < this._Owner.Stats.Radius || this._Range)
                 {
                     this._Victim = Enemies[i];
                     break;

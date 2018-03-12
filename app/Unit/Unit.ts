@@ -8,7 +8,7 @@ import { Action } from "./Actions/Action";
 import { Move } from "./Actions/Move";
 import { Traits } from "./Trait" 
 
-class Unit extends Engineer.Engine.Sprite
+class Unit extends Engineer.Sprite
 {
     protected _CurrentAction:Action;
     protected _Collider:any;
@@ -33,7 +33,7 @@ class Unit extends Engineer.Engine.Sprite
             {
                 this.Data[Key] = Old.Data[Key];
             }
-            this._Collider.Data["Collision"] = Engineer.Math.CollisionType.Radius2D;
+            this._Collider.Data["Collision"] = Engineer.CollisionType.Radius2D;
             this._Collider.Data["Owner"] = this;
         }
         else
@@ -85,17 +85,17 @@ class Unit extends Engineer.Engine.Sprite
     }
     protected CreateCollider() : void
     {
-        this._Collider = new Engineer.Engine.Tile();
-        this._Collider.Trans.Scale = new Engineer.Math.Vertex(this.Trans.Scale.X, this.Trans.Scale.Y, 1);
-        this._Collider.Trans.Translation = new Engineer.Math.Vertex(this.Trans.Translation.X, this.Trans.Translation.Y, 2);
+        this._Collider = new Engineer.Tile();
+        this._Collider.Trans.Scale = new Engineer.Vertex(this.Trans.Scale.X, this.Trans.Scale.Y, 1);
+        this._Collider.Trans.Translation = new Engineer.Vertex(this.Trans.Translation.X, this.Trans.Translation.Y, 2);
         this._Collider.Active = false;
-        this._Collider.Paint = Engineer.Math.Color.FromRGBA(255,0,0,120);
-        this._Collider.Data["Collision"] = Engineer.Math.CollisionType.Radius2D;
+        this._Collider.Paint = Engineer.Color.FromRGBA(255,0,0,120);
+        this._Collider.Data["Collision"] = Engineer.CollisionType.Radius2D;
         this._Collider.Data["Owner"] = this;
     }
     protected CalculateDirection(Direction:any) : number
     {
-        let Angle = Engineer.Math.Vertex.Angle(new Engineer.Math.Vertex(0, -1, 0), Direction);
+        let Angle = Engineer.Vertex.Angle(new Engineer.Vertex(0, -1, 0), Direction);
         Angle += 90;
         if(Angle > 360) Angle -= 360;
         if(Angle > 45 && Angle <= 135) return 1;

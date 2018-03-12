@@ -28,7 +28,7 @@ class TraitEntry
             if(Value) this._Value = Value;
             else this._Value = 0;
             if(Color) this._Color = Color;
-            else this._Color = Engineer.Math.Color.White;
+            else this._Color = Engineer.Color.White;
         }
     }
     public Copy() : TraitEntry

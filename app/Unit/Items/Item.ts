@@ -26,7 +26,7 @@ class Item
     {
         if(Old != null)
         {
-            this._ID = Engineer.Data.Uuid.Create();
+            this._ID = Engineer.Uuid.Create();
             this._Name = Old._Name;
             this._ArtEquipedIndex = Old._ArtEquipedIndex;
             this._ArtWorldIndex = Old._ArtWorldIndex;
@@ -39,7 +39,7 @@ class Item
         }
         else
         {
-            this._ID = Engineer.Data.Uuid.Create();
+            this._ID = Engineer.Uuid.Create();
             if(Name) this._Name = Name;
             else this._Name = this._ID;
             if(Indices)
