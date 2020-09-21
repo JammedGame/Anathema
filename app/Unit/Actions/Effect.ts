@@ -46,7 +46,7 @@ class Effect extends Engineer.Sprite
         this._Color = Engineer.Color.White;
         this._Growth = new Engineer.Vertex(0,0,0);
         this.Active = false;
-        this._Scene.AddSceneObject(this);
+        this._Scene.Attach(this);
         this._Scene.Events.KeyPress.push(this.KeyPress.bind(this));
     }
     public ShowEffect(Location:any)

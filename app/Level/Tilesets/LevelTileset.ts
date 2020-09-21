@@ -37,7 +37,9 @@ class LevelTileset
     private _CeilingType:LevelTilesetCeilingType;
     private _FillType:LevelTilesetFillType;
     private _Floor:any;
+    private _FloorNormals:any;
     private _WallUpper:any;
+    private _WallUpperNormals:any;
     private _WallLower:any;
     private _Ceiling:any;
     private _Separate:any;
@@ -53,7 +55,9 @@ class LevelTileset
     public get FillType() : LevelTilesetFillType { return this._FillType; }
     public set FillType(value:LevelTilesetFillType) { this._FillType = value; }
     public get Floor() : any { return this._Floor; }
+    public get FloorNormals() : any { return this._FloorNormals; }
     public get WallUpper() : any { return this._WallUpper; }
+    public get WallUpperNormals() : any { return this._WallUpperNormals; }
     public get WallLower() : any { return this._WallLower; }
     public get Ceiling() : any { return this._Ceiling; }
     public get Separate() : any { return this._Separate; }
@@ -72,23 +76,29 @@ class LevelTileset
     private Init(ArrayLengths:number[]) : void
     {
         let FloorImages:string[] = [];
+        let FloorNormalImages:string[] = [];
         for(let i = 1; i < ArrayLengths[0] + 1; i++)
         {
             let s = i.toString();
             if(i < 10) s = "0" + i;
             FloorImages.push("/build/resources/tilesets/"+this._Name.toLowerCase()+"/g"+s+".png");
+            FloorNormalImages.push("/build/resources/tilesets/"+this._Name.toLowerCase()+"/n01.png");
         }
         this._Floor = new Engineer.ImageCollection(null, FloorImages);
+        this._FloorNormals = new Engineer.ImageCollection(null, FloorNormalImages);
         let WallUpperImages:string[] = [];
+        let WallUpperNormalImages:string[] = [];
         let WallLowerImages:string[] = [];
         for(let i = 1; i < ArrayLengths[1] + 1; i++)
         {
             let s = i.toString();
             if(i < 10) s = "0" + i;
             WallUpperImages.push("/build/resources/tilesets/"+this._Name.toLowerCase()+"/wu"+s+".png");
+            WallUpperNormalImages.push("/build/resources/tilesets/"+this._Name.toLowerCase()+"/n02.png");
             WallLowerImages.push("/build/resources/tilesets/"+this._Name.toLowerCase()+"/wl"+s+".png");
         }
         this._WallUpper = new Engineer.ImageCollection(null, WallUpperImages);
+        this._WallUpperNormals = new Engineer.ImageCollection(null, WallUpperNormalImages);
         this._WallLower = new Engineer.ImageCollection(null, WallLowerImages);
         let CeilingLength = 2;
         if(this._CeilingType == LevelTilesetCeilingType.Roofed) CeilingLength = 6;

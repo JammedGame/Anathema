@@ -22,7 +22,7 @@ class MainMenu extends Engineer.Scene2D
         Play.Trans.Scale = new Engineer.Vertex(300, 150, 1);
         Play.Trans.Translation = new Engineer.Vertex(200, 200, 0);
         Play.Events.MouseDown.push(this.PlayClick.bind(this));
-        this.AddSceneObject(Play);
+        this.Attach(Play);
     }
     public PlayClick(G:any, Args:any)
     {

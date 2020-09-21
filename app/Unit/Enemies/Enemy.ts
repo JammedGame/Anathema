@@ -70,8 +70,8 @@ class Enemy extends Unit
     public Destroy()
     {
         // Override
-        this._Scene.RemoveSceneObject(this._Collider);
-        this._Scene.RemoveSceneObject(this);
+        this._Scene.Remove(this._Collider);
+        this._Scene.Remove(this);
     }
     protected Behaviour()
     {

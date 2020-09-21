@@ -41,7 +41,7 @@ class InventoryWindow extends Window
     {
         for(let i = 0; i < this._InventoryItems.length; i++)
         {
-            this._Scene.RemoveSceneObject(this._InventoryItems[i]);
+            this._Scene.Remove(this._InventoryItems[i]);
         }
         this._InventoryItems = [];
         for(let i = 0; i < BackPackY; i++)
@@ -71,7 +71,7 @@ class InventoryWindow extends Window
         InvItem.Active = this.Visible;
         InvItem.Events.MouseDown.push(this.ItemDragStart.bind(this));
         this._InventoryItems.push(InvItem);
-        this._Scene.AddSceneObject(InvItem);
+        this._Scene.Attach(InvItem);
     }
     public Show() : void
     {

@@ -23,6 +23,7 @@ class Skeleton extends Enemy
             this._Stats.PierceResist = 20;        
             this._Stats.Store();
             this._AttackIndex = 1;
+            this.Material.Type = Engineer.MaterialType.Lit;
             this.SpriteSets = this.LoadSets();
         }
     }

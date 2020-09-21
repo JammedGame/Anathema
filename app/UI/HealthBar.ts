@@ -26,8 +26,8 @@ class HealthBar extends Engineer.Tile
         this.Trans.Translation = new Engineer.Vertex(650, this._OriginalY, 0.5);
         this.Paint = Engineer.Color.FromRGBA(255,69,0,255);
         this._BarBorder = new BarBorder(this.Trans.Translation);
-        Scene.AddSceneObject(this);
-        Scene.AddSceneObject(this._BarBorder);
+        Scene.Attach(this);
+        Scene.Attach(this._BarBorder);
     }
     public Update(Stats:Stats)
     {

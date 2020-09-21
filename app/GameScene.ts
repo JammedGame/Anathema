@@ -59,7 +59,7 @@ class GameScene extends Engineer.Scene2D
         this._MainHud = new MainHud(this, this._Player.Actions);
         this._MainHud.InventoryButtonClick.push(this.ToggleInventory.bind(this));
         this.Events.KeyPress.push(this.KeyPress.bind(this));
-        this.Events.TimeTick.push(this.SceneUpdate.bind(this));
+        this.Events.Update.push(this.SceneUpdate.bind(this));
     }
     private KeyPress(G: any, Args: any): void
     {

@@ -72,21 +72,21 @@ class Projectile extends Unit
     {
         // Override
         this.Active = false;
-        this._Scene.RemoveSceneObject(this._Collider);
-        this._Scene.RemoveSceneObject(this);
+        this._Scene.Remove(this._Collider);
+        this._Scene.Remove(this);
     }
     protected Apply() : void
     {
         // Virtual
         if(this._Applying) return;
         this._Applying = true;
-        let ColliderTypes:string[] = this.Data["ColliderTypes"];
+        let ColliderTypes:string[] = this.Collision.Specific;
         for(let i = 0; i < ColliderTypes.length; i++)
         {
-            let PossibleColliders = this._Scene.GetObjectsWithData(ColliderTypes[i], true);
+            let PossibleColliders = this._Scene.FindByData(ColliderTypes[i], true);
             if(PossibleColliders.length == 0) continue;
             if(PossibleColliders.indexOf(this._Collider) != -1) PossibleColliders.splice(PossibleColliders.indexOf(this._Collider), 1);
-            Engineer.CollisionUtil.CalculateObjectCollisions(ColliderTypes[i], this._Collider, <Engineer.DrawObject[]>PossibleColliders);
+            Engineer.CollisionUtil.CalculateTypeCollisions(ColliderTypes[i], this._Collider, <Engineer.DrawObject[]>PossibleColliders);
             let Colliders = this._Collider.Data["Colliders_" + ColliderTypes[i]];
             for(let j = 0; j < Colliders.length; j++)
             {

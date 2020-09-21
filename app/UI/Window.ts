@@ -25,16 +25,16 @@ class Window extends Engineer.Tile
     }
     public Init() : void
     {
-        this._Scene.AddSceneObject(this);
+        this._Scene.Attach(this);
         for(let i = 0; i < this._Elements.length; i++)
         {
             this._Elements[i].Fixed = true;
-            this._Scene.AddSceneObject(this._Elements[i]);
+            this._Scene.Attach(this._Elements[i]);
         }
         for(let i = 0; i < this._Decorations.length; i++)
         {
             this._Decorations[i].Fixed = true;
-            this._Scene.AddSceneObject(this._Decorations[i]);
+            this._Scene.Attach(this._Decorations[i]);
         }
     }
     public Show() : void

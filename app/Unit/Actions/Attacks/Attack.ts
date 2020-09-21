@@ -39,7 +39,7 @@ class Attack extends AfterAnimation
         }
         let Collider = this._Owner.Collider;
         if(!Collider) return false;
-        let Enemies:any = <any[]>this._Scene.GetObjectsWithData(this.Prefs["TargetType"], true);
+        let Enemies:any = <any[]>this._Scene.FindByData(this.Prefs["TargetType"], true);
         this._Victim = null;
         for(let i = 0; i < Enemies.length; i++)
         {
@@ -67,7 +67,7 @@ class Attack extends AfterAnimation
                 NewProjectile.Trans.Translation = this._Owner.Collider.Trans.Translation;
                 NewProjectile.InitProjectile(this._Victim.Trans.Translation);
                 NewProjectile.Stats.MovementSpeed = 25;
-                this._Scene.AddSceneObject(NewProjectile);
+                this._Scene.Attach(NewProjectile);
                 this._Scene.Projectiles.push(NewProjectile);
             }
         }

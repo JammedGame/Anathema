@@ -33,7 +33,8 @@ class Unit extends Engineer.Sprite
             {
                 this.Data[Key] = Old.Data[Key];
             }
-            this._Collider.Data["Collision"] = Engineer.CollisionType.Radius2D;
+            this._Collider.Collision.Active = true;
+            this._Collider.Collision.Type = Engineer.CollisionType.Radius;
             this._Collider.Data["Owner"] = this;
         }
         else
@@ -48,8 +49,8 @@ class Unit extends Engineer.Sprite
     public Init(Scene:GameScene)
     {
         this._Scene = Scene;
-        this._Scene.AddSceneObject(this);
-        this._Scene.AddSceneObject(this._Collider);
+        this._Scene.Attach(this);
+        this._Scene.Attach(this._Collider);
     }
     public Copy() : Unit
     {
@@ -90,7 +91,8 @@ class Unit extends Engineer.Sprite
         this._Collider.Trans.Translation = new Engineer.Vertex(this.Trans.Translation.X, this.Trans.Translation.Y, 2);
         this._Collider.Active = false;
         this._Collider.Paint = Engineer.Color.FromRGBA(255,0,0,120);
-        this._Collider.Data["Collision"] = Engineer.CollisionType.Radius2D;
+        this._Collider.Collision.Active = true;
+        this._Collider.Collision.Type = Engineer.CollisionType.Radius;
         this._Collider.Data["Owner"] = this;
     }
     protected CalculateDirection(Direction:any) : number

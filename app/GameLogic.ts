@@ -15,7 +15,7 @@ class GameLogic
         this._Game.Name = "Anathema";
         this._Runner = new Engineer.Runner(this._Game, Engineer.DrawEngineType.ThreeJS);
         let _Menu:any = new MainMenu(this._Runner, this._Game);
-        this._Game.AddScene(_Menu);
+        this._Game.Attach(_Menu);
     }
     public Run() : void
     {

@@ -21,12 +21,13 @@ class ItemWorld extends Engineer.Tile
         else this.Collection = WorldCollection.Single;
         this.Index = Item.ArtWorldIndex;
         this.Data["Item"] = true;
-        this.Data["Collision"] = Engineer.CollisionType.Rectangular2D;
+        this.Collision.Active = true;
+        this.Collision.Type = Engineer.CollisionType.Rectangular;
         this._Scene = Scene;
         this._Player = Player;
         this._Item = Item;
         this.Events.MouseDown.push(this.GameUpdate.bind(this));
-        this._Scene.AddSceneObject(this);
+        this._Scene.Attach(this);
     }
     private GameUpdate(G:any, Args:any)
     {
@@ -37,7 +38,7 @@ class ItemWorld extends Engineer.Tile
                 this._Player.Inventory.Loot(this._Item)
                 this.Events.MouseDown.splice(this.Events.MouseDown.indexOf(this.GameUpdate), 1);
                 this.Active = false;
-                this._Scene.RemoveSceneObject(this);
+                this._Scene.Remove(this);
             }
             else
             {

@@ -30,7 +30,7 @@ class AfterAnimation extends Action
         if(!this.CheckManaCost()) return false;
         this.ShowEffects();
         this._InProgress = true;
-        this._Owner.Events.SpriteSetAnimationComplete.push(this.OnFinish.bind(this));
+        this._Owner.Events.SetComplete.push(this.OnFinish.bind(this));
         return true;
     }
     protected Check() : boolean
@@ -55,7 +55,7 @@ class AfterAnimation extends Action
     }
     private OnFinish() : void
     {
-        this._Owner.Events.SpriteSetAnimationComplete.splice(this._Owner.Events.SpriteSetAnimationComplete.indexOf(this.OnFinish.bind(this)), 1);
+        this._Owner.Events.SetComplete.splice(this._Owner.Events.SetComplete.indexOf(this.OnFinish.bind(this)), 1);
         this.ApplyAction();
         this._InProgress = false;
         this._Completed = true;

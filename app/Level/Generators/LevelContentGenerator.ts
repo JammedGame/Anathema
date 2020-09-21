@@ -76,7 +76,7 @@ class LevelContentGenerator
             {
                 if(LE.Chunk.Fields[i][j] == 1)
                 {
-                    LE.Locations.push(new Engineer.Vertex((LE.Location.X * 11 + j) * this._FieldSize, (LE.Location.Y * 11 + i) * this._FieldSize, 0));
+                    LE.Locations.push(new Engineer.Vertex((LE.Location.X * 11 + j) * this._FieldSize, (LE.Location.Y * 11 + i) * this._FieldSize * 0.8, 0));
                 }
             }
         }

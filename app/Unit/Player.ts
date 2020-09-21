@@ -13,6 +13,7 @@ import { Inventory } from "./Items/Inventory";
 import { SpriteSetLoader } from "./../Util/SpriteSetLoader";
 import { EquipedCollection } from "./Items/EquipedCollection";
 import { PlayerActions } from "./PlayerActions";
+import { Light } from "three";
 
 class Player extends Unit
 {
@@ -28,6 +29,7 @@ class Player extends Unit
     private _EquipedCollection: EquipedCollection;
     private _Actions:PlayerActions;
     private _EquipedItems:any[];
+    private _LightRadius:Engineer.Light;
     public get Actions():PlayerActions { return this._Actions; }
     public get Inventory():Inventory { return this._Inventory; }
     public get StatsUpdate():boolean { return this._StatsUpdate; }
@@ -49,6 +51,7 @@ class Player extends Unit
             this.Fixed = true;
             this.Data["Player"] = true;
             Scene.Data["Player"] = this;
+            this._Stats.MovementSpeed = 5;
             this._Stats.Radius = 150;
             this._Stats.AttackSpeed = 15;
             this._Stats.Store();
@@ -68,6 +71,14 @@ class Player extends Unit
         this.Init(Scene);
         this._Inventory.OnEquip.push(this.Equip.bind(this));
         this.Equip();
+        this._LightRadius = new Engineer.Light();
+        //this._LightRadius.Paint = Engineer.Color.FromRGBA(200,150,80,255);
+        this._LightRadius.Radius = 500;
+        this._LightRadius.Intensity = 15;
+        this._LightRadius.Attenuation = new Engineer.LightAttenuation(null, 0.5, 0, 0.5);
+        this._LightRadius.Fixed = true;
+        this._Scene.Attach(this._LightRadius);
+        this.Material.Type = Engineer.MaterialType.Lit;
     }
     public Copy() : Player
     {
@@ -123,11 +134,12 @@ class Player extends Unit
             else if (this._EDown) this._Actions.Apply("E", Location);
             else if (this._RDown) this._Actions.Apply("R", Location);
         }
+        this._LightRadius.Position = this._Scene.Trans.Translation.Copy().Scalar(-1).Add(new Engineer.Vertex(960, 600, 0));
         super.Update();
     }
     private Equip()
     {
-        for(let i = 0; i < this._EquipedItems.length; i++) this._Scene.RemoveSceneObject(this._EquipedItems[i]);
+        for(let i = 0; i < this._EquipedItems.length; i++) this._Scene.Remove(this._EquipedItems[i]);
         this._EquipedItems = [];
         if(this._Inventory.Greaves) this.EquipItem(this._Inventory.Greaves.ArtEquipedIndex, 1.2);
         else this.EquipItem("RedPants", 1.2);
@@ -150,10 +162,11 @@ class Player extends Unit
     {
         let Sprite = this._EquipedCollection.Items[Index].Copy();
         Sprite.Fixed = true;
+        Sprite.Material.Type = Engineer.MaterialType.Lit;
         Sprite.Trans.Scale = new Engineer.Vertex(100, 150, 1);
         Sprite.Trans.Translation = new Engineer.Vertex(960, 540, Offset);
         this._EquipedItems.push(Sprite);
-        this._Scene.AddSceneObject(Sprite);
+        this._Scene.Attach(Sprite);
         this.UpdateStats();
     }
     private UpdateStats()

@@ -27,7 +27,7 @@ class Cleave extends Attack
         // Override
         let Collider = this._Owner.Collider;
         if(!Collider) return false;
-        let Enemies:any[] = <any[]>this._Scene.GetObjectsWithData(this.Prefs["TargetType"], true);
+        let Enemies:any[] = <any[]>this._Scene.FindByData(this.Prefs["TargetType"], true);
         this._Victims = [];
         let TargetVertex = new Engineer.Vertex(this._Target.X - Collider.Trans.Translation.X, this._Target.Y - Collider.Trans.Translation.Y, 0);
         let Angle = 0;

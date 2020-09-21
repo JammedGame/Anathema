@@ -26,11 +26,12 @@ class ColliderGenerator
     {
         let NewTile:any = new Engineer.Tile();
         NewTile.Data["Solid"] = true;
-        NewTile.Data["Collision"] = Engineer.CollisionType.Rectangular2D;
-        NewTile.Trans.Translation = new Engineer.Vertex(X * ColliderGenerator.FieldSize, Y * ColliderGenerator.FieldSize, 0);
-        NewTile.Trans.Scale = new Engineer.Vertex(ColliderGenerator.FieldSize, ColliderGenerator.FieldSize, 1);
+        NewTile.Collision.Active = true;
+        NewTile.Collision.Type = Engineer.CollisionType.Rectangular;
+        NewTile.Trans.Translation = new Engineer.Vertex(X * ColliderGenerator.FieldSize, Y * ColliderGenerator.FieldSize * 0.8, 0);
+        NewTile.Trans.Scale = new Engineer.Vertex(ColliderGenerator.FieldSize, ColliderGenerator.FieldSize * 0.8, 1);
         NewTile.Active = false;
         NewTile.Paint = Engineer.Color.FromRGBA(0,255,0,120);
-        Scene.AddSceneObject(NewTile);
+        Scene.Attach(NewTile);
     }
 }

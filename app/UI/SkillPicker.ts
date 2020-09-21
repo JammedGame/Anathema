@@ -37,7 +37,7 @@ class SkillPicker extends Window
                 Element.Data["Index"] = Indices[i];
                 Element.Events.MouseDown.push(this.MouseDown.bind(this));
                 Element.Fixed = true;
-                this._Scene.AddSceneObject(Element);
+                this._Scene.Attach(Element);
             }
         }
         this._Shown = true;

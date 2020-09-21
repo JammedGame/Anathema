@@ -24,7 +24,7 @@ class LevelManager
         let TheEnemyCollection = new EnemyCollection();
         let TilesetCollection = new LevelTilesetCollection();
 
-        this.Items["Cathedral"] = new Level(null, 5, TilesetCollection.Items["Town"]);
+        this.Items["Cathedral"] = new Level(null, 5, TilesetCollection.Items["Cathedral"]);
         this.Items["Cathedral"].AddEnemyEntry("Skeleton", 50);
     }
     public StartLevel(Level:string)
@@ -34,7 +34,7 @@ class LevelManager
         this._Level = this.Items[Level].Copy();
         this._Scene = new GameScene();
         this.InitEnemies();
-        this._Game.AddScene(this._Scene);
+        this._Game.Attach(this._Scene);
         this._Runner.SwitchScene("GameScene", false);
         this._Scene.Init(this._Level);
     }

@@ -25,14 +25,15 @@ class Move extends Action
         if(this._Owner.Data["Player"] && Movement.Length() < 10) return false;
         Movement = Movement.Normalize().Scalar(this._Owner.Stats._MovementSpeed);
         let ColliderTypes:string[] = this.Prefs["ColliderTypes"];
-        let Collision = new Engineer.CollisionValue();
+        let Collision = new Engineer.CollisionResult();
         for(let i = 0; i < ColliderTypes.length; i++)
         {
-            let Colliders = Scene.GetObjectsWithData(ColliderTypes[i], true);
+            let Colliders = Scene.FindByData(ColliderTypes[i], true);
             if(Colliders.length == 0) continue;
             if(Colliders.indexOf(this._Collider) != -1) Colliders.splice(Colliders.indexOf(this._Collider), 1);
-            Engineer.CollisionUtil.CalculateObjectCollisions(ColliderTypes[i], this._Collider, <Engineer.DrawObject[]>Colliders);
-            Collision = Engineer.CollisionValue.Combine(Collision, this._Collider.Data["Collision_" + ColliderTypes[i]]);
+            Engineer.CollisionUtil.CalculateTypeCollisions(ColliderTypes[i], this._Collider, <Engineer.DrawObject[]>Colliders);
+            //console.log(this._Collider.Collision);
+            Collision.Combine(this._Collider.Collision.Specific[ColliderTypes[i]]);
         }
         if(Movement.Y < 0 && Collision.Top) return false;
         if(Movement.Y > 0 && Collision.Bottom) return false;

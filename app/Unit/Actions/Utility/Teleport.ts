@@ -21,17 +21,18 @@ class Teleport extends AfterAnimation
         // Override
         if(this._Cooldown) return false;
         let Collider = this._Owner.Collider.Copy();
-        Collider.Data["Collision"] = Engineer.CollisionType.Radius2D;
+        Collider.Active = true;
+        Collider.Collision = Engineer.CollisionType.Radius;
         Collider.Trans.Translation = this._Target;
         let ColliderTypes:string[] = this.Prefs["ColliderTypes"];
-        let Collision = new Engineer.CollisionValue();
+        let Collision = new Engineer.CollisionResult();
         for(let i = 0; i < ColliderTypes.length; i++)
         {
-            let Colliders = this._Scene.GetObjectsWithData(ColliderTypes[i], true);
+            let Colliders = this._Scene.FindByData(ColliderTypes[i], true);
             if(Colliders.length == 0) continue;
             if(Colliders.indexOf(Collider) != -1) Colliders.splice(Colliders.indexOf(Collider), 1);
-            Engineer.CollisionUtil.CalculateObjectCollisions(ColliderTypes[i], Collider, <Engineer.DrawObject[]>Colliders);
-            Collision = Engineer.CollisionValue.Combine(Collision, Collider.Data["Collision_" + ColliderTypes[i]]);
+            Engineer.CollisionUtil.CalculateTypeCollisions(ColliderTypes[i], Collider, <Engineer.DrawObject[]>Colliders);
+            Collision.Combine(Collider.Collision.Specific[ColliderTypes[i]]);
         }
         if(Collision.Collision) return false;
         return true;
