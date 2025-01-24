@@ -23,12 +23,16 @@
   },
   "homepage": "https://github.com/ShadySolutions/Anathema#readme",
   "devDependencies": {
-    "typescript": "^2.4.2",
-    "webpack": "^3.5.3",
-    "webpack-dev-server": "^2.7.1"
+    "typescript": "2.8.1",
+    "webpack": "3.5.3",
+    "webpack-dev-server": "2.7.1"
   },
   "dependencies": {
     "engineer-js": "0.0.70",
-    "ts-loader": "^2.3.2"
+    "ts-loader": "2.3.2",
+    "@types/howler": "2.0.5",
+    "@types/three": "0.93.31",
+    "howler": "2.1.1",
+    "three": "0.101.1"
   }
 }
