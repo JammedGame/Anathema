@@ -37,6 +37,9 @@ class Enemy extends Unit
             this.Data["Enemy"] = true;
             this._Collider.Data["EnemyCollider"] = true;
         }
+        this.AmbientColor = Engineer.Color.Black;
+        this.Material.Sampling = Engineer.TextureSamplingType.Nearest;
+        this.Material.Type = Engineer.MaterialType.Lit;
     }
     public Copy() : Enemy
     {

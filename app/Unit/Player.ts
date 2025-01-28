@@ -49,6 +49,7 @@ class Player extends Unit
         {
             this.Name = "Player";
             this.Fixed = true;
+            this.Material.Sampling = Engineer.TextureSamplingType.Nearest;
             this.Data["Player"] = true;
             Scene.Data["Player"] = this;
             this._Stats.MovementSpeed = 5;
@@ -72,13 +73,13 @@ class Player extends Unit
         this._Inventory.OnEquip.push(this.Equip.bind(this));
         this.Equip();
         this._LightRadius = new Engineer.Light();
-        //this._LightRadius.Paint = Engineer.Color.FromRGBA(200,150,80,255);
+        this._LightRadius.Paint = Engineer.Color.White;
         this._LightRadius.Radius = 500;
         this._LightRadius.Intensity = 15;
-        this._LightRadius.Attenuation = new Engineer.LightAttenuation(null, 0.5, 0, 0.5);
+        this._LightRadius.Attenuation = new Engineer.LightAttenuation(null, 1, 0, 6);
         this._LightRadius.Fixed = true;
         this._Scene.Attach(this._LightRadius);
-        this.Material.Type = Engineer.MaterialType.Lit;
+        this.Material.Type = Engineer.MaterialType.Default;
     }
     public Copy() : Player
     {
@@ -162,7 +163,8 @@ class Player extends Unit
     {
         let Sprite = this._EquipedCollection.Items[Index].Copy();
         Sprite.Fixed = true;
-        Sprite.Material.Type = Engineer.MaterialType.Lit;
+        Sprite.Material.Sampling = Engineer.TextureSamplingType.Nearest;
+        Sprite.Material.Type = Engineer.MaterialType.Default;
         Sprite.Trans.Scale = new Engineer.Vertex(100, 150, 1);
         Sprite.Trans.Translation = new Engineer.Vertex(960, 540, Offset);
         this._EquipedItems.push(Sprite);

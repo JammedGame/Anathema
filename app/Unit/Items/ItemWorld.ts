@@ -19,10 +19,10 @@ class ItemWorld extends Engineer.Tile
         this.Trans.Scale = new Engineer.Vertex(50, 50, 1);
         if(WorldCollection.Single == null) this.Collection = new WorldCollection();
         else this.Collection = WorldCollection.Single;
+        this.Material.Sampling = Engineer.TextureSamplingType.Nearest;
         this.Index = Item.ArtWorldIndex;
         this.Data["Item"] = true;
         this.Collision.Active = true;
-        this.Collision.Type = Engineer.CollisionType.Rectangular;
         this._Scene = Scene;
         this._Player = Player;
         this._Item = Item;

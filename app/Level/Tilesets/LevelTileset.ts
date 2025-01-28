@@ -82,7 +82,7 @@ class LevelTileset
             let s = i.toString();
             if(i < 10) s = "0" + i;
             FloorImages.push("/build/resources/tilesets/"+this._Name.toLowerCase()+"/g"+s+".png");
-            FloorNormalImages.push("/build/resources/tilesets/"+this._Name.toLowerCase()+"/n01.png");
+            //FloorNormalImages.push("/build/resources/tilesets/"+this._Name.toLowerCase()+"/n01.png");
         }
         this._Floor = new Engineer.ImageCollection(null, FloorImages);
         this._FloorNormals = new Engineer.ImageCollection(null, FloorNormalImages);
@@ -94,7 +94,7 @@ class LevelTileset
             let s = i.toString();
             if(i < 10) s = "0" + i;
             WallUpperImages.push("/build/resources/tilesets/"+this._Name.toLowerCase()+"/wu"+s+".png");
-            WallUpperNormalImages.push("/build/resources/tilesets/"+this._Name.toLowerCase()+"/n02.png");
+            //WallUpperNormalImages.push("/build/resources/tilesets/"+this._Name.toLowerCase()+"/n02.png");
             WallLowerImages.push("/build/resources/tilesets/"+this._Name.toLowerCase()+"/wl"+s+".png");
         }
         this._WallUpper = new Engineer.ImageCollection(null, WallUpperImages);
