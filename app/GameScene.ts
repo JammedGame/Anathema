@@ -18,13 +18,10 @@ import { Effect } from "./Unit/Actions/Effect";
 import { Damage } from "./Unit/Damage";
 import { Projectile } from "./Unit/Projectiles/Projectile";
 
-class GameScene extends Engineer.Scene2D
-{
-    private _Pause:boolean;
+class GameScene extends Engineer.Scene2D {
+    private _Pause: boolean;
     private _Level: Level;
     private _Player: Player;
-    private _Skeleton: Skeleton;
-    private _ItemWorld: ItemWorld;
     private _Inventory: InventoryWindow;
     private _SkillTree: SkillTree;
     private _HealthBar: HealthBar;
@@ -32,21 +29,21 @@ class GameScene extends Engineer.Scene2D
     private _MainHud: MainHud;
     private _ItemBank: ItemCollection;
     private _Projectiles: Projectile[];
-    public get Pause():boolean { return this._Pause; }
-    public set Pause(value:boolean) { this._Pause = value; }
-    public get Player():Player { return this._Player; }
-    public set Player(value:Player) { this._Player = value; }
-    public get Projectiles():Projectile[] { return this._Projectiles; }
-    public constructor()
-    {
+    public get Pause(): boolean { return this._Pause; }
+    public set Pause(value: boolean) { this._Pause = value; }
+    public get Player(): Player { return this._Player; }
+    public set Player(value: Player) { this._Player = value; }
+    public get Projectiles(): Projectile[] { return this._Projectiles; }
+
+    public constructor() {
         super();
         this.Name = "GameScene";
         this._Pause = false;
         this._Projectiles = [];
         this._Player = new Player(null, this);
     }
-    public Init(Level:Level): void
-    {
+
+    public Init(Level: Level): void {
         let DamageCalculation = new Damage(this);
         this.BackColor = Engineer.Color.FromRGBA(0, 0, 0, 255);
         this._Level = Level;
@@ -61,31 +58,30 @@ class GameScene extends Engineer.Scene2D
         this.Events.KeyPress.push(this.KeyPress.bind(this));
         this.Events.Update.push(this.SceneUpdate.bind(this));
     }
-    private KeyPress(G: any, Args: any): void
-    {
-        if(this._Pause) return;
-        if (Args.Key == 105) this.ToggleInventory();
-        else if (Args.Key == 116)
-        {
+
+    private KeyPress(G: any, Args: any): void {
+        console.log(Args.KeyCode);
+        if (this._Pause) return;
+        if (Args.KeyCode == 105 || Args.KeyCode == 97) this.ToggleInventory();
+        else if (Args.KeyCode == 116 || Args.KeyCode == 103) {
             if (this._SkillTree.Visible) this._SkillTree.Hide();
             else this._SkillTree.Show();
         }
     }
-    private ToggleInventory() : void
-    {
+
+    private ToggleInventory(): void {
         if (this._Inventory.Visible) this._Inventory.Hide();
         else this._Inventory.Show();
     }
-    private SceneUpdate()
-    {
-        if(this._Pause) return;
-        for(let i = 0; i < this._Projectiles.length; i++) this._Projectiles[i].Update();
-        if(this._Level) this._Level.Update();
-        if(this._Player)
-        {
+
+    private SceneUpdate() {
+        if (this._Pause) return;
+        for (let i = 0; i < this._Projectiles.length; i++) this._Projectiles[i].Update();
+        if (this._Level) this._Level.Update();
+        if (this._Player) {
             this._Player.Update();
-            if(this._HealthBar) this._HealthBar.Update(this._Player.Stats);
-            if(this._ManaBar) this._ManaBar.Update(this._Player.Stats);
+            if (this._HealthBar) this._HealthBar.Update(this._Player.Stats);
+            if (this._ManaBar) this._ManaBar.Update(this._Player.Stats);
         }
     }
 }

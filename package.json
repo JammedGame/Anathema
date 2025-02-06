@@ -4,10 +4,10 @@
   "description": "Game where you curse like there is no tomorrow.",
   "main": "build/public/anathema.js",
   "scripts": {
-    "start": "tsc && webpack-dev-server --hot",
+    "start": "SET NODE_OPTIONS=--openssl-legacy-provider && concurrently -k \"npm run build\" \"npm run serve\"",
+    "serve": "webpack-dev-server --hot",
     "build": "tsc && webpack --watch",
-    "prod": "tsc && webpack -p",
-    "test": "cd tests"
+    "prod": "tsc && webpack -p"
   },
   "repository": {
     "type": "git",
@@ -30,6 +30,7 @@
   "dependencies": {
     "@types/howler": "2.0.5",
     "@types/three": "0.93.31",
+    "concurrently": "^5.0.2",
     "engineer-js": "0.0.70",
     "howler": "2.1.1",
     "three": "0.101.1",

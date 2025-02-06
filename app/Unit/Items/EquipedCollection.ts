@@ -3,11 +3,10 @@ export { EquipedCollection };
 import Engineer from "./../../Engineer";
 import { SpriteSetLoader } from "./../../Util/SpriteSetLoader";
 
-class EquipedCollection
-{
-    public Items: { [key: string]:any; };
-    public constructor()
-    {
+class EquipedCollection {
+    public Items: { [key: string]: any; };
+    
+    public constructor() {
         this.Items = {};
         this.LoadSpriteSet("Rope", "Belt");
         this.LoadSpriteSet("LeatherBelt", "Belt");
@@ -75,11 +74,12 @@ class EquipedCollection
         this.LoadSpriteSet("Warhammer", "Weapon");
         EquipedCollection.Single = this;
     }
-    private LoadSpriteSet(Set:string, Group:string) : void
-    {
+
+    private LoadSpriteSet(Set: string, Group: string): void {
         let Sprite = new Engineer.Sprite();
         SpriteSetLoader.LoadSets(Sprite, Set, null, "Items/" + Group + "/");
         this.Items[Set] = Sprite;
     }
-    public static Single:EquipedCollection;
+
+    public static Single: EquipedCollection;
 }

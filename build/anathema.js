@@ -196,34 +196,24 @@ var Traits = /** @class */ (function () {
                     Stats.BleedChance += this._Traits[i].Entries[j].Value;
                 if (this._Traits[i].Entries[j].Type == "HpRegen")
                     Stats.HealthRegeneration += this._Traits[i].Entries[j].Value;
-                if (this._Traits[i].Entries[j].Type == "DamageBonus")
-                    Stats.BaseDamage += this._Traits[i].Entries[j].Value;
                 if (this._Traits[i].Entries[j].Type == "SpeedBonus")
                     Stats.MovementSpeed += this._Traits[i].Entries[j].Value;
+                if (this._Traits[i].Entries[j].Type == "Armor")
+                    Stats.Armor += this._Traits[i].Entries[j].Value;
                 if (this._Traits[i].Entries[j].Type == "FireResist")
                     Stats.FireResist += this._Traits[i].Entries[j].Value;
                 if (this._Traits[i].Entries[j].Type == "ColdResist")
                     Stats.ColdResist += this._Traits[i].Entries[j].Value;
                 if (this._Traits[i].Entries[j].Type == "LightningResist")
                     Stats.LightningResist += this._Traits[i].Entries[j].Value;
-                if (this._Traits[i].Entries[j].Type == "PierceResist")
-                    Stats.PierceResist += this._Traits[i].Entries[j].Value;
-                if (this._Traits[i].Entries[j].Type == "SlashResist")
-                    Stats.SlashResist += this._Traits[i].Entries[j].Value;
-                if (this._Traits[i].Entries[j].Type == "BluntResist")
-                    Stats.BluntResist += this._Traits[i].Entries[j].Value;
+                if (this._Traits[i].Entries[j].Type == "PhysicalDamage")
+                    Stats.PhysicalDamage += this._Traits[i].Entries[j].Value;
                 if (this._Traits[i].Entries[j].Type == "FireDamage")
                     Stats.FireDamage += this._Traits[i].Entries[j].Value;
                 if (this._Traits[i].Entries[j].Type == "ColdDamage")
                     Stats.ColdDamage += this._Traits[i].Entries[j].Value;
                 if (this._Traits[i].Entries[j].Type == "LightningDamage")
                     Stats.LightningDamage += this._Traits[i].Entries[j].Value;
-                if (this._Traits[i].Entries[j].Type == "PierceDamage")
-                    Stats.PierceDamage += this._Traits[i].Entries[j].Value;
-                if (this._Traits[i].Entries[j].Type == "SlashDamage")
-                    Stats.SlashDamage += this._Traits[i].Entries[j].Value;
-                if (this._Traits[i].Entries[j].Type == "BluntDamage")
-                    Stats.BluntDamage += this._Traits[i].Entries[j].Value;
             }
         }
     };
@@ -545,19 +535,15 @@ var Damage = /** @class */ (function () {
         }
     };
     Damage.prototype.DamageTaken = function (Attacker, Attacked, Factor) {
-        var DMGTaken = Attacker.Stats.BaseDamage;
+        var DMGTaken = Attacker.Stats.PhysicalDamage;
+        if (Attacker.Stats.FireDamage)
+            DMGTaken += this.DamageCalculation(Attacker.Stats.FireDamage, Attacked.Stats.FireResist);
         if (Attacker.Stats.FireDamage)
             DMGTaken += this.DamageCalculation(Attacker.Stats.FireDamage, Attacked.Stats.FireResist);
         if (Attacker.Stats.ColdDamage)
             DMGTaken += this.DamageCalculation(Attacker.Stats.ColdDamage, Attacked.Stats.ColdResist);
         if (Attacker.Stats.LightningDamage)
             DMGTaken += this.DamageCalculation(Attacker.Stats.LightningDamage, Attacked.Stats.LightningResist);
-        if (Attacker.Stats.PierceDamage)
-            DMGTaken += this.DamageCalculation(Attacker.Stats.PierceDamage, Attacked.Stats.PierceResist);
-        if (Attacker.Stats.SlashDamage)
-            DMGTaken += this.DamageCalculation(Attacker.Stats.SlashDamage, Attacked.Stats.SlashResist);
-        if (Attacker.Stats.BluntDamage)
-            DMGTaken += this.DamageCalculation(Attacker.Stats.BluntDamage, Attacked.Stats.BluntResist);
         var TotalDMG = DMGTaken * Factor * (this.RngWithPercent(Attacker.Stats.CritChance) ? (Attacker.Stats.CritMultiplier) : 1.0);
         var BleedHit = this.RngWithPercent(Attacker.Stats.BleedChance);
         if (BleedHit && !Attacked.Stats.Bleeding) {
@@ -994,8 +980,8 @@ var Unit = /** @class */ (function (_super) {
     };
     Unit.prototype.CreateCollider = function () {
         this._Collider = new Engineer_1.default.Tile();
-        this._Collider.Trans.Scale = new Engineer_1.default.Vertex(this.Trans.Scale.X, this.Trans.Scale.Y, 1);
-        this._Collider.Trans.Translation = new Engineer_1.default.Vertex(this.Trans.Translation.X, this.Trans.Translation.Y, 2);
+        this._Collider.Trans.Scale = new Engineer_1.default.Vertex(this.Trans.Scale.X / 2, this.Trans.Scale.X / 2, 1);
+        this._Collider.Trans.Translation = new Engineer_1.default.Vertex(this.Trans.Translation.X, this.Trans.Translation.Y - this.Trans.Scale.Y, this.Trans.Translation.Y);
         this._Collider.Active = false;
         this._Collider.Paint = Engineer_1.default.Color.FromRGBA(255, 0, 0, 120);
         this._Collider.Collision.Active = true;
@@ -1651,25 +1637,25 @@ var ItemCollection = /** @class */ (function () {
         IronDoubleAxe.Data["WeaponGroup"] = 0;
         this._Items.push(IronDoubleAxe);
         var BronzeDoubleAxe = new Item_1.Item(null, "BronzeDoubleAxe", ["Axe", 8, 8], DamageTraits.Copy());
-        IronDoubleAxe.Traits.Traits[0].Entries[2].Value = 28;
-        IronDoubleAxe.Data["Type"] = "Weapon";
-        IronDoubleAxe.Data["WeaponGroup"] = 0;
-        this._Items.push(IronDoubleAxe);
+        BronzeDoubleAxe.Traits.Traits[0].Entries[2].Value = 28;
+        BronzeDoubleAxe.Data["Type"] = "Weapon";
+        BronzeDoubleAxe.Data["WeaponGroup"] = 0;
+        this._Items.push(BronzeDoubleAxe);
         var BasicSpear = new Item_1.Item(null, "Basic Spear", ["Spear", 9, 9], DamageTraits.Copy());
         BasicSpear.Traits.Traits[0].Entries[1].Value = 12;
         BasicSpear.Data["Type"] = "Weapon";
         BasicSpear.Data["WeaponGroup"] = 1;
         this._Items.push(BasicSpear);
         var IronSpear = new Item_1.Item(null, "Iron Spear", ["Spear", 10, 10], DamageTraits.Copy());
-        BasicSpear.Traits.Traits[0].Entries[1].Value = 17;
-        BasicSpear.Data["Type"] = "Weapon";
-        BasicSpear.Data["WeaponGroup"] = 1;
-        this._Items.push(BasicSpear);
-        var Bronze = new Item_1.Item(null, "Bronze Spear", ["Spear", 11, 11], DamageTraits.Copy());
-        BasicSpear.Traits.Traits[0].Entries[1].Value = 22;
-        BasicSpear.Data["Type"] = "Weapon";
-        BasicSpear.Data["WeaponGroup"] = 1;
-        this._Items.push(BasicSpear);
+        IronSpear.Traits.Traits[0].Entries[1].Value = 17;
+        IronSpear.Data["Type"] = "Weapon";
+        IronSpear.Data["WeaponGroup"] = 1;
+        this._Items.push(IronSpear);
+        var BronzeSpear = new Item_1.Item(null, "Bronze Spear", ["Spear", 11, 11], DamageTraits.Copy());
+        BronzeSpear.Traits.Traits[0].Entries[1].Value = 22;
+        BronzeSpear.Data["Type"] = "Weapon";
+        BronzeSpear.Data["WeaponGroup"] = 1;
+        this._Items.push(BronzeSpear);
         var Shortbow = new Item_1.Item(null, "Shortbow", ["Bow", 12, 12], DamageTraits.Copy());
         Shortbow.Traits.Traits[0].Entries[1].Value = 12;
         Shortbow.Data["Type"] = "Weapon";
@@ -1703,21 +1689,21 @@ var ItemCollection = /** @class */ (function () {
         var RedPotion = new Item_1.Item(null, "RedPotion", ["", 18, 18]);
         RedPotion.Data["Type"] = "Potion";
         this._Items.push(RedPotion);
-        var BluePotion = new Item_1.Item(null, "BluePotion", ["", 19, 19]);
-        BluePotion.Data["Type"] = "Potion";
-        this._Items.push(BluePotion);
-        var GreenPotion = new Item_1.Item(null, "GreenPotion", ["", 20, 20]);
-        GreenPotion.Data["Type"] = "Potion";
-        this._Items.push(GreenPotion);
-        var Map = new Item_1.Item(null, "Map", ["", 21, 21]);
-        Map.Data["Type"] = "Map";
-        this._Items.push(Map);
+        // let BluePotion = new Item(null, "BluePotion", ["", 19, 19]);
+        // BluePotion.Data["Type"] = "Potion";
+        // this._Items.push(BluePotion);
+        // let GreenPotion = new Item(null, "GreenPotion", ["", 20, 20]);
+        // GreenPotion.Data["Type"] = "Potion";
+        // this._Items.push(GreenPotion);
+        // let Map = new Item(null, "Map", ["", 21, 21]);
+        // Map.Data["Type"] = "Map";
+        // this._Items.push(Map);
         var Scroll = new Item_1.Item(null, "Scroll", ["", 22, 22]);
         Scroll.Data["Type"] = "Scroll";
         this._Items.push(Scroll);
-        var Tome = new Item_1.Item(null, "Tome", ["", 23, 23]);
-        Tome.Data["Type"] = "Tome";
-        this._Items.push(Tome);
+        // let Tome = new Item(null, "Tome", ["", 23, 23]);
+        // Tome.Data["Type"] = "Tome";
+        // this._Items.push(Tome);
         var GreenShirt = new Item_1.Item(null, "GreenShirt", ["TealShirt", 24, 24], ArmorTraits.Copy());
         GreenShirt.Data["Type"] = "Chest";
         GreenShirt.Traits.Traits[0].Entries[1].Value = 10;
@@ -2070,10 +2056,9 @@ var MainMenu_1 = __webpack_require__(28);
 var GameLogic = /** @class */ (function () {
     function GameLogic() {
         this._Game = new Engineer_1.default.Game();
-        this._Game.Name = "Anathema";
+        this._Game.Name = "Clayman";
         this._Runner = new Engineer_1.default.Runner(this._Game, Engineer_1.default.DrawEngineType.ThreeJS);
-        var _Menu = new MainMenu_1.MainMenu(this._Runner, this._Game);
-        this._Game.Attach(_Menu);
+        this._Game.Attach(new MainMenu_1.MainMenu(this._Runner, this._Game));
     }
     GameLogic.prototype.Run = function () {
         this._Runner.SwitchScene("Menu");
@@ -3152,7 +3137,7 @@ var EnvironmentGenerator = /** @class */ (function () {
         NewTile.Index = Index;
         NewTile.Paint = Color;
         NewTile.Trans.Scale = new Engineer_1.default.Vertex(EnvironmentGenerator._FieldSize, EnvironmentGenerator._FieldSize * 0.8, 1);
-        NewTile.Trans.Translation = new Engineer_1.default.Vertex(EnvironmentGenerator._FieldSize * Location.X, EnvironmentGenerator._FieldSize * 0.8 * Location.Y, 0);
+        NewTile.Trans.Translation = new Engineer_1.default.Vertex(EnvironmentGenerator._FieldSize * Location.X, EnvironmentGenerator._FieldSize * 0.8 * Location.Y, Location.Y * 0.001);
         Scene.Attach(NewTile);
     };
     EnvironmentGenerator.RandomNumber = function (Size) {
@@ -3538,11 +3523,12 @@ var GameScene = /** @class */ (function (_super) {
         this.Events.Update.push(this.SceneUpdate.bind(this));
     };
     GameScene.prototype.KeyPress = function (G, Args) {
+        console.log(Args.KeyCode);
         if (this._Pause)
             return;
-        if (Args.Key == 105)
+        if (Args.KeyCode == 105 || Args.KeyCode == 97)
             this.ToggleInventory();
-        else if (Args.Key == 116) {
+        else if (Args.KeyCode == 116 || Args.KeyCode == 103) {
             if (this._SkillTree.Visible)
                 this._SkillTree.Hide();
             else
@@ -3615,6 +3601,7 @@ var Player = /** @class */ (function (_super) {
             _this.Material.Sampling = Engineer_1.default.TextureSamplingType.Nearest;
             _this.Data["Player"] = true;
             Scene.Data["Player"] = _this;
+            _this._Stats.PhysicalDamage = 10;
             _this._Stats.MovementSpeed = 5;
             _this._Stats.Radius = 150;
             _this._Stats.AttackSpeed = 15;
@@ -3810,244 +3797,64 @@ var Stats = /** @class */ (function () {
             this.Clone(Old);
         }
         else {
-            this._Health = 100;
-            this._MaxHealth = 100;
-            this._HealthRegeneration = 0.0001;
-            this._Mana = 30;
-            this._MaxMana = 30;
-            this._ManaRegeneration = 0.1;
-            this._AttackSpeed = 1;
-            this._LifeSteal = 0;
-            this._CritChance = 0;
-            this._CritMultiplier = 2;
-            this._BleedChance = 0;
-            this._BaseDamage = 5;
-            this._MovementSpeed = 3;
-            this._Sight = 800;
-            this._Radius = 100;
-            this._ColdResist = 0;
-            this._FireResist = 0;
-            this._LightningResist = 0;
-            this._PierceResist = 0;
-            this._SlashResist = 0;
-            this._BluntResist = 0;
-            this._FireDamage = 0;
-            this._ColdDamage = 0;
-            this._LightningDamage = 0;
-            this._PierceDamage = 0;
-            this._BluntDamage = 0;
-            this._SlashDamage = 0;
-            this._Bleeding = false;
+            this.Health = 100;
+            this.MaxHealth = 100;
+            this.HealthRegeneration = 0.0001;
+            this.Mana = 30;
+            this.MaxMana = 30;
+            this.ManaRegeneration = 0.1;
+            this.AttackSpeed = 1;
+            this.LifeSteal = 0;
+            this.CritChance = 0;
+            this.CritMultiplier = 2;
+            this.BleedChance = 0;
+            this.MovementSpeed = 3;
+            this.Sight = 800;
+            this.Radius = 100;
+            this.ColdResist = 0;
+            this.FireResist = 0;
+            this.LightningResist = 0;
+            this.FireDamage = 0;
+            this.ColdDamage = 0;
+            this.LightningDamage = 0;
+            this.Bleeding = false;
         }
     }
-    Object.defineProperty(Stats.prototype, "Health", {
-        get: function () { return this._Health; },
-        set: function (value) { this._Health = value; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Stats.prototype, "MaxHealth", {
-        get: function () { return this._MaxHealth; },
-        set: function (value) { this._MaxHealth = value; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Stats.prototype, "HealthRegeneration", {
-        get: function () { return this._HealthRegeneration; },
-        set: function (value) { this._HealthRegeneration = value; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Stats.prototype, "Mana", {
-        get: function () { return this._Mana; },
-        set: function (value) { this._Mana = value; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Stats.prototype, "MaxMana", {
-        get: function () { return this._MaxMana; },
-        set: function (value) { this._MaxMana = value; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Stats.prototype, "ManaRegeneration", {
-        get: function () { return this._ManaRegeneration; },
-        set: function (value) { this._ManaRegeneration = value; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Stats.prototype, "AttackSpeed", {
-        get: function () { return this._AttackSpeed; },
-        set: function (value) { this._AttackSpeed = value; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Stats.prototype, "LifeSteal", {
-        get: function () { return this._LifeSteal; },
-        set: function (value) { this._LifeSteal = value; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Stats.prototype, "CritChance", {
-        get: function () { return this._CritChance; },
-        set: function (value) { this._CritChance = value; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Stats.prototype, "CritMultiplier", {
-        get: function () { return this._CritMultiplier; },
-        set: function (value) { this._CritMultiplier = value; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Stats.prototype, "BleedChance", {
-        get: function () { return this._CritChance; },
-        set: function (value) { this._CritChance = value; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Stats.prototype, "BaseDamage", {
-        get: function () { return this._BaseDamage; },
-        set: function (value) { this._BaseDamage = value; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Stats.prototype, "MovementSpeed", {
-        get: function () { return this._MovementSpeed; },
-        set: function (value) { this._MovementSpeed = value; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Stats.prototype, "Sight", {
-        get: function () { return this._Sight; },
-        set: function (value) { this._Sight = value; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Stats.prototype, "Radius", {
-        get: function () { return this._Radius; },
-        set: function (value) { this._Radius = value; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Stats.prototype, "FireResist", {
-        get: function () { return this._FireResist; },
-        set: function (value) { this._FireResist = value; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Stats.prototype, "ColdResist", {
-        get: function () { return this._ColdResist; },
-        set: function (value) { this._ColdResist = value; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Stats.prototype, "LightningResist", {
-        get: function () { return this._LightningResist; },
-        set: function (value) { this._LightningResist = value; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Stats.prototype, "PierceResist", {
-        get: function () { return this._PierceResist; },
-        set: function (value) { this._PierceResist = value; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Stats.prototype, "SlashResist", {
-        get: function () { return this._SlashResist; },
-        set: function (value) { this._SlashResist = value; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Stats.prototype, "BluntResist", {
-        get: function () { return this._BluntResist; },
-        set: function (value) { this._BluntResist = value; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Stats.prototype, "PierceDamage", {
-        get: function () { return this._PierceDamage; },
-        set: function (value) { this._PierceDamage = value; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Stats.prototype, "SlashDamage", {
-        get: function () { return this._SlashDamage; },
-        set: function (value) { this._SlashDamage = value; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Stats.prototype, "BluntDamage", {
-        get: function () { return this._BluntDamage; },
-        set: function (value) { this._BluntDamage = value; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Stats.prototype, "FireDamage", {
-        get: function () { return this._FireDamage; },
-        set: function (value) { this._FireDamage = value; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Stats.prototype, "ColdDamage", {
-        get: function () { return this._ColdDamage; },
-        set: function (value) { this._ColdDamage = value; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Stats.prototype, "LightningDamage", {
-        get: function () { return this._LightningDamage; },
-        set: function (value) { this._LightningDamage = value; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Stats.prototype, "Bleeding", {
-        get: function () { return this._Bleeding; },
-        set: function (value) { this._Bleeding = value; },
-        enumerable: true,
-        configurable: true
-    });
     Stats.prototype.Copy = function () {
         return new Stats(this);
     };
-    Stats.prototype.Clone = function (Other) {
-        this._Health = Other._Health;
-        this._MaxHealth = Other._MaxHealth;
-        this._HealthRegeneration = Other._HealthRegeneration;
-        this._Mana = Other._Mana;
-        this._MaxMana = Other._MaxMana;
-        this._ManaRegeneration = Other._ManaRegeneration;
-        this._AttackSpeed = Other._AttackSpeed;
-        this._LifeSteal = Other._LifeSteal;
-        this._CritChance = Other._CritChance;
-        this._CritMultiplier = Other._CritMultiplier;
-        this._BaseDamage = Other._BaseDamage;
-        this._MovementSpeed = Other._MovementSpeed;
-        this._Sight = Other._Sight;
-        this._Radius = Other._Radius;
-        this._FireResist = Other._FireResist;
-        this._ColdResist = Other._ColdResist;
-        this._LightningResist = Other._LightningResist;
-        this._PierceResist = Other._PierceResist;
-        this._SlashResist = Other._SlashResist;
-        this._BluntResist = Other._BluntResist;
-        this._FireDamage = Other._FireDamage;
-        this._ColdDamage = Other._ColdDamage;
-        this._LightningDamage = Other._LightningDamage;
-        this._PierceDamage = Other._PierceDamage;
-        this._SlashDamage = Other._SlashDamage;
-        this._BluntDamage = Other._BluntDamage;
+    Stats.prototype.Clone = function (Old) {
+        this.Health = Old.Health;
+        this.MaxHealth = Old.MaxHealth;
+        this.HealthRegeneration = Old.HealthRegeneration;
+        this.Mana = Old.Mana;
+        this.MaxMana = Old.MaxMana;
+        this.ManaRegeneration = Old.ManaRegeneration;
+        this.AttackSpeed = Old.AttackSpeed;
+        this.LifeSteal = Old.LifeSteal;
+        this.CritChance = Old.CritChance;
+        this.CritMultiplier = Old.CritMultiplier;
+        this.MovementSpeed = Old.MovementSpeed;
+        this.Sight = Old.Sight;
+        this.Radius = Old.Radius;
+        this.Armor = Old.Armor;
+        this.FireResist = Old.FireResist;
+        this.ColdResist = Old.ColdResist;
+        this.LightningResist = Old.LightningResist;
+        this.PhysicalDamage = Old.PhysicalDamage;
+        this.FireDamage = Old.FireDamage;
+        this.ColdDamage = Old.ColdDamage;
+        this.LightningDamage = Old.LightningDamage;
     };
     Stats.prototype.Store = function () {
-        this._BaseStats = this.Copy();
+        this.BaseStats = this.Copy();
     };
     Stats.prototype.Reset = function () {
-        var Health = this._Health;
-        var Mana = this._Mana;
-        this.Clone(this._BaseStats);
-        this._Health = Health;
-        this._Mana = Mana;
+        var Health = this.Health;
+        var Mana = this.Mana;
+        this.Clone(this.BaseStats);
+        this.Health = Health;
+        this.Mana = Mana;
     };
     return Stats;
 }());
@@ -4567,7 +4374,9 @@ var ItemWorld = /** @class */ (function (_super) {
             _this.Collection = new WorldCollection_1.WorldCollection();
         else
             _this.Collection = WorldCollection_1.WorldCollection.Single;
+        _this.AmbientColor = Engineer_1.default.Color.Black;
         _this.Material.Sampling = Engineer_1.default.TextureSamplingType.Nearest;
+        _this.Material.Type = Engineer_1.default.MaterialType.Lit;
         _this.Index = Item.ArtWorldIndex;
         _this.Data["Item"] = true;
         _this.Collision.Active = true;
@@ -5329,37 +5138,37 @@ var InventoryWindow = /** @class */ (function (_super) {
         this.Trans.Scale = new Engineer_1.default.Vertex(500, 800, 1);
         this.Trans.Translation = new Engineer_1.default.Vertex(1600, 460, 2);
         this.CreateBorder();
-        var Head = this.AddElement(new Engineer_1.default.Vertex(220, 80, 2.5), new Engineer_1.default.Vertex(50, 50, 1), 0);
+        var Head = this.AddElement(new Engineer_1.default.Vertex(220, 80, 2.5), new Engineer_1.default.Vertex(70, 70, 1), 0);
         this.Data["HeadSlot"] = Head;
         Head.Data["Slot"] = true;
         Head.Data["SlotType"] = "Head";
         Head.Events.MouseUp.push(this.SlotMouseUp.bind(this));
-        var Weapon = this.AddElement(new Engineer_1.default.Vertex(120, 170, 2.5), new Engineer_1.default.Vertex(50, 50, 1), 0);
+        var Weapon = this.AddElement(new Engineer_1.default.Vertex(120, 170, 2.5), new Engineer_1.default.Vertex(70, 70, 1), 0);
         this.Data["WeaponSlot"] = Weapon;
         Weapon.Data["Slot"] = true;
         Weapon.Data["SlotType"] = "Weapon";
         Weapon.Events.MouseUp.push(this.SlotMouseUp.bind(this));
-        var OffHand = this.AddElement(new Engineer_1.default.Vertex(320, 170, 2.5), new Engineer_1.default.Vertex(50, 50, 1), 0);
+        var OffHand = this.AddElement(new Engineer_1.default.Vertex(320, 170, 2.5), new Engineer_1.default.Vertex(70, 70, 1), 0);
         this.Data["OffHandSlot"] = OffHand;
         OffHand.Data["Slot"] = true;
         OffHand.Data["SlotType"] = "OffHand";
         OffHand.Events.MouseUp.push(this.SlotMouseUp.bind(this));
-        var Chest = this.AddElement(new Engineer_1.default.Vertex(220, 170, 2.5), new Engineer_1.default.Vertex(50, 50, 1), 0);
+        var Chest = this.AddElement(new Engineer_1.default.Vertex(220, 170, 2.5), new Engineer_1.default.Vertex(70, 70, 1), 0);
         this.Data["ChestSlot"] = Chest;
         Chest.Data["Slot"] = true;
         Chest.Data["SlotType"] = "Chest";
         Chest.Events.MouseUp.push(this.SlotMouseUp.bind(this));
-        var Gloves = this.AddElement(new Engineer_1.default.Vertex(120, 260, 2.5), new Engineer_1.default.Vertex(50, 50, 1), 0);
+        var Gloves = this.AddElement(new Engineer_1.default.Vertex(120, 260, 2.5), new Engineer_1.default.Vertex(70, 70, 1), 0);
         this.Data["GlovesSlot"] = Gloves;
         Gloves.Data["Slot"] = true;
         Gloves.Data["SlotType"] = "Gloves";
         Gloves.Events.MouseUp.push(this.SlotMouseUp.bind(this));
-        var Greaves = this.AddElement(new Engineer_1.default.Vertex(220, 260, 2.5), new Engineer_1.default.Vertex(50, 50, 1), 0);
+        var Greaves = this.AddElement(new Engineer_1.default.Vertex(220, 260, 2.5), new Engineer_1.default.Vertex(70, 70, 1), 0);
         this.Data["GreavesSlot"] = Greaves;
         Greaves.Data["Slot"] = true;
         Greaves.Data["SlotType"] = "Greaves";
         Greaves.Events.MouseUp.push(this.SlotMouseUp.bind(this));
-        var Boots = this.AddElement(new Engineer_1.default.Vertex(220, 350, 2.5), new Engineer_1.default.Vertex(50, 50, 1), 0);
+        var Boots = this.AddElement(new Engineer_1.default.Vertex(220, 350, 2.5), new Engineer_1.default.Vertex(70, 70, 1), 0);
         this.Data["BootsSlot"] = Boots;
         Boots.Data["Slot"] = true;
         Boots.Data["SlotType"] = "Boots";
@@ -5493,7 +5302,7 @@ var InventoryItem = /** @class */ (function (_super) {
         _this.Index = Item.ArtInventoryIndex;
         _this.Trans.Scale = new Engineer_1.default.Vertex(60, 60, 1);
         if (Large)
-            _this.Trans.Scale = new Engineer_1.default.Vertex(80, 80, 1);
+            _this.Trans.Scale = new Engineer_1.default.Vertex(100, 100, 1);
         _this.Trans.Translation = new Engineer_1.default.Vertex(X, Y, 2.8);
         return _this;
     }
@@ -5955,11 +5764,10 @@ var Skeleton = /** @class */ (function (_super) {
         var _this = _super.call(this, Old, Scene) || this;
         if (Old != null) { }
         else {
-            _this._Stats.BaseDamage = 1;
             _this._Stats.Health = 30;
             _this._Stats.MaxHealth = 30;
-            _this._Stats.PierceDamage = 3;
-            _this._Stats.PierceResist = 20;
+            _this._Stats.PhysicalDamage = 4;
+            _this._Stats.Armor = 20;
             _this._Stats.Store();
             _this._AttackIndex = 1;
             _this.SpriteSets = _this.LoadSets();
@@ -6003,7 +5811,7 @@ var Orc = /** @class */ (function (_super) {
         var _this = _super.call(this, Old, Scene) || this;
         if (Old != null) { }
         else {
-            _this._Stats.BaseDamage = 1;
+            _this._Stats.PhysicalDamage = 5;
             _this._Stats.Health = 50;
             _this._Stats.MaxHealth = 50;
             _this._Stats.Store();

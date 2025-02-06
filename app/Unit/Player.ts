@@ -52,6 +52,7 @@ class Player extends Unit
             this.Material.Sampling = Engineer.TextureSamplingType.Nearest;
             this.Data["Player"] = true;
             Scene.Data["Player"] = this;
+            this._Stats.PhysicalDamage = 10;
             this._Stats.MovementSpeed = 5;
             this._Stats.Radius = 150;
             this._Stats.AttackSpeed = 15;

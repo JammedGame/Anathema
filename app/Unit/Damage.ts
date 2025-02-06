@@ -40,19 +40,15 @@ class Damage
     }
     public DamageTaken(Attacker, Attacked, Factor) : number
     {
-        let DMGTaken = Attacker.Stats.BaseDamage;
+        let DMGTaken = Attacker.Stats.PhysicalDamage;
+        if(Attacker.Stats.FireDamage) 
+            DMGTaken += this.DamageCalculation(Attacker.Stats.FireDamage, Attacked.Stats.FireResist);
         if(Attacker.Stats.FireDamage) 
             DMGTaken += this.DamageCalculation(Attacker.Stats.FireDamage, Attacked.Stats.FireResist);
         if(Attacker.Stats.ColdDamage)
             DMGTaken += this.DamageCalculation(Attacker.Stats.ColdDamage, Attacked.Stats.ColdResist);
         if(Attacker.Stats.LightningDamage)
             DMGTaken += this.DamageCalculation(Attacker.Stats.LightningDamage, Attacked.Stats.LightningResist);
-        if(Attacker.Stats.PierceDamage)
-            DMGTaken += this.DamageCalculation(Attacker.Stats.PierceDamage, Attacked.Stats.PierceResist);
-        if(Attacker.Stats.SlashDamage)
-            DMGTaken += this.DamageCalculation(Attacker.Stats.SlashDamage, Attacked.Stats.SlashResist);
-        if(Attacker.Stats.BluntDamage)
-            DMGTaken += this.DamageCalculation(Attacker.Stats.BluntDamage, Attacked.Stats.BluntResist);
         let TotalDMG = DMGTaken * Factor * (this.RngWithPercent(Attacker.Stats.CritChance)?(Attacker.Stats.CritMultiplier):1.0);
         let BleedHit=this.RngWithPercent(Attacker.Stats.BleedChance)    
         if(BleedHit && !Attacked.Stats.Bleeding)

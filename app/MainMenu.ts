@@ -5,17 +5,16 @@ import Engineer from "./Engineer";
 import { LevelManager } from "./LevelManager";
 import { LocalSettings } from "./LocalSettings";
 
-class MainMenu extends Engineer.Scene2D
-{
-    private _Manager:LevelManager;
-    public constructor(Runner:any, Game:any)
-    {
+class MainMenu extends Engineer.Scene2D {
+    private _Manager: LevelManager;
+
+    public constructor(Runner: any, Game: any) {
         super();
         this._Manager = new LevelManager(Runner, Game);
         this.Name = "Menu";
         this.Trans.Scale = new Engineer.Vertex(LocalSettings.Window.Y / LocalSettings.Scale.Y, LocalSettings.Window.Y / LocalSettings.Scale.Y, 1);
-        let Buttons:any = new Engineer.ImageCollection(null, ["/build/resources/play.png"]);
-        let Play:any = new Engineer.Tile();
+        let Buttons: any = new Engineer.ImageCollection(null, ["/build/resources/play.png"]);
+        let Play: any = new Engineer.Tile();
         Play.Name = "Play";
         Play.Collection = Buttons;
         Play.Index = 0;
@@ -24,12 +23,12 @@ class MainMenu extends Engineer.Scene2D
         Play.Events.MouseDown.push(this.PlayClick.bind(this));
         this.Attach(Play);
     }
-    public PlayClick(G:any, Args:any)
-    {
+
+    public PlayClick(G: any, Args: any) {
         this.StartLevel("Cathedral");
     }
-    private StartLevel(Level:string)
-    {
+    
+    private StartLevel(Level: string) {
         this._Manager.StartLevel(Level);
     }
 }

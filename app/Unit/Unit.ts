@@ -87,8 +87,8 @@ class Unit extends Engineer.Sprite
     protected CreateCollider() : void
     {
         this._Collider = new Engineer.Tile();
-        this._Collider.Trans.Scale = new Engineer.Vertex(this.Trans.Scale.X, this.Trans.Scale.Y, 1);
-        this._Collider.Trans.Translation = new Engineer.Vertex(this.Trans.Translation.X, this.Trans.Translation.Y, 2);
+        this._Collider.Trans.Scale = new Engineer.Vertex(this.Trans.Scale.X / 2, this.Trans.Scale.X / 2, 1);
+        this._Collider.Trans.Translation = new Engineer.Vertex(this.Trans.Translation.X, this.Trans.Translation.Y - this.Trans.Scale.Y, this.Trans.Translation.Y);
         this._Collider.Active = false;
         this._Collider.Paint = Engineer.Color.FromRGBA(255,0,0,120);
         this._Collider.Collision.Active = true;

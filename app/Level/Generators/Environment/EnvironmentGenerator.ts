@@ -80,7 +80,7 @@ class EnvironmentGenerator
         NewTile.Index = Index;
         NewTile.Paint = Color;
         NewTile.Trans.Scale = new Engineer.Vertex(EnvironmentGenerator._FieldSize, EnvironmentGenerator._FieldSize * 0.8, 1);
-        NewTile.Trans.Translation = new Engineer.Vertex(EnvironmentGenerator._FieldSize * Location.X, EnvironmentGenerator._FieldSize * 0.8 * Location.Y, 0);
+        NewTile.Trans.Translation = new Engineer.Vertex(EnvironmentGenerator._FieldSize * Location.X, EnvironmentGenerator._FieldSize * 0.8 * Location.Y, Location.Y * 0.001);
         Scene.Attach(NewTile);
     }
     private static RandomNumber(Size:number)

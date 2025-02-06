@@ -2,174 +2,93 @@ export { Stats };
 
 import Engineer from "./../Engineer";
 
-class Stats
-{
-    private _Health:number;
-    private _MaxHealth:number;
-    private _HealthRegeneration:number;
-    private _Mana:number;
-    private _MaxMana:number;
-    private _ManaRegeneration:number;
-    private _AttackSpeed:number;
-    private _LifeSteal:number;
-    private _CritChance:number;
-    private _CritMultiplier:number;
-    private _BleedChance:number;
-    private _BaseDamage:number;
-    private _MovementSpeed:number;
-    private _Sight:number;
-    private _Radius:number;
-    private _BaseStats:Stats;
-    private _FireResist:number;
-    private _ColdResist:number;
-    private _LightningResist:number;
-    private _PierceResist:number;
-    private _SlashResist:number;
-    private _BluntResist:number;
-    private _PierceDamage:number;
-    private _SlashDamage:number;
-    private _BluntDamage:number;
-    private _FireDamage:number;
-    private _ColdDamage:number;
-    private _LightningDamage:number;
-    private _Bleeding:boolean;    
-    public get Health():number { return this._Health; }
-    public set Health(value:number) { this._Health = value; }
-    public get MaxHealth():number { return this._MaxHealth; }
-    public set MaxHealth(value:number) { this._MaxHealth = value; }
-    public get HealthRegeneration():number { return this._HealthRegeneration; }
-    public set HealthRegeneration(value:number) { this._HealthRegeneration = value; }
-    public get Mana():number { return this._Mana; }
-    public set Mana(value:number) { this._Mana = value; }
-    public get MaxMana():number { return this._MaxMana; }
-    public set MaxMana(value:number) { this._MaxMana = value; }
-    public get ManaRegeneration():number { return this._ManaRegeneration; }
-    public set ManaRegeneration(value:number) { this._ManaRegeneration = value; }
-    public get AttackSpeed():number { return this._AttackSpeed; }
-    public set AttackSpeed(value:number) { this._AttackSpeed = value; }
-    public get LifeSteal():number { return this._LifeSteal; }
-    public set LifeSteal(value:number) { this._LifeSteal = value; }
-    public get CritChance():number { return this._CritChance; }
-    public set CritChance(value:number) { this._CritChance = value; }
-    public get CritMultiplier():number { return this._CritMultiplier; }
-    public set CritMultiplier(value:number) { this._CritMultiplier = value; }
-    public get BleedChance():number { return this._CritChance; }
-    public set BleedChance(value:number) { this._CritChance = value; }
-    public get BaseDamage():number { return this._BaseDamage; }
-    public set BaseDamage(value:number) { this._BaseDamage = value; }
-    public get MovementSpeed():number { return this._MovementSpeed; }
-    public set MovementSpeed(value:number) { this._MovementSpeed = value; }
-    public get Sight():number { return this._Sight; }
-    public set Sight(value:number) { this._Sight = value; }
-    public get Radius():number { return this._Radius; }
-    public set Radius(value:number) { this._Radius = value; }
-    public get FireResist():number { return this._FireResist; }
-    public set FireResist(value:number) { this._FireResist = value; }
-    public get ColdResist():number { return this._ColdResist; }
-    public set ColdResist(value:number) { this._ColdResist = value; } 
-    public get LightningResist():number { return this._LightningResist; }
-    public set LightningResist(value:number) { this._LightningResist = value; }
-    public get PierceResist():number { return this._PierceResist; }
-    public set PierceResist(value:number) { this._PierceResist = value; }
-    public get SlashResist():number { return this._SlashResist; }
-    public set SlashResist(value:number) { this._SlashResist = value; }
-    public get BluntResist():number { return this._BluntResist; }
-    public set BluntResist(value:number) { this._BluntResist = value; }
-    public get PierceDamage():number { return this._PierceDamage; }
-    public set PierceDamage(value:number) { this._PierceDamage = value; }
-    public get SlashDamage():number { return this._SlashDamage; }
-    public set SlashDamage(value:number) { this._SlashDamage = value; }
-    public get BluntDamage():number { return this._BluntDamage; }
-    public set BluntDamage(value:number) { this._BluntDamage = value; }
-    public get FireDamage():number { return this._FireDamage; }
-    public set FireDamage(value:number) { this._FireDamage = value; }
-    public get ColdDamage():number { return this._ColdDamage; }
-    public set ColdDamage(value:number) { this._ColdDamage = value; }
-    public get LightningDamage():number { return this._LightningDamage; }
-    public set LightningDamage(value:number) { this._LightningDamage = value; }
-    public get Bleeding():boolean { return this._Bleeding; }
-    public set Bleeding(value:boolean) { this._Bleeding = value; }
-    public constructor(Old?:Stats)
-    {
-        if(Old != null)
-        {
+class Stats {
+    public Health: number;
+    public MaxHealth: number;
+    public HealthRegeneration: number;
+    public Mana: number;
+    public MaxMana: number;
+    public ManaRegeneration: number;
+    public AttackSpeed: number;
+    public LifeSteal: number;
+    public CritChance: number;
+    public CritMultiplier: number;
+    public BleedChance: number;
+    public MovementSpeed: number;
+    public Sight: number;
+    public Radius: number;
+    public BaseStats?: Stats;
+    public Armor: number;
+    public FireResist: number;
+    public ColdResist: number;
+    public LightningResist: number;
+    public PhysicalDamage: number;
+    public FireDamage: number;
+    public ColdDamage: number;
+    public LightningDamage: number;
+    public Bleeding: boolean;
+    public constructor(Old?: Stats) {
+        if (Old != null) {
             this.Clone(Old);
         }
-        else
-        {
-            this._Health = 100;
-            this._MaxHealth = 100;
-            this._HealthRegeneration = 0.0001;
-            this._Mana = 30;
-            this._MaxMana = 30;
-            this._ManaRegeneration = 0.1;
-            this._AttackSpeed = 1;
-            this._LifeSteal = 0;
-            this._CritChance = 0;
-            this._CritMultiplier = 2;
-            this._BleedChance = 0;
-            this._BaseDamage = 5;
-            this._MovementSpeed = 3;
-            this._Sight = 800;
-            this._Radius = 100;
-            this._ColdResist = 0;
-            this._FireResist = 0;
-            this._LightningResist = 0;
-            this._PierceResist = 0;
-            this._SlashResist = 0;
-            this._BluntResist = 0;
-            this._FireDamage = 0;
-            this._ColdDamage = 0;
-            this._LightningDamage = 0;
-            this._PierceDamage = 0;
-            this._BluntDamage = 0;
-            this._SlashDamage = 0;
-            this._Bleeding = false;
+        else {
+            this.Health = 100;
+            this.MaxHealth = 100;
+            this.HealthRegeneration = 0.0001;
+            this.Mana = 30;
+            this.MaxMana = 30;
+            this.ManaRegeneration = 0.1;
+            this.AttackSpeed = 1;
+            this.LifeSteal = 0;
+            this.CritChance = 0;
+            this.CritMultiplier = 2;
+            this.BleedChance = 0;
+            this.MovementSpeed = 3;
+            this.Sight = 800;
+            this.Radius = 100;
+            this.ColdResist = 0;
+            this.FireResist = 0;
+            this.LightningResist = 0;
+            this.FireDamage = 0;
+            this.ColdDamage = 0;
+            this.LightningDamage = 0;
+            this.Bleeding = false;
         }
     }
-    public Copy() : Stats
-    {
+    public Copy(): Stats {
         return new Stats(this);
     }
-    public Clone(Other:Stats) : void
-    {
-        this._Health = Other._Health;
-        this._MaxHealth = Other._MaxHealth;
-        this._HealthRegeneration = Other._HealthRegeneration;
-        this._Mana = Other._Mana;
-        this._MaxMana = Other._MaxMana;
-        this._ManaRegeneration = Other._ManaRegeneration;
-        this._AttackSpeed = Other._AttackSpeed;
-        this._LifeSteal = Other._LifeSteal;
-        this._CritChance = Other._CritChance;
-        this._CritMultiplier = Other._CritMultiplier;
-        this._BaseDamage = Other._BaseDamage;
-        this._MovementSpeed = Other._MovementSpeed;
-        this._Sight = Other._Sight;
-        this._Radius = Other._Radius;
-        this._FireResist = Other._FireResist;
-        this._ColdResist = Other._ColdResist;
-        this._LightningResist = Other._LightningResist;
-        this._PierceResist = Other._PierceResist;
-        this._SlashResist = Other._SlashResist;
-        this._BluntResist = Other._BluntResist;
-        this._FireDamage = Other._FireDamage;
-        this._ColdDamage = Other._ColdDamage;
-        this._LightningDamage = Other._LightningDamage;
-        this._PierceDamage = Other._PierceDamage;
-        this._SlashDamage = Other._SlashDamage;
-        this._BluntDamage = Other._BluntDamage;
+    public Clone(Old: Stats): void {
+        this.Health = Old.Health;
+        this.MaxHealth = Old.MaxHealth;
+        this.HealthRegeneration = Old.HealthRegeneration;
+        this.Mana = Old.Mana;
+        this.MaxMana = Old.MaxMana;
+        this.ManaRegeneration = Old.ManaRegeneration;
+        this.AttackSpeed = Old.AttackSpeed;
+        this.LifeSteal = Old.LifeSteal;
+        this.CritChance = Old.CritChance;
+        this.CritMultiplier = Old.CritMultiplier;
+        this.MovementSpeed = Old.MovementSpeed;
+        this.Sight = Old.Sight;
+        this.Radius = Old.Radius;
+        this.Armor = Old.Armor;
+        this.FireResist = Old.FireResist;
+        this.ColdResist = Old.ColdResist;
+        this.LightningResist = Old.LightningResist;
+        this.PhysicalDamage = Old.PhysicalDamage;
+        this.FireDamage = Old.FireDamage;
+        this.ColdDamage = Old.ColdDamage;
+        this.LightningDamage = Old.LightningDamage;
     }
-    public Store() : void
-    {
-        this._BaseStats = this.Copy();
+    public Store(): void {
+        this.BaseStats = this.Copy();
     }
-    public Reset() : void
-    {
-        let Health = this._Health;
-        let Mana = this._Mana;
-        this.Clone(this._BaseStats);
-        this._Health = Health;
-        this._Mana = Mana;
+    public Reset(): void {
+        let Health = this.Health;
+        let Mana = this.Mana;
+        this.Clone(this.BaseStats);
+        this.Health = Health;
+        this.Mana = Mana;
     }
 }
