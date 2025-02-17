@@ -11,7 +11,7 @@ import { Traits } from "./Trait"
 class Unit extends Engineer.Sprite
 {
     protected _CurrentAction:Action;
-    protected _Collider:any;
+    protected _Collider: Engineer.Tile;
     protected _LastDirection:any;
     protected _Stats:Stats
     protected _Traits:Traits;
@@ -33,8 +33,12 @@ class Unit extends Engineer.Sprite
             {
                 this.Data[Key] = Old.Data[Key];
             }
+            this._Collider.Collection = new Engineer.ImageCollection(null, ["/build/resources/border_c.png"]);
+            this._Collider.Index = 0;
+            this.Collision.Active = false;
+            this._Collider.AmbientColor = Engineer.Color.Red;
             this._Collider.Collision.Active = true;
-            this._Collider.Collision.Type = Engineer.CollisionType.Radius;
+            this._Collider.Collision.Type = Engineer.CollisionType.Rectangular;
             this._Collider.Data["Owner"] = this;
         }
         else
@@ -87,10 +91,13 @@ class Unit extends Engineer.Sprite
     protected CreateCollider() : void
     {
         this._Collider = new Engineer.Tile();
-        this._Collider.Trans.Scale = new Engineer.Vertex(this.Trans.Scale.X / 2, this.Trans.Scale.X / 2, 1);
-        this._Collider.Trans.Translation = new Engineer.Vertex(this.Trans.Translation.X, this.Trans.Translation.Y - this.Trans.Scale.Y, this.Trans.Translation.Y);
-        this._Collider.Active = false;
-        this._Collider.Paint = Engineer.Color.FromRGBA(255,0,0,120);
+        this._Collider.Collection = new Engineer.ImageCollection(null, ["/build/resources/border_c.png"]);
+        this._Collider.Index = 0;
+        this._Collider.AmbientColor = Engineer.Color.Red;
+        this._Collider.Trans.Scale = new Engineer.Vertex(this.Trans.Scale.X / 2, this.Trans.Scale.Y / 2, 1);
+        //this._Collider.Trans.Translation = new Engineer.Vertex(this.Trans.Translation.X, this.Trans.Translation.Y,  1);
+        this._Collider.Active = true;
+        this._Collider.Paint = Engineer.Color.Red; //Engineer.Color.FromRGBA(255,0,0,120);
         this._Collider.Collision.Active = true;
         this._Collider.Collision.Type = Engineer.CollisionType.Radius;
         this._Collider.Data["Owner"] = this;

@@ -6,7 +6,8 @@ import { Action } from "./Action";
 import { GameScene } from "./../../GameScene";
 
 class Move extends Action
-{    private _Collider:any;
+{   
+    private _Collider:any;
     public get Direction():any { return new Engineer.Vertex(this._Target.X - this._Collider.Trans.Translation.X, this._Target.Y - this._Collider.Trans.Translation.Y, 0); }
     public constructor(MS:number, Old?:Move, ID?:string, Owner?:any)
     {
@@ -35,18 +36,33 @@ class Move extends Action
             //console.log(this._Collider.Collision);
             Collision.Combine(this._Collider.Collision.Specific[ColliderTypes[i]]);
         }
-        if(Movement.Y < 0 && Collision.Top) return false;
-        if(Movement.Y > 0 && Collision.Bottom) return false;
-        if(Movement.X < 0 && Collision.Left) return false;
-        if(Movement.X > 0 && Collision.Right) return false;
+        if(Movement.Y < 0 && Collision.Top) Movement.Y = 0;
+        if(Movement.Y > 0 && Collision.Bottom) Movement.Y = 0;
+        if(Movement.X < 0 && Collision.Left) Movement.X = 0;
+        if(Movement.X > 0 && Collision.Right) Movement.X = 0;
+        if (Movement.X === 0 && Movement.Y === 0) return false;
+        const newLocation = new Engineer.Vertex(
+            this._Collider.Trans.Translation.X + Movement.X,
+            this._Collider.Trans.Translation.Y + Movement.Y,
+            1,
+        );
         if(this._Owner.Data["Player"])
         {
-            Scene.Trans.Translation = new Engineer.Vertex(Scene.Trans.Translation.X - Movement.X, Scene.Trans.Translation.Y - Movement.Y, 0);
-            this._Collider.Trans.Translation = new Engineer.Vertex(this._Collider.Trans.Translation.X + Movement.X, this._Collider.Trans.Translation.Y + Movement.Y, 2);
+            Scene.Trans.Translation = new Engineer.Vertex(
+                Scene.Trans.Translation.X - Movement.X,
+                Scene.Trans.Translation.Y - Movement.Y,
+                0,
+            );
+            this._Collider.Trans.Translation = newLocation.Copy();
         }
         else
         {
-            this._Owner.Trans.Translation = this._Collider.Trans.Translation = new Engineer.Vertex(this._Collider.Trans.Translation.X + Movement.X, this._Collider.Trans.Translation.Y + Movement.Y, 0.3);
+            this._Owner.Trans.Translation = new Engineer.Vertex(
+                newLocation.X,
+                newLocation.Y - 50,
+                0.3,
+            );
+            this._Owner.Collider.Trans.Translation = newLocation.Copy();
         }
         if(Engineer.Vertex.Distance(this._Collider.Trans.Translation, this._Target) < 5) return false;
         return true;

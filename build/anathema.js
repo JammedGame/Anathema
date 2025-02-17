@@ -777,7 +777,7 @@ var Chunk = /** @class */ (function () {
         for (var i = 0; i < this.Dimensions.Y; i++) {
             AccessMatrix.push([]);
             for (var j = 0; j < this.Dimensions.X; j++) {
-                if (this.Fields[i][j] == 1 || this.Fields[i][j] == 2)
+                if (this.Fields[i][j] == 1)
                     AccessMatrix[i].push(1);
                 else
                     AccessMatrix[i].push(0);
@@ -912,8 +912,12 @@ var Unit = /** @class */ (function (_super) {
             for (var Key in Old.Data) {
                 _this.Data[Key] = Old.Data[Key];
             }
+            _this._Collider.Collection = new Engineer_1.default.ImageCollection(null, ["/build/resources/border_c.png"]);
+            _this._Collider.Index = 0;
+            _this.Collision.Active = false;
+            _this._Collider.AmbientColor = Engineer_1.default.Color.Red;
             _this._Collider.Collision.Active = true;
-            _this._Collider.Collision.Type = Engineer_1.default.CollisionType.Radius;
+            _this._Collider.Collision.Type = Engineer_1.default.CollisionType.Rectangular;
             _this._Collider.Data["Owner"] = _this;
         }
         else {
@@ -980,10 +984,13 @@ var Unit = /** @class */ (function (_super) {
     };
     Unit.prototype.CreateCollider = function () {
         this._Collider = new Engineer_1.default.Tile();
-        this._Collider.Trans.Scale = new Engineer_1.default.Vertex(this.Trans.Scale.X / 2, this.Trans.Scale.X / 2, 1);
-        this._Collider.Trans.Translation = new Engineer_1.default.Vertex(this.Trans.Translation.X, this.Trans.Translation.Y - this.Trans.Scale.Y, this.Trans.Translation.Y);
-        this._Collider.Active = false;
-        this._Collider.Paint = Engineer_1.default.Color.FromRGBA(255, 0, 0, 120);
+        this._Collider.Collection = new Engineer_1.default.ImageCollection(null, ["/build/resources/border_c.png"]);
+        this._Collider.Index = 0;
+        this._Collider.AmbientColor = Engineer_1.default.Color.Red;
+        this._Collider.Trans.Scale = new Engineer_1.default.Vertex(this.Trans.Scale.X / 2, this.Trans.Scale.Y / 2, 1);
+        //this._Collider.Trans.Translation = new Engineer.Vertex(this.Trans.Translation.X, this.Trans.Translation.Y,  1);
+        this._Collider.Active = true;
+        this._Collider.Paint = Engineer_1.default.Color.Red; //Engineer.Color.FromRGBA(255,0,0,120);
         this._Collider.Collision.Active = true;
         this._Collider.Collision.Type = Engineer_1.default.CollisionType.Radius;
         this._Collider.Data["Owner"] = this;
@@ -1080,19 +1087,23 @@ var Move = /** @class */ (function (_super) {
             Collision.Combine(this._Collider.Collision.Specific[ColliderTypes[i]]);
         }
         if (Movement.Y < 0 && Collision.Top)
-            return false;
+            Movement.Y = 0;
         if (Movement.Y > 0 && Collision.Bottom)
-            return false;
+            Movement.Y = 0;
         if (Movement.X < 0 && Collision.Left)
-            return false;
+            Movement.X = 0;
         if (Movement.X > 0 && Collision.Right)
+            Movement.X = 0;
+        if (Movement.X === 0 && Movement.Y === 0)
             return false;
+        var newLocation = new Engineer_1.default.Vertex(this._Collider.Trans.Translation.X + Movement.X, this._Collider.Trans.Translation.Y + Movement.Y, 1);
         if (this._Owner.Data["Player"]) {
             Scene.Trans.Translation = new Engineer_1.default.Vertex(Scene.Trans.Translation.X - Movement.X, Scene.Trans.Translation.Y - Movement.Y, 0);
-            this._Collider.Trans.Translation = new Engineer_1.default.Vertex(this._Collider.Trans.Translation.X + Movement.X, this._Collider.Trans.Translation.Y + Movement.Y, 2);
+            this._Collider.Trans.Translation = newLocation.Copy();
         }
         else {
-            this._Owner.Trans.Translation = this._Collider.Trans.Translation = new Engineer_1.default.Vertex(this._Collider.Trans.Translation.X + Movement.X, this._Collider.Trans.Translation.Y + Movement.Y, 0.3);
+            this._Owner.Trans.Translation = new Engineer_1.default.Vertex(newLocation.X, newLocation.Y - 50, 0.3);
+            this._Owner.Collider.Trans.Translation = newLocation.Copy();
         }
         if (Engineer_1.default.Vertex.Distance(this._Collider.Trans.Translation, this._Target) < 5)
             return false;

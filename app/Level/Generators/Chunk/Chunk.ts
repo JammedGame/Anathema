@@ -26,7 +26,7 @@ class Chunk
             AccessMatrix.push([]);
             for(let j = 0; j < this.Dimensions.X; j++)
             {
-                if(this.Fields[i][j] == 1 || this.Fields[i][j] == 2) AccessMatrix[i].push(1);
+                if(this.Fields[i][j] == 1) AccessMatrix[i].push(1);
                 else AccessMatrix[i].push(0);
             }
         }
