@@ -13,7 +13,6 @@ import { Inventory } from "./Items/Inventory";
 import { SpriteSetLoader } from "./../Util/SpriteSetLoader";
 import { EquipedCollection } from "./Items/EquipedCollection";
 import { PlayerActions } from "./PlayerActions";
-import { Light } from "three";
 
 class Player extends Unit
 {
@@ -61,7 +60,7 @@ class Player extends Unit
             this._Actions = new PlayerActions(this, Scene);
             Scene.Trans.Translation = new Engineer.Vertex(960, 540, 1);
             this.Trans.Scale = new Engineer.Vertex(100, 150, 0);
-            this.Trans.Translation = new Engineer.Vertex(960, 540, 1);
+            this.Trans.Translation = new Engineer.Vertex(960, 490, 1);
             this._Collider.Data["PlayerCollider"] = true;
             SpriteSetLoader.LoadSets(this, "Human");
         }
@@ -167,7 +166,7 @@ class Player extends Unit
         Sprite.Material.Sampling = Engineer.TextureSamplingType.Nearest;
         Sprite.Material.Type = Engineer.MaterialType.Default;
         Sprite.Trans.Scale = new Engineer.Vertex(100, 150, 1);
-        Sprite.Trans.Translation = new Engineer.Vertex(960, 540, Offset);
+        Sprite.Trans.Translation = new Engineer.Vertex(960, 490, Offset);
         this._EquipedItems.push(Sprite);
         this._Scene.Attach(Sprite);
         this.UpdateStats();

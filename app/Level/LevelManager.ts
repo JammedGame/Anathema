@@ -1,12 +1,12 @@
 export { LevelManager };
 
-import Engineer from "./Engineer";
+import Engineer from "../Engineer";
 
-import { Level } from "./Level/Level";
-import { GameScene } from "./GameScene";
-import { EnemyCollection } from "./Unit/Enemies/EnemyCollection";
-import { LevelTileset } from "./Level/Tilesets/LevelTileset";
-import { LevelTilesetCollection } from "./Level/Tilesets/LevelTilesetCollection";
+import { Level } from "./Level";
+import { GameScene } from "../GameScene";
+import { EnemyCollection } from "../Unit/Enemies/EnemyCollection";
+import { LevelTileset } from "./Tilesets/LevelTileset";
+import { LevelTilesetCollection } from "./Tilesets/LevelTilesetCollection";
 
 class LevelManager
 {
@@ -24,9 +24,9 @@ class LevelManager
         let TheEnemyCollection = new EnemyCollection();
         let TilesetCollection = new LevelTilesetCollection();
 
-        this.Items["Cathedral"] = new Level(null, 5, TilesetCollection.Items["Cathedral"]);
-        this.Items["Cathedral"].AddEnemyEntry("Skeleton", 50);
-        this.Items["Cathedral"].AddEnemyEntry("Orc", 20);
+        this.Items["Cathedral"] = new Level(null, 1, TilesetCollection.Items["Cathedral"]);
+        this.Items["Cathedral"].AddEnemyEntry("Skeleton", 1);
+        this.Items["Cathedral"].AddEnemyEntry("Orc", 1);
     }
     public StartLevel(Level:string)
     {

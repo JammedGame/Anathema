@@ -912,13 +912,7 @@ var Unit = /** @class */ (function (_super) {
             for (var Key in Old.Data) {
                 _this.Data[Key] = Old.Data[Key];
             }
-            _this._Collider.Collection = new Engineer_1.default.ImageCollection(null, ["/build/resources/border_c.png"]);
-            _this._Collider.Index = 0;
-            _this.Collision.Active = false;
-            _this._Collider.AmbientColor = Engineer_1.default.Color.Red;
-            _this._Collider.Collision.Active = true;
-            _this._Collider.Collision.Type = Engineer_1.default.CollisionType.Rectangular;
-            _this._Collider.Data["Owner"] = _this;
+            _this.CreateCollider();
         }
         else {
             _this._Scene = Scene;
@@ -969,8 +963,9 @@ var Unit = /** @class */ (function (_super) {
         var NewHealth = this._Stats.Health + this._Stats.HealthRegeneration;
         if (NewHealth > this._Stats.MaxHealth)
             this._Stats.Health = this._Stats.MaxHealth;
-        if (NewHealth <= 0)
+        if (NewHealth <= 0) {
             this.Destroy();
+        }
         else
             this._Stats.Health = NewHealth;
         var NewMana = this._Stats.Mana + this._Stats.ManaRegeneration;
@@ -984,13 +979,12 @@ var Unit = /** @class */ (function (_super) {
     };
     Unit.prototype.CreateCollider = function () {
         this._Collider = new Engineer_1.default.Tile();
-        this._Collider.Collection = new Engineer_1.default.ImageCollection(null, ["/build/resources/border_c.png"]);
-        this._Collider.Index = 0;
-        this._Collider.AmbientColor = Engineer_1.default.Color.Red;
         this._Collider.Trans.Scale = new Engineer_1.default.Vertex(this.Trans.Scale.X / 2, this.Trans.Scale.Y / 2, 1);
-        //this._Collider.Trans.Translation = new Engineer.Vertex(this.Trans.Translation.X, this.Trans.Translation.Y,  1);
-        this._Collider.Active = true;
-        this._Collider.Paint = Engineer_1.default.Color.Red; //Engineer.Color.FromRGBA(255,0,0,120);
+        // this._Collider.Collection = new Engineer.ImageCollection(null, ["/build/resources/border_c.png"]);
+        // this._Collider.AmbientColor = Engineer.Color.Red;
+        //this._Collider.Index = 0;
+        this._Collider.Active = false;
+        //this._Collider.Paint = Engineer.Color.Red; //Engineer.Color.FromRGBA(255,0,0,120);
         this._Collider.Collision.Active = true;
         this._Collider.Collision.Type = Engineer_1.default.CollisionType.Radius;
         this._Collider.Data["Owner"] = this;
@@ -1958,6 +1952,7 @@ var Enemy = /** @class */ (function (_super) {
     __extends(Enemy, _super);
     function Enemy(Old, Scene) {
         var _this = _super.call(this, Old, Scene) || this;
+        _this._Ticks = 0;
         if (Old != null) {
             _this._Player = Old._Player;
             _this._AttackIndex = Old._AttackIndex;
@@ -1992,9 +1987,12 @@ var Enemy = /** @class */ (function (_super) {
         // Virtual
         if (!this._Scene)
             return;
-        if (!this._CurrentAction)
+        if (!this._CurrentAction || this._Ticks <= 0) {
+            this._Ticks = 60;
             this.Behaviour();
+        }
         if (this._CurrentAction) {
+            this._Ticks--;
             if (!this._CurrentAction.Apply(this._Scene)) {
                 this._CurrentAction = null;
             }
@@ -2139,7 +2137,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Engineer_1 = __webpack_require__(0);
-var LevelManager_1 = __webpack_require__(29);
+var LevelManager_1 = __webpack_require__(77);
 var LocalSettings_1 = __webpack_require__(76);
 var MainMenu = /** @class */ (function (_super) {
     __extends(MainMenu, _super);
@@ -2171,62 +2169,7 @@ exports.MainMenu = MainMenu;
 
 
 /***/ }),
-/* 29 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var Level_1 = __webpack_require__(30);
-var GameScene_1 = __webpack_require__(46);
-var EnemyCollection_1 = __webpack_require__(72);
-var LevelTilesetCollection_1 = __webpack_require__(75);
-var LevelManager = /** @class */ (function () {
-    function LevelManager(Runner, Game) {
-        this.Items = {};
-        this._Runner = Runner;
-        this._Game = Game;
-        var TheEnemyCollection = new EnemyCollection_1.EnemyCollection();
-        var TilesetCollection = new LevelTilesetCollection_1.LevelTilesetCollection();
-        this.Items["Cathedral"] = new Level_1.Level(null, 5, TilesetCollection.Items["Cathedral"]);
-        this.Items["Cathedral"].AddEnemyEntry("Skeleton", 50);
-        this.Items["Cathedral"].AddEnemyEntry("Orc", 20);
-    }
-    LevelManager.prototype.StartLevel = function (Level) {
-        if (this._Level)
-            this.Destroy();
-        if (!this.Items[Level])
-            return;
-        this._Level = this.Items[Level].Copy();
-        this._Scene = new GameScene_1.GameScene();
-        this.InitEnemies();
-        this._Game.Attach(this._Scene);
-        this._Runner.SwitchScene("GameScene", false);
-        this._Scene.Init(this._Level);
-    };
-    LevelManager.prototype.InitEnemies = function () {
-        var Enemies = [];
-        for (var i = 0; i < this._Level.EnemyEntries.length; i++) {
-            for (var j = 0; j < this._Level.EnemyEntries[i].Ammount; j++) {
-                var Enemy = EnemyCollection_1.EnemyCollection.Single.Items[this._Level.EnemyEntries[i].Name].Copy();
-                Enemies.push(Enemy);
-                Enemy.Init(this._Scene, this._Scene.Player);
-            }
-        }
-        this._Level.Enemies = Enemies;
-    };
-    LevelManager.prototype.Destroy = function () {
-        this._Scene.Pause = true;
-        this._Level = null;
-        this._Game.Scenes.splice(this._Game.Scenes.indexOf(this._Scene), 1);
-        this._Scene = null;
-    };
-    return LevelManager;
-}());
-exports.LevelManager = LevelManager;
-
-
-/***/ }),
+/* 29 */,
 /* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2326,7 +2269,7 @@ var LevelGenerator = /** @class */ (function () {
         if (!LevelGenerator._ChunkGenerator)
             LevelGenerator._ChunkGenerator = new GlobalChunkGenerator_1.GlobalChunkGenerator();
         LevelGenerator._ChunkGenerator.Init(Level.Tileset.ChunkTypes);
-        Level.Layout = LevelGenerator.GenerateLayout(new Engineer_1.default.Vertex(Level.Size, Level.Size, 0), [new Layout_1.LayoutClass(3, 1), new Layout_1.LayoutClass(2, 3), new Layout_1.LayoutClass(1, 1000)]);
+        Level.Layout = LevelGenerator.GenerateLayout(new Engineer_1.default.Vertex(Level.Size, Level.Size, 0), [new Layout_1.LayoutClass(3, 1), new Layout_1.LayoutClass(2, 3), new Layout_1.LayoutClass(1, 1)]);
         Level.Layout.Chunk = LevelGenerator.GenerateMegaChunk(Level.Layout, Level.Tileset);
         Level.AccessMatrix = Level.Layout.Chunk.AccessMatrix();
         EnvironmentGenerator_1.EnvironmentGenerator.Generate(Scene, Level);
@@ -2478,7 +2421,6 @@ var LevelGenerator = /** @class */ (function () {
     LevelGenerator.RandomNumber = function (Size) {
         return Math.floor((Math.random() * Size));
     };
-    LevelGenerator._FieldSize = 120;
     return LevelGenerator;
 }());
 exports.LevelGenerator = LevelGenerator;
@@ -3621,7 +3563,7 @@ var Player = /** @class */ (function (_super) {
             _this._Actions = new PlayerActions_1.PlayerActions(_this, Scene);
             Scene.Trans.Translation = new Engineer_1.default.Vertex(960, 540, 1);
             _this.Trans.Scale = new Engineer_1.default.Vertex(100, 150, 0);
-            _this.Trans.Translation = new Engineer_1.default.Vertex(960, 540, 1);
+            _this.Trans.Translation = new Engineer_1.default.Vertex(960, 490, 1);
             _this._Collider.Data["PlayerCollider"] = true;
             SpriteSetLoader_1.SpriteSetLoader.LoadSets(_this, "Human");
         }
@@ -3761,7 +3703,7 @@ var Player = /** @class */ (function (_super) {
         Sprite.Material.Sampling = Engineer_1.default.TextureSamplingType.Nearest;
         Sprite.Material.Type = Engineer_1.default.MaterialType.Default;
         Sprite.Trans.Scale = new Engineer_1.default.Vertex(100, 150, 1);
-        Sprite.Trans.Translation = new Engineer_1.default.Vertex(960, 540, Offset);
+        Sprite.Trans.Translation = new Engineer_1.default.Vertex(960, 490, Offset);
         this._EquipedItems.push(Sprite);
         this._Scene.Attach(Sprite);
         this.UpdateStats();
@@ -3821,7 +3763,7 @@ var Stats = /** @class */ (function () {
             this.BleedChance = 0;
             this.MovementSpeed = 3;
             this.Sight = 800;
-            this.Radius = 100;
+            this.Radius = 150;
             this.ColdResist = 0;
             this.FireResist = 0;
             this.LightningResist = 0;
@@ -5908,6 +5850,62 @@ var LocalSettings = /** @class */ (function () {
     return LocalSettings;
 }());
 exports.LocalSettings = LocalSettings;
+
+
+/***/ }),
+/* 77 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Level_1 = __webpack_require__(30);
+var GameScene_1 = __webpack_require__(46);
+var EnemyCollection_1 = __webpack_require__(72);
+var LevelTilesetCollection_1 = __webpack_require__(75);
+var LevelManager = /** @class */ (function () {
+    function LevelManager(Runner, Game) {
+        this.Items = {};
+        this._Runner = Runner;
+        this._Game = Game;
+        var TheEnemyCollection = new EnemyCollection_1.EnemyCollection();
+        var TilesetCollection = new LevelTilesetCollection_1.LevelTilesetCollection();
+        this.Items["Cathedral"] = new Level_1.Level(null, 1, TilesetCollection.Items["Cathedral"]);
+        this.Items["Cathedral"].AddEnemyEntry("Skeleton", 1);
+        this.Items["Cathedral"].AddEnemyEntry("Orc", 1);
+    }
+    LevelManager.prototype.StartLevel = function (Level) {
+        if (this._Level)
+            this.Destroy();
+        if (!this.Items[Level])
+            return;
+        this._Level = this.Items[Level].Copy();
+        this._Scene = new GameScene_1.GameScene();
+        this.InitEnemies();
+        this._Game.Attach(this._Scene);
+        this._Runner.SwitchScene("GameScene", false);
+        this._Scene.Init(this._Level);
+    };
+    LevelManager.prototype.InitEnemies = function () {
+        var Enemies = [];
+        for (var i = 0; i < this._Level.EnemyEntries.length; i++) {
+            for (var j = 0; j < this._Level.EnemyEntries[i].Ammount; j++) {
+                var Enemy = EnemyCollection_1.EnemyCollection.Single.Items[this._Level.EnemyEntries[i].Name].Copy();
+                Enemies.push(Enemy);
+                Enemy.Init(this._Scene, this._Scene.Player);
+            }
+        }
+        this._Level.Enemies = Enemies;
+    };
+    LevelManager.prototype.Destroy = function () {
+        this._Scene.Pause = true;
+        this._Level = null;
+        this._Game.Scenes.splice(this._Game.Scenes.indexOf(this._Scene), 1);
+        this._Scene = null;
+    };
+    return LevelManager;
+}());
+exports.LevelManager = LevelManager;
 
 
 /***/ })

@@ -2,7 +2,7 @@ export { MainMenu };
 
 import Engineer from "./Engineer";
 
-import { LevelManager } from "./LevelManager";
+import { LevelManager } from "./Level/LevelManager";
 import { LocalSettings } from "./LocalSettings";
 
 class MainMenu extends Engineer.Scene2D {

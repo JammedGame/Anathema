@@ -11,6 +11,7 @@ import { Trait } from "../Trait";
 import { Pathfinder } from "../../Pathfinder";
 
 class Enemy extends Unit {
+    private _Ticks: number;
     protected _AttackIndex: number;
     protected _Player: Player;
     protected _Trait: Trait;
@@ -20,6 +21,7 @@ class Enemy extends Unit {
 
     public constructor(Old: Enemy, Scene?: GameScene) {
         super(Old, Scene);
+        this._Ticks = 0;
         if (Old != null) {
             this._Player = Old._Player;
             this._AttackIndex = Old._AttackIndex;
@@ -49,8 +51,12 @@ class Enemy extends Unit {
     public Update() {
         // Virtual
         if (!this._Scene) return;
-        if (!this._CurrentAction) this.Behaviour();
+        if (!this._CurrentAction || this._Ticks <= 0) {
+            this._Ticks = 60;
+            this.Behaviour();
+        }
         if (this._CurrentAction) {
+            this._Ticks--;
             if (!this._CurrentAction.Apply(this._Scene)) {
                 this._CurrentAction = null;
             }

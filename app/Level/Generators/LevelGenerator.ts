@@ -14,13 +14,12 @@ import { EnvironmentGenerator } from "./Environment/EnvironmentGenerator";
 
 class LevelGenerator
 {
-    private static _FieldSize:number = 120;
     private static _ChunkGenerator:GlobalChunkGenerator;
     public static Generate(Scene:GameScene, Level:Level) : void
     {
         if(!LevelGenerator._ChunkGenerator) LevelGenerator._ChunkGenerator = new GlobalChunkGenerator();
         LevelGenerator._ChunkGenerator.Init(Level.Tileset.ChunkTypes);
-        Level.Layout = LevelGenerator.GenerateLayout(new Engineer.Vertex(Level.Size,Level.Size,0), [new LayoutClass(3,1), new LayoutClass(2,3), new LayoutClass(1,1000)]);
+        Level.Layout = LevelGenerator.GenerateLayout(new Engineer.Vertex(Level.Size,Level.Size,0), [new LayoutClass(3,1), new LayoutClass(2,3), new LayoutClass(1,1)]);
         Level.Layout.Chunk = LevelGenerator.GenerateMegaChunk(Level.Layout, Level.Tileset);
         Level.AccessMatrix = Level.Layout.Chunk.AccessMatrix();
         EnvironmentGenerator.Generate(Scene, Level);
