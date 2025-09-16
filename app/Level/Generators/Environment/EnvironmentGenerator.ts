@@ -1,90 +1,76 @@
-export { EnvironmentGenerator }
+import * as TBX from 'toybox-engine';
 
-import Engineer from "./../../../Engineer";
-
-import { Level } from "./../../Level";
+import { Level } from "../../Levels/Level";
 import { Chunk } from "./../Chunk/Chunk";
 import { GameScene } from "./../../../GameScene";
-import { ColliderGenerator } from "./../ColliderGenerator";
-import { LevelTileset, LevelTilesetFillType } from "./../../Tilesets/LevelTileset"; 
-import { EnvironmentFloorGenerator } from "./EnvironmentFloorGenerator";
-import { EnvironmentWallGenerator } from "./EnvironmentWallGenerator";
-import { EnvironmentCeilingGenerator } from "./EnvironmentCeilingGenerator";
+import EnvironmentWallGenerator from "./EnvironmentWallGenerator";
+import EnvironmentFloorGenerator from "./EnvironmentFloorGenerator";
+import EnvironmentCeilingGenerator from "./EnvironmentCeilingGenerator";
+import { LevelTilesetFillType } from '../../Tilesets/LevelTilesetBlueprint';
 
-enum EnvironmentClass
-{
+enum EnvironmentClass {
     None = 0,
     Floor = 1,
     WallLower = 2,
     WallUpper = 3,
     Ceiling = 4
 }
-class EnvironmentGenerator
-{
-    private static _FieldSize:number = 120;
-    public static Generate(Scene:GameScene, Level:Level) : void
-    {
-        let ArtIndices = new Chunk(Level.Layout.Chunk.Dimensions, -1);
-        EnvironmentFloorGenerator.Generate(Level, ArtIndices);
-        EnvironmentWallGenerator.Generate(Level, ArtIndices);
-        EnvironmentCeilingGenerator.Generate(Level, ArtIndices);
-        EnvironmentGenerator.GenerateTiles(Scene, Level, ArtIndices);
+
+class EnvironmentGenerator {
+    private static _FieldSize: number = 120;
+
+    public static Generate(Scene: GameScene, level: Level): void {
+        let ArtIndices = new Chunk(level.layout.Chunk.Dimensions, -1);
+        EnvironmentFloorGenerator.Generate(level, ArtIndices);
+        EnvironmentWallGenerator.Generate(level, ArtIndices);
+        EnvironmentCeilingGenerator.Generate(level, ArtIndices);
+        EnvironmentGenerator.GenerateTiles(Scene, level, ArtIndices);
     }
-    private static GenerateTiles(Scene:GameScene, Level:Level, Art:Chunk)
-    {
-        let C:Chunk = Level.Layout.Chunk;
-        for(let i = 0; i < C.Dimensions.Y; i++)
-        {
-            for(let j = 0; j < C.Dimensions.X; j++)
-            {
-                if(Art.Fields[i][j] == -1) continue;
-                if(C.Fields[i][j] == EnvironmentClass.Floor)
-                {
-                    EnvironmentGenerator.GenerateTile(Scene, new Engineer.Vertex(j,i,0), Level.Tileset.Floor, Level.Tileset.FloorNormals, Art.Fields[i][j], Engineer.Color.White);
+
+    private static GenerateTiles(Scene: GameScene, level: Level, Art: Chunk) {
+        let C: Chunk = level.layout.Chunk;
+        for (let i = 0; i < C.Dimensions.Y; i++) {
+            for (let j = 0; j < C.Dimensions.X; j++) {
+                if (Art.Fields[i][j] == -1) continue;
+                if (C.Fields[i][j] == EnvironmentClass.Floor) {
+                    EnvironmentGenerator.GenerateTile(Scene, new TBX.Vertex(j, i, 0), level.tileset.collections.floor, Art.Fields[i][j], TBX.Color.White);
                 }
-                else if(C.Fields[i][j] == EnvironmentClass.WallLower)
-                {
-                    EnvironmentGenerator.GenerateTile(Scene, new Engineer.Vertex(j,i,0), Level.Tileset.Floor, Level.Tileset.FloorNormals, 0, Engineer.Color.White);
-                    EnvironmentGenerator.GenerateTile(Scene, new Engineer.Vertex(j,i,0), Level.Tileset.WallLower, null, Art.Fields[i][j], Engineer.Color.White);
+                else if (C.Fields[i][j] == EnvironmentClass.WallLower) {
+                    EnvironmentGenerator.GenerateTile(Scene, new TBX.Vertex(j, i, 0), level.tileset.collections.floor, 0, TBX.Color.White);
+                    EnvironmentGenerator.GenerateTile(Scene, new TBX.Vertex(j, i, 0), level.tileset.collections.wallLower, Art.Fields[i][j], TBX.Color.White);
                 }
-                else if(C.Fields[i][j] == EnvironmentClass.WallUpper)
-                {
-                    EnvironmentGenerator.GenerateTile(Scene, new Engineer.Vertex(j,i,0), Level.Tileset.WallUpper, Level.Tileset.WallUpperNormals, Art.Fields[i][j], Engineer.Color.White);
+                else if (C.Fields[i][j] == EnvironmentClass.WallUpper) {
+                    EnvironmentGenerator.GenerateTile(Scene, new TBX.Vertex(j, i, 0), level.tileset.collections.wallUpper, Art.Fields[i][j], TBX.Color.White);
                 }
-                else if(C.Fields[i][j] == EnvironmentClass.Ceiling)
-                {
-                    if(i - 1 >= 0 && C.Fields[i - 1][j] == EnvironmentClass.Floor) EnvironmentGenerator.GenerateTile(Scene, new Engineer.Vertex(j,i,0), Level.Tileset.Floor, null, 0, Engineer.Color.White);
-                    EnvironmentGenerator.GenerateTile(Scene, new Engineer.Vertex(j,i,0), Level.Tileset.Ceiling, null, Art.Fields[i][j], Engineer.Color.White);
+                else if (C.Fields[i][j] == EnvironmentClass.Ceiling) {
+                    if (i - 1 >= 0 && C.Fields[i - 1][j] == EnvironmentClass.Floor) EnvironmentGenerator.GenerateTile(Scene, new TBX.Vertex(j, i, 0), level.tileset.collections.floor, 0, TBX.Color.White);
+                    EnvironmentGenerator.GenerateTile(Scene, new TBX.Vertex(j, i, 0), level.tileset.collections.ceiling, Art.Fields[i][j], TBX.Color.White);
                 }
-                else if(Level.Tileset.FillType != LevelTilesetFillType.None)
-                {
-                    if(Level.Tileset.FillType == LevelTilesetFillType.Ceiling) EnvironmentGenerator.GenerateTile(Scene, new Engineer.Vertex(j,i,0), Level.Tileset.Ceiling, null, Art.Fields[i][j], Engineer.Color.White);
-                    else if(Level.Tileset.FillType == LevelTilesetFillType.Floor) EnvironmentGenerator.GenerateTile(Scene, new Engineer.Vertex(j,i,0), Level.Tileset.Floor, null, Art.Fields[i][j], Engineer.Color.FromRGBA(180,180,180,255));
-                    else if(Level.Tileset.FillType == LevelTilesetFillType.Separate) EnvironmentGenerator.GenerateTile(Scene, new Engineer.Vertex(j,i,0), Level.Tileset.Separate, null, Art.Fields[i][j], Engineer.Color.FromRGBA(180,180,180,255));
+                else if (level.tileset.settings.fill != LevelTilesetFillType.None) {
+                    if (level.tileset.settings.fill == LevelTilesetFillType.Ceiling) EnvironmentGenerator.GenerateTile(Scene, new TBX.Vertex(j, i, 0), level.tileset.collections.ceiling, Art.Fields[i][j], TBX.Color.White);
+                    else if (level.tileset.settings.fill == LevelTilesetFillType.Floor) EnvironmentGenerator.GenerateTile(Scene, new TBX.Vertex(j, i, 0), level.tileset.collections.floor, Art.Fields[i][j], TBX.Color.FromRGBA(180, 180, 180, 255));
+                    else if (level.tileset.settings.fill == LevelTilesetFillType.Separate) EnvironmentGenerator.GenerateTile(Scene, new TBX.Vertex(j, i, 0), level.tileset.collections.separate, Art.Fields[i][j], TBX.Color.FromRGBA(180, 180, 180, 255));
                 }
             }
         }
     }
-    private static GenerateTile(Scene:GameScene, Location:any, Tileset:any, Normals:any, Index:number, Color:any) : any
-    {
-        let NewTile:any = new Engineer.Tile();
+
+    private static GenerateTile(Scene: GameScene, Location: any, Tileset: any, Index: number, Color: any): any {
+        let NewTile: any = new TBX.Tile();
         NewTile.Name = "Tile(" + Location.X + "," + Location.Y + ")";
         NewTile.Collection = Tileset;
-        NewTile.Material.Type = Engineer.MaterialType.Lit;
-        if(Normals)
-        {
-            NewTile.NormalCollection = Normals;
-            NewTile.Material.Type = Engineer.MaterialType.Phong;
-        }
-        NewTile.AmbientColor = Engineer.Color.FromRGBA(1,1,1,255);
+        NewTile.Material.Type = TBX.MaterialType.Lit;
+        NewTile.AmbientColor = TBX.Color.FromRGBA(1, 1, 1, 255);
         NewTile.Index = Index;
         NewTile.Paint = Color;
-        NewTile.Trans.Scale = new Engineer.Vertex(EnvironmentGenerator._FieldSize, EnvironmentGenerator._FieldSize * 0.8, 1);
-        NewTile.Trans.Translation = new Engineer.Vertex(EnvironmentGenerator._FieldSize * Location.X, EnvironmentGenerator._FieldSize * 0.8 * Location.Y, Location.Y * 0.001);
+        NewTile.Trans.Scale = new TBX.Vertex(EnvironmentGenerator._FieldSize, EnvironmentGenerator._FieldSize * 0.8, 1);
+        NewTile.Trans.Translation = new TBX.Vertex(EnvironmentGenerator._FieldSize * Location.X, EnvironmentGenerator._FieldSize * 0.8 * Location.Y, Location.Y * 0.001);
         Scene.Attach(NewTile);
     }
-    private static RandomNumber(Size:number)
-    {
+
+    private static RandomNumber(Size: number) {
         return Math.floor((Math.random() * Size));
     }
 }
+
+export default EnvironmentGenerator;

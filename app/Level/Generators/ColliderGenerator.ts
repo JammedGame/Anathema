@@ -1,37 +1,34 @@
-export { ColliderGenerator }
-
-import Engineer from "./../../Engineer";
+import * as TBX from 'toybox-engine';
 
 import { GameScene } from "./../../GameScene";
-import { Level } from "./../Level";
+import { Level } from "../Levels/Level";
 
-class ColliderGenerator
-{
-    private static FieldSize:number = 120;
-    public static Generate(Scene:GameScene, Level:Level, Access:number[][]) : void
-    {
-       ColliderGenerator.GenerateColliders(Scene, Level.Layout.Chunk.Dimensions, Access);
+class ColliderGenerator {
+    private static FieldSize: number = 120;
+
+    public static generate(scene: GameScene, level: Level, access: number[][]): void {
+        ColliderGenerator.generateColliders(scene, level.layout.Chunk.Dimensions, access);
     }
-    private static GenerateColliders(Scene:GameScene, Dimensions:any, Access:number[][])
-    {
-        for (let i = 0; i < Dimensions.Y; i++)
-        {
-            for (let j = 0; j < Dimensions.X; j++)
-            {
-                if(Access[i][j] == 0) ColliderGenerator.GenerateColliderTile(Scene, j, i, ColliderGenerator.FieldSize);
+
+    private static generateColliders(scene: GameScene, dimensions: TBX.Vertex, access: number[][]) {
+        for (let i = 0; i < dimensions.Y; i++) {
+            for (let j = 0; j < dimensions.X; j++) {
+                if (access[i][j] == 0) ColliderGenerator.generateColliderTile(scene, j, i);
             }
         }
     }
-    private static GenerateColliderTile(Scene:GameScene, X:number, Y:number, Size:number)
-    {
-        let NewTile:any = new Engineer.Tile();
+
+    private static generateColliderTile(scene: GameScene, x: number, y: number) {
+        let NewTile: any = new TBX.Tile();
         NewTile.Data["Solid"] = true;
         NewTile.Collision.Active = true;
-        NewTile.Collision.Type = Engineer.CollisionType.Rectangular;
-        NewTile.Trans.Translation = new Engineer.Vertex(X * ColliderGenerator.FieldSize, Y * ColliderGenerator.FieldSize * 0.8, 0);
-        NewTile.Trans.Scale = new Engineer.Vertex(ColliderGenerator.FieldSize, ColliderGenerator.FieldSize * 0.8, 1);
+        NewTile.Collision.Type = TBX.CollisionType.Rectangular;
+        NewTile.Trans.Translation = new TBX.Vertex(x * ColliderGenerator.FieldSize, y * ColliderGenerator.FieldSize * 0.8, 0);
+        NewTile.Trans.Scale = new TBX.Vertex(ColliderGenerator.FieldSize, ColliderGenerator.FieldSize * 0.8, 1);
         NewTile.Active = false;
-        NewTile.Paint = Engineer.Color.FromRGBA(0,255,0,120);
-        Scene.Attach(NewTile);
+        NewTile.Paint = TBX.Color.FromRGBA(0, 255, 0, 120);
+        scene.Attach(NewTile);
     }
 }
+
+export default ColliderGenerator;

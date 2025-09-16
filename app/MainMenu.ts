@@ -2,7 +2,7 @@ export { MainMenu };
 
 import Engineer from "./Engineer";
 
-import { LevelManager } from "./Level/LevelManager";
+import LevelManager from "./Level/Levels/LevelManager";
 import { LocalSettings } from "./LocalSettings";
 
 class MainMenu extends Engineer.Scene2D {
@@ -28,7 +28,7 @@ class MainMenu extends Engineer.Scene2D {
         this.StartLevel("Cathedral");
     }
     
-    private StartLevel(Level: string) {
-        this._Manager.StartLevel(Level);
+    private StartLevel(level: string) {
+        this._Manager.startLevel(level);
     }
 }

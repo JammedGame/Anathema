@@ -11,8 +11,8 @@ class EnemyCollection {
 
     public constructor() {
         this.Items = {};
-        this.Items["Skeleton"] = new Skeleton(null);
-        this.Items["Orc"] = new Orc(null);
+        this.Items["skeleton"] = new Skeleton(null);
+        this.Items["orc"] = new Orc(null);
         EnemyCollection.Single = this;
     }
     

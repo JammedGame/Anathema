@@ -1,56 +1,47 @@
-export { EnvironmentFloorGenerator }
-
-import Engineer from "./../../../Engineer";
-
-import { Level } from "./../../Level";
 import { Chunk } from "./../Chunk/Chunk";
-import { LevelTilesetFloorType, LevelTilesetFillType } from "../../Tilesets/LevelTileset";
+import { Level } from "../../Levels/Level";
+import { LevelTilesetFillType, LevelTilesetFloorType } from '../../Tilesets/LevelTilesetBlueprint';
 
-class EnvironmentFloorGenerator
-{
-    public static Generate(Level:Level, Art:Chunk) : void
-    {
-        let C:Chunk = Level.Layout.Chunk;
-        for(let i = 0; i < C.Dimensions.Y; i++)
-        {
-            for(let j = 0; j < C.Dimensions.X; j++)
-            {
-                if(C.Fields[i][j] == 1 || ((C.Fields[i][j] == 0 || C.Fields[i][j] == -1) && Level.Tileset.FillType == LevelTilesetFillType.Floor))
-                {
-                    Art.Fields[i][j] = EnvironmentFloorGenerator.GenerateFloor(Level, C, j, i);
+class EnvironmentFloorGenerator {
+    public static Generate(level: Level, Art: Chunk): void {
+        let C: Chunk = level.layout.Chunk;
+        for (let i = 0; i < C.Dimensions.Y; i++) {
+            for (let j = 0; j < C.Dimensions.X; j++) {
+                if (C.Fields[i][j] == 1 || ((C.Fields[i][j] == 0 || C.Fields[i][j] == -1) && level.tileset.settings.fill == LevelTilesetFillType.Floor)) {
+                    Art.Fields[i][j] = EnvironmentFloorGenerator.GenerateFloor(level, C, j, i);
                 }
-                else if((C.Fields[i][j] == 0 || C.Fields[i][j] == -1) && Level.Tileset.FillType == LevelTilesetFillType.Separate)
-                {
-                    Art.Fields[i][j] = EnvironmentFloorGenerator.GenerateSeparateUniform(Level);
+                else if ((C.Fields[i][j] == 0 || C.Fields[i][j] == -1) && level.tileset.settings.fill == LevelTilesetFillType.Separate) {
+                    Art.Fields[i][j] = EnvironmentFloorGenerator.GenerateSeparateUniform(level);
                 }
             }
         }
     }
-    private static GenerateFloor(Level:Level, C:Chunk, X:number, Y:number) : number
-    {
-        if(Level.Tileset.FloorType == LevelTilesetFloorType.Uniform) return EnvironmentFloorGenerator.GenerateUniform(Level);
-        if(Level.Tileset.FloorType == LevelTilesetFloorType.Checkered) return EnvironmentFloorGenerator.GenerateCheckered(Level, X, Y);
+
+    private static GenerateFloor(level: Level, C: Chunk, X: number, Y: number): number {
+        if (level.tileset.settings.floor == LevelTilesetFloorType.Uniform) return EnvironmentFloorGenerator.GenerateUniform(level);
+        if (level.tileset.settings.floor == LevelTilesetFloorType.Checkered) return EnvironmentFloorGenerator.GenerateCheckered(level, X, Y);
         return -1;
     }
-    private static GenerateCheckered(Level:Level, X:number, Y:number) : number
-    {
-        let Set2:boolean = (X + Y) % 2 == 0;
-        if(Set2) return Level.Tileset.Floor.Images.length / 2 + EnvironmentFloorGeneratorCalculations.RandomNumber(Level.Tileset.Floor.Images.length / 2);
-        return EnvironmentFloorGeneratorCalculations.RandomNumber(Level.Tileset.Floor.Images.length / 2);
+
+    private static GenerateCheckered(level: Level, X: number, Y: number): number {
+        let Set2: boolean = (X + Y) % 2 == 0;
+        if (Set2) return level.tileset.collections.floor.Images.length / 2 + EnvironmentFloorGeneratorCalculations.RandomNumber(level.tileset.collections.floor.Images.length / 2);
+        return EnvironmentFloorGeneratorCalculations.RandomNumber(level.tileset.collections.floor.Images.length / 2);
     }
-    private static GenerateUniform(Level:Level) : number
-    {
-        return EnvironmentFloorGeneratorCalculations.RandomNumber(Level.Tileset.Floor.Images.length);
+
+    private static GenerateUniform(level: Level): number {
+        return EnvironmentFloorGeneratorCalculations.RandomNumber(level.tileset.collections.floor.Images.length);
     }
-    private static GenerateSeparateUniform(Level:Level) : number
-    {
-        return EnvironmentFloorGeneratorCalculations.RandomNumber(Level.Tileset.Separate.Images.length);
+
+    private static GenerateSeparateUniform(level: Level): number {
+        return EnvironmentFloorGeneratorCalculations.RandomNumber(level.tileset.collections.floor.Images.length);
     }
 }
-class EnvironmentFloorGeneratorCalculations
-{
-    public static RandomNumber(Size:number)
-    {
+
+class EnvironmentFloorGeneratorCalculations {
+    public static RandomNumber(Size: number) {
         return Math.floor((Math.random() * Size));
     }
 }
+
+export default EnvironmentFloorGenerator;

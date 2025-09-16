@@ -2,7 +2,7 @@ export { GameScene };
 
 import Engineer from "./Engineer";
 
-import { Level } from "./Level/Level";
+import { Level } from "./Level/Levels/Level";
 import { LocalSettings } from "./LocalSettings";
 import { Player } from "./Unit/Player";
 import { Skeleton } from "./Unit/Enemies/Skeleton";
@@ -47,7 +47,7 @@ class GameScene extends Engineer.Scene2D {
         let DamageCalculation = new Damage(this);
         this.BackColor = Engineer.Color.FromRGBA(0, 0, 0, 255);
         this._Level = Level;
-        this._Level.Init(this);
+        this._Level.init(this);
         this._ItemBank = new ItemCollection();
         this._Inventory = new InventoryWindow(this, this._Player.Inventory);
         this._SkillTree = new SkillTree(this);
@@ -77,7 +77,7 @@ class GameScene extends Engineer.Scene2D {
     private SceneUpdate() {
         if (this._Pause) return;
         for (let i = 0; i < this._Projectiles.length; i++) this._Projectiles[i].Update();
-        if (this._Level) this._Level.Update();
+        if (this._Level) this._Level.update();
         if (this._Player) {
             this._Player.Update();
             if (this._HealthBar) this._HealthBar.Update(this._Player.Stats);
