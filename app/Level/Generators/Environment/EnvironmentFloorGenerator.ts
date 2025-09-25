@@ -1,10 +1,10 @@
+import Level from "../../Levels/Level";
 import { Chunk } from "./../Chunk/Chunk";
-import { Level } from "../../Levels/Level";
 import { LevelTilesetFillType, LevelTilesetFloorType } from '../../Tilesets/LevelTilesetBlueprint';
 
 class EnvironmentFloorGenerator {
     public static Generate(level: Level, Art: Chunk): void {
-        let C: Chunk = level.layout.Chunk;
+        let C: Chunk = level.layout.megaChunk;
         for (let i = 0; i < C.Dimensions.Y; i++) {
             for (let j = 0; j < C.Dimensions.X; j++) {
                 if (C.Fields[i][j] == 1 || ((C.Fields[i][j] == 0 || C.Fields[i][j] == -1) && level.tileset.settings.fill == LevelTilesetFillType.Floor)) {

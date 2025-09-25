@@ -2,7 +2,7 @@ const data = [
     {
         "name": "Cathedral",
         "tilesetId": "cathedral",
-        "dimensions": [2],
+        "dimensions": [1],
         "enemies": [
             {
                 "enemyId": "skeleton",
@@ -13,4 +13,3 @@ const data = [
 ];
 
 export default data;
-

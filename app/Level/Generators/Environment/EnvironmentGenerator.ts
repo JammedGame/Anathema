@@ -1,6 +1,6 @@
 import * as TBX from 'toybox-engine';
 
-import { Level } from "../../Levels/Level";
+import Level from "../../Levels/Level";
 import { Chunk } from "./../Chunk/Chunk";
 import { GameScene } from "./../../../GameScene";
 import EnvironmentWallGenerator from "./EnvironmentWallGenerator";
@@ -20,7 +20,7 @@ class EnvironmentGenerator {
     private static _FieldSize: number = 120;
 
     public static Generate(Scene: GameScene, level: Level): void {
-        let ArtIndices = new Chunk(level.layout.Chunk.Dimensions, -1);
+        let ArtIndices = new Chunk(level.layout.megaChunk.Dimensions, -1);
         EnvironmentFloorGenerator.Generate(level, ArtIndices);
         EnvironmentWallGenerator.Generate(level, ArtIndices);
         EnvironmentCeilingGenerator.Generate(level, ArtIndices);
@@ -28,7 +28,7 @@ class EnvironmentGenerator {
     }
 
     private static GenerateTiles(Scene: GameScene, level: Level, Art: Chunk) {
-        let C: Chunk = level.layout.Chunk;
+        let C: Chunk = level.layout.megaChunk;
         for (let i = 0; i < C.Dimensions.Y; i++) {
             for (let j = 0; j < C.Dimensions.X; j++) {
                 if (Art.Fields[i][j] == -1) continue;

@@ -142,17 +142,17 @@ class Player extends Unit
     {
         for(let i = 0; i < this._EquipedItems.length; i++) this._Scene.Remove(this._EquipedItems[i]);
         this._EquipedItems = [];
-        if(this._Inventory.Greaves) this.EquipItem(this._Inventory.Greaves.ArtEquipedIndex, 1.2);
-        else this.EquipItem("RedPants", 1.2);
-        if(this._Inventory.Chest) this.EquipItem(this._Inventory.Chest.ArtEquipedIndex, 1.2);
-        else this.EquipItem("WhiteShirt", 1.2);
-        if(this._Inventory.Boots) this.EquipItem(this._Inventory.Boots.ArtEquipedIndex, 1.2);
-        if(this._Inventory.Gloves) this.EquipItem(this._Inventory.Gloves.ArtEquipedIndex, 1.2);
-        if(this._Inventory.Head) this.EquipItem(this._Inventory.Head.ArtEquipedIndex, 1.2);
-        if(!this._Inventory.Head || !this._Inventory.Head.Data["Full"]) this.EquipItem("RedBeard", 1.2);
+        if(this._Inventory.Greaves) this.EquipItem(this._Inventory.Greaves.ArtEquipedIndex, 1.1);
+        else this.EquipItem("RedPants", 1.1);
+        if(this._Inventory.Chest) this.EquipItem(this._Inventory.Chest.ArtEquipedIndex, 1.1);
+        else this.EquipItem("WhiteShirt", 1.1);
+        if(this._Inventory.Boots) this.EquipItem(this._Inventory.Boots.ArtEquipedIndex, 1.1);
+        if(this._Inventory.Gloves) this.EquipItem(this._Inventory.Gloves.ArtEquipedIndex, 1.1);
+        if(this._Inventory.Head) this.EquipItem(this._Inventory.Head.ArtEquipedIndex, 1.1);
+        if(!this._Inventory.Head || !this._Inventory.Head.Data["Full"]) this.EquipItem("RedBeard", 1.1);
         if(this._Inventory.Weapon)
         {
-            this.EquipItem(this._Inventory.Weapon.ArtEquipedIndex, 1.2);
+            this.EquipItem(this._Inventory.Weapon.ArtEquipedIndex, 1.1);
             if(this._Inventory.Weapon.Data["WeaponGroup"] == 2) this._Actions.ActionAttack.Range = true;
             else this._Actions.ActionAttack.Range = false;
         }

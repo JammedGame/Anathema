@@ -1,11 +1,9 @@
-export { Level };
-
+import Layout from "./Layout";
 import { GameScene } from "../../GameScene";
-import LevelGenerator from "../Generators/LevelGenerator";
 import { Enemy } from "../../Unit/Enemies/Enemy";
-import { Layout } from "./Layout";
-import LevelTileset from "../Tilesets/LevelTileset";
 import LevelBlueprint from "./LevelBlueprint";
+import LevelTileset from "../Tilesets/LevelTileset";
+import LevelGenerator from "../Generators/LevelGenerator";
 import LevelTilesetBlueprint from "../Tilesets/LevelTilesetBlueprint";
 
 class Level {
@@ -14,7 +12,6 @@ class Level {
     public layout?: Layout;
     public enemies: Enemy[];
     public blueprint: LevelBlueprint;
-    
     public accessMatrix: number[][];
 
     public constructor(blueprint: LevelBlueprint, tilesetBlueprint: LevelTilesetBlueprint) {
@@ -28,14 +25,16 @@ class Level {
         return new Level(this.blueprint, this.tileset.blueprint);
     }
 
-    public init(Scene: GameScene): void {
+    public init(scene: GameScene): void {
         if (!this.tileset.initialized) {
             this.tileset.init();
         }
-        LevelGenerator.generate(Scene, this);
+        LevelGenerator.generate(scene, this);
     }
 
     public update() {
         this.enemies.forEach((enemy: Enemy) => enemy.Update());
     }
 }
+
+export default Level;

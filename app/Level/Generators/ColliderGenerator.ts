@@ -1,13 +1,13 @@
 import * as TBX from 'toybox-engine';
 
+import Level from "../Levels/Level";
 import { GameScene } from "./../../GameScene";
-import { Level } from "../Levels/Level";
 
 class ColliderGenerator {
     private static FieldSize: number = 120;
 
     public static generate(scene: GameScene, level: Level, access: number[][]): void {
-        ColliderGenerator.generateColliders(scene, level.layout.Chunk.Dimensions, access);
+        ColliderGenerator.generateColliders(scene, level.layout.megaChunk.Dimensions, access);
     }
 
     private static generateColliders(scene: GameScene, dimensions: TBX.Vertex, access: number[][]) {

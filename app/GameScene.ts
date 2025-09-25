@@ -2,7 +2,7 @@ export { GameScene };
 
 import Engineer from "./Engineer";
 
-import { Level } from "./Level/Levels/Level";
+import Level from "./Level/Levels/Level";
 import { LocalSettings } from "./LocalSettings";
 import { Player } from "./Unit/Player";
 import { Skeleton } from "./Unit/Enemies/Skeleton";

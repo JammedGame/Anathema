@@ -4,7 +4,8 @@
   "description": "Game where you curse like there is no tomorrow.",
   "main": "build/public/anathema.js",
   "scripts": {
-    "start": "SET NODE_OPTIONS=--openssl-legacy-provider && concurrently -k \"npm run build\" \"npm run serve\"",
+    "start": "concurrently -k \"npm run build\" \"npm run serve\"",
+    "start-win": "SET NODE_OPTIONS=--openssl-legacy-provider && concurrently -k \"npm run build\" \"npm run serve\"",
     "serve": "webpack-dev-server --hot",
     "build": "tsc && webpack --watch",
     "prod": "tsc && webpack -p"

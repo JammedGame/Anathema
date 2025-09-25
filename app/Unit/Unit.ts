@@ -88,11 +88,15 @@ class Unit extends Engineer.Sprite
     {
         this._Collider = new Engineer.Tile();
         this._Collider.Trans.Scale = new Engineer.Vertex(this.Trans.Scale.X / 2, this.Trans.Scale.Y / 2, 1);
+        
+        // this._Collider.Paint = Engineer.Color.Red; //Engineer.Color.FromRGBA(255,0,0,120);
         // this._Collider.Collection = new Engineer.ImageCollection(null, ["/build/resources/border_c.png"]);
         // this._Collider.AmbientColor = Engineer.Color.Red;
-        //this._Collider.Index = 0;
+        // this._Collider.Index = 0;
+        // this._Collider.Active = true;
+
         this._Collider.Active = false;
-        //this._Collider.Paint = Engineer.Color.Red; //Engineer.Color.FromRGBA(255,0,0,120);
+        
         this._Collider.Collision.Active = true;
         this._Collider.Collision.Type = Engineer.CollisionType.Radius;
         this._Collider.Data["Owner"] = this;

@@ -12,6 +12,7 @@ class Skeleton extends Enemy {
 
     public constructor(Old: Skeleton, Scene?: GameScene) {
         super(Old, Scene);
+        this.Name = "Skeleton";
         if (Old != null) { }
         else {
             this._Stats.Health = 30;

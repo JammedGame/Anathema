@@ -12,6 +12,7 @@ class Orc extends Enemy {
 
     public constructor(Old: Orc, Scene?: GameScene) {
         super(Old, Scene);
+        this.Name = "Orc";
         if (Old != null) { }
         else {
             this._Stats.PhysicalDamage = 5;

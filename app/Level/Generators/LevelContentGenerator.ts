@@ -1,73 +1,78 @@
 import * as TBX from 'toybox-engine';
 
-import { Level } from "../Levels/Level";
-import { Player } from "./../../Unit/Player";
+import Level from '../Levels/Level';
 import { GameScene } from "./../../GameScene";
 import { LayoutEntry } from '../Levels/Layout';
+import { LevelBlueprintEnemy } from '../Levels/LevelBlueprint';
+import { EnemyCollection } from '../../Unit/Enemies/EnemyCollection';
 
 class LevelContentGenerator {
     private static _FieldSize: number = 120;
 
-    public static Generate(level: Level, Scene: GameScene, Player: Player): any {
-        for (let i = 0; i < level.layout.Entries.length; i++) LevelContentGenerator.CalculateLocations(level.layout.Entries[i]);
-        let StarterEntryIndex = LevelContentGenerator.RandomNumber(level.layout.Entries.length);
-        let StarterEntry = level.layout.Entries[StarterEntryIndex];
-        let Start = LevelContentGenerator.RandomNumber(StarterEntry.Locations.length);
-        let StartLocation = StarterEntry.Locations[Start];
-        TBX.Log.Info(StartLocation);
-        StarterEntry.Locations.splice(Start, 1);
-        Scene.Trans.Translation = new TBX.Vertex(960 - StartLocation.X, 540 - StartLocation.Y, 0);
-        Player.Collider.Trans.Translation = new TBX.Vertex(StartLocation.X, StartLocation.Y, 3);
-        let EntriesStrength = 0;
-        for (let i = 0; i < level.layout.Entries.length; i++) EntriesStrength += level.layout.Entries[i].Size;
-        EntriesStrength -= StarterEntry.Size;
-        let EnemyLayoutEntries = [];
-        for (let i = 0; i < level.layout.Entries.length; i++) {
-            if (level.layout.Entries[i] != StarterEntry) EnemyLayoutEntries.push(level.layout.Entries[i]);
-        }
-        LevelContentGenerator.PlaceEnemies(level, EnemyLayoutEntries, Math.floor(level.enemies.length / EntriesStrength));
+    public static generate(level: Level, scene: GameScene): any {
+        console.log(level);
+        this.calculateSpawnLocations(level);
+        this.spawnPlayer(level, scene);
+        this.spawnEnemies(level, scene);
     }
 
-    private static PlaceEnemies(level: Level, LE: LayoutEntry[], Strength: number) {
-        let EnemiesToAdd = [];
-        for (let i = 0; i < level.enemies.length; i++) EnemiesToAdd.push(level.enemies[i]);
-        for (let i = 0; i < LE.length; i++) {
-            for (let j = 0; j < Strength * LE[i].Size; j++) LevelContentGenerator.PlaceEnemy(EnemiesToAdd, LE[i]);
-        }
-        for (let i = 0; i < EnemiesToAdd.length; i++) LevelContentGenerator.PlaceEnemy(EnemiesToAdd, LE[LE.length - 1]);
+    private static calculateSpawnLocations(level: Level): void {
+        level.layout.parts.forEach((entry: LayoutEntry) => entry.calculateSpawnLocations(level.accessMatrix));
     }
 
-    private static PlaceEnemy(Enemies: any[], LE: LayoutEntry) {
-        if (Enemies.length == 0) {
-            TBX.Log.Error("Enemy number exceeded!");
-            return;
-        }
-        let EnemyIndex = LevelContentGenerator.RandomNumber(Enemies.length);
-        if (!LE) {
-            Enemies.splice(EnemyIndex, 1);
-            return;
-        }
-        let LocationIndex = LevelContentGenerator.RandomNumber(LE.Locations.length);
-        Enemies[EnemyIndex].Trans.Translation = new TBX.Vertex(LE.Locations[LocationIndex].X, LE.Locations[LocationIndex].Y, 0.5);
-        Enemies[EnemyIndex].Collider.Trans.Translation = new TBX.Vertex(LE.Locations[LocationIndex].X, LE.Locations[LocationIndex].Y, 0.5);
-        Enemies.splice(EnemyIndex, 1);
-        LE.Locations.splice(LocationIndex, 1);
+    private static spawnPlayer(level: Level, scene: GameScene): void {
+        const chunkIndex = LevelContentGenerator.random(level.layout.parts.length);
+        const layoutEntry = level.layout.parts[chunkIndex];
+        level.layout.startPart = layoutEntry;
+        const spawnlocationIndex = LevelContentGenerator.random(layoutEntry.spawnLocations.length);
+        const spawnLocation = layoutEntry.spawnLocations[spawnlocationIndex];
+        TBX.Log.Info('Player Spawn Location', spawnLocation);
+        layoutEntry.useSpawnLocation(spawnlocationIndex);
+        scene.Trans.Translation = new TBX.Vertex(960 - spawnLocation.X, 540 - spawnLocation.Y, 0);
+        scene.Player.Collider.Trans.Translation = new TBX.Vertex(spawnLocation.X, spawnLocation.Y, 3);
     }
 
-    private static RandomNumber(Size: number) {
-        return Math.floor((Math.random() * Size));
-    }
-
-    private static CalculateLocations(LE: LayoutEntry) {
-        LE.Locations = [];
-        for (let i = 0; i < LE.Chunk.Dimensions.Y; i++) {
-            for (let j = 0; j < LE.Chunk.Dimensions.X; j++) {
-                if (LE.Chunk.Fields[i][j] == 1) {
-                    LE.Locations.push(new TBX.Vertex((LE.Location.X * 11 + j) * this._FieldSize, (LE.Location.Y * 11 + i) * this._FieldSize * 0.8, 0));
+    private static spawnEnemies(level: Level, scene: GameScene): void {
+        const enemyCollection = new EnemyCollection();
+        const enemyLayoutEntries = level.layout.parts;//.filter((entry: LayoutEntry) => entry !== level.layout.startPart);
+        const enemyBlueprints = level.blueprint.enemies.map((entry: LevelBlueprintEnemy) => ({ ...entry }));
+        let totalEnemies = 0;
+        enemyBlueprints.forEach((enemy: LevelBlueprintEnemy) => totalEnemies += enemy.number);
+        let layoutEntriesVolume = level.layout.volume - level.layout.startPart.volume;
+        if (layoutEntriesVolume === 0) layoutEntriesVolume = 1;
+        const layoutEntryEnemyRatio = Math.floor(totalEnemies / layoutEntriesVolume);
+        for(let layoutPart of enemyLayoutEntries) {
+            if (enemyBlueprints.length === 0) break;
+            for (let i = 0; i < layoutEntryEnemyRatio; i++) {
+                if (enemyBlueprints.length === 0) break;
+                if (layoutPart.spawnLocations.length === 0) break;
+                const enemyIndex = this.random(enemyBlueprints.length);
+                this.spawnEnemy(level, scene, layoutPart, enemyCollection, enemyBlueprints[enemyIndex]);
+                if (enemyBlueprints[enemyIndex].number === 0) {
+                    enemyBlueprints.splice(enemyIndex, 1);
                 }
             }
         }
     }
+
+    private static spawnEnemy(level: Level, scene: GameScene, part: LayoutEntry, collection: EnemyCollection, enemy: LevelBlueprintEnemy): void {
+        const newEnemy = collection.Items[enemy.enemyId].Copy();
+        const spawnIndex = this.random(part.spawnLocations.length);
+        const spawnLocation = part.spawnLocations[spawnIndex];
+        part.useSpawnLocation(spawnIndex);
+        level.enemies.push(newEnemy);
+        scene.Attach(newEnemy);
+        newEnemy.Init(scene, scene.Player);
+        newEnemy.Trans.Translation = new TBX.Vertex(spawnLocation.X, spawnLocation.Y - 60, 0.5);
+        newEnemy.Collider.Trans.Translation = new TBX.Vertex(spawnLocation.X, spawnLocation.Y - 60, 0.5);
+        newEnemy.Trans.Translation = spawnLocation;
+        TBX.Log.Info("Enemy Spawn Location", spawnLocation);
+        enemy.number--;
+    }
+
+    private static random(max: number) {
+        return Math.floor((Math.random() * max));
+    }    
 }
 
 export default LevelContentGenerator;
