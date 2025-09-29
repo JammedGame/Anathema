@@ -1,10 +1,5 @@
-export { Skeleton };
-
-import Engineer from "./../../Engineer";
-
+import Enemy from "./Enemy";
 import { GameScene } from "./../../GameScene";
-import { Stats } from "./../Stats";
-import { Enemy } from "./Enemy";
 import { SpriteSetLoader } from "./../../Util/SpriteSetLoader";
 
 class Skeleton extends Enemy {
@@ -20,7 +15,7 @@ class Skeleton extends Enemy {
             this._Stats.PhysicalDamage = 4;
             this._Stats.Armor = 20;
             this._Stats.Store();
-            this._AttackIndex = 1;
+            this.attackIndex = 1;
             this.SpriteSets = this.LoadSets();
         }
     }
@@ -33,3 +28,5 @@ class Skeleton extends Enemy {
         return Skeleton._Sets;
     }
 }
+
+export default Skeleton;

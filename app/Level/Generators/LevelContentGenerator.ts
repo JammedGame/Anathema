@@ -1,6 +1,7 @@
 import * as TBX from 'toybox-engine';
 
 import Level from '../Levels/Level';
+import Enemy from '../../Unit/Enemies/Enemy';
 import { GameScene } from "./../../GameScene";
 import { LayoutEntry } from '../Levels/Layout';
 import { LevelBlueprintEnemy } from '../Levels/LevelBlueprint';
@@ -56,17 +57,14 @@ class LevelContentGenerator {
     }
 
     private static spawnEnemy(level: Level, scene: GameScene, part: LayoutEntry, collection: EnemyCollection, enemy: LevelBlueprintEnemy): void {
-        const newEnemy = collection.Items[enemy.enemyId].Copy();
+        const newEnemy: Enemy = collection.Items[enemy.enemyId].duplicate();
         const spawnIndex = this.random(part.spawnLocations.length);
         const spawnLocation = part.spawnLocations[spawnIndex];
         part.useSpawnLocation(spawnIndex);
         level.enemies.push(newEnemy);
         scene.Attach(newEnemy);
-        newEnemy.Init(scene, scene.Player);
-        newEnemy.Trans.Translation = new TBX.Vertex(spawnLocation.X, spawnLocation.Y - 60, 0.5);
-        newEnemy.Collider.Trans.Translation = new TBX.Vertex(spawnLocation.X, spawnLocation.Y - 60, 0.5);
-        newEnemy.Trans.Translation = spawnLocation;
-        TBX.Log.Info("Enemy Spawn Location", spawnLocation);
+        newEnemy.init(scene);
+        newEnemy.updatePosition(spawnLocation.Copy());
         enemy.number--;
     }
 

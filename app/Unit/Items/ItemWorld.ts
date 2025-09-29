@@ -2,7 +2,7 @@ export { ItemWorld };
 
 import Engineer from "./../../Engineer";
 import { GameScene } from "./../../GameScene";
-import { Player } from "./../../Unit/Player";
+import Player from "./../../Unit/Player";
 import { Item } from "./Item";
 import { Inventory } from "./Inventory";
 import { WorldCollection } from "./WorldCollection";

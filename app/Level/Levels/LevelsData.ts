@@ -2,7 +2,7 @@ const data = [
     {
         "name": "Cathedral",
         "tilesetId": "cathedral",
-        "dimensions": [1],
+        "dimensions": [4],
         "enemies": [
             {
                 "enemyId": "skeleton",

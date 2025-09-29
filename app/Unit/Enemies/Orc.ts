@@ -1,10 +1,5 @@
-export { Orc };
-
-import Engineer from "./../../Engineer";
-
+import Enemy from "./Enemy";
 import { GameScene } from "./../../GameScene";
-import { Stats } from "./../Stats";
-import { Enemy } from "./Enemy";
 import { SpriteSetLoader } from "./../../Util/SpriteSetLoader";
 
 class Orc extends Enemy {
@@ -31,3 +26,5 @@ class Orc extends Enemy {
         return Orc._Sets;
     }
 }
+
+export default Orc;

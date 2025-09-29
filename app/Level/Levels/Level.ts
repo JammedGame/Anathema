@@ -1,6 +1,6 @@
 import Layout from "./Layout";
 import { GameScene } from "../../GameScene";
-import { Enemy } from "../../Unit/Enemies/Enemy";
+import Enemy from "../../Unit/Enemies/Enemy";
 import LevelBlueprint from "./LevelBlueprint";
 import LevelTileset from "../Tilesets/LevelTileset";
 import LevelGenerator from "../Generators/LevelGenerator";
@@ -33,7 +33,7 @@ class Level {
     }
 
     public update() {
-        this.enemies.forEach((enemy: Enemy) => enemy.Update());
+        this.enemies.forEach((enemy: Enemy) => enemy.update());
     }
 }
 

@@ -1,8 +1,9 @@
 export { InventoryWindow };
 
 import Engineer from "./../../Engineer";
+
+import Player from "./../../Unit/Player";
 import { GameScene } from "./../../GameScene";
-import { Player } from "./../../Unit/Player";
 import { Window } from "./../Window";
 import { Item } from "../../Unit/Items/Item";
 import { Inventory } from "../../Unit/Items/Inventory";

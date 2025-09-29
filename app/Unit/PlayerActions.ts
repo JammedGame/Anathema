@@ -1,8 +1,7 @@
 export { PlayerActions };
 
 import { GameScene } from "./../GameScene";
-import { Player } from "./Player";
-import { Stats } from "./Stats";
+import Player from "./Player";
 import { Action } from "./Actions/Action";
 import { Move } from "./Actions/Move";
 import { Teleport } from "./Actions/Utility/Teleport";
@@ -102,38 +101,38 @@ class PlayerActions
             this._LeftMouse.Target = Target;
             if(this._LeftMouse.Apply(this._Scene))
             {
-                this._Player.UpdateCurrentAction(this._LeftMouse);
+                this._Player.updateCurrentAction(this._LeftMouse);
             }
             else
             {
                 this._ActionMove.Target = Target;
-                this._Player.UpdateCurrentAction(this._ActionMove);
+                this._Player.updateCurrentAction(this._ActionMove);
             }
         }
         else if(Code == "RM" && this._RightMouse)
         {
             this._RightMouse.Target = Target;
-            this._Player.UpdateCurrentAction(this._RightMouse);
+            this._Player.updateCurrentAction(this._RightMouse);
         }
         else if(Code == "Q" && this._ActionQ)
         {
             this._ActionQ.Target = Target;
-            this._Player.UpdateCurrentAction(this._ActionQ);
+            this._Player.updateCurrentAction(this._ActionQ);
         }
         else if(Code == "W" && this._ActionW)
         {
             this._ActionW.Target = Target;
-            this._Player.UpdateCurrentAction(this._ActionW);
+            this._Player.updateCurrentAction(this._ActionW);
         }
         else if(Code == "E" && this._ActionQ)
         {
             this._ActionE.Target = Target;
-            this._Player.UpdateCurrentAction(this._ActionE);
+            this._Player.updateCurrentAction(this._ActionE);
         }
         else if(Code == "R" && this._ActionR)
         {
             this._ActionR.Target = Target;
-            this._Player.UpdateCurrentAction(this._ActionR);
+            this._Player.updateCurrentAction(this._ActionR);
         }
     }
 }

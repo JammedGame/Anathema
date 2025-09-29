@@ -42,39 +42,10 @@ class Move extends Action
         if(Movement.X < 0 && Collision.Left) Movement.X = 0;
         if(Movement.X > 0 && Collision.Right) Movement.X = 0;
         if (Movement.X === 0 && Movement.Y === 0) return false;
-        const newLocation = new Engineer.Vertex(
-            this._Collider.Trans.Translation.X + Movement.X,
-            this._Collider.Trans.Translation.Y + Movement.Y,
-            1,
-        );
-        if(this._Owner.Data["Player"])
-        {
-            Scene.Trans.Translation = new Engineer.Vertex(
-                Scene.Trans.Translation.X - Movement.X,
-                Scene.Trans.Translation.Y - Movement.Y,
-                1,
-            );
-            this._Collider.Trans.Translation = newLocation.Copy();
-        }
-        else
-        {
-            const playerY = Scene.Player.Trans.Translation.Y;
-            let offsetY =  this.absMax((newLocation.Y - playerY) / 1080, 0.5);
-            if (offsetY > 0) offsetY += 0.1;
-            this._Owner.Trans.Translation = new Engineer.Vertex(
-                newLocation.X,
-                newLocation.Y - 50,
-                1 - offsetY,
-            );
-            this._Owner.Collider.Trans.Translation = newLocation.Copy();
-        }
+        this._Owner.updatePosition(Movement);
         if(Engineer.Vertex.Distance(this._Collider.Trans.Translation, this._Target) < 5) return false;
         return true;
     }
 
-    private absMax(value: number, max: number) {
-        return Math.abs(value) > max
-            ? (value > 0 ? max : -max)
-            : value;
-    }
+    
 }

@@ -1,6 +1,6 @@
 export { Damage }
 
-import { Unit } from "./Unit";
+import Unit from "./Unit";
 import { Stats } from "./Stats";
 import { GameScene } from "./../GameScene";
 import { ItemWorld } from "./Items/ItemWorld";
@@ -30,7 +30,7 @@ class Damage
         Attacker.Stats.Health += DamageDealt * Attacker.Stats.LifeSteal/100;
         if(Victim.Stats.Health < 0)
         {
-            Victim.Destroy();
+            Victim.destroy();
             if(Victim.Data["Enemy"])
             {
                 let Item = ItemCollection.Single.DropRandom();
@@ -70,7 +70,7 @@ class Damage
             Attacked.Stats.Health -= (0.05 * TotalDMG);
             if(Attacked.Stats.Health<=0)
             {
-                Attacked.Destroy();
+                Attacked.destroy();
             }
             else setTimeout(this.BleedDOT.bind(this), 1 * 1000, Attacked, TotalDMG, BleedTick, BleedDuration);
          }

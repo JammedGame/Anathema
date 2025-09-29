@@ -4,9 +4,9 @@ import Engineer from "./Engineer";
 
 import Level from "./Level/Levels/Level";
 import { LocalSettings } from "./LocalSettings";
-import { Player } from "./Unit/Player";
-import { Skeleton } from "./Unit/Enemies/Skeleton";
-import { Orc } from "./Unit/Enemies/Orc";
+import Player from "./Unit/Player";
+import Skeleton from "./Unit/Enemies/Skeleton";
+import Orc from "./Unit/Enemies/Orc";
 import { ItemWorld } from "./Unit/Items/ItemWorld";
 import { ItemCollection } from "./Unit/Items/ItemCollection";
 import { InventoryWindow } from "./UI/Inventory/InventoryWindow";
@@ -16,7 +16,7 @@ import { ManaBar } from "./UI/ManaBar";
 import { MainHud } from "./UI/MainHud";
 import { Effect } from "./Unit/Actions/Effect";
 import { Damage } from "./Unit/Damage";
-import { Projectile } from "./Unit/Projectiles/Projectile";
+import Projectile from "./Unit/Projectiles/Projectile";
 
 class GameScene extends Engineer.Scene2D {
     private _Pause: boolean;
@@ -76,10 +76,10 @@ class GameScene extends Engineer.Scene2D {
 
     private SceneUpdate() {
         if (this._Pause) return;
-        for (let i = 0; i < this._Projectiles.length; i++) this._Projectiles[i].Update();
+        for (let i = 0; i < this._Projectiles.length; i++) this._Projectiles[i].update();
         if (this._Level) this._Level.update();
         if (this._Player) {
-            this._Player.Update();
+            this._Player.update();
             if (this._HealthBar) this._HealthBar.Update(this._Player.Stats);
             if (this._ManaBar) this._ManaBar.Update(this._Player.Stats);
         }

@@ -2,7 +2,7 @@ export { MainHud };
 
 import Engineer from "./../Engineer";
 import { GameScene } from "./../GameScene";
-import { Player } from "./../Unit/Player";
+import Player from "./../Unit/Player";
 import { PlayerActions } from "./../Unit/PlayerActions";
 import { Window } from "./Window";
 import { SkillPicker } from "./SkillPicker";

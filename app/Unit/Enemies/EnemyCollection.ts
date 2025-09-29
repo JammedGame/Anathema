@@ -1,10 +1,8 @@
 export { EnemyCollection };
 
-import Engineer from "./../../Engineer";
-
-import { Enemy } from "./Enemy";
-import { Skeleton } from "./Skeleton";
-import { Orc } from "./Orc";
+import Orc from "./Orc";
+import Enemy from "./Enemy";
+import Skeleton from "./Skeleton";
 
 class EnemyCollection {
     public Items: { [key: string]: Enemy; };
