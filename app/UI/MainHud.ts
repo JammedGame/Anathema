@@ -30,7 +30,7 @@ class MainHud extends Window
         this.Trans.Scale = new Engineer.Vertex(435,120,1);
         this.Trans.Translation = new Engineer.Vertex(960, 1035, 2);
         let AAC = new ActionArtCollection();
-        this._ElementT = new Engineer.ImageCollection(null, ["/build/resources/elements/char.png","/build/resources/elements/inventory.png","/build/resources/elements/quests.png","/build/resources/elements/settings.png",]);
+        this._ElementT = new Engineer.ImageCollection(null, ["/elements/char.png","/elements/inventory.png","/elements/quests.png","/elements/settings.png",]);
         this._LeftClick = this.AddElement(new Engineer.Vertex(10,10,2.5), new Engineer.Vertex(80,80,1), 1);
         this._LeftClick.Collection = ActionArtCollection.Single;
         this._LeftClick.Data["Key"] = "LM";

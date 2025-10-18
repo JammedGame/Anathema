@@ -4,7 +4,10 @@
   "description": "Game where you curse like there is no tomorrow.",
   "main": "build/public/anathema.js",
   "scripts": {
-    "start": "concurrently -k \"npm run build\" \"npm run serve\"",
+    "start": "vite",
+    "build-vite": "vite build",
+    "previewnpm": "vite preview",
+    "start-webp": "concurrently -k \"npm run build\" \"npm run serve\"",
     "start-win": "SET NODE_OPTIONS=--openssl-legacy-provider && concurrently -k \"npm run build\" \"npm run serve\"",
     "serve": "webpack-dev-server --hot",
     "build": "tsc && webpack --watch",
@@ -24,18 +27,20 @@
   },
   "homepage": "https://github.com/ShadySolutions/Anathema#readme",
   "devDependencies": {
-    "typescript": "2.8.1",
-    "webpack": "3.5.3",
-    "webpack-dev-server": "2.7.1"
+    "ts-loader": "^9.5.4",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.10",
+    "webpack": "^5.102.1",
+    "webpack-dev-server": "^5.2.2"
   },
   "dependencies": {
-    "@types/howler": "2.0.5",
-    "@types/three": "0.93.31",
-    "concurrently": "^5.0.2",
+    "@types/howler": "^2.2.12",
+    "@types/three": "^0.179.0",
+    "concurrently": "^9.2.1",
     "engineer-js": "0.0.70",
-    "howler": "2.1.1",
-    "three": "0.101.1",
+    "howler": "^2.2.4",
+    "three": "^0.179.0",
     "toybox-engine": "^0.2.2",
-    "ts-loader": "2.3.2"
+    "webpack-cli": "^6.0.1"
   }
 }

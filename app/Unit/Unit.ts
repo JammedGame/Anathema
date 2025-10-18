@@ -116,7 +116,7 @@ class Unit extends TBX.Sprite {
 
         if (VISIBLE_COLLIDERS) {
             this._Collider.Paint = TBX.Color.Red;
-            this._Collider.Collection = new TBX.ImageCollection(null, ["/build/resources/border_c.png"]);
+            this._Collider.Collection = new TBX.ImageCollection(null, ["/border_c.png"]);
             this._Collider.AmbientColor = TBX.Color.Red;
             this._Collider.Index = 0;
             this._Collider.Active = true;

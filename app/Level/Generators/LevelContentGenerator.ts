@@ -27,7 +27,7 @@ class LevelContentGenerator {
         level.layout.startPart = layoutEntry;
         const spawnlocationIndex = LevelContentGenerator.random(layoutEntry.spawnLocations.length);
         const spawnLocation = layoutEntry.spawnLocations[spawnlocationIndex];
-        TBX.Log.Info('Player Spawn Location', spawnLocation);
+        TBX.Log.Info('Player Spawny Location', spawnLocation);
         layoutEntry.useSpawnLocation(spawnlocationIndex);
         scene.Trans.Translation = new TBX.Vertex(960 - spawnLocation.X, 540 - spawnLocation.Y, 0);
         scene.Player.Collider.Trans.Translation = new TBX.Vertex(spawnLocation.X, spawnLocation.Y, 3);

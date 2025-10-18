@@ -2,7 +2,7 @@ export { SpriteSetLoader, SpriteSetResourcePath };
 
 import Engineer from "./../Engineer";
 
-const SpriteSetResourcePath = "/build/resources/spritesets/";
+const SpriteSetResourcePath = "/spritesets/";
 
 class SpriteSetLoader
 {

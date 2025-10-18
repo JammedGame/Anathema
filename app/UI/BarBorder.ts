@@ -12,7 +12,7 @@ class BarBorder extends Engineer.Tile
         this.Fixed = true;
         this.Trans.Scale = new Engineer.Vertex(220, 220, 1);
         this.Trans.Translation = new Engineer.Vertex(Location.X, Location.Y, 0.7);
-        this.Collection = new Engineer.ImageCollection(null, ["/build/resources/HealthBorder.png"]);
+        this.Collection = new Engineer.ImageCollection(null, ["/HealthBorder.png"]);
         this.Index = 0;
     }
 }

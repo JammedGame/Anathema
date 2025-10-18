@@ -12,7 +12,7 @@ class WorldCollection extends Engineer.ImageCollection
             let s:string = i.toString();
             if(i < 10) s = "00" + s;
             else if (i < 100) s = "0" + s;
-            this.Images.push("/build/resources/items/inventory/i"+s+".png");
+            this.Images.push("/items/inventory/i"+s+".png");
         }
         WorldCollection.Single = this;
     }

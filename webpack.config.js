@@ -1,19 +1,26 @@
-var path = require("path");
+const path = require('path');
 module.exports = {
-  entry: {
-    app: ["./app/app.ts"]
-  },
+  mode: 'development',
+  entry: './app/app.ts',
   output: {
-    path: path.resolve(__dirname, "build"),
-    filename: "anathema.js",
-    publicPath: "/resources/"
+    filename: 'anathema.js',
+    path: path.resolve(__dirname, 'build'),
+    clean: true,
+  },
+  devServer: {
+    historyApiFallback: true,
+    static: {
+      directory: path.join(__dirname, '/')
+    },
+    open: true,
+    hot: true,
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js']
+    extensions: ['.ts', '.js']
   },
   module: {
-    loaders: [
-      { test: /\.tsx?$/, loader: 'ts-loader' }
+    rules: [
+      { test: /\.tsx?$/, use: 'ts-loader' }
     ]
-  }
+  },
 };

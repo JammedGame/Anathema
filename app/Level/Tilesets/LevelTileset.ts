@@ -52,7 +52,7 @@ class LevelTileset {
         .fill(0).map((_value: number, index: number) => {
             let s = (index + 1).toString();
             if (index < 9) s = '0' + s;
-            return "/build/resources/tilesets/" + name + "/" + type + s + ".png";
+            return "/tilesets/" + name + "/" + type + s + ".png";
         });
     }
 }

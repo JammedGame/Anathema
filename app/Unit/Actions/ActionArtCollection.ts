@@ -12,7 +12,7 @@ class ActionArtCollection extends Engineer.ImageCollection
             let s:string = i.toString();
             if(i < 10) s = "00" + s;
             else if (i < 100) s = "0" + s;
-            this.Images.push("/build/resources/skills/Skill"+s+".png");
+            this.Images.push("/skills/Skill"+s+".png");
         }
         ActionArtCollection.Single = this;
     }

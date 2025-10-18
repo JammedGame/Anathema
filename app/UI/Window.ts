@@ -19,8 +19,8 @@ class Window extends Engineer.Tile
         this.Paint = Engineer.Color.FromRGBA(30,30,30,230);
         this._Elements = [];
         this._Decorations = [];
-        this._DecorationT = new Engineer.ImageCollection(null, ["/build/resources/border_c.png","/build/resources/border_h.png","/build/resources/border_v.png"]);
-        this._ElementT = new Engineer.ImageCollection(null, ["/build/resources/elements/grid.png","/build/resources/elements/vorlok.png","/build/resources/elements/helm.png","/build/resources/elements/armor.png","/build/resources/elements/wand.png","/build/resources/elements/tome.png"]);
+        this._DecorationT = new Engineer.ImageCollection(null, ["/border_c.png","/border_h.png","/border_v.png"]);
+        this._ElementT = new Engineer.ImageCollection(null, ["/elements/grid.png","/elements/vorlok.png","/elements/helm.png","/elements/armor.png","/elements/wand.png","/elements/tome.png"]);
     }
     public Init() : void
     {

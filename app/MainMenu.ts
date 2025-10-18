@@ -13,7 +13,7 @@ class MainMenu extends Engineer.Scene2D {
         this._Manager = new LevelManager(Runner, Game);
         this.Name = "Menu";
         this.Trans.Scale = new Engineer.Vertex(LocalSettings.Window.Y / LocalSettings.Scale.Y, LocalSettings.Window.Y / LocalSettings.Scale.Y, 1);
-        let Buttons: any = new Engineer.ImageCollection(null, ["/build/resources/play.png"]);
+        let Buttons: any = new Engineer.ImageCollection(null, ["/play.png"]);
         let Play: any = new Engineer.Tile();
         Play.Name = "Play";
         Play.Collection = Buttons;

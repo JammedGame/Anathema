@@ -3,7 +3,7 @@ export {Effect}
 import { GameScene } from "./../../GameScene";
 import Engineer from "./../../Engineer";
 
-const SpriteSetResourcePath = "/build/resources/effects/";
+const SpriteSetResourcePath = "/effects/";
 
 class Effect extends Engineer.Sprite
 {
@@ -26,8 +26,8 @@ class Effect extends Engineer.Sprite
     public set Fade(value:number) { this._Fade = value; }
     public get Location():any { return this._Location; }
     public set Location(value:any) { this._Location = value; }
-    public get Size():any { return this._Size; }
-    public set Size(value:any) { this._Size = value; }
+    public get FSize():any { return this._Size; }
+    public set FSize(value:any) { this._Size = value; }
     public get Growth():any { return this._Growth; }
     public set Growth(value:any) { this._Growth = value; }
     public get Color():any { return this._Color; }
