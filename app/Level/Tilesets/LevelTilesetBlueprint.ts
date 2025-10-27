@@ -42,7 +42,7 @@ type LevelTilesetArrayLengths = {
 type LevelTilesetBlueprint = {
     name: string;
     settings: LevelTilesetSettings;
-    lenghts: LevelTilesetArrayLengths;
+    lengths: LevelTilesetArrayLengths;
 }
 
 export {

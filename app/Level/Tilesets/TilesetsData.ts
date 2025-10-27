@@ -9,7 +9,7 @@ const data = [
             "generatorId": "squareFill",
             "chunkTypes": ["Cornered", "CorneredSquare", "VaryingFourCircles", "Diagonal"]
         },
-        "lenghts": {
+        "lengths": {
             "floor": 5,
             "wall": 1,
             "separate": 0
@@ -25,14 +25,14 @@ const data = [
             "generatorId": "squareFill",
             "chunkTypes": ["ConnectedFourCircles", "VaryingFourCircles", "Grove", "Circle"]
         },
-        "lenghts": {
+        "lengths": {
             "floor": 1,
             "wall": 1,
             "separate": 0
         }
     },
     {
-        "name": "forest",
+        "name": "town",
         "settings": {
             "floor": "uniform",
             "wall": "bordered",
@@ -41,7 +41,7 @@ const data = [
             "generatorId": "squareFill",
             "chunkTypes": ["VaryingCorneredSquare"]
         },
-        "lenghts": {
+        "lengths": {
             "floor": 3,
             "wall": 7,
             "separate": 0
@@ -57,7 +57,7 @@ const data = [
             "generatorId": "squareFill",
             "chunkTypes": ["Pillared", "Square"]
         },
-        "lenghts": {
+        "lengths": {
             "floor": 8,
             "wall": 8,
             "separate": 0
@@ -73,7 +73,7 @@ const data = [
             "generatorId": "squareFill",
             "chunkTypes": ["Cornered", "CorneredSquare", "VaryingCorneredSquare"]
         },
-        "lenghts": {
+        "lengths": {
             "floor": 1,
             "wall": 1,
             "separate": 1
@@ -89,7 +89,7 @@ const data = [
             "generatorId": "squareFill",
             "chunkTypes": ["Pillared", "Square", "CorneredSquare"]
         },
-        "lenghts": {
+        "lengths": {
             "floor": 1,
             "wall": 1,
             "separate": 0
@@ -105,7 +105,7 @@ const data = [
             "generatorId": "squareFill",
             "chunkTypes": ["Pillared", "Square", "CorneredSquare"]
         },
-        "lenghts": {
+        "lengths": {
             "floor": 1,
             "wall": 1,
             "separate": 0
@@ -121,7 +121,7 @@ const data = [
             "generatorId": "squareFill",
             "chunkTypes": ["Pillared", "Square", "CorneredSquare"]
         },
-        "lenghts": {
+        "lengths": {
             "floor": 1,
             "wall": 1,
             "separate": 0
@@ -137,7 +137,7 @@ const data = [
             "generatorId": "squareFill",
             "chunkTypes": ["Pillared", "Square", "CorneredSquare"]
         },
-        "lenghts": {
+        "lengths": {
             "floor": 1,
             "wall": 1,
             "separate": 0

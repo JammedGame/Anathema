@@ -5,8 +5,6 @@
   "main": "build/public/anathema.js",
   "scripts": {
     "start": "vite",
-    "build-vite": "vite build",
-    "previewnpm": "vite preview",
     "start-webp": "concurrently -k \"npm run build\" \"npm run serve\"",
     "start-win": "SET NODE_OPTIONS=--openssl-legacy-provider && concurrently -k \"npm run build\" \"npm run serve\"",
     "serve": "webpack-dev-server --hot",

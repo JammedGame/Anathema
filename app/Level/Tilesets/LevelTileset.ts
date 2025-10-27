@@ -33,17 +33,17 @@ class LevelTileset {
             case LevelTilesetCeilingType.Bordered: ceilingLength = 17; break;
             default: ceilingLength = 2;
         };
-        const floorImages: string[] = this.formImagePathArray(this.name, 'g', this.blueprint.lenghts.floor);
-        const wallUpperImages: string[] = this.formImagePathArray(this.name, 'wu', this.blueprint.lenghts.wall);
-        const wallLowerImages: string[] = this.formImagePathArray(this.name, 'wl', this.blueprint.lenghts.wall);
+        const floorImages: string[] = this.formImagePathArray(this.name, 'g', this.blueprint.lengths.floor);
+        const wallUpperImages: string[] = this.formImagePathArray(this.name, 'wu', this.blueprint.lengths.wall);
+        const wallLowerImages: string[] = this.formImagePathArray(this.name, 'wl', this.blueprint.lengths.wall);
         const ceilingImages: string[] = this.formImagePathArray(this.name, 'c', ceilingLength);
-        const separateImages: string[] = this.blueprint.lenghts.separate > 0 ? this.formImagePathArray(this.name, 'c', this.blueprint.lenghts.separate) : [];
+        const separateImages: string[] = this.blueprint.lengths.separate > 0 ? this.formImagePathArray(this.name, 'c', this.blueprint.lengths.separate) : [];
         this.collections = {
             floor: new TBX.ImageCollection(null, floorImages),
             wallUpper: new TBX.ImageCollection(null, wallUpperImages),
             wallLower: new TBX.ImageCollection(null, wallLowerImages),
             ceiling: new TBX.ImageCollection(null, ceilingImages),
-            separate: this.blueprint.lenghts.separate > 0 ? new TBX.ImageCollection(null, separateImages) : undefined,
+            separate: this.blueprint.lengths.separate > 0 ? new TBX.ImageCollection(null, separateImages) : undefined,
         };
     }
 

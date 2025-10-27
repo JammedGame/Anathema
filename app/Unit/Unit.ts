@@ -5,7 +5,7 @@ import { Traits } from "./Trait";
 import { Action } from "./Actions/Action";
 import { GameScene } from "./../GameScene";
 
-const VISIBLE_COLLIDERS = true;
+const VISIBLE_COLLIDERS = false;
 
 class Unit extends TBX.Sprite {
     protected _Stats: Stats

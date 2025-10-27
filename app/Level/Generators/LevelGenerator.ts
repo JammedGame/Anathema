@@ -18,7 +18,7 @@ class LevelGenerator {
         if (!LevelGenerator._ChunkGenerator) LevelGenerator._ChunkGenerator = new GlobalChunkGenerator();
         LevelGenerator._ChunkGenerator.init(level.tileset.blueprint.settings.chunkTypes);
 
-        level.layout = LevelGenerator.GenerateLayout(new TBX.Vertex(level.dimensions[0], level.dimensions[0], 0), [new LayoutClass(3, 1), new LayoutClass(2, 1), new LayoutClass(1, 12)]);
+        level.layout = LevelGenerator.GenerateLayout(new TBX.Vertex(level.dimensions[0], level.dimensions[0], 0), [new LayoutClass(3, 5), new LayoutClass(2, 10), new LayoutClass(1, 1000)]);
         level.layout.megaChunk = LevelGenerator.GenerateMegaChunk(level.layout, level.tileset);
         level.accessMatrix = level.layout.megaChunk.AccessMatrix();
 
@@ -44,9 +44,9 @@ class LevelGenerator {
 
     private static CalculateLocation(E1: LayoutEntry, E2: LayoutEntry): any {
         let Location = new TBX.Vertex(0, 0, 0);
-        Location.Y = E1.location.Y * 10;
+        Location.Y = E1.location.Y * 11;
         if (E2.location.Y > E1.location.Y) Location.Y = E2.location.Y * 11;
-        Location.X = E1.location.X * 10;
+        Location.X = E1.location.X * 11;
         if (E1.location.X < E2.location.X) Location.X = E2.location.X * 11;
         return Location;
     }

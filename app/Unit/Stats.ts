@@ -45,7 +45,7 @@ class Stats {
             this.BleedChance = 0;
             this.MovementSpeed = 3;
             this.Sight = 800;
-            this.Radius = 30;
+            this.Radius = 100;
             this.ColdResist = 0;
             this.FireResist = 0;
             this.LightningResist = 0;

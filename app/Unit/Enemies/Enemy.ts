@@ -55,7 +55,7 @@ class Enemy extends Unit {
         if (!this._Scene) return;
         if (!this._CurrentAction || this.ticks <= 0) {
             this.ticks = 60;
-            //this.behaviour();
+            this.behaviour();
         }
         if (this._CurrentAction) {
             this.ticks--;
@@ -83,7 +83,7 @@ class Enemy extends Unit {
         
         if (!this.player) return;
         if (TBX.Vertex.Distance(this._Collider.Trans.Translation, this.player.Collider.Trans.Translation) < this._Stats.Radius) {
-            this._CurrentAction = new Attack(null, "EnemyMove", this);
+            this._CurrentAction = new Attack(null, "EnemyAttack", this);
             this._CurrentAction.Prefs["TargetType"] = "Player";
             this._CurrentAction.Target = this.player.Collider.Trans.Translation;
         }
