@@ -28,7 +28,7 @@ const data = [
         "enemies": [
             {
                 "enemyId": "skeleton",
-                "number": 100
+                "number": 30
             }
         ]
     }

@@ -1,6 +1,6 @@
 export { Item };
 
-import Engineer from "../../Engineer";
+import * as TBX from "toybox-engine";
 
 import { Traits } from "../Trait";
 import { Stats } from "../Stats";
@@ -24,8 +24,9 @@ class Item {
     public Data: { [key: string]: any; } = {};
 
     public constructor(Old?: Item, Name?: string, Indices?: any[], ItemTraits?: Traits) {
+        const Uuid = TBX.Inject<TBX.UuidService>(TBX.UuidService);
         if (Old != null) {
-            this._ID = Engineer.Uuid.Create();
+            this._ID = Uuid.Create();
             this._Name = Old._Name;
             this._ArtEquipedIndex = Old._ArtEquipedIndex;
             this._ArtWorldIndex = Old._ArtWorldIndex;
@@ -36,7 +37,7 @@ class Item {
             }
         }
         else {
-            this._ID = Engineer.Uuid.Create();
+            this._ID = Uuid.Create();
             if (Name) this._Name = Name;
             else this._Name = this._ID;
             if (Indices) {

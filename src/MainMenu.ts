@@ -8,9 +8,9 @@ import { LocalSettings } from "./LocalSettings";
 class MainMenu extends Engineer.Scene2D {
     private _Manager: LevelManager;
 
-    public constructor(Runner: any, Game: any) {
+    public constructor() {
         super();
-        this._Manager = new LevelManager(Runner, Game);
+        this._Manager = new LevelManager();
         this.Name = "Menu";
         this.Trans.Scale = new Engineer.Vertex(LocalSettings.Window.Y / LocalSettings.Scale.Y, LocalSettings.Window.Y / LocalSettings.Scale.Y, 1);
         let Buttons: any = new Engineer.ImageCollection(null, ["/play.png"]);

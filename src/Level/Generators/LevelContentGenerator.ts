@@ -22,12 +22,13 @@ class LevelContentGenerator {
     }
 
     private static spawnPlayer(level: Level, scene: GameScene): void {
+        const log = TBX.Inject<TBX.LogService>(TBX.LogService);
         const chunkIndex = LevelContentGenerator.random(level.layout.parts.length);
         const layoutEntry = level.layout.parts[chunkIndex];
         level.layout.startPart = layoutEntry;
         const spawnlocationIndex = LevelContentGenerator.random(layoutEntry.spawnLocations.length);
         const spawnLocation = layoutEntry.spawnLocations[spawnlocationIndex];
-        TBX.Log.Info('Player Spawny Location', spawnLocation);
+        log.Info('Player Spawny Location', spawnLocation);
         layoutEntry.useSpawnLocation(spawnlocationIndex);
         scene.Trans.Translation = new TBX.Vertex(960 - spawnLocation.X, 540 - spawnLocation.Y, 0);
         scene.Player.Collider.Trans.Translation = new TBX.Vertex(spawnLocation.X, spawnLocation.Y, 3);

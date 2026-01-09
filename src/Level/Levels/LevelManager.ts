@@ -15,9 +15,9 @@ class LevelManager {
 
     public levels: { [key: string]: Level };
 
-    public constructor(runner: TBX.Runner, game: TBX.Game) {
-        this.game = game;
-        this.runner = runner;
+    public constructor() {
+        this.runner = TBX.Inject(TBX.Runner);
+        this.game = this.runner.Game;
         this.tilesetCollection = new LevelTilesetCollection();
         this.levels = {};
         LevelBlueprints.forEach((blueprint: LevelBlueprint) => {

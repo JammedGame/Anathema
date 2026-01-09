@@ -1,18 +1,19 @@
 export { GameLogic };
 
-import Engineer from "./Engineer";
+import * as TBX from "toybox-engine";
 
 import { MainMenu } from "./MainMenu";
 
 class GameLogic {
-    private _Game: any;
-    private _Runner: any;
+    private _Game: TBX.Game;
+    private _Runner: TBX.Runner;
     
     public constructor() {
-        this._Game = new Engineer.Game();
+        this._Game = new TBX.Game();
         this._Game.Name = "Clayman";
-        this._Runner = new Engineer.Runner(this._Game, Engineer.DrawEngineType.ThreeJS);
-        this._Game.Attach(new MainMenu(this._Runner, this._Game));
+        this._Runner = TBX.Inject(TBX.Runner);
+        this._Runner.Init(this._Game, TBX.DrawEngineType.ThreeJS);
+        this._Game.Attach(new MainMenu());
     }
 
     public Run(): void {
