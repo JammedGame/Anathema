@@ -1,0 +1,51 @@
+export { ItemWorld };
+
+import Engineer from "../../Engineer";
+import { GameScene } from "../../GameScene";
+import Player from "../Player";
+import { Item } from "./Item";
+import { Inventory } from "./Inventory";
+import { WorldCollection } from "./WorldCollection";
+
+class ItemWorld extends Engineer.Tile
+{
+    private _Item:Item;
+    private _Scene:GameScene;
+    private _Player:Player;
+    public constructor(Player:Player, Scene:GameScene, Item:Item, X:number, Y:number)
+    {
+        super();
+        this.Trans.Translation = new Engineer.Vertex(X, Y, 0.2);
+        this.Trans.Scale = new Engineer.Vertex(50, 50, 1);
+        if(WorldCollection.Single == null) this.Collection = new WorldCollection();
+        else this.Collection = WorldCollection.Single;
+        this.AmbientColor = Engineer.Color.Black;
+        this.Material.Sampling = Engineer.TextureSamplingType.Nearest;
+        this.Material.Type = Engineer.MaterialType.Lit;
+        this.Index = Item.ArtWorldIndex;
+        this.Data["Item"] = true;
+        this.Collision.Active = true;
+        this._Scene = Scene;
+        this._Player = Player;
+        this._Item = Item;
+        this.Events.MouseDown.push(this.GameUpdate.bind(this));
+        this._Scene.Attach(this);
+    }
+    private GameUpdate(G:any, Args:any)
+    {
+        if(Engineer.Vertex.Distance(this._Player.Collider.Trans.Translation, this.Trans.Translation) < 300)
+        {
+            if(this._Player.Inventory.CanLoot(this._Item))
+            {
+                this._Player.Inventory.Loot(this._Item)
+                this.Events.MouseDown.splice(this.Events.MouseDown.indexOf(this.GameUpdate), 1);
+                this.Active = false;
+                this._Scene.Remove(this);
+            }
+            else
+            {
+                // BackPack full indication
+            }
+        }
+    }  
+}

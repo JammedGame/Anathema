@@ -1,12 +1,9 @@
 <html>
   <head>
-    <meta http-equiv="Content-Security-Policy">
     <title id="title">Anathema</title>
+    <link rel="stylesheet" type="text/css"  href="style.scss" />
   </head>
-  <body style="margin:0px; padding:0px;">
-    <div id="canvas-parent" style="margin:0px; padding:0px; width:100%; height:100vh;">
-      <canvas id="canvas"></canvas>
-    </div>
+  <body style="margin:0px; padding:0px; overflow:hidden; user-select: none;">
     <div id="item-overlay" style="position:absolute; background-color:rgba(50,50,50,0.5); border: 2px solid #AAAAAA; display:none; width:200px; z-index:10; border-radius:5px;">
       <b><p id="item-overlay-name" style="color:white; padding-left:20px;"> Item Description </p></b>
       <p id="item-overlay-type" style="color:white; padding-left:20px;"> Item Type </p>
@@ -16,6 +13,10 @@
       <p id="item-info-4" style="color:white; padding-left:20px;"> Item Info 4 </p>
       <p id="item-info-5" style="color:white; padding-left:20px;"> Item Info 5 </p>
     </div>
-    <script style="margin:0px; padding:0px;" src="./build/anathema.js"></script>
+    <div id="ui-parent" style="position:absolute; top:0px; bottom:0px; width:100%; height:100vh; overflow:hidden;"></div>
+    <div id="canvas-parent" style="position:absolute; top:0px; bottom:0px; width:100%; height:100vh;">
+        <canvas id="canvas"></canvas>
+    </div>
+    <script type="module" src="./src/app.ts"></script>
   </body>
 </html>
