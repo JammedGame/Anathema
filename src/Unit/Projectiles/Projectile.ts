@@ -12,6 +12,7 @@ class Projectile extends Unit {
     protected _RadiusDamage: boolean;
     protected _Radius: number;
     protected _DamageFactor: number;
+    private _CollisionService: TBX.ObjectCollisionService;
 
     public constructor(Old: Projectile, ColliderTypes: string[], Scene?: GameScene) {
         super(Old, Scene);
@@ -32,6 +33,7 @@ class Projectile extends Unit {
             this._Collider.Data["ProjectileCollider"] = true;
         }
         this.init(Scene);
+        this._CollisionService = TBX.Inject(TBX.ObjectCollisionService);
     }
 
     // override
@@ -76,7 +78,7 @@ class Projectile extends Unit {
             let PossibleColliders = this._Scene.FindByData(ColliderTypes[i], true);
             if (PossibleColliders.length == 0) continue;
             if (PossibleColliders.indexOf(this._Collider) != -1) PossibleColliders.splice(PossibleColliders.indexOf(this._Collider), 1);
-            TBX.CollisionUtil.CalculateTypeCollisions(ColliderTypes[i], this._Collider, PossibleColliders as TBX.DrawObject[]);
+            this._CollisionService.CalculateTypeCollisions(ColliderTypes[i], this._Collider, PossibleColliders as TBX.DrawObject[]);
             let Colliders = this._Collider.Data["Colliders_" + ColliderTypes[i]];
             for (let j = 0; j < Colliders.length; j++) {
                 this.damage(Colliders[j].Data["Owner"]);
