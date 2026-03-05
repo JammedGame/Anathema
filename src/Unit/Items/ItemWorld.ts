@@ -19,8 +19,8 @@ class ItemWorld extends Engineer.Tile
         this.Trans.Scale = new Engineer.Vertex(50, 50, 1);
         if(WorldCollection.Single == null) this.Collection = new WorldCollection();
         else this.Collection = WorldCollection.Single;
+        this.Collection.Sampling = Engineer.TextureSampling.Nearest;
         this.AmbientColor = Engineer.Color.Black;
-        this.Material.Sampling = Engineer.TextureSamplingType.Nearest;
         this.Material.Type = Engineer.MaterialType.Lit;
         this.Index = Item.ArtWorldIndex;
         this.Data["Item"] = true;

@@ -8,7 +8,7 @@ import LevelBlueprints from "./LevelsData";
 
 class LevelManager {
     private game: TBX.Game;
-    private runner: TBX.Runner;
+    private runner: TBX.RunnerService;
     private activeLevel: Level;
     private activeScene: GameScene;
     private tilesetCollection: LevelTilesetCollection;
@@ -16,7 +16,7 @@ class LevelManager {
     public levels: { [key: string]: Level };
 
     public constructor() {
-        this.runner = TBX.Inject(TBX.Runner);
+        this.runner = TBX.Inject(TBX.RunnerService);
         this.game = this.runner.Game;
         this.tilesetCollection = new LevelTilesetCollection();
         this.levels = {};
@@ -30,7 +30,6 @@ class LevelManager {
         if (!this.levels[name]) return;
         this.activeLevel = this.levels[name].duplicate();
         this.activeScene = new GameScene();
-        console.log(this.activeScene);
         this.game.Attach(this.activeScene);
         this.runner.SwitchScene("GameScene");
         this.activeScene.Init(this.activeLevel);

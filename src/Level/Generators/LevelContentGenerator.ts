@@ -11,7 +11,6 @@ class LevelContentGenerator {
     private static _FieldSize: number = 120;
 
     public static generate(level: Level, scene: GameScene): any {
-        console.log(level);
         this.calculateSpawnLocations(level);
         this.spawnPlayer(level, scene);
         this.spawnEnemies(level, scene);

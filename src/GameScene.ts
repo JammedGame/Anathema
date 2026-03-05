@@ -60,7 +60,6 @@ class GameScene extends Engineer.Scene2D {
     }
 
     private KeyPress(G: any, Args: any): void {
-        console.log(Args.KeyCode);
         if (this._Pause) return;
         if (Args.KeyCode == 105 || Args.KeyCode == 97) this.ToggleInventory();
         else if (Args.KeyCode == 116 || Args.KeyCode == 103) {

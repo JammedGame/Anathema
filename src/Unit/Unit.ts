@@ -36,6 +36,7 @@ class Unit extends TBX.Sprite {
             this._Scene = Scene;
             this._Traits = new Traits();
             this._Stats = new Stats();
+            this.Collection.Sampling = TBX.TextureSampling.Nearest;
             this.createCollider();
         }
         this._Stats.Store();
@@ -63,9 +64,11 @@ class Unit extends TBX.Sprite {
                 this._LastDirection = this._CurrentAction.Direction;
                 this.calculateSpriteSet(this._CurrentAction.Set, this._CurrentAction.Direction);
             }
-            else this.calculateSpriteSet(0, this._LastDirection);
+            else {
+                this.calculateSpriteSet(0, this._LastDirection);
+            }
         }
-        else this.calculateSpriteSet(0);
+        else this.calculateSpriteSet(0, this._LastDirection);
         let NewHealth = this._Stats.Health + this._Stats.HealthRegeneration;
         if (NewHealth > this._Stats.MaxHealth) this._Stats.Health = this._Stats.MaxHealth;
         if (NewHealth <= 0) {

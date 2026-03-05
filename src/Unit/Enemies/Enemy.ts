@@ -35,7 +35,6 @@ class Enemy extends Unit {
             this._Collider.Data["EnemyCollider"] = true;
         }
         this.AmbientColor = TBX.Color.Black;
-        this.Material.Sampling = TBX.TextureSamplingType.Nearest;
         this.Material.Type = TBX.MaterialType.Lit;
     }
 

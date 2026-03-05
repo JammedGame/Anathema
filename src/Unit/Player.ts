@@ -40,7 +40,6 @@ class Player extends Unit {
         else {
             this.Name = "Player";
             this.Fixed = true;
-            this.Material.Sampling = TBX.TextureSamplingType.Nearest;
             this.Data["Player"] = true;
             Scene.Data["Player"] = this;
             this._Stats.PhysicalDamage = 10;
@@ -55,6 +54,7 @@ class Player extends Unit {
             this.Trans.Translation = new TBX.Vertex(960, 490, 1);
             this._Collider.Data["PlayerCollider"] = true;
             SpriteSetLoader.LoadSets(this, "Human");
+            this.createCollider();
         }
         this._Scene.Events.MouseDown.push(this.mouseDown.bind(this));
         this._Scene.Events.MouseUp.push(this.mouseUp.bind(this));
@@ -169,7 +169,6 @@ class Player extends Unit {
     private equipItem(Index: string, Offset: number) {
         let Sprite = this._EquipedCollection.Items[Index].Copy();
         Sprite.Fixed = true;
-        Sprite.Material.Sampling = TBX.TextureSamplingType.Nearest;
         Sprite.Material.Type = TBX.MaterialType.Default;
         Sprite.Trans.Scale = new TBX.Vertex(100, 150, 1);
         Sprite.Trans.Translation = new TBX.Vertex(960, 490, Offset);

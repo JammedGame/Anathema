@@ -16,9 +16,7 @@ class Move extends Action
         this._Set = 1;
         this._Art = 1;
         this._Owner.Stats._MovementSpeed = MS;
-        console.log('service', TBX.ObjectCollisionService.prototype);
         this._CollisionService = TBX.Inject(TBX.ObjectCollisionService);
-        console.log('col', this._CollisionService);
     }
 
     public Apply(Scene:GameScene) : boolean
@@ -38,7 +36,6 @@ class Move extends Action
             if(Colliders.length == 0) continue;
             if(Colliders.indexOf(this._Collider) != -1) Colliders.splice(Colliders.indexOf(this._Collider), 1);
             this._CollisionService.CalculateTypeCollisions(ColliderTypes[i], this._Collider, <TBX.DrawObject[]>Colliders);
-            //console.log(this._Collider.Collision);
             Collision.Combine(this._Collider.Collision.Specific[ColliderTypes[i]]);
         }
         if(Movement.Y < 0 && Collision.Top) Movement.Y = 0;

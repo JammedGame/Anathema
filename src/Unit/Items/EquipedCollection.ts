@@ -78,6 +78,7 @@ class EquipedCollection {
     private LoadSpriteSet(Set: string, Group: string): void {
         let Sprite = new Engineer.Sprite();
         SpriteSetLoader.LoadSets(Sprite, Set, null, "Items/" + Group + "/");
+        Sprite.Collection.Sampling = Engineer.TextureSampling.Nearest;
         this.Items[Set] = Sprite;
     }
 
